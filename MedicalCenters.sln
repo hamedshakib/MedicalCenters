@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{4942CF23-9C6F-42D6-8A7D-DEC8D4EE34DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalCenters.Infrastructure", "MedicalCenters.Infrastructure\MedicalCenters.Infrastructure.csproj", "{44EBD488-D2CC-4F9E-B433-43487717AA50}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalCenters.Persistence", "MedicalCenters.Infrastructure\MedicalCenters.Persistence.csproj", "{44EBD488-D2CC-4F9E-B433-43487717AA50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
