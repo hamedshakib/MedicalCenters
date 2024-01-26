@@ -11,7 +11,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Utility.Validations;
 
 namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Commands
 {
@@ -32,7 +31,7 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Commands
             if (!validationResult.IsValid)
             {
                 response.IsSusses = false;
-                response.Errors= validationResult.Errors.ErrorMessages();
+                response.Errors= validationResult.Errors.Select(x => x.ErrorMessage).ToList();
                 return response;
             }
             try
