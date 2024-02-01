@@ -1,13 +1,13 @@
+using MedicalCenters.API;
 using MedicalCenters.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.ConfigureAPIServices();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.ConfigureApplicationServices();
+
 //builder.Services.AddSwaggerGen();
 
 var app = builder.Build();

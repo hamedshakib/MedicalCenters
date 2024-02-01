@@ -12,7 +12,6 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Commands
         private readonly IUnitOfWork _unitOfWork;
         public CreateMedicalCenterCommandHandler(IUnitOfWork unitOfWork, IMedicalCenterRepository medicalCenterRepository)
         {
-            
             _unitOfWork = unitOfWork;
         }
 

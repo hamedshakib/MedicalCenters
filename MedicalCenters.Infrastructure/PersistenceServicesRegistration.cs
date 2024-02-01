@@ -13,12 +13,11 @@ namespace MedicalCenters.Persistence
 {
     public static class PersistenceServicesRegistration
     {
-        public static IServiceCollection ConfigureApplicationServices(this IServiceCollection services)
+        public static IServiceCollection ConfigurePersistenceServices(this IServiceCollection services)
         {
             services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IMedicalCenterRepository, MedicalCenterRepository>();
-
             return services;
         }
     }
