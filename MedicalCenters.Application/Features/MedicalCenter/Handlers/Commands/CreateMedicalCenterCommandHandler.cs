@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Application.DTOs.MedicalCenter;
 using MedicalCenters.Application.Features.MedicalCenter.Requests.Commands;
@@ -7,17 +8,11 @@ using MedicalCenters.Application.Responses;
 
 namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Commands
 {
-    internal class CreateMedicalCenterCommandHandler : IRequestHandler<CreateMedicalCenterCommand, BaseCommandResponse>
+    internal class CreateMedicalCenterCommandHandler(IUnitOfWork unitOfWork,IMapper mapper) : IRequestHandler<CreateMedicalCenterCommand, BaseValuedCommandResponse>
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public CreateMedicalCenterCommandHandler(IUnitOfWork unitOfWork, IMedicalCenterRepository medicalCenterRepository)
+        public async Task<BaseValuedCommandResponse> Handle(CreateMedicalCenterCommand command, CancellationToken cancellationToken)
         {
-            _unitOfWork = unitOfWork;
-        }
-
-        public async Task<BaseCommandResponse> Handle(CreateMedicalCenterCommand command, CancellationToken cancellationToken)
-        {
-            var response = new BaseCommandResponse();
+            var response = new BaseValuedCommandResponse();
             var validator = new CreateMedicalCenterCommandValidator();
             var validationResult = await validator.ValidateAsync(command.CreateMedicalCenterDto);
             if (!validationResult.IsValid)
@@ -30,9 +25,9 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Commands
             }
             try
             {
-                var data = ProcessData(command.CreateMedicalCenterDto);
-                data = await _unitOfWork.MedicalCenterRepository.Add(data);
-                await _unitOfWork.Save();
+                var data = mapper.Map<MedicalCenters.Domain.Classes.MedicalCenter>(command.CreateMedicalCenterDto);
+                data = await unitOfWork.MedicalCenterRepository.Add(data);
+                await unitOfWork.Save();
 
                 response.IsSusses = true;
                 response.Id = data.Id;
@@ -46,16 +41,6 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Commands
 
 
             return response;
-        }
-
-        private MedicalCenters.Domain.Classes.MedicalCenter ProcessData(CreateMedicalCenterDto dto)
-        {
-            var createMedicalCenter = new MedicalCenters.Domain.Classes.MedicalCenter()
-            {
-                Name = dto.Name,
-                Description = dto.Description,
-            };
-            return createMedicalCenter;
         }
     }
 }

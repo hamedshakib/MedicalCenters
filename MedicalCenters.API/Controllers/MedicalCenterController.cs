@@ -17,18 +17,17 @@ namespace MedicalCenters.API.Controllers
     public class MedicalCenterController(IMediator mediator) : ControllerBase
     {
         [HttpPost]
-        public async Task<ActionResult<BaseCommandResponse>> AddMedicalCenter([FromBody] CreateMedicalCenterDto newMedicalCenter)
+        public async Task<ActionResult<BaseValuedCommandResponse>> AddMedicalCenter([FromBody] CreateMedicalCenterDto newMedicalCenter)
         {
-            var command = new CreateMedicalCenterCommand(){ CreateMedicalCenterDto=newMedicalCenter };
-            BaseCommandResponse result = null;
+            var command = new CreateMedicalCenterCommand() { CreateMedicalCenterDto = newMedicalCenter };
+            BaseValuedCommandResponse result = null;
             try
             {
-                result = mediator.Send(command).Result;
+                result = await mediator.Send(command);
             }
-            catch(ValidationException ex)
+            catch (ValidationException ex)
             {
-
-                var tempRes = new BaseCommandResponse()
+                var tempRes = new BaseValuedCommandResponse()
                 {
                     IsSusses = false,
                     Id = null,
@@ -36,9 +35,9 @@ namespace MedicalCenters.API.Controllers
                 };
                 return BadRequest();
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                var tempRes =new BaseCommandResponse()
+                var tempRes = new BaseValuedCommandResponse()
                 {
                     IsSusses = false,
                     Id = null,
@@ -49,7 +48,41 @@ namespace MedicalCenters.API.Controllers
 
             if (result is not null)
                 return Ok(result);
-            else 
+            else
+                return BadRequest();
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<BaseResponse>> UpdateMedicalCenter([FromBody] MedicalCenterDto medicalCenter)
+        {
+            var command = new UpdateMedicalCenterCommand() { MedicalCenterDto= medicalCenter };
+            BaseResponse result = null;
+            try
+            {
+                result = mediator.Send(command).Result;
+            }
+            catch (ValidationException ex)
+            {
+                var tempRes = new BaseResponse()
+                {
+                    IsSusses = false,
+                    Errors = ex.ErrorsResponse()
+                };
+                return BadRequest();
+            }
+            catch (Exception ex)
+            {
+                var tempRes = new BaseResponse()
+                {
+                    IsSusses = false,
+                    Errors = ex.ErrorsResponse()
+                };
+                return BadRequest(tempRes);
+            }
+
+            if (result is not null)
+                return Ok(result);
+            else
                 return BadRequest();
         }
     }

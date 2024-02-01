@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Application.DTOs.MedicalCenter
 {
-    internal class MedicalCenterDto : IMedicalCenterDto
+    public class MedicalCenterDto : BaseDto,IMedicalCenterDto
     {
         public string Name { get; set; }
         public string Description { get; set; }

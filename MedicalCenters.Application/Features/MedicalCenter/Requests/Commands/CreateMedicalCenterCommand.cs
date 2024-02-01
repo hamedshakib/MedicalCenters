@@ -10,7 +10,7 @@ using MedicalCenters.Application.DTOs.MedicalCenter;
 
 namespace MedicalCenters.Application.Features.MedicalCenter.Requests.Commands
 {
-    public record CreateMedicalCenterCommand : IRequest<BaseCommandResponse>
+    public record CreateMedicalCenterCommand : IRequest<BaseValuedCommandResponse>
     {
         public CreateMedicalCenterDto CreateMedicalCenterDto { get; set; }
     }

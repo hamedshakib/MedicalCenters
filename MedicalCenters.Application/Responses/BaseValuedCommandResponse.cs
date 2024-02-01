@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Application.Responses
 {
-    public class BaseCommandResponse
+    public class BaseValuedCommandResponse : BaseResponse
     {
-        public bool IsSusses {  get; set; } = false;
         public long? Id { get; set; }
-        public IList<ErrorResponse>? Errors {get; set;}
     }
 }
