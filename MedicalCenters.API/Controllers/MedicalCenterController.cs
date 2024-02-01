@@ -45,21 +45,17 @@ namespace MedicalCenters.API.Controllers
                 };
                 return BadRequest(tempRes);
             }
-
-            if (result is not null)
-                return Ok(result);
-            else
-                return BadRequest();
+            return Ok(result);
         }
 
         [HttpPut]
         public async Task<ActionResult<BaseResponse>> UpdateMedicalCenter([FromBody] MedicalCenterDto medicalCenter)
         {
-            var command = new UpdateMedicalCenterCommand() { MedicalCenterDto= medicalCenter };
+            var command = new UpdateMedicalCenterCommand() { MedicalCenterDto = medicalCenter };
             BaseResponse result = null;
             try
             {
-                result = mediator.Send(command).Result;
+                result = await mediator.Send(command);
             }
             catch (ValidationException ex)
             {
@@ -79,11 +75,38 @@ namespace MedicalCenters.API.Controllers
                 };
                 return BadRequest(tempRes);
             }
+            return Ok(result);
 
-            if (result is not null)
-                return Ok(result);
-            else
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<BaseResponse>> UpdateMedicalCenter(long id)
+        {
+            var command = new DeleteMedicalCenterCommand() { Id=id };
+            BaseResponse result = null;
+            try
+            {
+                result = await mediator.Send(command);
+            }
+            catch (ValidationException ex)
+            {
+                var tempRes = new BaseResponse()
+                {
+                    IsSusses = false,
+                    Errors = ex.ErrorsResponse()
+                };
                 return BadRequest();
+            }
+            catch (Exception ex)
+            {
+                var tempRes = new BaseResponse()
+                {
+                    IsSusses = false,
+                    Errors = ex.ErrorsResponse()
+                };
+                return BadRequest(tempRes);
+            }
+            return Ok(result);
         }
     }
 }
