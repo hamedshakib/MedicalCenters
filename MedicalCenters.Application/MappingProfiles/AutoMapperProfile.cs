@@ -13,7 +13,7 @@ namespace MedicalCenters.Application.MappingProfiles
     {
         public AutoMapperProfile()
         {
-            CreateMap<MedicalCenter,MedicalCenterDto>().ReverseMap();
+            CreateMap<MedicalCenter,MedicalCenterDto>().ReverseMap().IgnoreAllPropertiesWithAnInaccessibleSetter();
             CreateMap<MedicalCenter,CreateMedicalCenterDto>().ReverseMap();
         }
     }

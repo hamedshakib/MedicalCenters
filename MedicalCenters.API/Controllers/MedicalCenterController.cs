@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using System.ComponentModel.DataAnnotations;
+using MedicalCenters.Application.Features.MedicalCenter.Requests.Queries;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace MedicalCenters.API.Controllers
 {
@@ -16,6 +18,66 @@ namespace MedicalCenters.API.Controllers
     [ApiController]
     public class MedicalCenterController(IMediator mediator) : ControllerBase
     {
+        [HttpGet]
+        public async Task<ActionResult<BaseQueryResponse>> GetAllMedicalCenters()
+        {
+            var query = new AllMedicalCentersQuery();
+            BaseQueryResponse result = null;
+            try
+            {
+                result = await mediator.Send(query);
+            }
+            catch (ValidationException ex)
+            {
+                var tempRes = new BaseQueryResponse()
+                {
+                    IsSusses = false,
+                    Errors = ex.ErrorsResponse()
+                };
+                return BadRequest(tempRes);
+            }
+            catch (Exception ex)
+            {
+                var tempRes = new BaseQueryResponse()
+                {
+                    IsSusses = false,
+                    Errors = ex.ErrorsResponse()
+                };
+                return BadRequest(tempRes);
+            }
+            return Ok(result);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<BaseQueryResponse>> GetAllMedicalCenters(long Id)
+        {
+            var query = new MedicalCenterQuery() {Id=Id };
+            BaseQueryResponse result = null;
+            try
+            {
+                result = await mediator.Send(query);
+            }
+            catch (ValidationException ex)
+            {
+                var tempRes = new BaseQueryResponse()
+                {
+                    IsSusses = false,
+                    Errors = ex.ErrorsResponse()
+                };
+                return BadRequest(tempRes);
+            }
+            catch (Exception ex)
+            {
+                var tempRes = new BaseQueryResponse()
+                {
+                    IsSusses = false,
+                    Errors = ex.ErrorsResponse()
+                };
+                return BadRequest(tempRes);
+            }
+            return Ok(result);
+        }
+
         [HttpPost]
         public async Task<ActionResult<BaseValuedCommandResponse>> AddMedicalCenter([FromBody] CreateMedicalCenterDto newMedicalCenter)
         {
@@ -33,7 +95,7 @@ namespace MedicalCenters.API.Controllers
                     Id = null,
                     Errors = ex.ErrorsResponse()
                 };
-                return BadRequest();
+                return BadRequest(tempRes);
             }
             catch (Exception ex)
             {
@@ -64,7 +126,7 @@ namespace MedicalCenters.API.Controllers
                     IsSusses = false,
                     Errors = ex.ErrorsResponse()
                 };
-                return BadRequest();
+                return BadRequest(tempRes);
             }
             catch (Exception ex)
             {
@@ -95,7 +157,7 @@ namespace MedicalCenters.API.Controllers
                     IsSusses = false,
                     Errors = ex.ErrorsResponse()
                 };
-                return BadRequest();
+                return BadRequest(tempRes);
             }
             catch (Exception ex)
             {
