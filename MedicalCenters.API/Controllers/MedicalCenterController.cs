@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using MediatR;
+using MedicalCenters.API.Utility.Extentions;
 using MedicalCenters.Application.DTOs.MedicalCenter;
 using MedicalCenters.Application.Features.MedicalCenter.Requests.Commands;
 using MedicalCenters.Application.Responses;
@@ -26,7 +27,14 @@ namespace MedicalCenters.API.Controllers
             }
             catch(ValidationException ex)
             {
-                return BadRequest(ex.Data);
+
+                var tempRes = new BaseCommandResponse()
+                {
+                    IsSusses = false,
+                    Id = null,
+                    Errors = ex.ErrorsResponse()
+                };
+                return BadRequest();
             }
             catch (Exception ex) 
             {
@@ -34,7 +42,7 @@ namespace MedicalCenters.API.Controllers
                 {
                     IsSusses = false,
                     Id = null,
-                    Errors = null
+                    Errors = ex.ErrorsResponse()
                 };
                 return BadRequest(tempRes);
             }
@@ -44,6 +52,5 @@ namespace MedicalCenters.API.Controllers
             else 
                 return BadRequest();
         }
-        
     }
 }

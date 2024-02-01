@@ -11,8 +11,8 @@ namespace MedicalCenters.Application.Features
     public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>
     {
-        private readonly IList<IValidator<IRequest>> _validators;
-        public ValidationBehavior(IList<IValidator<IRequest>> validators)
+        private readonly IEnumerable<IValidator<IRequest>> _validators;
+        public ValidationBehavior(IEnumerable<IValidator<IRequest>> validators)
         {
             _validators= validators;
         }
