@@ -1,16 +1,9 @@
-﻿using FluentValidation;
-using MediatR;
+﻿using MediatR;
 using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Application.DTOs.MedicalCenter;
 using MedicalCenters.Application.Features.MedicalCenter.Requests.Commands;
 using MedicalCenters.Application.Features.MedicalCenter.Validates;
 using MedicalCenters.Application.Responses;
-using MedicalCenters.Domain.Classes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Commands
 {
@@ -31,7 +24,9 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Commands
             if (!validationResult.IsValid)
             {
                 response.IsSusses = false;
-                response.Errors= validationResult.Errors.Select(x => x.ErrorMessage).ToList();
+                response.Errors = validationResult.Errors.Select(x => 
+                                                        new ErrorResponse(Convert.ToInt16(x.ErrorCode), x.ErrorMessage))
+                                                                .ToList();
                 return response;
             }
             try
@@ -46,7 +41,7 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Commands
             catch (Exception ex)
             {
                 response.IsSusses= false;
-                response.Errors.Add(ex.Message);
+                response.Errors.Add(new ErrorResponse(-1,ex.Message));
             }
 
 

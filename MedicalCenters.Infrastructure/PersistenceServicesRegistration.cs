@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using
-
-
 
 using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Persistence.Repositories;
