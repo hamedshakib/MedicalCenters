@@ -11,6 +11,7 @@ using MedicalCenters.Persistence.Repositories;
 using MedicalCenters.Infrastructure.Repositories;
 using MedicalCenters.Infrastructure.DBContexts;
 using Microsoft.Extensions.Configuration;
+using Utility.Configuration;
 
 namespace MedicalCenters.Persistence
 {
@@ -18,11 +19,9 @@ namespace MedicalCenters.Persistence
     {
         public static IServiceCollection ConfigurePersistenceServices(this IServiceCollection services)
         {
-            IConfigurationRoot configuration = new ConfigurationBuilder()
-                                                    .SetBasePath(Directory.GetCurrentDirectory())
-                                                    .AddJsonFile("appsettings.json")
-                                                    .Build();
-            var medicalCentersConnectionString = configuration.GetConnectionString("MedicalCentersConnectionString");
+            var medicalCentersConnectionString = Configuration.GetAppSettingJson()
+                                                              .GetConnectionString("MedicalCentersConnectionString");
+
             services.AddDbContext<MedicalCentersDBContext>(options => options.UseSqlServer(medicalCentersConnectionString));
             services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
