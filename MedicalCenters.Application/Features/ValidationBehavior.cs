@@ -24,7 +24,8 @@ namespace MedicalCenters.Application.Features
                                               .SelectMany(x => x.Errors)
                                               .Where(x => x != null)
                                               .ToList();
-            if(validationFailures.Any()) 
+            
+            if (validationFailures.Any()) 
             {
                 throw new ValidationException(validationFailures);
             }

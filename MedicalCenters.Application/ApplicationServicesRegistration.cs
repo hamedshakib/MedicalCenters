@@ -13,12 +13,11 @@ namespace MedicalCenters.Application
 {
     public static class ApplicationServicesRegistration
     {
-        public static IServiceCollection ConfigureApplicationServices(this IServiceCollection services)
+        public static void ConfigureApplicationServices(this IServiceCollection services)
         {
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-            return services;
         }
     }
 }
