@@ -12,7 +12,11 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Validates
     {
         public CreateMedicalCenterCommandValidator()
         {
-            RuleFor(e=> e.Name).NotEmpty();
+            RuleFor(e => e.Name).NotNull();
+
+            
+            RuleFor(e => e.Name).NotEmpty().WithErrorCode("").WithMessage("{PropertyName} is empty");
+            
         }
     }
 }
