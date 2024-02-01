@@ -20,10 +20,10 @@ namespace MedicalCenters.API.Controllers
         public async Task<ActionResult<BaseCommandResponse>> AddMedicalCenter([FromBody] CreateMedicalCenterDto newMedicalCenter)
         {
             var command = new CreateMedicalCenterCommand(){ CreateMedicalCenterDto=newMedicalCenter };
-            Task<BaseCommandResponse> result = null;
+            BaseCommandResponse result = null;
             try
             {
-                result = mediator.Send(command);
+                result = mediator.Send(command).Result;
             }
             catch(ValidationException ex)
             {

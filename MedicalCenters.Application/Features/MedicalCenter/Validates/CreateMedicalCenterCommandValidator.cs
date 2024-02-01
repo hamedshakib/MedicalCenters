@@ -15,7 +15,7 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Validates
             RuleFor(e => e.Name).NotNull();
 
             
-            RuleFor(e => e.Name).NotEmpty().WithErrorCode("").WithMessage("{PropertyName} is empty");
+            RuleFor(e => e.Name).NotEmpty().WithErrorCode("1000").WithMessage("{PropertyName} is empty");
             
         }
     }

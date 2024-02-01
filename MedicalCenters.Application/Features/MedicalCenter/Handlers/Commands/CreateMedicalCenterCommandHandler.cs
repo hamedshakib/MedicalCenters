@@ -40,6 +40,7 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Commands
             catch (Exception ex)
             {
                 response.IsSusses= false;
+                response.Errors ??= new List<ErrorResponse>();
                 response.Errors.Add(new ErrorResponse(-1,ex.Message));
             }
 
