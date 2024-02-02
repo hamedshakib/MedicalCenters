@@ -1,4 +1,5 @@
 ﻿using MedicalCenters.Domain.Classes.Base;
+using MedicalCenters.Domain.Classes.Patients;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Domain.Classes
 {
-    public class MedicalDepartment : BaseModifiableDomainEntity
+    public class Reservation : BaseModifiableDomainEntity
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public IList<MedicalUnit> Units { get; set; }
+        public DateTime ReservationDT { get; set; }
+        public Patient Patient { get; set; }
+
     }
 }

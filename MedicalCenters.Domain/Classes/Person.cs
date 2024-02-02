@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Domain.Classes
 {
-    public class MedicalUnit : BaseModifiableDomainEntity
+    public class Person : BaseModifiableDomainEntity
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
+        string FirstName { get; set; }
+        string LastName { get; set; }
+        string NationalCode { get; set; }
     }
 }

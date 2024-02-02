@@ -5,9 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MedicalCenters.Domain.Classes.Staffs
+namespace MedicalCenters.Domain.Classes.Oprerations
 {
-    public class Nurse : Personel
+    public class Operation : BaseModifiableDomainEntity
     {
+
     }
 }

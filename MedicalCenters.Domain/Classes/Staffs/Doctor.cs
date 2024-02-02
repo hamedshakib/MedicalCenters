@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Domain.Classes.Staffs
 {
-    public class Doctor : MedicalStaff
+    public class Doctor : Personel
     {
+
     }
 }

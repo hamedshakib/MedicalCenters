@@ -22,7 +22,8 @@ namespace MedicalCenters.Persistence
             var medicalCentersConnectionString = Configuration.GetAppSettingJson()
                                                               .GetConnectionString("MedicalCentersConnectionString");
 
-            services.AddDbContext<MedicalCentersDBContext>(options => options.UseSqlServer(medicalCentersConnectionString));
+            services.AddDbContext<MedicalCentersDBContext>(options => 
+                                        options.UseSqlServer(medicalCentersConnectionString, x => x.UseNetTopologySuite()));
             services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IMedicalCenterRepository, MedicalCenterRepository>();
