@@ -13,8 +13,8 @@ namespace MedicalCenters.Domain.Classes.Patients
     public class PatientHistory : BaseModifiableDomainEntity
     {
         public Patient Patient { get; set; }
-        public IList<Operation> Operations { get; set; }
-        public IList<Medicine> Medicines { get; set; }
-        public IList<Doctor> Doctors { get; set; }
+        public IList<Operation>? Operations { get; set; }
+        public IList<Medicine>? Medicines { get; set; }
+        public IList<Doctor>? Doctors { get; set; }
     }
 }

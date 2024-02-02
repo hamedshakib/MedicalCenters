@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MedicalCenters.Domain.Classes
+namespace MedicalCenters.Domain.Classes.Shifts
 {
     public class Shift : BaseModifiableDomainEntity
     {
-        public ShiftPlan ShiftPlan {  get; set; }
+        public ShiftPlan? ShiftPlan { get; set; }
         public Personel Personel { get; set; }
         public MedicalUnit Unit { get; set; }
     }

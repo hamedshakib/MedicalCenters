@@ -2,6 +2,7 @@
 using MedicalCenters.Domain.Classes.Medicines;
 using MedicalCenters.Domain.Classes.Oprerations;
 using MedicalCenters.Domain.Classes.Patients;
+using MedicalCenters.Domain.Classes.Shifts;
 using MedicalCenters.Domain.Classes.Staffs;
 using Microsoft.EntityFrameworkCore;
 using System;

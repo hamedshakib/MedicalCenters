@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MedicalCenters.Domain.Classes
+namespace MedicalCenters.Domain.Classes.Shifts
 {
     public class ShiftPlan : BaseModifiableDomainEntity
     {

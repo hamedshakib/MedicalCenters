@@ -9,5 +9,7 @@ namespace MedicalCenters.Domain.Classes.Oprerations
 {
     public class OperationType : BaseCreateableDomainEntity
     {
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }

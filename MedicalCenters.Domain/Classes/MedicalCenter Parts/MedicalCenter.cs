@@ -1,4 +1,5 @@
 ﻿using MedicalCenters.Domain.Classes.Base;
+using MedicalCenters.Domain.Classes.MedicalCenter_Parts;
 using NetTopologySuite.Geometries;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace MedicalCenters.Domain.Classes
     public class MedicalCenter : BaseModifiableDomainEntity
     {
         public string Name { get; set; }
+        public MedicalCenterType Type { get; set; }
         public string Description { get; set; }
         public Point Location { get; set; }
         public string Address { get; set; }
