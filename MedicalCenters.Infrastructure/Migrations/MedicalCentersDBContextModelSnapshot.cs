@@ -176,6 +176,10 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Property<DateTime?>("DateTimeCreated")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("MedicalCenterType");

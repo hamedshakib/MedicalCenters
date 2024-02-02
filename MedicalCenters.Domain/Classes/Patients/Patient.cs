@@ -9,9 +9,6 @@ namespace MedicalCenters.Domain.Classes.Patients
 {
     public class Patient : Person
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string NationalCode { get; set; }
         public IList<Allergy>? Allergies { get; set; }
     }
 }

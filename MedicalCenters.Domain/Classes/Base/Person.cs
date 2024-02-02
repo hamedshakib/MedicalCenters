@@ -8,8 +8,8 @@ namespace MedicalCenters.Domain.Classes.Base
 {
     public abstract class Person : BaseModifiableDomainEntity
     {
-        string FirstName { get; set; }
-        string LastName { get; set; }
-        string NationalCode { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string NationalCode { get; set; }
     }
 }

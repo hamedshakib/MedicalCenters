@@ -9,6 +9,6 @@ namespace MedicalCenters.Domain.Classes.MedicalCenter_Parts
 {
     public class MedicalCenterType : BaseCreateableDomainEntity
     {
-        string Name { get; set; }
+        public string Name { get; set; }
     }
 }
