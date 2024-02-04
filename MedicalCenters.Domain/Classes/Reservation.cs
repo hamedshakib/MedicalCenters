@@ -2,6 +2,7 @@
 using MedicalCenters.Domain.Classes.Patients;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,9 @@ namespace MedicalCenters.Domain.Classes
     [Table("Reservation")]
     public class Reservation : BaseModifiableDomainEntity
     {
+        [Required]
         public DateTime ReservationDT { get; set; }
+        [Required]
         public Patient Patient { get; set; }
 
     }

@@ -18,8 +18,8 @@ namespace MedicalCenters.Persistence.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false),
                     DateTimeModified = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -36,7 +36,7 @@ namespace MedicalCenters.Persistence.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
                     DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false)
                 },
@@ -51,8 +51,8 @@ namespace MedicalCenters.Persistence.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false)
                 },
@@ -67,8 +67,8 @@ namespace MedicalCenters.Persistence.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false)
                 },
@@ -83,8 +83,8 @@ namespace MedicalCenters.Persistence.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false)
                 },
@@ -103,9 +103,9 @@ namespace MedicalCenters.Persistence.Migrations
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false),
                     DateTimeModified = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedBy = table.Column<long>(type: "bigint", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NationalCode = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    NationalCode = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -118,14 +118,14 @@ namespace MedicalCenters.Persistence.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PersonnelCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PersonnelCode = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false),
                     DateTimeModified = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ModifiedBy = table.Column<long>(type: "bigint", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NationalCode = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    NationalCode = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -138,8 +138,8 @@ namespace MedicalCenters.Persistence.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false)
                 },
@@ -154,11 +154,11 @@ namespace MedicalCenters.Persistence.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
                     TypeId = table.Column<long>(type: "bigint", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     Location = table.Column<Point>(type: "geography", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false),
                     DateTimeModified = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -205,7 +205,7 @@ namespace MedicalCenters.Persistence.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     TypeId = table.Column<long>(type: "bigint", nullable: false),
                     DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false),
@@ -311,8 +311,8 @@ namespace MedicalCenters.Persistence.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     GroupId = table.Column<long>(type: "bigint", nullable: false),
                     DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false)
@@ -334,9 +334,9 @@ namespace MedicalCenters.Persistence.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
                     TypeId = table.Column<long>(type: "bigint", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     MedicalCenterId = table.Column<long>(type: "bigint", nullable: true),
                     DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false),
@@ -449,8 +449,8 @@ namespace MedicalCenters.Persistence.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     MedicalWardId = table.Column<long>(type: "bigint", nullable: true),
                     DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false),

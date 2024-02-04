@@ -3,6 +3,7 @@ using MedicalCenters.Domain.Classes.Medicines;
 using MedicalCenters.Domain.Classes.Staffs;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace MedicalCenters.Domain.Classes.Oprerations
     public class Operation : BaseModifiableDomainEntity
     {
         public DateTime OperationDT { get; set; }
+        [Required]
         public OperationType OperationType { get; set; }
         public IList<Medicine>? Medicines { get; set; }
         public IList<Doctor>? Doctors { get; set; }
