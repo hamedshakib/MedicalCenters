@@ -7,9 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using MedicalCenters.Domain.Classes.Medicines;
 using MedicalCenters.Domain.Classes.Staffs;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MedicalCenters.Domain.Classes.Patients
 {
+    [Table("PatientHistory")]
     public class PatientHistory : BaseModifiableDomainEntity
     {
         public Patient Patient { get; set; }

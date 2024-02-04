@@ -13,7 +13,7 @@ using NetTopologySuite.Geometries;
 namespace MedicalCenters.Persistence.Migrations
 {
     [DbContext(typeof(MedicalCentersDBContext))]
-    [Migration("20240202120404_InitialCreate")]
+    [Migration("20240204161934_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -86,11 +86,6 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Property<DateTime?>("DateTimeModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(8)
-                        .HasColumnType("nvarchar(8)");
-
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -114,9 +109,7 @@ namespace MedicalCenters.Persistence.Migrations
 
                     b.ToTable("Personel");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Personel");
-
-                    b.UseTphMappingStrategy();
+                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.MedicalCenter", b =>
@@ -313,9 +306,6 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Property<DateTime?>("DateTimeModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("MedicineTypeId")
-                        .HasColumnType("bigint");
-
                     b.Property<long>("ModifiedBy")
                         .HasColumnType("bigint");
 
@@ -329,13 +319,16 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Property<long?>("PatientHistoryId")
                         .HasColumnType("bigint");
 
-                    b.HasKey("Id");
+                    b.Property<long>("TypeId")
+                        .HasColumnType("bigint");
 
-                    b.HasIndex("MedicineTypeId");
+                    b.HasKey("Id");
 
                     b.HasIndex("OperationId");
 
                     b.HasIndex("PatientHistoryId");
+
+                    b.HasIndex("TypeId");
 
                     b.ToTable("Medicine");
                 });
@@ -354,11 +347,11 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Property<DateTime?>("DateTimeCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("TypeDescription")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TypeName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -534,7 +527,7 @@ namespace MedicalCenters.Persistence.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("Reservations");
+                    b.ToTable("Reservation");
                 });
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.Shifts.Shift", b =>
@@ -574,7 +567,7 @@ namespace MedicalCenters.Persistence.Migrations
 
                     b.HasIndex("UnitId");
 
-                    b.ToTable("Shifts");
+                    b.ToTable("Shift");
                 });
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.Shifts.ShiftPlan", b =>
@@ -733,14 +726,14 @@ namespace MedicalCenters.Persistence.Migrations
 
                     b.HasIndex("VisitId");
 
-                    b.HasDiscriminator().HasValue("Doctor");
+                    b.ToTable("Doctor");
                 });
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.Staffs.Nurse", b =>
                 {
                     b.HasBaseType("MedicalCenters.Domain.Classes.Base.Personel");
 
-                    b.HasDiscriminator().HasValue("Nurse");
+                    b.ToTable("Nurse");
                 });
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.Allergy", b =>
@@ -793,12 +786,6 @@ namespace MedicalCenters.Persistence.Migrations
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.Medicines.Medicine", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Classes.Medicines.MedicineType", "MedicineType")
-                        .WithMany()
-                        .HasForeignKey("MedicineTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("MedicalCenters.Domain.Classes.Oprerations.Operation", null)
                         .WithMany("Medicines")
                         .HasForeignKey("OperationId");
@@ -807,7 +794,13 @@ namespace MedicalCenters.Persistence.Migrations
                         .WithMany("Medicines")
                         .HasForeignKey("PatientHistoryId");
 
-                    b.Navigation("MedicineType");
+                    b.HasOne("MedicalCenters.Domain.Classes.Medicines.MedicineType", "Type")
+                        .WithMany()
+                        .HasForeignKey("TypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Type");
                 });
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.Oprerations.Operation", b =>
@@ -898,7 +891,7 @@ namespace MedicalCenters.Persistence.Migrations
             modelBuilder.Entity("MedicalCenters.Domain.Classes.Specialties.Specialty", b =>
                 {
                     b.HasOne("MedicalCenters.Domain.Classes.Staffs.Doctor", null)
-                        .WithMany("Specialtys")
+                        .WithMany("Specialties")
                         .HasForeignKey("DoctorId");
 
                     b.HasOne("MedicalCenters.Domain.Classes.Specialties.SpecialtyGroup", "Group")
@@ -929,6 +922,12 @@ namespace MedicalCenters.Persistence.Migrations
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.Staffs.Doctor", b =>
                 {
+                    b.HasOne("MedicalCenters.Domain.Classes.Base.Personel", null)
+                        .WithOne()
+                        .HasForeignKey("MedicalCenters.Domain.Classes.Staffs.Doctor", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("MedicalCenters.Domain.Classes.Oprerations.Operation", null)
                         .WithMany("Doctors")
                         .HasForeignKey("OperationId");
@@ -940,6 +939,15 @@ namespace MedicalCenters.Persistence.Migrations
                     b.HasOne("MedicalCenters.Domain.Classes.Visit", null)
                         .WithMany("Doctors")
                         .HasForeignKey("VisitId");
+                });
+
+            modelBuilder.Entity("MedicalCenters.Domain.Classes.Staffs.Nurse", b =>
+                {
+                    b.HasOne("MedicalCenters.Domain.Classes.Base.Personel", null)
+                        .WithOne()
+                        .HasForeignKey("MedicalCenters.Domain.Classes.Staffs.Nurse", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.MedicalCenter", b =>
@@ -985,7 +993,7 @@ namespace MedicalCenters.Persistence.Migrations
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.Staffs.Doctor", b =>
                 {
-                    b.Navigation("Specialtys");
+                    b.Navigation("Specialties");
                 });
 #pragma warning restore 612, 618
         }

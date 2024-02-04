@@ -2,12 +2,14 @@
 using MedicalCenters.Domain.Classes.MedicalCenter_Parts;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MedicalCenters.Domain.Classes
 {
+    [Table("MedicalWard")]
     public class MedicalWard : BaseModifiableDomainEntity
     {
         public string Name { get; set; }
