@@ -13,7 +13,7 @@ using NetTopologySuite.Geometries;
 namespace MedicalCenters.Persistence.Migrations
 {
     [DbContext(typeof(MedicalCentersDBContext))]
-    [Migration("20240204190259_InitialCreate")]
+    [Migration("20240204193937_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -255,6 +255,64 @@ namespace MedicalCenters.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MedicalCenterType");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreatedBy = 1L,
+                            DateTimeCreated = new DateTime(2024, 2, 4, 23, 9, 36, 859, DateTimeKind.Local).AddTicks(3865),
+                            Name = "بیمارستان"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CreatedBy = 1L,
+                            DateTimeCreated = new DateTime(2024, 2, 4, 23, 9, 36, 859, DateTimeKind.Local).AddTicks(3876),
+                            Name = "کلینیک پزشکی"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CreatedBy = 1L,
+                            DateTimeCreated = new DateTime(2024, 2, 4, 23, 9, 36, 859, DateTimeKind.Local).AddTicks(3877),
+                            Name = "مرکز جراحی سر پایی"
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CreatedBy = 1L,
+                            DateTimeCreated = new DateTime(2024, 2, 4, 23, 9, 36, 859, DateTimeKind.Local).AddTicks(3878),
+                            Name = "مرکز زایمان "
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            CreatedBy = 1L,
+                            DateTimeCreated = new DateTime(2024, 2, 4, 23, 9, 36, 859, DateTimeKind.Local).AddTicks(3879),
+                            Name = "مرکز تصویر برداری"
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            CreatedBy = 1L,
+                            DateTimeCreated = new DateTime(2024, 2, 4, 23, 9, 36, 859, DateTimeKind.Local).AddTicks(3880),
+                            Name = "مرکز دیابت"
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            CreatedBy = 1L,
+                            DateTimeCreated = new DateTime(2024, 2, 4, 23, 9, 36, 859, DateTimeKind.Local).AddTicks(3883),
+                            Name = "مرکز دیالیز"
+                        },
+                        new
+                        {
+                            Id = 8L,
+                            CreatedBy = 1L,
+                            DateTimeCreated = new DateTime(2024, 2, 4, 23, 9, 36, 859, DateTimeKind.Local).AddTicks(3884),
+                            Name = "مرکز توان بخشی"
+                        });
                 });
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.MedicalCenter_Parts.MedicalWardType", b =>
@@ -272,7 +330,6 @@ namespace MedicalCenters.Persistence.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
@@ -284,6 +341,43 @@ namespace MedicalCenters.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MedicalWardType");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreatedBy = 1L,
+                            DateTimeCreated = new DateTime(2024, 2, 4, 23, 9, 36, 859, DateTimeKind.Local).AddTicks(5183),
+                            Name = "بخش قلب"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CreatedBy = 1L,
+                            DateTimeCreated = new DateTime(2024, 2, 4, 23, 9, 36, 859, DateTimeKind.Local).AddTicks(5187),
+                            Name = "بخش ریه"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CreatedBy = 1L,
+                            DateTimeCreated = new DateTime(2024, 2, 4, 23, 9, 36, 859, DateTimeKind.Local).AddTicks(5188),
+                            Name = "بخش کلیه"
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CreatedBy = 1L,
+                            DateTimeCreated = new DateTime(2024, 2, 4, 23, 9, 36, 859, DateTimeKind.Local).AddTicks(5189),
+                            Name = "بخش کبد"
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            CreatedBy = 1L,
+                            DateTimeCreated = new DateTime(2024, 2, 4, 23, 9, 36, 859, DateTimeKind.Local).AddTicks(5190),
+                            Name = "بخش پیوند"
+                        });
                 });
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.MedicalUnit", b =>

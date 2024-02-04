@@ -4,6 +4,8 @@ using NetTopologySuite.Geometries;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace MedicalCenters.Persistence.Migrations
 {
     /// <inheritdoc />
@@ -52,7 +54,7 @@ namespace MedicalCenters.Persistence.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
                     DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false)
                 },
@@ -663,6 +665,33 @@ namespace MedicalCenters.Persistence.Migrations
                         column: x => x.ShiftPlanId,
                         principalTable: "ShiftPlan",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.InsertData(
+                table: "MedicalCenterType",
+                columns: new[] { "Id", "CreatedBy", "DateTimeCreated", "Name" },
+                values: new object[,]
+                {
+                    { 1L, 1L, new DateTime(2024, 2, 4, 23, 9, 36, 859, DateTimeKind.Local).AddTicks(3865), "بیمارستان" },
+                    { 2L, 1L, new DateTime(2024, 2, 4, 23, 9, 36, 859, DateTimeKind.Local).AddTicks(3876), "کلینیک پزشکی" },
+                    { 3L, 1L, new DateTime(2024, 2, 4, 23, 9, 36, 859, DateTimeKind.Local).AddTicks(3877), "مرکز جراحی سر پایی" },
+                    { 4L, 1L, new DateTime(2024, 2, 4, 23, 9, 36, 859, DateTimeKind.Local).AddTicks(3878), "مرکز زایمان " },
+                    { 5L, 1L, new DateTime(2024, 2, 4, 23, 9, 36, 859, DateTimeKind.Local).AddTicks(3879), "مرکز تصویر برداری" },
+                    { 6L, 1L, new DateTime(2024, 2, 4, 23, 9, 36, 859, DateTimeKind.Local).AddTicks(3880), "مرکز دیابت" },
+                    { 7L, 1L, new DateTime(2024, 2, 4, 23, 9, 36, 859, DateTimeKind.Local).AddTicks(3883), "مرکز دیالیز" },
+                    { 8L, 1L, new DateTime(2024, 2, 4, 23, 9, 36, 859, DateTimeKind.Local).AddTicks(3884), "مرکز توان بخشی" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "MedicalWardType",
+                columns: new[] { "Id", "CreatedBy", "DateTimeCreated", "Description", "Name" },
+                values: new object[,]
+                {
+                    { 1L, 1L, new DateTime(2024, 2, 4, 23, 9, 36, 859, DateTimeKind.Local).AddTicks(5183), null, "بخش قلب" },
+                    { 2L, 1L, new DateTime(2024, 2, 4, 23, 9, 36, 859, DateTimeKind.Local).AddTicks(5187), null, "بخش ریه" },
+                    { 3L, 1L, new DateTime(2024, 2, 4, 23, 9, 36, 859, DateTimeKind.Local).AddTicks(5188), null, "بخش کلیه" },
+                    { 4L, 1L, new DateTime(2024, 2, 4, 23, 9, 36, 859, DateTimeKind.Local).AddTicks(5189), null, "بخش کبد" },
+                    { 5L, 1L, new DateTime(2024, 2, 4, 23, 9, 36, 859, DateTimeKind.Local).AddTicks(5190), null, "بخش پیوند" }
                 });
 
             migrationBuilder.CreateIndex(

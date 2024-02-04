@@ -15,6 +15,6 @@ namespace MedicalCenters.Domain.Classes.MedicalCenter_Parts
         [Required, StringLength(70)]
         public string Name { get; set; }
         [StringLength(1000)]
-        public string Description { get; set; }
+        public string? Description { get; set; }
     }
 }
