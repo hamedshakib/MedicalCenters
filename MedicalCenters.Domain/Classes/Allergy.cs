@@ -1,5 +1,6 @@
 ﻿using MedicalCenters.Domain.Classes.Base;
 using MedicalCenters.Domain.Classes.Medicines;
+using MedicalCenters.Domain.Classes.Patients;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -14,6 +15,9 @@ namespace MedicalCenters.Domain.Classes
     {
         public string Name {  get; set; }
         public string Description { get; set; }
-        public MedicineType MedicineType { get; set; }
+        public IList<MedicineType> MedicineTypes { get; set; }
+
+
+        public IList<Patient>? Patients { get; set; }
     }
 }

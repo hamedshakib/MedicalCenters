@@ -13,6 +13,24 @@ namespace MedicalCenters.Persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Allergy",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<long>(type: "bigint", nullable: false),
+                    DateTimeModified = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedBy = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Allergy", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MedicalCenterType",
                 columns: table => new
                 {
@@ -41,22 +59,6 @@ namespace MedicalCenters.Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_MedicalWardType", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "MedicineType",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CreatedBy = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MedicineType", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -131,6 +133,28 @@ namespace MedicalCenters.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MedicineType",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AllergyId = table.Column<long>(type: "bigint", nullable: true),
+                    DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MedicineType", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_MedicineType_Allergy_AllergyId",
+                        column: x => x.AllergyId,
+                        principalTable: "Allergy",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MedicalCenter",
                 columns: table => new
                 {
@@ -158,34 +182,27 @@ namespace MedicalCenters.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Allergy",
+                name: "AllergyPatient",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MedicineTypeId = table.Column<long>(type: "bigint", nullable: false),
-                    PatientId = table.Column<long>(type: "bigint", nullable: true),
-                    DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CreatedBy = table.Column<long>(type: "bigint", nullable: false),
-                    DateTimeModified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedBy = table.Column<long>(type: "bigint", nullable: false)
+                    AllergiesId = table.Column<long>(type: "bigint", nullable: false),
+                    PatientsId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Allergy", x => x.Id);
+                    table.PrimaryKey("PK_AllergyPatient", x => new { x.AllergiesId, x.PatientsId });
                     table.ForeignKey(
-                        name: "FK_Allergy_MedicineType_MedicineTypeId",
-                        column: x => x.MedicineTypeId,
-                        principalTable: "MedicineType",
+                        name: "FK_AllergyPatient_Allergy_AllergiesId",
+                        column: x => x.AllergiesId,
+                        principalTable: "Allergy",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Allergy_Patient_PatientId",
-                        column: x => x.PatientId,
+                        name: "FK_AllergyPatient_Patient_PatientsId",
+                        column: x => x.PatientsId,
                         principalTable: "Patient",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -236,6 +253,23 @@ namespace MedicalCenters.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Doctor",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Doctor", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Doctor_Personel_Id",
+                        column: x => x.Id,
+                        principalTable: "Personel",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Nurse",
                 columns: table => new
                 {
@@ -248,6 +282,53 @@ namespace MedicalCenters.Persistence.Migrations
                         name: "FK_Nurse_Personel_Id",
                         column: x => x.Id,
                         principalTable: "Personel",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Specialty",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    GroupId = table.Column<long>(type: "bigint", nullable: false),
+                    DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Specialty", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Specialty_SpecialtyGroup_GroupId",
+                        column: x => x.GroupId,
+                        principalTable: "SpecialtyGroup",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Medicine",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TypeId = table.Column<long>(type: "bigint", nullable: false),
+                    DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedBy = table.Column<long>(type: "bigint", nullable: false),
+                    DateTimeModified = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ModifiedBy = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Medicine", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Medicine_MedicineType_TypeId",
+                        column: x => x.TypeId,
+                        principalTable: "MedicineType",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -314,6 +395,78 @@ namespace MedicalCenters.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "DoctorPatientHistory",
+                columns: table => new
+                {
+                    DoctorsId = table.Column<long>(type: "bigint", nullable: false),
+                    PatientHistoriesId = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DoctorPatientHistory", x => new { x.DoctorsId, x.PatientHistoriesId });
+                    table.ForeignKey(
+                        name: "FK_DoctorPatientHistory_Doctor_DoctorsId",
+                        column: x => x.DoctorsId,
+                        principalTable: "Doctor",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DoctorPatientHistory_PatientHistory_PatientHistoriesId",
+                        column: x => x.PatientHistoriesId,
+                        principalTable: "PatientHistory",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DoctorSpecialty",
+                columns: table => new
+                {
+                    DoctorsId = table.Column<long>(type: "bigint", nullable: false),
+                    SpecialtiesId = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DoctorSpecialty", x => new { x.DoctorsId, x.SpecialtiesId });
+                    table.ForeignKey(
+                        name: "FK_DoctorSpecialty_Doctor_DoctorsId",
+                        column: x => x.DoctorsId,
+                        principalTable: "Doctor",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DoctorSpecialty_Specialty_SpecialtiesId",
+                        column: x => x.SpecialtiesId,
+                        principalTable: "Specialty",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MedicinePatientHistory",
+                columns: table => new
+                {
+                    MedicinesId = table.Column<long>(type: "bigint", nullable: false),
+                    PatientHistoriesId = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MedicinePatientHistory", x => new { x.MedicinesId, x.PatientHistoriesId });
+                    table.ForeignKey(
+                        name: "FK_MedicinePatientHistory_Medicine_MedicinesId",
+                        column: x => x.MedicinesId,
+                        principalTable: "Medicine",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MedicinePatientHistory_PatientHistory_PatientHistoriesId",
+                        column: x => x.PatientHistoriesId,
+                        principalTable: "PatientHistory",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MedicalUnit",
                 columns: table => new
                 {
@@ -335,6 +488,30 @@ namespace MedicalCenters.Persistence.Migrations
                         column: x => x.MedicalWardId,
                         principalTable: "MedicalWard",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DoctorVisit",
+                columns: table => new
+                {
+                    DoctorsId = table.Column<long>(type: "bigint", nullable: false),
+                    VisitsId = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DoctorVisit", x => new { x.DoctorsId, x.VisitsId });
+                    table.ForeignKey(
+                        name: "FK_DoctorVisit_Doctor_DoctorsId",
+                        column: x => x.DoctorsId,
+                        principalTable: "Doctor",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DoctorVisit_Visit_VisitsId",
+                        column: x => x.VisitsId,
+                        principalTable: "Visit",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -404,74 +581,51 @@ namespace MedicalCenters.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Doctor",
+                name: "DoctorOperation",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false),
-                    OperationId = table.Column<long>(type: "bigint", nullable: true),
-                    PatientHistoryId = table.Column<long>(type: "bigint", nullable: true),
-                    VisitId = table.Column<long>(type: "bigint", nullable: true)
+                    DoctorsId = table.Column<long>(type: "bigint", nullable: false),
+                    OperationsId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Doctor", x => x.Id);
+                    table.PrimaryKey("PK_DoctorOperation", x => new { x.DoctorsId, x.OperationsId });
                     table.ForeignKey(
-                        name: "FK_Doctor_Operation_OperationId",
-                        column: x => x.OperationId,
-                        principalTable: "Operation",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Doctor_PatientHistory_PatientHistoryId",
-                        column: x => x.PatientHistoryId,
-                        principalTable: "PatientHistory",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Doctor_Personel_Id",
-                        column: x => x.Id,
-                        principalTable: "Personel",
+                        name: "FK_DoctorOperation_Doctor_DoctorsId",
+                        column: x => x.DoctorsId,
+                        principalTable: "Doctor",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Doctor_Visit_VisitId",
-                        column: x => x.VisitId,
-                        principalTable: "Visit",
-                        principalColumn: "Id");
+                        name: "FK_DoctorOperation_Operation_OperationsId",
+                        column: x => x.OperationsId,
+                        principalTable: "Operation",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Medicine",
+                name: "MedicineOperation",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TypeId = table.Column<long>(type: "bigint", nullable: false),
-                    OperationId = table.Column<long>(type: "bigint", nullable: true),
-                    PatientHistoryId = table.Column<long>(type: "bigint", nullable: true),
-                    DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CreatedBy = table.Column<long>(type: "bigint", nullable: false),
-                    DateTimeModified = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ModifiedBy = table.Column<long>(type: "bigint", nullable: false)
+                    MedicinesId = table.Column<long>(type: "bigint", nullable: false),
+                    OperationsId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Medicine", x => x.Id);
+                    table.PrimaryKey("PK_MedicineOperation", x => new { x.MedicinesId, x.OperationsId });
                     table.ForeignKey(
-                        name: "FK_Medicine_MedicineType_TypeId",
-                        column: x => x.TypeId,
-                        principalTable: "MedicineType",
+                        name: "FK_MedicineOperation_Medicine_MedicinesId",
+                        column: x => x.MedicinesId,
+                        principalTable: "Medicine",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Medicine_Operation_OperationId",
-                        column: x => x.OperationId,
+                        name: "FK_MedicineOperation_Operation_OperationsId",
+                        column: x => x.OperationsId,
                         principalTable: "Operation",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Medicine_PatientHistory_PatientHistoryId",
-                        column: x => x.PatientHistoryId,
-                        principalTable: "PatientHistory",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -510,59 +664,30 @@ namespace MedicalCenters.Persistence.Migrations
                         principalColumn: "Id");
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Specialty",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    GroupId = table.Column<long>(type: "bigint", nullable: false),
-                    DoctorId = table.Column<long>(type: "bigint", nullable: true),
-                    DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CreatedBy = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Specialty", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Specialty_Doctor_DoctorId",
-                        column: x => x.DoctorId,
-                        principalTable: "Doctor",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Specialty_SpecialtyGroup_GroupId",
-                        column: x => x.GroupId,
-                        principalTable: "SpecialtyGroup",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
+            migrationBuilder.CreateIndex(
+                name: "IX_AllergyPatient_PatientsId",
+                table: "AllergyPatient",
+                column: "PatientsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Allergy_MedicineTypeId",
-                table: "Allergy",
-                column: "MedicineTypeId");
+                name: "IX_DoctorOperation_OperationsId",
+                table: "DoctorOperation",
+                column: "OperationsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Allergy_PatientId",
-                table: "Allergy",
-                column: "PatientId");
+                name: "IX_DoctorPatientHistory_PatientHistoriesId",
+                table: "DoctorPatientHistory",
+                column: "PatientHistoriesId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Doctor_OperationId",
-                table: "Doctor",
-                column: "OperationId");
+                name: "IX_DoctorSpecialty_SpecialtiesId",
+                table: "DoctorSpecialty",
+                column: "SpecialtiesId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Doctor_PatientHistoryId",
-                table: "Doctor",
-                column: "PatientHistoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Doctor_VisitId",
-                table: "Doctor",
-                column: "VisitId");
+                name: "IX_DoctorVisit_VisitsId",
+                table: "DoctorVisit",
+                column: "VisitsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MedicalCenter_TypeId",
@@ -585,19 +710,24 @@ namespace MedicalCenters.Persistence.Migrations
                 column: "TypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Medicine_OperationId",
-                table: "Medicine",
-                column: "OperationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Medicine_PatientHistoryId",
-                table: "Medicine",
-                column: "PatientHistoryId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Medicine_TypeId",
                 table: "Medicine",
                 column: "TypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MedicineOperation_OperationsId",
+                table: "MedicineOperation",
+                column: "OperationsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MedicinePatientHistory_PatientHistoriesId",
+                table: "MedicinePatientHistory",
+                column: "PatientHistoriesId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MedicineType_AllergyId",
+                table: "MedicineType",
+                column: "AllergyId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Operation_MedicalUnitId",
@@ -650,11 +780,6 @@ namespace MedicalCenters.Persistence.Migrations
                 column: "PersonelId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Specialty_DoctorId",
-                table: "Specialty",
-                column: "DoctorId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Specialty_GroupId",
                 table: "Specialty",
                 column: "GroupId");
@@ -674,10 +799,25 @@ namespace MedicalCenters.Persistence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Allergy");
+                name: "AllergyPatient");
 
             migrationBuilder.DropTable(
-                name: "Medicine");
+                name: "DoctorOperation");
+
+            migrationBuilder.DropTable(
+                name: "DoctorPatientHistory");
+
+            migrationBuilder.DropTable(
+                name: "DoctorSpecialty");
+
+            migrationBuilder.DropTable(
+                name: "DoctorVisit");
+
+            migrationBuilder.DropTable(
+                name: "MedicineOperation");
+
+            migrationBuilder.DropTable(
+                name: "MedicinePatientHistory");
 
             migrationBuilder.DropTable(
                 name: "Nurse");
@@ -689,28 +829,25 @@ namespace MedicalCenters.Persistence.Migrations
                 name: "Specialty");
 
             migrationBuilder.DropTable(
-                name: "MedicineType");
-
-            migrationBuilder.DropTable(
-                name: "ShiftPlan");
-
-            migrationBuilder.DropTable(
                 name: "Doctor");
-
-            migrationBuilder.DropTable(
-                name: "SpecialtyGroup");
-
-            migrationBuilder.DropTable(
-                name: "Operation");
-
-            migrationBuilder.DropTable(
-                name: "Personel");
 
             migrationBuilder.DropTable(
                 name: "Visit");
 
             migrationBuilder.DropTable(
-                name: "MedicalUnit");
+                name: "Operation");
+
+            migrationBuilder.DropTable(
+                name: "Medicine");
+
+            migrationBuilder.DropTable(
+                name: "ShiftPlan");
+
+            migrationBuilder.DropTable(
+                name: "SpecialtyGroup");
+
+            migrationBuilder.DropTable(
+                name: "Reservation");
 
             migrationBuilder.DropTable(
                 name: "OperationType");
@@ -719,13 +856,22 @@ namespace MedicalCenters.Persistence.Migrations
                 name: "PatientHistory");
 
             migrationBuilder.DropTable(
-                name: "Reservation");
+                name: "MedicineType");
 
             migrationBuilder.DropTable(
-                name: "MedicalWard");
+                name: "MedicalUnit");
+
+            migrationBuilder.DropTable(
+                name: "Personel");
 
             migrationBuilder.DropTable(
                 name: "Patient");
+
+            migrationBuilder.DropTable(
+                name: "Allergy");
+
+            migrationBuilder.DropTable(
+                name: "MedicalWard");
 
             migrationBuilder.DropTable(
                 name: "MedicalCenter");
