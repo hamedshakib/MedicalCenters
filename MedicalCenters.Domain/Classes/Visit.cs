@@ -16,6 +16,6 @@ namespace MedicalCenters.Domain.Classes
         public Patient Patient { get; set; }
         public DateTime DateTime { get; set; }
         public IList<Doctor> Doctors {  get; set; }
-        public Reservation? Reservation { get; set; } = null;
+        public Reservation? Reservation { get; set; }
     }
 }

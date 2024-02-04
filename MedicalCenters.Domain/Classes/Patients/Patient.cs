@@ -12,5 +12,10 @@ namespace MedicalCenters.Domain.Classes.Patients
     public class Patient : Person
     {
         public IList<Allergy>? Allergies { get; set; }
+
+
+
+        public IList<Reservation> Reservations { get; set; }
+        public IList<Visit> Visits { get; set; }
     }
 }

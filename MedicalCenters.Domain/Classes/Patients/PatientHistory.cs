@@ -17,6 +17,6 @@ namespace MedicalCenters.Domain.Classes.Patients
         public Patient Patient { get; set; }
         public IList<Operation>? Operations { get; set; }
         public IList<Medicine>? Medicines { get; set; }
-        public IList<Doctor>? Doctors { get; set; }
+        public Doctor Doctor { get; set; }
     }
 }
