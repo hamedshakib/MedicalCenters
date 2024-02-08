@@ -21,5 +21,13 @@ namespace MedicalCenters.Application.Mapping.MappingTypeConverter
                 SRID = 4326
             };
         }
+
+        public Point Resolve(Y source, T destination, Point destMember, ResolutionContext context)
+        {
+            return new Point(destination.GPSx, destination.GPSy)
+            {
+                SRID = 4326
+            };
+        }
     }
 }
