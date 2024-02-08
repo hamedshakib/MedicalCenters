@@ -5,7 +5,6 @@ using MedicalCenters.Application.DTOs.MedicalCenter;
 using MedicalCenters.Application.Features.MedicalCenter.Requests.Commands;
 using MedicalCenters.Application.Features.MedicalCenter.Validates;
 using MedicalCenters.Application.Responses;
-using MedicalCenters.Domain.Classes.Intermediary;
 
 namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Commands
 {
@@ -16,7 +15,6 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Commands
             var response = new BaseValuedCommandResponse();
 
             var data = mapper.Map<MedicalCenters.Domain.Classes.MedicalCenter>(command.CreateMedicalCenterDto);
-            data.Location = new Location(0, 0);
             data = await unitOfWork.MedicalCenterRepository.Add(data);
 
             await unitOfWork.Save();

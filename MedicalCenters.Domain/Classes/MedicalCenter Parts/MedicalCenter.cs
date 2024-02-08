@@ -1,6 +1,6 @@
 ﻿using MedicalCenters.Domain.Classes.Base;
-using MedicalCenters.Domain.Classes.Intermediary;
 using MedicalCenters.Domain.Classes.MedicalCenter_Parts;
+using NetTopologySuite.Geometries;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -15,7 +15,7 @@ namespace MedicalCenters.Domain.Classes
         public MedicalCenterType Type { get; set; }
         [StringLength(1000)]
         public string Description { get; set; }
-        public Location Location { get; set; }
+        public Point? Location { get; set; }
         [StringLength(200)]
         public string Address { get; set; }
         public IList<MedicalWard> Wards { get; set; }
