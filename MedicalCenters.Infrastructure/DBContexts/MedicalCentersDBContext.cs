@@ -1,4 +1,5 @@
 ﻿using MedicalCenters.Domain.Classes;
+using MedicalCenters.Domain.Classes.MedicalCenter_Parts;
 using MedicalCenters.Domain.Classes.Medicines;
 using MedicalCenters.Domain.Classes.Oprerations;
 using MedicalCenters.Domain.Classes.Patients;
@@ -29,6 +30,7 @@ namespace MedicalCenters.Infrastructure.DBContexts
         }
 
         public DbSet<MedicalCenter> MedicalCenter { get; set; }
+        public DbSet<MedicalCenterType> MedicalCenterType { get; set; }
         public DbSet<MedicalWard> MedicalWard { get; set;}
         public DbSet<MedicalUnit> MedicalUnit { get; set; }
         public DbSet<Visit> Visit { get; set; }
