@@ -18,21 +18,14 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Commands
         public async Task<BaseResponse> Handle(UpdateMedicalCenterCommand command, CancellationToken cancellationToken)
         {
             var response = new BaseResponse();
-            var validator = new UpdateMedicalCenterCommandValidator();
-            var validationResult = await validator.ValidateAsync(command.MedicalCenterDto);
-            if (!validationResult.IsValid)
-            {
-                response.IsSusses = false;
-                response.Errors = validationResult.Errors.Select(x =>
-                                                        new ErrorResponse(Convert.ToInt16(x.ErrorCode), x.ErrorMessage))
-                                                                .ToList();
-                return response;
-            }
             try
             {
                 var medicalCenter=await unitOfWork.MedicalCenterRepository.Get(command.MedicalCenterDto.Id);
                 if (medicalCenter is null)
-                    throw new NotFoundException();
+                {
+                    string Object= "مرکز درمانی" + command.MedicalCenterDto.Id.ToString();
+                    throw new NotFoundException(Object);
+                }
 
                 mapper.Map(command.MedicalCenterDto, medicalCenter);
 

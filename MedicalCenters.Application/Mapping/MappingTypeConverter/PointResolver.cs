@@ -11,9 +11,10 @@ using NetTopologySuite.Geometries;
 
 namespace MedicalCenters.Application.Mapping.MappingTypeConverter
 {
-    internal class CreateMedicalCenterDto_PointResolver : IValueResolver<CreateMedicalCenterDto, MedicalCenter, Point>
+    internal class PointResolver<T,Y> : IValueResolver<T, Y, Point>
+        where T : IMedicalCenterDto
     {
-        public Point Resolve(CreateMedicalCenterDto source, MedicalCenter destination, Point destMember, ResolutionContext context)
+        public Point Resolve(T source, Y destination, Point destMember, ResolutionContext context)
         {
             return new Point(source.GPSx, source.GPSy)
             {
@@ -21,16 +22,4 @@ namespace MedicalCenters.Application.Mapping.MappingTypeConverter
             };
         }
     }
-
-    //internal class UpdateMedicalCenterDto_PointResolver : IValueResolver<UpdateMedicalCenterDto, MedicalCenter, Point>
-    //{
-    //    public Point Resolve(UpdateMedicalCenterDto source, MedicalCenter destination, Point destMember, ResolutionContext context)
-    //    {
-    //        return new Point(source.GPSx, source.GPSy)
-    //        {
-    //            SRID = 4326
-    //        };
-    //    }
-    //}
-
 }

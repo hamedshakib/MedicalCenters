@@ -20,8 +20,12 @@ namespace MedicalCenters.Application.Mapping.MappingProfiles
             //CreateMap<MedicalCenter, MedicalCenterDto>().ReverseMap();
 
             CreateMap<CreateMedicalCenterDto, MedicalCenter>()
-                    .ForMember(dest => dest.Type, opt => opt.MapFrom<MedicalCenterTypeResolver>())
-                    .ForMember(dest => dest.Location , opt => opt.MapFrom<CreateMedicalCenterDto_PointResolver>());
+                    .ForMember(dest => dest.Type, opt =>opt.MapFrom<MedicalCenterTypeResolver<CreateMedicalCenterDto>>())
+                    .ForMember(dest => dest.Location, opt => opt.MapFrom<PointResolver<CreateMedicalCenterDto,MedicalCenter>>());
+
+            //CreateMap<MedicalCenter, MedicalCenterDto>().ReverseMap()
+            //        .ForMember(dest => dest.Type, opt => opt.MapFrom<MedicalCenterTypeResolver>())
+            //        .ForMember(dest => dest.Location, opt => opt.MapFrom<CreateMedicalCenterDto_PointResolver>());
         }
     }
 }

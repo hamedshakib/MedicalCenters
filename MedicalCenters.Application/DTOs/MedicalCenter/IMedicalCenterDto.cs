@@ -10,5 +10,9 @@ namespace MedicalCenters.Application.DTOs.MedicalCenter
     {
         string Name { get; set; }
         string Description { get; set; }
+        public int Type { get; set; }
+        public string Address { get; set; }
+        public double GPSx { get; set; }
+        public double GPSy { get; set; }
     }
 }

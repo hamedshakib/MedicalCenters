@@ -8,5 +8,10 @@ namespace MedicalCenters.Application.Exceptions
 {
     public class NotFoundException : ApplicationException
     {
+        public NotFoundException(string NotFoundObject)
+        {
+            NotFound_Object = NotFoundObject;
+        }
+        public string NotFound_Object;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MedicalCenters.API.Utility.Extentions;
+using MedicalCenters.Application.Exceptions;
 using MedicalCenters.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
@@ -15,6 +16,8 @@ namespace MedicalCenters.API.ErrorHelper
             BaseQueryResponse result = default;
             ObjectResult objectResult = default;
 
+            List<ErrorResponse> Errors = null;
+
             switch (exception)
             {
                 case ValidationException ex:
@@ -27,9 +30,8 @@ namespace MedicalCenters.API.ErrorHelper
                     objectResult.StatusCode = StatusCodes.Status400BadRequest;
                     return objectResult;
                 case AutoMapperMappingException ex:
-                    var Errors = new List<ErrorResponse>();
-                    string Error = $"در تبدیل  {ex.MemberMap} خطایی رخ داد";
-                    Errors.Add(new ErrorResponse(10, Error));
+                    Errors = new List<ErrorResponse>();
+                    Errors.Add(new ErrorResponse(10, $"در تبدیل  {ex.MemberMap} خطایی رخ داد"));
                     result = new BaseQueryResponse()
                     {
                         IsSusses = false,
@@ -38,14 +40,25 @@ namespace MedicalCenters.API.ErrorHelper
                     objectResult = new ObjectResult(result);
                     objectResult.StatusCode = StatusCodes.Status400BadRequest;
                     return objectResult;
-                case DbException ex:
-                    var DbErrors = new List<ErrorResponse>();
-                    string DBError = $"در کوئری به دیتابیس خطایی رخ داد";
-                    DbErrors.Add(new ErrorResponse(10, DBError));
+                case NotFoundException ex:
+                    Errors = new List<ErrorResponse>();
+                    Errors.Add(new ErrorResponse(10, $" {ex.NotFound_Object} مورد نظر یافت نشد"));
                     result = new BaseQueryResponse()
                     {
                         IsSusses = false,
-                        Errors = DbErrors
+                        Errors = Errors
+                    };
+                    objectResult = new ObjectResult(result);
+                    objectResult.StatusCode = StatusCodes.Status404NotFound;
+                    return objectResult;
+                case DbException ex:
+                    Errors = new List<ErrorResponse>();
+                    string DBError = $"در کوئری به دیتابیس خطایی رخ داد";
+                    Errors.Add(new ErrorResponse(10, DBError));
+                    result = new BaseQueryResponse()
+                    {
+                        IsSusses = false,
+                        Errors = Errors
                     };
                     objectResult = new ObjectResult(result);
                     objectResult.StatusCode = StatusCodes.Status400BadRequest;

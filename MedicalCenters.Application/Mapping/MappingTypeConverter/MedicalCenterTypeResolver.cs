@@ -13,27 +13,10 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MedicalCenters.Application.Mapping.MappingTypeConverter
 {
-    //internal class MedicalCenterType_TypeConverter(IUnitOfWork unitOfWork) : ITypeConverter<int, MedicalCenterType>
-    //{
-    //    public MedicalCenterType Convert(int source, MedicalCenterType destination, ResolutionContext context)
-    //    {
-    //        var dataNullable = unitOfWork.MedicalCenterRepository.GetMedicalCenterType(source).Result;
-
-    //        dataNullable = dataNullable ?? throw new ArgumentNullException(nameof(dataNullable));
-
-    //        return (MedicalCenterType)dataNullable;
-
-    //    }
-
-    //    public  MedicalCenterType Convertt(int source, MedicalCenterType destination, ResolutionContext context)
-    //    {
-    //        return Convert(source, destination, context);
-    //    }
-    //}
-
-    internal class MedicalCenterTypeResolver(IUnitOfWork unitOfWork) : IValueResolver<CreateMedicalCenterDto, MedicalCenter, MedicalCenterType>
+    internal class MedicalCenterTypeResolver<T>(IUnitOfWork unitOfWork) : IValueResolver<T, MedicalCenter, MedicalCenterType>
+        where T : IMedicalCenterDto
     {
-        public MedicalCenterType Resolve(CreateMedicalCenterDto source, MedicalCenter destination, MedicalCenterType destMember, ResolutionContext context)
+        public MedicalCenterType Resolve(T source, MedicalCenter destination, MedicalCenterType destMember, ResolutionContext context)
         {
             var dataNullable = unitOfWork.MedicalCenterRepository.GetMedicalCenterType(source.Type).Result;
 
