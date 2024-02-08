@@ -13,16 +13,6 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Commands
         public async Task<BaseValuedCommandResponse> Handle(CreateMedicalCenterCommand command, CancellationToken cancellationToken)
         {
             var response = new BaseValuedCommandResponse();
-            var validator = new CreateMedicalCenterCommandValidator();
-            var validationResult = await validator.ValidateAsync(command.CreateMedicalCenterDto);
-            if (!validationResult.IsValid)
-            {
-                response.IsSusses = false;
-                response.Errors = validationResult.Errors.Select(x => 
-                                                        new ErrorResponse(Convert.ToInt16(x.ErrorCode), x.ErrorMessage))
-                                                                .ToList();
-                return response;
-            }
             try
             {
                 var data = mapper.Map<MedicalCenters.Domain.Classes.MedicalCenter>(command.CreateMedicalCenterDto);

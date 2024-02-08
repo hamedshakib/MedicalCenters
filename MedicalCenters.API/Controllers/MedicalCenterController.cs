@@ -11,6 +11,9 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using System.ComponentModel.DataAnnotations;
 using MedicalCenters.Application.Features.MedicalCenter.Requests.Queries;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System.Text.RegularExpressions;
+using System;
+using MedicalCenters.API.ErrorHelper;
 
 namespace MedicalCenters.API.Controllers
 {
@@ -27,23 +30,9 @@ namespace MedicalCenters.API.Controllers
             {
                 result = await mediator.Send(query);
             }
-            catch (ValidationException ex)
-            {
-                var tempRes = new BaseQueryResponse()
-                {
-                    IsSusses = false,
-                    Errors = ex.ErrorsResponse()
-                };
-                return BadRequest(tempRes);
-            }
             catch (Exception ex)
             {
-                var tempRes = new BaseQueryResponse()
-                {
-                    IsSusses = false,
-                    Errors = ex.ErrorsResponse()
-                };
-                return BadRequest(tempRes);
+                return ex.ToObjectResult();
             }
             return Ok(result);
         }
@@ -57,23 +46,9 @@ namespace MedicalCenters.API.Controllers
             {
                 result = await mediator.Send(query);
             }
-            catch (ValidationException ex)
-            {
-                var tempRes = new BaseQueryResponse()
-                {
-                    IsSusses = false,
-                    Errors = ex.ErrorsResponse()
-                };
-                return BadRequest(tempRes);
-            }
             catch (Exception ex)
             {
-                var tempRes = new BaseQueryResponse()
-                {
-                    IsSusses = false,
-                    Errors = ex.ErrorsResponse()
-                };
-                return BadRequest(tempRes);
+                return ex.ToObjectResult();
             }
             return Ok(result);
         }
@@ -87,25 +62,9 @@ namespace MedicalCenters.API.Controllers
             {
                 result = await mediator.Send(command);
             }
-            catch (ValidationException ex)
+            catch(Exception ex) 
             {
-                var tempRes = new BaseValuedCommandResponse()
-                {
-                    IsSusses = false,
-                    Id = null,
-                    Errors = ex.ErrorsResponse()
-                };
-                return BadRequest(tempRes);
-            }
-            catch (Exception ex)
-            {
-                var tempRes = new BaseValuedCommandResponse()
-                {
-                    IsSusses = false,
-                    Id = null,
-                    Errors = ex.ErrorsResponse()
-                };
-                return BadRequest(tempRes);
+                return ex.ToObjectResult();
             }
             return Ok(result);
         }
@@ -119,23 +78,9 @@ namespace MedicalCenters.API.Controllers
             {
                 result = await mediator.Send(command);
             }
-            catch (ValidationException ex)
-            {
-                var tempRes = new BaseResponse()
-                {
-                    IsSusses = false,
-                    Errors = ex.ErrorsResponse()
-                };
-                return BadRequest(tempRes);
-            }
             catch (Exception ex)
             {
-                var tempRes = new BaseResponse()
-                {
-                    IsSusses = false,
-                    Errors = ex.ErrorsResponse()
-                };
-                return BadRequest(tempRes);
+                return ex.ToObjectResult();
             }
             return Ok(result);
 
@@ -150,23 +95,9 @@ namespace MedicalCenters.API.Controllers
             {
                 result = await mediator.Send(command);
             }
-            catch (ValidationException ex)
-            {
-                var tempRes = new BaseResponse()
-                {
-                    IsSusses = false,
-                    Errors = ex.ErrorsResponse()
-                };
-                return BadRequest(tempRes);
-            }
             catch (Exception ex)
             {
-                var tempRes = new BaseResponse()
-                {
-                    IsSusses = false,
-                    Errors = ex.ErrorsResponse()
-                };
-                return BadRequest(tempRes);
+                return ex.ToObjectResult();
             }
             return Ok(result);
         }
