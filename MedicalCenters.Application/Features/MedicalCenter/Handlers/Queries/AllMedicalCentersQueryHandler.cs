@@ -18,28 +18,15 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Queries
         public async Task<BaseQueryResponse> Handle(AllMedicalCentersQuery request, CancellationToken cancellationToken)
         {
             var response = new BaseQueryResponse();
-            try
-            {
-                var result = await unitOfWork.MedicalCenterRepository.GetAll();
 
-                List<MedicalCenterDto> dtos = new List<MedicalCenterDto>();
-                result.ToList().ForEach(x => dtos.Add(mapper.Map<MedicalCenterDto>(x)));
+            var result = await unitOfWork.MedicalCenterRepository.GetAll();
 
-                response.Data = dtos;
-                response.IsSusses = true;
-            }
-            catch (ApplicationException ex)
-            {
-                response.IsSusses = false;
-                response.Errors ??= new List<ErrorResponse>();
-                response.Errors.Add(new ErrorResponse(2000, ex.Message));
-            }
-            catch (Exception ex)
-            {
-                response.IsSusses = false;
-                response.Errors ??= new List<ErrorResponse>();
-                response.Errors.Add(new ErrorResponse(-1, ex.Message));
-            }
+            List<MedicalCenterDto> dtos = new List<MedicalCenterDto>();
+            result.ToList().ForEach(x => dtos.Add(mapper.Map<MedicalCenterDto>(x)));
+
+            response.Data = dtos;
+            response.IsSusses = true;
+
 
             return response;
         }
