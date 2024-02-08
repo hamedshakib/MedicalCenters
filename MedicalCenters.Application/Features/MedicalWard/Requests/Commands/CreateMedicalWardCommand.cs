@@ -8,10 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MedicalCenters.Application.Features.MedicalCenter.Requests.Commands
+namespace MedicalCenters.Application.Features.MedicalWard.Requests.Commands
 {
-    public record UpdateMedicalCenterCommand : IRequest<BaseResponse>
+    internal class CreateMedicalWardCommand : IRequest<BaseValuedCommandResponse>
     {
-        public MedicalCenterDto MedicalCenterDto { get; set; }
+        public CreateMedicalWardDto CreateMedicalWardDto { get; set; }
     }
 }

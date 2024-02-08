@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,9 @@ namespace MedicalCenters.Application.Contracts.Persistence
     public interface IUnitOfWork : IDisposable
     {
         Task Save();
+
         IMedicalCenterRepository MedicalCenterRepository { get; }
+        IMedicalWardRepository MedicalWardRepository { get; }
+
     }
 }

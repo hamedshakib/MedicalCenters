@@ -11,8 +11,12 @@ namespace MedicalCenters.Persistence.Repositories
     public class UnitOfWork : IUnitOfWork
     {
         private readonly MedicalCentersDBContext _dBContext;
+
         private IMedicalCenterRepository _medicalCenterRepository;
         public IMedicalCenterRepository MedicalCenterRepository => _medicalCenterRepository ??= new MedicalCenterRepository(_dBContext);
+
+        private IMedicalWardRepository _medicalWardRepository;
+        public IMedicalWardRepository MedicalWardRepository => _medicalWardRepository ??= new MedicalWardRepository(_dBContext);
 
         public UnitOfWork(MedicalCentersDBContext dBContext)
         {
