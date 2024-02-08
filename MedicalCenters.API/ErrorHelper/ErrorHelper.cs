@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MedicalCenters.API.Utility.Extentions;
+using MedicalCenters.Application.Contracts.Error;
 using MedicalCenters.Application.Exceptions;
 using MedicalCenters.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
@@ -31,7 +32,7 @@ namespace MedicalCenters.API.ErrorHelper
                     return objectResult;
                 case AutoMapperMappingException ex:
                     Errors = new List<ErrorResponse>();
-                    Errors.Add(new ErrorResponse(10, $"در تبدیل  {ex.MemberMap} خطایی رخ داد"));
+                    Errors.Add(new ErrorResponse(((int)ErrorEnums.ConvertData), $"در تبدیل  {ex.MemberMap} خطایی رخ داد"));
                     result = new BaseQueryResponse()
                     {
                         IsSusses = false,
@@ -42,7 +43,7 @@ namespace MedicalCenters.API.ErrorHelper
                     return objectResult;
                 case NotFoundException ex:
                     Errors = new List<ErrorResponse>();
-                    Errors.Add(new ErrorResponse(10, $" {ex.NotFound_Object} مورد نظر یافت نشد"));
+                    Errors.Add(new ErrorResponse((int)ErrorEnums.NotFound, $" {ex.NotFound_Object} مورد نظر یافت نشد"));
                     result = new BaseQueryResponse()
                     {
                         IsSusses = false,
@@ -54,7 +55,7 @@ namespace MedicalCenters.API.ErrorHelper
                 case DbException ex:
                     Errors = new List<ErrorResponse>();
                     string DBError = $"در کوئری به دیتابیس خطایی رخ داد";
-                    Errors.Add(new ErrorResponse(10, DBError));
+                    Errors.Add(new ErrorResponse((int)ErrorEnums.Query, DBError));
                     result = new BaseQueryResponse()
                     {
                         IsSusses = false,

@@ -19,34 +19,20 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Commands
         public async Task<BaseResponse> Handle(DeleteMedicalCenterCommand command, CancellationToken cancellationToken)
         {
             var response = new BaseResponse();
-            try
-            {
-                if (await unitOfWork.MedicalCenterRepository.Exist(command.Id))
-                {
-                    await unitOfWork.MedicalCenterRepository.Delete(command.Id);
-                    await unitOfWork.Save();
-                }
-                else
-                {
-                    string Object = "مرکز درمانی" + command.Id;
-                    throw new NotFoundException(Object);
-                }
 
+            if (await unitOfWork.MedicalCenterRepository.Exist(command.Id))
+            {
+                await unitOfWork.MedicalCenterRepository.Delete(command.Id);
                 await unitOfWork.Save();
-                response.IsSusses = true;
             }
-            catch (ApplicationException ex)
+            else
             {
-                response.IsSusses = false;
-                response.Errors ??= new List<ErrorResponse>();
-                response.Errors.Add(new ErrorResponse(2000, ex.Message));
+                string Object = "مرکز درمانی" + command.Id;
+                throw new NotFoundException(Object);
             }
-            catch (Exception ex)
-            {
-                response.IsSusses = false;
-                response.Errors ??= new List<ErrorResponse>();
-                response.Errors.Add(new ErrorResponse(-1, ex.Message));
-            }
+
+            await unitOfWork.Save();
+            response.IsSusses = true;
 
             return response;
         }

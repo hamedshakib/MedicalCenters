@@ -1,6 +1,8 @@
 ﻿using FluentValidation.Results;
+using MedicalCenters.Application.Contracts.Error;
 using MedicalCenters.Application.Responses;
 using System.ComponentModel.DataAnnotations;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Model;
 
 namespace MedicalCenters.API.Utility.Extentions
 {
@@ -10,14 +12,14 @@ namespace MedicalCenters.API.Utility.Extentions
         {
             var Errors = new List<ErrorResponse>();
             var ValidationFailureList = (List<ValidationFailure>)exception.Value;
-            ValidationFailureList.ForEach(x => Errors.Add(new ErrorResponse(Convert.ToInt32(x.ErrorCode), x.ErrorMessage)));
+            ValidationFailureList.ForEach(x => Errors.Add(new ErrorResponse((int)ErrorEnums.Validation, x.ErrorMessage)));
             return Errors;
         }
 
         public static IList<ErrorResponse> ErrorsResponse(this Exception exception)
         {
             var Errors = new List<ErrorResponse>();
-            Errors.Add(new ErrorResponse(-1, exception.Message));
+            Errors.Add(new ErrorResponse((int)ErrorEnums.UnKnown, exception.Message));
             return Errors;
         }
     }

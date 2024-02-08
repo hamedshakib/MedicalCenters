@@ -18,34 +18,21 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Commands
         public async Task<BaseResponse> Handle(UpdateMedicalCenterCommand command, CancellationToken cancellationToken)
         {
             var response = new BaseResponse();
-            try
-            {
-                var medicalCenter=await unitOfWork.MedicalCenterRepository.Get(command.MedicalCenterDto.Id);
-                if (medicalCenter is null)
-                {
-                    string Object= "مرکز درمانی" + command.MedicalCenterDto.Id.ToString();
-                    throw new NotFoundException(Object);
-                }
 
-                mapper.Map(command.MedicalCenterDto, medicalCenter);
-
-                await unitOfWork.MedicalCenterRepository.Update(medicalCenter);
-                await unitOfWork.Save();
-
-                response.IsSusses = true;
-            }
-            catch(ApplicationException ex)
+            var medicalCenter=await unitOfWork.MedicalCenterRepository.Get(command.MedicalCenterDto.Id);
+            if (medicalCenter is null)
             {
-                response.IsSusses = false;
-                response.Errors ??= new List<ErrorResponse>();
-                response.Errors.Add(new ErrorResponse(2000, ex.Message));
+                string Object= "مرکز درمانی" + command.MedicalCenterDto.Id.ToString();
+                throw new NotFoundException(Object);
             }
-            catch(Exception ex)
-            {
-                response.IsSusses = false;
-                response.Errors ??= new List<ErrorResponse>();
-                response.Errors.Add(new ErrorResponse(-1, ex.Message));
-            }
+
+            mapper.Map(command.MedicalCenterDto, medicalCenter);
+
+            await unitOfWork.MedicalCenterRepository.Update(medicalCenter);
+            await unitOfWork.Save();
+
+            response.IsSusses = true;
+
 
 
             return response;
