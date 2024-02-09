@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalCenters.Persistence"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{06954F25-B24F-442B-908D-32FB58B040FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalCenters.API", "MedicalCenters.API\MedicalCenters.API.csproj", "{0B47036D-6935-4409-8D09-63F294C75157}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalCenters.API", "MedicalCenters.API\MedicalCenters.API.csproj", "{0B47036D-6935-4409-8D09-63F294C75157}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalCenters.Identity", "MedicalCenters.Identity\MedicalCenters.Identity.csproj", "{43F0A8D7-CBA7-4C63-B6EF-EFFC2139C518}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{0B47036D-6935-4409-8D09-63F294C75157}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B47036D-6935-4409-8D09-63F294C75157}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B47036D-6935-4409-8D09-63F294C75157}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43F0A8D7-CBA7-4C63-B6EF-EFFC2139C518}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43F0A8D7-CBA7-4C63-B6EF-EFFC2139C518}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43F0A8D7-CBA7-4C63-B6EF-EFFC2139C518}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43F0A8D7-CBA7-4C63-B6EF-EFFC2139C518}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +66,7 @@ Global
 		{44EBD488-D2CC-4F9E-B433-43487717AA50} = {4942CF23-9C6F-42D6-8A7D-DEC8D4EE34DE}
 		{06954F25-B24F-442B-908D-32FB58B040FD} = {170658C3-FDDB-49AF-8B8D-9BC0F16EA876}
 		{0B47036D-6935-4409-8D09-63F294C75157} = {06954F25-B24F-442B-908D-32FB58B040FD}
+		{43F0A8D7-CBA7-4C63-B6EF-EFFC2139C518} = {4942CF23-9C6F-42D6-8A7D-DEC8D4EE34DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A27C1660-17B4-4D5F-8104-C196D82D0C13}

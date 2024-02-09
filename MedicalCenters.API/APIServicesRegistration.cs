@@ -1,4 +1,5 @@
 ﻿using MedicalCenters.Application;
+using MedicalCenters.Identity;
 using MedicalCenters.Persistence;
 namespace MedicalCenters.API
 {
@@ -11,6 +12,8 @@ namespace MedicalCenters.API
             services.AddEndpointsApiExplorer();
             services.ConfigureApplicationServices();
             services.ConfigurePersistenceServices();
+            services.ConfigureIdentityServices();
+
             return services;
         }
     }

@@ -14,6 +14,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Text.RegularExpressions;
 using System;
 using MedicalCenters.API.ErrorHelper;
+using MedicalCenters.Identity.Authoize;
 
 namespace MedicalCenters.API.Controllers
 {
@@ -22,6 +23,7 @@ namespace MedicalCenters.API.Controllers
     public class MedicalCenterController(IMediator mediator) : ControllerBase
     {
         [HttpGet]
+        [RequiresPermition("GetAllMedicalCenter")]
         public async Task<ActionResult<BaseQueryResponse>> GetAllMedicalCenters()
         {
             var query = new AllMedicalCentersQuery();
@@ -38,7 +40,8 @@ namespace MedicalCenters.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<BaseQueryResponse>> GetAllMedicalCenters(long Id)
+        [RequiresPermition("GetMedicalCenter")]
+        public async Task<ActionResult<BaseQueryResponse>> GetMedicalCenters(long Id)
         {
             var query = new MedicalCenterQuery() {Id=Id };
             BaseQueryResponse result = null;
@@ -54,6 +57,7 @@ namespace MedicalCenters.API.Controllers
         }
 
         [HttpPost]
+        [RequiresPermition("AddMedicalCenter")]
         public async Task<ActionResult<BaseValuedCommandResponse>> AddMedicalCenter([FromBody] CreateMedicalCenterDto newMedicalCenter)
         {
             var command = new CreateMedicalCenterCommand() { CreateMedicalCenterDto = newMedicalCenter };
@@ -70,6 +74,7 @@ namespace MedicalCenters.API.Controllers
         }
 
         [HttpPut]
+        [RequiresPermition("EditMedicalCenter")]
         public async Task<ActionResult<BaseResponse>> UpdateMedicalCenter([FromBody] MedicalCenterDto medicalCenter)
         {
             var command = new UpdateMedicalCenterCommand() { MedicalCenterDto = medicalCenter };
@@ -87,7 +92,8 @@ namespace MedicalCenters.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<BaseResponse>> UpdateMedicalCenter(long id)
+        [RequiresPermition("DeleteMedicalCenter")]
+        public async Task<ActionResult<BaseResponse>> DeleteMedicalCenter(long id)
         {
             var command = new DeleteMedicalCenterCommand() { Id=id };
             BaseResponse result = null;
