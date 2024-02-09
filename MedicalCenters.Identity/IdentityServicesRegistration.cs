@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,7 +28,11 @@ namespace MedicalCenters.Identity
                     ValidateLifetime = false,
                     RequireExpirationTime = true,
                     IssuerSigningKey = CustomSecurityKey.SymmetricSecurityKey,
-                    ValidateIssuerSigningKey = true
+                    ValidateIssuerSigningKey = true,
+                    ValidateIssuer = true,
+                    ValidIssuer = "Medical Center Server",
+                    ValidAudience = "Medical Center Client",
+                    ValidateAudience = true,
                 };
             });
 

@@ -39,7 +39,7 @@ namespace MedicalCenters.API.Controllers
             }
             return Ok(result);
         }
-
+        [Authorize]
         [HttpGet("{id}")]
         [RequiresPermition("GetMedicalCenter")]
         public async Task<ActionResult<BaseQueryResponse>> GetMedicalCenters(long Id)
