@@ -18,7 +18,8 @@ namespace MedicalCenters.Identity.Classes
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.UtcNow.AddMinutes(60),
                 Issuer = "Medical Center Server",
-                SigningCredentials = new SigningCredentials(CustomSecurityKey.SymmetricSecurityKey, SecurityAlgorithms.RsaSha512)
+                TokenType = "JWT",
+                SigningCredentials = new SigningCredentials(CustomSecurityKey.SymmetricSecurityKey, SecurityAlgorithms.HmacSha256Signature)
             };
 
             var token = tokenHandler.CreateToken(securityTokenDescriptor);

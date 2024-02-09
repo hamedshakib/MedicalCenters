@@ -23,20 +23,23 @@ namespace MedicalCenters.API.Controllers
 
         [AllowAnonymous]
         [HttpPost("token")]
-        public void Token([FromBody] LoginModel model)
+        public IActionResult Token([FromBody] LoginModel model)
         {
             //Check If model Data is valid
+            long UserId = 1;
+
+
 
 
             var claims = new List<Claim>()
-            { 
+            {
                 new Claim(JwtRegisteredClaimNames.Jti , Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.UniqueName ,model.Username),
+                new Claim(JwtRegisteredClaimNames.Sid , UserId.ToString())
             };
 
-            var jwt=JWTTokenCreator.GetJWTToken(claims);
-            Ok(jwt);
-
+            var jwt = JWTTokenCreator.GetJWTToken(claims);
+            return Ok(jwt);
         }
     }
 }

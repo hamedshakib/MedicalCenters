@@ -15,6 +15,7 @@ using System.Text.RegularExpressions;
 using System;
 using MedicalCenters.API.ErrorHelper;
 using MedicalCenters.Identity.Authoize;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MedicalCenters.API.Controllers
 {
