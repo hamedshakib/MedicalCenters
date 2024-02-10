@@ -13,5 +13,6 @@ namespace MedicalCenters.Application.Contracts.Error
         NotFound = 2,
         ConvertData = 3,
         Query = 4,
+        LoginFailed = 5,
     }
 }

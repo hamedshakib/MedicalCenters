@@ -3,6 +3,7 @@ using MedicalCenters.API.Utility.Extentions;
 using MedicalCenters.Application.Contracts.Error;
 using MedicalCenters.Application.Exceptions;
 using MedicalCenters.Application.Responses;
+using MedicalCenters.Identity.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using System.ComponentModel.DataAnnotations;
@@ -63,6 +64,18 @@ namespace MedicalCenters.API.ErrorHelper
                     };
                     objectResult = new ObjectResult(result);
                     objectResult.StatusCode = StatusCodes.Status400BadRequest;
+                    return objectResult;
+                case LoginFailedException ex:
+                    result = new BaseQueryResponse()
+                    {
+                        IsSusses = false,
+                        Errors = new List<ErrorResponse>() { new ErrorResponse((int)ErrorEnums.LoginFailed, ex.Message) }
+                    };
+                    objectResult = new ObjectResult(result);
+                    if(ex.IsUserFound)
+                        objectResult.StatusCode = StatusCodes.Status400BadRequest;
+                    else
+                        objectResult.StatusCode = StatusCodes.Status404NotFound;
                     return objectResult;
 
                 default:

@@ -12,7 +12,6 @@ namespace MedicalCenters.Identity.Classes
 {
     public class AuthenticationLogin(IIdentityUnitOfWork identityUnitOfWork)
     {
-
         public async Task<LoginResultDto> LoginValidate(LoginDto loginDto)
         {
             LoginResultDto loginResultDto = null;
