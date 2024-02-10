@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Queries
 {
-    internal class MedicalCenterQueryHandler(IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<MedicalCenterQuery, BaseQueryResponse>
+    internal class MedicalCenterQueryHandler(IMedicalCentersUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<MedicalCenterQuery, BaseQueryResponse>
     {
         public async Task<BaseQueryResponse> Handle(MedicalCenterQuery request, CancellationToken cancellationToken)
         {

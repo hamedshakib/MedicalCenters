@@ -9,9 +9,9 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MedicalCenters.Identity.Authoize
+namespace MedicalCenters.Identity.Attributes
 {
-    [AttributeUsage( AttributeTargets.Class | AttributeTargets.Method)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class RequiresPermitionAttribute(string Permition) : Attribute, IAuthorizationFilter
     {
         void IAuthorizationFilter.OnAuthorization(AuthorizationFilterContext context)

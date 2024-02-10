@@ -18,7 +18,6 @@
   <ItemGroup>
     <ProjectReference Include="..\MedicalCenters.Application\MedicalCenters.Application.csproj" />
     <ProjectReference Include="..\MedicalCenters.Identity\MedicalCenters.Identity.csproj" />
-    <ProjectReference Include="..\MedicalCenters.Infrastructure\MedicalCenters.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

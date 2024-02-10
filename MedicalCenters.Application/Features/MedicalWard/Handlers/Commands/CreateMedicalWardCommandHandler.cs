@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Application.Features.MedicalWard.Handlers.Commands
 {
-    internal class CreateMedicalWardCommandHandler(IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<CreateMedicalWardCommand, BaseValuedCommandResponse>
+    internal class CreateMedicalWardCommandHandler(IMedicalCentersUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<CreateMedicalWardCommand, BaseValuedCommandResponse>
     {
         public async Task<BaseValuedCommandResponse> Handle(CreateMedicalWardCommand command, CancellationToken cancellationToken)
         {

@@ -13,7 +13,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MedicalCenters.Application.Mapping.MappingTypeConverter
 {
-    internal class MedicalCenterTypeResolver<T>(IUnitOfWork unitOfWork) : IValueResolver<T, MedicalCenter, MedicalCenterType>
+    internal class MedicalCenterTypeResolver<T>(IMedicalCentersUnitOfWork unitOfWork) : IValueResolver<T, MedicalCenter, MedicalCenterType>
         where T : IMedicalCenterDto
     {
         public MedicalCenterType Resolve(T source, MedicalCenter destination, MedicalCenterType destMember, ResolutionContext context)

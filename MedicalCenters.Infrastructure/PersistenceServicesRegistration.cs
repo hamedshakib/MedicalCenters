@@ -25,7 +25,7 @@ namespace MedicalCenters.Persistence
             services.AddDbContext<MedicalCentersDBContext>(options => 
                                         options.UseSqlServer(medicalCentersConnectionString, x => x.UseNetTopologySuite()));
             services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IMedicalCentersUnitOfWork, MedicalCentersUnitOfWork>();
             services.AddScoped<IMedicalCenterRepository, MedicalCenterRepository>();
             return services;
         }

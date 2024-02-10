@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Commands
 {
-    internal class DeleteMedicalCenterCommandHandler(IUnitOfWork unitOfWork,IMapper mapper) : IRequestHandler<DeleteMedicalCenterCommand, BaseResponse>
+    internal class DeleteMedicalCenterCommandHandler(IMedicalCentersUnitOfWork unitOfWork,IMapper mapper) : IRequestHandler<DeleteMedicalCenterCommand, BaseResponse>
     {
         public async Task<BaseResponse> Handle(DeleteMedicalCenterCommand command, CancellationToken cancellationToken)
         {

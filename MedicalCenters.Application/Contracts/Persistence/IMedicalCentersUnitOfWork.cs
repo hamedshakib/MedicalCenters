@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Application.Contracts.Persistence
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IMedicalCentersUnitOfWork : IDisposable
     {
         Task Save();
 

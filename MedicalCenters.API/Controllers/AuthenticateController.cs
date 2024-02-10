@@ -1,5 +1,5 @@
 ﻿using MedicalCenters.Identity.Classes;
-using MedicalCenters.Identity.Model;
+using MedicalCenters.Identity.Models.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -23,10 +23,20 @@ namespace MedicalCenters.API.Controllers
 
         [AllowAnonymous]
         [HttpPost("token")]
-        public IActionResult Token([FromBody] LoginModel model)
+        public async IActionResult Token([FromBody] LoginDto model)
         {
             //Check If model Data is valid
-            long UserId = 1;
+            var userValidator=new AuthenticationLogin();
+            var result = await userValidator.LoginValidate(model);
+            if(!result.IsFindUser)
+                return NotFound();
+
+            if(result.LoginUser is null)
+            {
+                return BadRequest();
+            }
+
+            long UserId = result.LoginUser.UserId;
 
 
 

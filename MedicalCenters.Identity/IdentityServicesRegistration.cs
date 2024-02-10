@@ -1,4 +1,4 @@
-﻿using MedicalCenters.Identity.Authoize;
+﻿using MedicalCenters.Identity.Basic;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -27,7 +27,7 @@ namespace MedicalCenters.Identity
                 {
                     ValidateLifetime = false,
                     RequireExpirationTime = true,
-                    IssuerSigningKey = CustomSecurityKey.SymmetricSecurityKey,
+                    IssuerSigningKey = CustomSecurityKeyBasic.SymmetricSecurityKey,
                     ValidateIssuerSigningKey = true,
                     ValidateIssuer = true,
                     ValidIssuer = "Medical Center Server",

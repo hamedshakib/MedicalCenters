@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Commands
 {
-    internal class UpdateMedicalCenterCommandHandler(IUnitOfWork unitOfWork,IMapper mapper) : IRequestHandler<UpdateMedicalCenterCommand, BaseResponse>
+    internal class UpdateMedicalCenterCommandHandler(IMedicalCentersUnitOfWork unitOfWork,IMapper mapper) : IRequestHandler<UpdateMedicalCenterCommand, BaseResponse>
     {
         public async Task<BaseResponse> Handle(UpdateMedicalCenterCommand command, CancellationToken cancellationToken)
         {

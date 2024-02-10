@@ -8,7 +8,7 @@ using MedicalCenters.Application.Responses;
 
 namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Commands
 {
-    internal class CreateMedicalCenterCommandHandler(IUnitOfWork unitOfWork,IMapper mapper) : IRequestHandler<CreateMedicalCenterCommand, BaseValuedCommandResponse>
+    internal class CreateMedicalCenterCommandHandler(IMedicalCentersUnitOfWork unitOfWork,IMapper mapper) : IRequestHandler<CreateMedicalCenterCommand, BaseValuedCommandResponse>
     {
         public async Task<BaseValuedCommandResponse> Handle(CreateMedicalCenterCommand command, CancellationToken cancellationToken)
         {

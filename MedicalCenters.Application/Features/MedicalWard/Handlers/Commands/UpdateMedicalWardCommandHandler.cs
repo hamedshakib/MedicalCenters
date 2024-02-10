@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Application.Features.MedicalWard.Handlers.Commands
 {
-    internal class UpdateMedicalWardCommandHandler(IUnitOfWork unitOfWork,IMapper mapper) : IRequestHandler<UpdateMedicalWardCommand, BaseResponse>
+    internal class UpdateMedicalWardCommandHandler(IMedicalCentersUnitOfWork unitOfWork,IMapper mapper) : IRequestHandler<UpdateMedicalWardCommand, BaseResponse>
     {
         public async Task<BaseResponse> Handle(UpdateMedicalWardCommand command, CancellationToken cancellationToken)
         {

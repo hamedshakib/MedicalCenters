@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Persistence.Repositories
 {
-    public class UnitOfWork : IUnitOfWork
+    public class MedicalCentersUnitOfWork : IMedicalCentersUnitOfWork
     {
         private readonly MedicalCentersDBContext _dBContext;
 
@@ -18,7 +18,7 @@ namespace MedicalCenters.Persistence.Repositories
         private IMedicalWardRepository _medicalWardRepository;
         public IMedicalWardRepository MedicalWardRepository => _medicalWardRepository ??= new MedicalWardRepository(_dBContext);
 
-        public UnitOfWork(MedicalCentersDBContext dBContext)
+        public MedicalCentersUnitOfWork(MedicalCentersDBContext dBContext)
         {
             _dBContext=dBContext;
         }

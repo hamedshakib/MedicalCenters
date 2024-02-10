@@ -14,8 +14,8 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Text.RegularExpressions;
 using System;
 using MedicalCenters.API.ErrorHelper;
-using MedicalCenters.Identity.Authoize;
 using Microsoft.AspNetCore.Authorization;
+using MedicalCenters.Identity.Attributes;
 
 namespace MedicalCenters.API.Controllers
 {

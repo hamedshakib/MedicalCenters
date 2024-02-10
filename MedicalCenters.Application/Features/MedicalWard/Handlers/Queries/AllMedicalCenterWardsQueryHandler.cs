@@ -8,7 +8,7 @@ using MedicalCenters.Application.Responses;
 
 namespace MedicalCenters.Application.Features.MedicalWard.Handlers.Queries
 {
-    internal class AllMedicalCenterWardsQueryHandler(IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<AllMedicalCenterWardsQuery, BaseQueryResponse>
+    internal class AllMedicalCenterWardsQueryHandler(IMedicalCentersUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<AllMedicalCenterWardsQuery, BaseQueryResponse>
     {
         public async Task<BaseQueryResponse> Handle(AllMedicalCenterWardsQuery request, CancellationToken cancellationToken)
         {
