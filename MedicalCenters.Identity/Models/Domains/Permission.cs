@@ -8,11 +8,15 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Identity.Models.Domains
 {
-    internal class Permission : BaseCreateableDomainEntity
+    public class Permission : BaseCreateableDomainEntity
     {
         [Required, StringLength(150)]
         public string Name { get; set; }
         [StringLength(1000)]
         public string Description { get; set; }
+
+        public IList<User> Users { get; set; }
+
+        public IList<PermissionGroup> PermissionGroups { get; set; }
     }
 }

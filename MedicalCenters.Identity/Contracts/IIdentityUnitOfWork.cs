@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Identity.Contracts
 {
-    public interface IIdentityUnitOfWork
+    public interface IIdentityUnitOfWork : IDisposable
     {
         Task Save();
 

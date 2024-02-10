@@ -1,4 +1,5 @@
 ﻿using MedicalCenters.Domain.Classes;
+using MedicalCenters.Identity.Models.Domains;
 using MedicalCenters.Infrastructure.DBContexts;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -20,6 +21,8 @@ namespace MedicalCenters.Persistence.DBContexts
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(IdentityDBContext).Assembly);
         }
 
-        public DbSet<MedicalCenter> MedicalCenter { get; set; }
+        public DbSet<User> User { get; set; }
+        public DbSet<Permission> Permission { get; set; }
+        public DbSet<PermissionGroup> PermissionGroup { get; set; }
     }
 }

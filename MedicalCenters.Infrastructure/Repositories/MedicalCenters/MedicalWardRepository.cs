@@ -11,9 +11,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MedicalCenters.Persistence.Repositories
+namespace MedicalCenters.Persistence.Repositories.MedicalCenters
 {
-    public class MedicalWardRepository : GenericRepository<MedicalWard>,IMedicalWardRepository
+    public class MedicalWardRepository : GenericRepository<MedicalWard>, IMedicalWardRepository
     {
         private readonly MedicalCentersDBContext _dBContext;
         public MedicalWardRepository(MedicalCentersDBContext dBContext) : base(dBContext)

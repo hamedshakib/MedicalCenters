@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MedicalCenters.Persistence.Repositories
+namespace MedicalCenters.Persistence.Repositories.MedicalCenters
 {
     public class MedicalCentersUnitOfWork : IMedicalCentersUnitOfWork
     {
@@ -20,7 +20,7 @@ namespace MedicalCenters.Persistence.Repositories
 
         public MedicalCentersUnitOfWork(MedicalCentersDBContext dBContext)
         {
-            _dBContext=dBContext;
+            _dBContext = dBContext;
         }
         public async Task Save()
         {

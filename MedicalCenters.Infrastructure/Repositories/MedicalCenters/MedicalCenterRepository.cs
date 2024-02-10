@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MedicalCenters.Persistence.Repositories
+namespace MedicalCenters.Persistence.Repositories.MedicalCenters
 {
     public class MedicalCenterRepository : GenericRepository<MedicalCenter>, IMedicalCenterRepository
     {
@@ -21,7 +21,7 @@ namespace MedicalCenters.Persistence.Repositories
 
         public async Task<MedicalCenterType?> GetMedicalCenterType(long id)
         {
-            var value= await _dBContext.MedicalCenterType.FindAsync(id);
+            var value = await _dBContext.MedicalCenterType.FindAsync(id);
             return value;
         }
     }
