@@ -1,4 +1,5 @@
-﻿using MedicalCenters.Identity.Models.Domains;
+﻿using MedicalCenters.Identity.Contracts;
+using MedicalCenters.Identity.Models.Domains;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
@@ -9,13 +10,16 @@ using System.Runtime.ConstrainedExecution;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
+using IAuthorizationFilter = Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter;
 
 namespace MedicalCenters.Identity.Attributes
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class RequiresPermissionAttribute(int permissionId) : Attribute, IAuthorizationFilter
     {
-        void IAuthorizationFilter.OnAuthorization(AuthorizationFilterContext context)
+        IIdentityUnitOfWork unitOfWork =DependencyResolver.Current.GetService<IIdentityUnitOfWork>();
+        async void IAuthorizationFilter.OnAuthorization(AuthorizationFilterContext context)
         {
             bool HasPermition = false;
             try
@@ -27,10 +31,12 @@ namespace MedicalCenters.Identity.Attributes
                 {
                     long UserId = Convert.ToInt64(User.FindFirst(JwtRegisteredClaimNames.Sid).Value);
 
-                    //Check Permission
                     //Check User Permission
+                    HasPermition = await unitOfWork.AuthorizationRepository.HasUserPermition(UserId, permissionId);
 
                     //Check Group Permission
+                    if(!HasPermition)
+                        HasPermition=await unitOfWork.AuthorizationRepository.HasUserGroupPermition(UserId, permissionId);
 
                     HasPermition = true;
                 }

@@ -16,6 +16,7 @@ using System;
 using MedicalCenters.API.ErrorHelper;
 using Microsoft.AspNetCore.Authorization;
 using MedicalCenters.Identity.Attributes;
+using MedicalCenters.Identity.Contracts;
 
 namespace MedicalCenters.API.Controllers
 {
@@ -24,7 +25,7 @@ namespace MedicalCenters.API.Controllers
     public class MedicalCenterController(IMediator mediator) : ControllerBase
     {
         [HttpGet]
-        [RequiresPermition("GetAllMedicalCenter")]
+        [RequiresPermission(5)]
         public async Task<ActionResult<BaseQueryResponse>> GetAllMedicalCenters()
         {
             var query = new AllMedicalCentersQuery();
@@ -41,7 +42,7 @@ namespace MedicalCenters.API.Controllers
         }
         [Authorize]
         [HttpGet("{id}")]
-        [RequiresPermition("GetMedicalCenter")]
+        [RequiresPermission(4)]
         public async Task<ActionResult<BaseQueryResponse>> GetMedicalCenters(long Id)
         {
             var query = new MedicalCenterQuery() {Id=Id };
@@ -58,7 +59,7 @@ namespace MedicalCenters.API.Controllers
         }
 
         [HttpPost]
-        [RequiresPermition("AddMedicalCenter")]
+        [RequiresPermission(1)]
         public async Task<ActionResult<BaseValuedCommandResponse>> AddMedicalCenter([FromBody] CreateMedicalCenterDto newMedicalCenter)
         {
             var command = new CreateMedicalCenterCommand() { CreateMedicalCenterDto = newMedicalCenter };
@@ -75,7 +76,7 @@ namespace MedicalCenters.API.Controllers
         }
 
         [HttpPut]
-        [RequiresPermition("EditMedicalCenter")]
+        [RequiresPermission(2)]
         public async Task<ActionResult<BaseResponse>> UpdateMedicalCenter([FromBody] MedicalCenterDto medicalCenter)
         {
             var command = new UpdateMedicalCenterCommand() { MedicalCenterDto = medicalCenter };
@@ -93,7 +94,7 @@ namespace MedicalCenters.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        [RequiresPermition("DeleteMedicalCenter")]
+        [RequiresPermission(3)]
         public async Task<ActionResult<BaseResponse>> DeleteMedicalCenter(long id)
         {
             var command = new DeleteMedicalCenterCommand() { Id=id };

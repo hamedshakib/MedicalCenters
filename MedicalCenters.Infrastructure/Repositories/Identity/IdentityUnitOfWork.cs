@@ -20,6 +20,9 @@ namespace MedicalCenters.Persistence.Repositories.Identity
         private IAthenticationRepository _athenticationRepository;
         public IAthenticationRepository AthenticationRepository => _athenticationRepository ??= new AthenticationRepository(_dBContext);
 
+        private IAuthorizationRepository _authorizationRepository;
+        public IAuthorizationRepository AuthorizationRepository => _authorizationRepository ??= new AuthorizationRepository(_dBContext);
+
 
         public IdentityUnitOfWork(IdentityDBContext dBContext)
         {
