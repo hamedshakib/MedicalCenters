@@ -17,7 +17,7 @@ namespace MedicalCenters.Persistence.Configurations.Entities
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.HasData(
-                new User { Id = 1, UserName = "Administrator", Name = "ادمین" , HashAlgorithmType=0,PeaperType=0,CreatedBy = 1, DateTimeCreated = DateTime.Now },
+                new User { Id = 1, UserName = "Administrator", Name = "ادمین" , HashAlgorithmType=0,PeaperType=0,CreatedBy = 1, DateTimeCreated = DateTime.Now }
                 );
                 
         }

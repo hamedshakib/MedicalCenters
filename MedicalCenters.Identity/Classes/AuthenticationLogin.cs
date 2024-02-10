@@ -32,7 +32,7 @@ namespace MedicalCenters.Identity.Classes
             return loginResultDto;
         }
 
-        private bool PasswordValidate(string loginPassword,User user)
+        private bool PasswordValidate(string loginPassword, User user)
         {
             var hasher = new PasswordHasher(user.HashAlgorithmType,user.PeaperType);
             string loginHashedPassword = hasher.Hash(loginPassword, user.Salt);

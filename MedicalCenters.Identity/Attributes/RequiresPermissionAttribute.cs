@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MedicalCenters.Identity.Models.Domains;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 namespace MedicalCenters.Identity.Attributes
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-    public class RequiresPermitionAttribute(string Permition) : Attribute, IAuthorizationFilter
+    public class RequiresPermissionAttribute(int permissionId) : Attribute, IAuthorizationFilter
     {
         void IAuthorizationFilter.OnAuthorization(AuthorizationFilterContext context)
         {
@@ -26,10 +27,10 @@ namespace MedicalCenters.Identity.Attributes
                 {
                     long UserId = Convert.ToInt64(User.FindFirst(JwtRegisteredClaimNames.Sid).Value);
 
-                    //Check Permition
-                    //Check User Permition
+                    //Check Permission
+                    //Check User Permission
 
-                    //Check Group Permition
+                    //Check Group Permission
 
                     HasPermition = true;
                 }

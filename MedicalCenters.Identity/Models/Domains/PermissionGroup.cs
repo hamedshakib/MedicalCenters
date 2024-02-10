@@ -17,6 +17,6 @@ namespace MedicalCenters.Identity.Models.Domains
 
 
         public IList<Permission> Permissions { get; set;}
-        public IList<User> Users { get; set;}
+        public IList<Permission> Users { get; set;}
     }
 }
