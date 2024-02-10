@@ -77,7 +77,15 @@ namespace MedicalCenters.API.ErrorHelper
                     else
                         objectResult.StatusCode = StatusCodes.Status404NotFound;
                     return objectResult;
-
+                case UnauthorizedAccessException ex:
+                    result = new BaseQueryResponse()
+                    {
+                        IsSusses = false,
+                        Errors = new List<ErrorResponse>() { new ErrorResponse((int)ErrorEnums.UnAuthroze, "شما اجازه دسترسی به این قسمت را ندارید") }
+                    };
+                    objectResult = new ObjectResult(result);
+                    objectResult.StatusCode = StatusCodes.Status403Forbidden;
+                    return objectResult;
                 default:
                     result = new BaseQueryResponse()
                     {

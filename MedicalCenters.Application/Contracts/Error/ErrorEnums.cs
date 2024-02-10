@@ -14,5 +14,6 @@ namespace MedicalCenters.Application.Contracts.Error
         ConvertData = 3,
         Query = 4,
         LoginFailed = 5,
+        UnAuthroze = 6
     }
 }

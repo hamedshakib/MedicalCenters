@@ -20,31 +20,10 @@ namespace MedicalCenters.API.Controllers
     [ApiController]
     public class AuthenticateController(IIdentityUnitOfWork unitOfWork) : ControllerBase
     {
-        //[AllowAnonymous]
-        //[HttpPost("login")]
-        //public void Login([FromBody] LoginModel model)
-        //{
-            
-        //}
-
         [AllowAnonymous]
         [HttpPost("token")]
         public async Task<IActionResult> Token([FromBody] LoginDto model)
         {
-            //string JWTToken= string.Empty;
-            //BaseQueryResponse result = null;
-            //try
-            //{
-            //    result = await mediator.Send(query);
-            //}
-            //catch (Exception ex)
-            //{
-            //    return ex.ToObjectResult();
-            //}
-            //return Ok(result);
-
-
-            //Check If model Data is valid
             long UserId;
             try
             {
@@ -73,7 +52,7 @@ namespace MedicalCenters.API.Controllers
                     IsSusses = true,
                     Data = jwt
                 };
-                return Ok(jwt);
+                return Ok(result);
             }
             catch (Exception ex)
             {

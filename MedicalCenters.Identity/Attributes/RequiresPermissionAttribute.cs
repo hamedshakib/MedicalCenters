@@ -10,20 +10,23 @@ using System.Runtime.ConstrainedExecution;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using IAuthorizationFilter = Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter;
+using Microsoft.AspNetCore.Http;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MedicalCenters.Identity.Attributes
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class RequiresPermissionAttribute(int permissionId) : Attribute, IAuthorizationFilter
     {
-        IIdentityUnitOfWork unitOfWork =DependencyResolver.Current.GetService<IIdentityUnitOfWork>();
         async void IAuthorizationFilter.OnAuthorization(AuthorizationFilterContext context)
         {
             bool HasPermition = false;
             try
             {
+                var identityUnitOfWork = (IIdentityUnitOfWork)context.HttpContext.RequestServices.GetService<IIdentityUnitOfWork>();
+
                 var User = context.HttpContext.User;
                 var Authenticalted = User.Identities.Any(e => e.IsAuthenticated == true);
 
@@ -32,13 +35,11 @@ namespace MedicalCenters.Identity.Attributes
                     long UserId = Convert.ToInt64(User.FindFirst(JwtRegisteredClaimNames.Sid).Value);
 
                     //Check User Permission
-                    HasPermition = await unitOfWork.AuthorizationRepository.HasUserPermition(UserId, permissionId);
+                    HasPermition = await identityUnitOfWork.AuthorizationRepository.HasUserPermition(UserId, permissionId);
 
                     //Check Group Permission
                     if(!HasPermition)
-                        HasPermition=await unitOfWork.AuthorizationRepository.HasUserGroupPermition(UserId, permissionId);
-
-                    HasPermition = true;
+                        HasPermition=await identityUnitOfWork.AuthorizationRepository.HasUserGroupPermition(UserId, permissionId);
                 }
             }
             catch { }
