@@ -5,6 +5,9 @@ using MedicalCenters.Domain.Classes.Oprerations;
 using MedicalCenters.Domain.Classes.Patients;
 using MedicalCenters.Domain.Classes.Shifts;
 using MedicalCenters.Domain.Classes.Staffs;
+using MedicalCenters.Persistence.Configurations.Entities;
+using MedicalCenters.Persistence.Configurations.Entities.MedicalCenters;
+using MedicalCenters.Persistence.DBContexts;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -26,7 +29,8 @@ namespace MedicalCenters.Infrastructure.DBContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(MedicalCentersDBContext).Assembly);
+            modelBuilder.ApplyConfiguration(new MedicalCenterTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new MedicalWardTypeConfiguration());
         }
 
         public DbSet<MedicalCenter> MedicalCenter { get; set; }

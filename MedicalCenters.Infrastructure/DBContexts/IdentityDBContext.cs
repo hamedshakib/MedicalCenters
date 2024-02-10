@@ -1,6 +1,7 @@
 ﻿using MedicalCenters.Domain.Classes;
 using MedicalCenters.Identity.Models.Domains;
 using MedicalCenters.Infrastructure.DBContexts;
+using MedicalCenters.Persistence.Configurations.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace MedicalCenters.Persistence.DBContexts
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(IdentityDBContext).Assembly);
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
         }
 
         public DbSet<User> User { get; set; }
