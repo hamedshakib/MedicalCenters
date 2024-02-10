@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace MedicalCenters.Persistence.Migrations.IdentityDB
 {
     /// <inheritdoc />
@@ -136,6 +138,23 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Permission",
+                columns: new[] { "Id", "CreatedBy", "DateTimeCreated", "Description", "Name" },
+                values: new object[,]
+                {
+                    { 1L, 1L, new DateTime(2024, 2, 10, 23, 4, 56, 426, DateTimeKind.Local).AddTicks(6182), "افزودن مرکز درمانی", "AddMedicalCenter" },
+                    { 2L, 1L, new DateTime(2024, 2, 10, 23, 4, 56, 426, DateTimeKind.Local).AddTicks(6185), "ویرایش مرکز درمانی", "EditMedicalCenter" },
+                    { 3L, 1L, new DateTime(2024, 2, 10, 23, 4, 56, 426, DateTimeKind.Local).AddTicks(6186), "حذف مرکز درمانی", "DeleteMedicalCenter" },
+                    { 4L, 1L, new DateTime(2024, 2, 10, 23, 4, 56, 426, DateTimeKind.Local).AddTicks(6187), "مشاهده اطلاعات مرکز درمانی", "GetMedicalCenterInfo" },
+                    { 5L, 1L, new DateTime(2024, 2, 10, 23, 4, 56, 426, DateTimeKind.Local).AddTicks(6189), "مشاهده اطلاعات تمامی مراکز درمانی", "GetAllMedicalCenterInfos" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "User",
+                columns: new[] { "Id", "CreatedBy", "DateTimeCreated", "HashAlgorithmType", "HashedPassword", "Name", "PeaperType", "Salt", "UserName" },
+                values: new object[] { 1L, 1L, new DateTime(2024, 2, 10, 23, 4, 56, 426, DateTimeKind.Local).AddTicks(5792), 0, new byte[0], "ادمین", 0, new byte[0], "Administrator" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_PermissionGroupUser_UsersId",

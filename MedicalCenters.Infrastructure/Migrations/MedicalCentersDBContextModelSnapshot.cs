@@ -257,56 +257,56 @@ namespace MedicalCenters.Persistence.Migrations
                         {
                             Id = 1L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 17, 37, 46, 870, DateTimeKind.Local).AddTicks(7849),
+                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 51, 762, DateTimeKind.Local).AddTicks(9142),
                             Name = "بیمارستان"
                         },
                         new
                         {
                             Id = 2L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 17, 37, 46, 870, DateTimeKind.Local).AddTicks(7865),
+                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 51, 762, DateTimeKind.Local).AddTicks(9164),
                             Name = "کلینیک پزشکی"
                         },
                         new
                         {
                             Id = 3L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 17, 37, 46, 870, DateTimeKind.Local).AddTicks(7867),
+                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 51, 762, DateTimeKind.Local).AddTicks(9165),
                             Name = "مرکز جراحی سر پایی"
                         },
                         new
                         {
                             Id = 4L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 17, 37, 46, 870, DateTimeKind.Local).AddTicks(7868),
+                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 51, 762, DateTimeKind.Local).AddTicks(9166),
                             Name = "مرکز زایمان "
                         },
                         new
                         {
                             Id = 5L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 17, 37, 46, 870, DateTimeKind.Local).AddTicks(7869),
+                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 51, 762, DateTimeKind.Local).AddTicks(9167),
                             Name = "مرکز تصویر برداری"
                         },
                         new
                         {
                             Id = 6L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 17, 37, 46, 870, DateTimeKind.Local).AddTicks(7871),
+                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 51, 762, DateTimeKind.Local).AddTicks(9168),
                             Name = "مرکز دیابت"
                         },
                         new
                         {
                             Id = 7L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 17, 37, 46, 870, DateTimeKind.Local).AddTicks(7872),
+                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 51, 762, DateTimeKind.Local).AddTicks(9169),
                             Name = "مرکز دیالیز"
                         },
                         new
                         {
                             Id = 8L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 17, 37, 46, 870, DateTimeKind.Local).AddTicks(7873),
+                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 51, 762, DateTimeKind.Local).AddTicks(9170),
                             Name = "مرکز توان بخشی"
                         });
                 });
@@ -343,35 +343,35 @@ namespace MedicalCenters.Persistence.Migrations
                         {
                             Id = 1L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 17, 37, 46, 870, DateTimeKind.Local).AddTicks(8210),
+                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 51, 762, DateTimeKind.Local).AddTicks(9395),
                             Name = "بخش قلب"
                         },
                         new
                         {
                             Id = 2L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 17, 37, 46, 870, DateTimeKind.Local).AddTicks(8214),
+                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 51, 762, DateTimeKind.Local).AddTicks(9397),
                             Name = "بخش ریه"
                         },
                         new
                         {
                             Id = 3L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 17, 37, 46, 870, DateTimeKind.Local).AddTicks(8216),
+                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 51, 762, DateTimeKind.Local).AddTicks(9398),
                             Name = "بخش کلیه"
                         },
                         new
                         {
                             Id = 4L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 17, 37, 46, 870, DateTimeKind.Local).AddTicks(8217),
+                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 51, 762, DateTimeKind.Local).AddTicks(9399),
                             Name = "بخش کبد"
                         },
                         new
                         {
                             Id = 5L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 17, 37, 46, 870, DateTimeKind.Local).AddTicks(8218),
+                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 51, 762, DateTimeKind.Local).AddTicks(9400),
                             Name = "بخش پیوند"
                         });
                 });

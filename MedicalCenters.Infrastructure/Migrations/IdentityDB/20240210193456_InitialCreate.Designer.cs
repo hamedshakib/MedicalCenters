@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalCenters.Persistence.Migrations.IdentityDB
 {
     [DbContext(typeof(IdentityDBContext))]
-    [Migration("20240210140756_InitialCreate")]
+    [Migration("20240210193456_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -52,6 +52,48 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                     b.HasKey("Id");
 
                     b.ToTable("Permission");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreatedBy = 1L,
+                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 56, 426, DateTimeKind.Local).AddTicks(6182),
+                            Description = "افزودن مرکز درمانی",
+                            Name = "AddMedicalCenter"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CreatedBy = 1L,
+                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 56, 426, DateTimeKind.Local).AddTicks(6185),
+                            Description = "ویرایش مرکز درمانی",
+                            Name = "EditMedicalCenter"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CreatedBy = 1L,
+                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 56, 426, DateTimeKind.Local).AddTicks(6186),
+                            Description = "حذف مرکز درمانی",
+                            Name = "DeleteMedicalCenter"
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CreatedBy = 1L,
+                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 56, 426, DateTimeKind.Local).AddTicks(6187),
+                            Description = "مشاهده اطلاعات مرکز درمانی",
+                            Name = "GetMedicalCenterInfo"
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            CreatedBy = 1L,
+                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 56, 426, DateTimeKind.Local).AddTicks(6189),
+                            Description = "مشاهده اطلاعات تمامی مراکز درمانی",
+                            Name = "GetAllMedicalCenterInfos"
+                        });
                 });
 
             modelBuilder.Entity("MedicalCenters.Identity.Models.Domains.PermissionGroup", b =>
@@ -130,6 +172,20 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                     b.HasKey("Id");
 
                     b.ToTable("User");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreatedBy = 1L,
+                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 56, 426, DateTimeKind.Local).AddTicks(5792),
+                            HashAlgorithmType = 0,
+                            HashedPassword = new byte[0],
+                            Name = "ادمین",
+                            PeaperType = 0,
+                            Salt = new byte[0],
+                            UserName = "Administrator"
+                        });
                 });
 
             modelBuilder.Entity("PermissionGroupUser", b =>

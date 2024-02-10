@@ -2,6 +2,7 @@
 using MedicalCenters.Identity.Models.Domains;
 using MedicalCenters.Infrastructure.DBContexts;
 using MedicalCenters.Persistence.Configurations.Entities;
+using MedicalCenters.Persistence.Configurations.Entities.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace MedicalCenters.Persistence.DBContexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new PermissionConfiguration());
         }
 
         public DbSet<User> User { get; set; }
