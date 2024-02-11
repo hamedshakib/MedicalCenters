@@ -2,7 +2,10 @@
 using MediatR;
 using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Application.DTOs.MedicalCenter;
+using MedicalCenters.Application.DTOs.MedicalWard;
+using MedicalCenters.Application.Exceptions;
 using MedicalCenters.Application.Features.MedicalCenter.Requests.Queries;
+using MedicalCenters.Application.Features.MedicalWard.Requests.Queries;
 using MedicalCenters.Application.Responses;
 using System;
 using System.Collections.Generic;
@@ -12,15 +15,20 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Application.Features.MedicalWard.Handlers.Queries
 {
-    internal class MedicalWardQueryHandler(IMedicalCentersUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<MedicalCenterQuery, BaseQueryResponse>
+    internal class MedicalWardQueryHandler(IMedicalCentersUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<MedicalWardQuery, BaseQueryResponse>
     {
-        public async Task<BaseQueryResponse> Handle(MedicalCenterQuery request, CancellationToken cancellationToken)
+        public async Task<BaseQueryResponse> Handle(MedicalWardQuery request, CancellationToken cancellationToken)
         {
             var response = new BaseQueryResponse();
 
-            var result = await unitOfWork.MedicalCenterRepository.Get(request.Id);
+            var result = await unitOfWork.MedicalWardRepository.Get(request.Id);
 
-            var dto = mapper.Map<MedicalCenterDto>(result);
+            if(result == null) 
+            {
+                throw new NotFoundException("بخش درمانی");
+            }
+
+            var dto = mapper.Map<MedicalWardDto>(result);
 
             response.Data = dto;
             response.IsSusses = true;

@@ -2,6 +2,7 @@
 using MediatR;
 using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Application.DTOs.MedicalCenter;
+using MedicalCenters.Application.Exceptions;
 using MedicalCenters.Application.Features.MedicalCenter.Requests.Queries;
 using MedicalCenters.Application.Responses;
 using System;
@@ -19,6 +20,11 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Queries
             var response = new BaseQueryResponse();
 
             var result = await unitOfWork.MedicalCenterRepository.Get(request.Id);
+
+            if (result == null)
+            {
+                throw new NotFoundException("مرکز درمانی");
+            }
 
             var dto = mapper.Map<MedicalCenterDto>(result);
 

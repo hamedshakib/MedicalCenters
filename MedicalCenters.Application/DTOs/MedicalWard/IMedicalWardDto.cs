@@ -11,6 +11,5 @@ namespace MedicalCenters.Application.DTOs.MedicalWard
         string Name { get; set; }
         string Description { get; set; }
         public int Type { get; set; }
-        public long MedicalCenterId { get; set; }
     }
 }

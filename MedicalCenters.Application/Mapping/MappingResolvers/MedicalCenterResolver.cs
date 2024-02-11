@@ -11,10 +11,9 @@ using MedicalCenters.Application.Contracts.Persistence;
 
 namespace MedicalCenters.Application.Mapping.MappingResolvers
 {
-    internal class MedicalCenterResolver<T>(IMedicalCentersUnitOfWork unitOfWork) : IValueResolver<T, MedicalWard, MedicalCenter> 
-        where T : IMedicalWardDto
+    internal class MedicalCenterResolver(IMedicalCentersUnitOfWork unitOfWork) : IValueResolver<CreateMedicalWardDto, MedicalWard, MedicalCenter> 
     {
-        public MedicalCenter Resolve(T source, MedicalWard destination, MedicalCenter destMember, ResolutionContext context)
+        public MedicalCenter Resolve(CreateMedicalWardDto source, MedicalWard destination, MedicalCenter destMember, ResolutionContext context)
         {
             var dataNullable = unitOfWork.MedicalCenterRepository.Get(source.MedicalCenterId).Result;
 

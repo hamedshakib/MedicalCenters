@@ -26,7 +26,6 @@ namespace MedicalCenters.Persistence.Repositories.MedicalCenters
             var Wards = (from medicalCenter in _dBContext.MedicalCenter
                          where medicalCenter.Id == id
                          select medicalCenter.Wards).FirstOrDefault();
-
             return Wards;
         }
 

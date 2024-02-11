@@ -31,12 +31,11 @@ namespace MedicalCenters.Application.Mapping.MappingProfiles
 
             CreateMap<CreateMedicalWardDto, MedicalWard>()
                     .ForMember(dest => dest.Type, opt => opt.MapFrom<MedicalWardTypeResolver<CreateMedicalWardDto>>())
-                    .ForMember(dest => dest.MedicalCenter, opt => opt.MapFrom<MedicalCenterResolver<CreateMedicalWardDto>>())
+                    .ForMember(dest => dest.MedicalCenter, opt => opt.MapFrom<MedicalCenterResolver>())
                     .ReverseMap();
 
             CreateMap<MedicalWardDto, MedicalWard>()
                     .ForMember(dest => dest.Type, opt => opt.MapFrom<MedicalWardTypeResolver<MedicalWardDto>>())
-                    .ForMember(dest => dest.MedicalCenter, opt => opt.MapFrom<MedicalCenterResolver<MedicalWardDto>>())
                     .ReverseMap();
         }
     }

@@ -44,10 +44,12 @@ namespace MedicalCenters.Identity.Attributes
             }
             catch { }
 
+#if (!DEBUG)
             if (!HasPermition)
             {
                 context.Result = new ForbidResult();
             }
+#endif
         }
 
         private bool HasClaimsPrinciple_UserId(ClaimsPrincipal? User)
