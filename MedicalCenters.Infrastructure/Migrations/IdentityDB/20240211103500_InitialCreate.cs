@@ -144,17 +144,17 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                 columns: new[] { "Id", "CreatedBy", "DateTimeCreated", "Description", "Name" },
                 values: new object[,]
                 {
-                    { 1L, 1L, new DateTime(2024, 2, 10, 23, 4, 56, 426, DateTimeKind.Local).AddTicks(6182), "افزودن مرکز درمانی", "AddMedicalCenter" },
-                    { 2L, 1L, new DateTime(2024, 2, 10, 23, 4, 56, 426, DateTimeKind.Local).AddTicks(6185), "ویرایش مرکز درمانی", "EditMedicalCenter" },
-                    { 3L, 1L, new DateTime(2024, 2, 10, 23, 4, 56, 426, DateTimeKind.Local).AddTicks(6186), "حذف مرکز درمانی", "DeleteMedicalCenter" },
-                    { 4L, 1L, new DateTime(2024, 2, 10, 23, 4, 56, 426, DateTimeKind.Local).AddTicks(6187), "مشاهده اطلاعات مرکز درمانی", "GetMedicalCenterInfo" },
-                    { 5L, 1L, new DateTime(2024, 2, 10, 23, 4, 56, 426, DateTimeKind.Local).AddTicks(6189), "مشاهده اطلاعات تمامی مراکز درمانی", "GetAllMedicalCenterInfos" }
+                    { 1L, 1L, new DateTime(2024, 2, 11, 14, 5, 0, 249, DateTimeKind.Local).AddTicks(3805), "افزودن مرکز درمانی", "AddMedicalCenter" },
+                    { 2L, 1L, new DateTime(2024, 2, 11, 14, 5, 0, 249, DateTimeKind.Local).AddTicks(3808), "ویرایش مرکز درمانی", "EditMedicalCenter" },
+                    { 3L, 1L, new DateTime(2024, 2, 11, 14, 5, 0, 249, DateTimeKind.Local).AddTicks(3809), "حذف مرکز درمانی", "DeleteMedicalCenter" },
+                    { 4L, 1L, new DateTime(2024, 2, 11, 14, 5, 0, 249, DateTimeKind.Local).AddTicks(3810), "مشاهده اطلاعات مرکز درمانی", "GetMedicalCenterInfo" },
+                    { 5L, 1L, new DateTime(2024, 2, 11, 14, 5, 0, 249, DateTimeKind.Local).AddTicks(3812), "مشاهده اطلاعات تمامی مراکز درمانی", "GetAllMedicalCenterInfos" }
                 });
 
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "Id", "CreatedBy", "DateTimeCreated", "HashAlgorithmType", "HashedPassword", "Name", "PeaperType", "Salt", "UserName" },
-                values: new object[] { 1L, 1L, new DateTime(2024, 2, 10, 23, 4, 56, 426, DateTimeKind.Local).AddTicks(5792), 0, new byte[0], "ادمین", 0, new byte[0], "Administrator" });
+                values: new object[] { 1L, 1L, new DateTime(2024, 2, 11, 14, 5, 0, 249, DateTimeKind.Local).AddTicks(3253), 0, new byte[] { 44, 234, 234, 241, 59, 61, 186, 227, 130, 111, 49, 245, 180, 18, 63, 102, 234, 198, 252, 62, 143, 24, 68, 53, 57, 242, 193, 176, 95, 139, 10, 202, 185, 223, 180, 211, 179, 86, 197, 196, 97, 247, 150, 79, 28, 39, 174, 50, 57, 174, 56, 61, 99, 132, 208, 60, 158, 241, 220, 211, 184, 101, 164, 158 }, "ادمین", 0, new byte[] { 134, 65, 77, 231, 151, 72, 189, 148, 185, 253, 46, 1, 114, 141, 249, 122, 84, 12, 227, 132, 229, 6, 151, 141, 68, 219, 210, 2, 73, 153, 216, 237, 111, 11, 132, 122, 62, 114, 164, 126, 245, 214, 97, 159, 28, 163, 136, 22, 53, 170, 180, 139, 216, 92, 233, 124, 174, 58, 53, 209, 149, 191, 214, 245 }, "Administrator" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_PermissionGroupUser_UsersId",

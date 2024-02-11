@@ -55,7 +55,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         {
                             Id = 1L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 56, 426, DateTimeKind.Local).AddTicks(6182),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 14, 5, 0, 249, DateTimeKind.Local).AddTicks(3805),
                             Description = "افزودن مرکز درمانی",
                             Name = "AddMedicalCenter"
                         },
@@ -63,7 +63,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         {
                             Id = 2L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 56, 426, DateTimeKind.Local).AddTicks(6185),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 14, 5, 0, 249, DateTimeKind.Local).AddTicks(3808),
                             Description = "ویرایش مرکز درمانی",
                             Name = "EditMedicalCenter"
                         },
@@ -71,7 +71,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         {
                             Id = 3L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 56, 426, DateTimeKind.Local).AddTicks(6186),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 14, 5, 0, 249, DateTimeKind.Local).AddTicks(3809),
                             Description = "حذف مرکز درمانی",
                             Name = "DeleteMedicalCenter"
                         },
@@ -79,7 +79,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         {
                             Id = 4L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 56, 426, DateTimeKind.Local).AddTicks(6187),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 14, 5, 0, 249, DateTimeKind.Local).AddTicks(3810),
                             Description = "مشاهده اطلاعات مرکز درمانی",
                             Name = "GetMedicalCenterInfo"
                         },
@@ -87,7 +87,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         {
                             Id = 5L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 56, 426, DateTimeKind.Local).AddTicks(6189),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 14, 5, 0, 249, DateTimeKind.Local).AddTicks(3812),
                             Description = "مشاهده اطلاعات تمامی مراکز درمانی",
                             Name = "GetAllMedicalCenterInfos"
                         });
@@ -175,12 +175,12 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         {
                             Id = 1L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 56, 426, DateTimeKind.Local).AddTicks(5792),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 14, 5, 0, 249, DateTimeKind.Local).AddTicks(3253),
                             HashAlgorithmType = 0,
-                            HashedPassword = new byte[0],
+                            HashedPassword = new byte[] { 44, 234, 234, 241, 59, 61, 186, 227, 130, 111, 49, 245, 180, 18, 63, 102, 234, 198, 252, 62, 143, 24, 68, 53, 57, 242, 193, 176, 95, 139, 10, 202, 185, 223, 180, 211, 179, 86, 197, 196, 97, 247, 150, 79, 28, 39, 174, 50, 57, 174, 56, 61, 99, 132, 208, 60, 158, 241, 220, 211, 184, 101, 164, 158 },
                             Name = "ادمین",
                             PeaperType = 0,
-                            Salt = new byte[0],
+                            Salt = new byte[] { 134, 65, 77, 231, 151, 72, 189, 148, 185, 253, 46, 1, 114, 141, 249, 122, 84, 12, 227, 132, 229, 6, 151, 141, 68, 219, 210, 2, 73, 153, 216, 237, 111, 11, 132, 122, 62, 114, 164, 126, 245, 214, 97, 159, 28, 163, 136, 22, 53, 170, 180, 139, 216, 92, 233, 124, 174, 58, 53, 209, 149, 191, 214, 245 },
                             UserName = "Administrator"
                         });
                 });

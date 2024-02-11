@@ -35,9 +35,8 @@ namespace MedicalCenters.Identity.Classes
         private bool PasswordValidate(string loginPassword, User user)
         {
             var hasher = new PasswordHasher(user.HashAlgorithmType,user.PeaperType);
-            string loginHashedPassword = hasher.Hash(loginPassword, user.Salt);
-
-            return loginHashedPassword.Equals(user.HashedPassword);
+            byte[] loginHashedPassword = hasher.Hash(loginPassword, user.Salt);
+            return loginHashedPassword.SequenceEqual(user.HashedPassword);
         }
 
 

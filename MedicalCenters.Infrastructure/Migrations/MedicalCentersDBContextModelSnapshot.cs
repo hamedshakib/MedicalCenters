@@ -257,56 +257,56 @@ namespace MedicalCenters.Persistence.Migrations
                         {
                             Id = 1L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 51, 762, DateTimeKind.Local).AddTicks(9142),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 14, 4, 53, 948, DateTimeKind.Local).AddTicks(3779),
                             Name = "بیمارستان"
                         },
                         new
                         {
                             Id = 2L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 51, 762, DateTimeKind.Local).AddTicks(9164),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 14, 4, 53, 948, DateTimeKind.Local).AddTicks(3790),
                             Name = "کلینیک پزشکی"
                         },
                         new
                         {
                             Id = 3L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 51, 762, DateTimeKind.Local).AddTicks(9165),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 14, 4, 53, 948, DateTimeKind.Local).AddTicks(3791),
                             Name = "مرکز جراحی سر پایی"
                         },
                         new
                         {
                             Id = 4L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 51, 762, DateTimeKind.Local).AddTicks(9166),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 14, 4, 53, 948, DateTimeKind.Local).AddTicks(3792),
                             Name = "مرکز زایمان "
                         },
                         new
                         {
                             Id = 5L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 51, 762, DateTimeKind.Local).AddTicks(9167),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 14, 4, 53, 948, DateTimeKind.Local).AddTicks(3793),
                             Name = "مرکز تصویر برداری"
                         },
                         new
                         {
                             Id = 6L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 51, 762, DateTimeKind.Local).AddTicks(9168),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 14, 4, 53, 948, DateTimeKind.Local).AddTicks(3795),
                             Name = "مرکز دیابت"
                         },
                         new
                         {
                             Id = 7L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 51, 762, DateTimeKind.Local).AddTicks(9169),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 14, 4, 53, 948, DateTimeKind.Local).AddTicks(3797),
                             Name = "مرکز دیالیز"
                         },
                         new
                         {
                             Id = 8L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 51, 762, DateTimeKind.Local).AddTicks(9170),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 14, 4, 53, 948, DateTimeKind.Local).AddTicks(3798),
                             Name = "مرکز توان بخشی"
                         });
                 });
@@ -343,35 +343,35 @@ namespace MedicalCenters.Persistence.Migrations
                         {
                             Id = 1L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 51, 762, DateTimeKind.Local).AddTicks(9395),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 14, 4, 53, 948, DateTimeKind.Local).AddTicks(4109),
                             Name = "بخش قلب"
                         },
                         new
                         {
                             Id = 2L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 51, 762, DateTimeKind.Local).AddTicks(9397),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 14, 4, 53, 948, DateTimeKind.Local).AddTicks(4111),
                             Name = "بخش ریه"
                         },
                         new
                         {
                             Id = 3L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 51, 762, DateTimeKind.Local).AddTicks(9398),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 14, 4, 53, 948, DateTimeKind.Local).AddTicks(4112),
                             Name = "بخش کلیه"
                         },
                         new
                         {
                             Id = 4L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 51, 762, DateTimeKind.Local).AddTicks(9399),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 14, 4, 53, 948, DateTimeKind.Local).AddTicks(4113),
                             Name = "بخش کبد"
                         },
                         new
                         {
                             Id = 5L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 10, 23, 4, 51, 762, DateTimeKind.Local).AddTicks(9400),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 14, 4, 53, 948, DateTimeKind.Local).AddTicks(4115),
                             Name = "بخش پیوند"
                         });
                 });
