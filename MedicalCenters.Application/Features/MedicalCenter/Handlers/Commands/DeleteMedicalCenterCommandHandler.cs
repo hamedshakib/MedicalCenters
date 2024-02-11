@@ -20,9 +20,9 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Commands
         {
             var response = new BaseResponse();
 
-            if (await unitOfWork.MedicalCenterRepository.Exist(command.Id))
+            if (await unitOfWork.MedicalCenterRepository.Exist((int)command.Id))
             {
-                await unitOfWork.MedicalCenterRepository.Delete(command.Id);
+                await unitOfWork.MedicalCenterRepository.Delete((int)command.Id);
                 await unitOfWork.Save();
             }
             else

@@ -10,11 +10,15 @@ namespace MedicalCenters.Application.Contracts.Persistence
     {
         Task<T> Add(T entity);
         Task<T> Get(long id);
+        Task<T> Get(int id);
         Task<IEnumerable<T>> GetAll();
         Task<bool> Exist(long id);
+        Task<bool> Exist(int id);
         Task Update(T entity);
         Task Update(long id);
+        Task Update(int id);
         Task Delete(long id);
+        Task Delete(int id);
         Task Delete(T entity);
 
     }

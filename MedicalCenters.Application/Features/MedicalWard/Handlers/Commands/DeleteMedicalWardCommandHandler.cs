@@ -21,9 +21,9 @@ namespace MedicalCenters.Application.Features.MedicalWard.Handlers.Commands
         {
             var response = new BaseResponse();
 
-            if (await unitOfWork.MedicalWardRepository.Exist(command.Id))
+            if (await unitOfWork.MedicalWardRepository.Exist((int)command.Id))
             {
-                await unitOfWork.MedicalWardRepository.Delete(command.Id);
+                await unitOfWork.MedicalWardRepository.Delete((int)command.Id);
                 await unitOfWork.Save();
             }
             else

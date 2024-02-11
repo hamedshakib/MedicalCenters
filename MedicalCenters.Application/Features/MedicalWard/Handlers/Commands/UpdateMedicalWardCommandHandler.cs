@@ -20,7 +20,7 @@ namespace MedicalCenters.Application.Features.MedicalWard.Handlers.Commands
         {
             var response = new BaseResponse();
 
-            var medicalWard=await unitOfWork.MedicalWardRepository.Get(command.MedicalWardDto.Id);
+            var medicalWard=await unitOfWork.MedicalWardRepository.Get((int)command.MedicalWardDto.Id);
             if (medicalWard is null)
             {
                 string Object= "بخش درمانی" + command.MedicalWardDto.Id.ToString();

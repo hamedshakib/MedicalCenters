@@ -29,6 +29,12 @@ namespace MedicalCenters.Infrastructure.Repositories
             Delete(entity);
         }
 
+        public async Task Delete(int id)
+        {
+            var entity = await Get(id);
+            Delete(entity);
+        }
+
         public async Task Delete(T entity)
         {
             _dBContext.Set<T>().Remove(entity);
@@ -40,7 +46,18 @@ namespace MedicalCenters.Infrastructure.Repositories
             return entity != null;
         }
 
+        public async Task<bool> Exist(int id)
+        {
+            var entity = await Get(id);
+            return entity != null;
+        }
+
         public async Task<T> Get(long id)
+        {
+            return await _dBContext.Set<T>().FindAsync(id);
+        }
+
+        public async Task<T> Get(int id)
         {
             return await _dBContext.Set<T>().FindAsync(id);
         }
@@ -56,6 +73,12 @@ namespace MedicalCenters.Infrastructure.Repositories
         }
 
         public async Task Update(long id)
+        {
+            var entity = await Get(id);
+            _dBContext.Entry(entity).State = EntityState.Modified;
+        }
+
+        public async Task Update(int id)
         {
             var entity = await Get(id);
             _dBContext.Entry(entity).State = EntityState.Modified;
