@@ -19,6 +19,5 @@ namespace MedicalCenters.Domain.Classes
         public Point? Location { get; set; }
         [StringLength(200)]
         public string Address { get; set; }
-        public IList<MedicalWard> Wards { get; set; }
     }
 }

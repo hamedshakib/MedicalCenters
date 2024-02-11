@@ -18,6 +18,5 @@ namespace MedicalCenters.Domain.Classes.Medicines
         [Required,StringLength(1000)]
         public string Description { get; set; }
 
-        public IList<Allergy> Allergies { get; set; }
     }
 }

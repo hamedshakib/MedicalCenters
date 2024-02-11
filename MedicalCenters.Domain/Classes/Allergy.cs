@@ -18,9 +18,5 @@ namespace MedicalCenters.Domain.Classes
         public string Name {  get; set; }
         [StringLength(1000)]
         public string Description { get; set; }
-        public IList<MedicineType>? MedicineTypes { get; set; }
-
-
-        public IList<Patient>? Patients { get; set; }
     }
 }

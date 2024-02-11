@@ -27,5 +27,11 @@ namespace MedicalCenters.Persistence.DBContexts
         public DbSet<User> User { get; set; }
         public DbSet<Permission> Permission { get; set; }
         public DbSet<PermissionGroup> PermissionGroup { get; set; }
+
+
+
+        public DbSet<PermissionGroup_User> PermissionGroup_User { get; set; }
+        public DbSet<Permission_PermissionGroup> Permission_PermissionGroup { get; set; }
+        public DbSet<Permission_User> Permission_User { get; set; }
     }
 }

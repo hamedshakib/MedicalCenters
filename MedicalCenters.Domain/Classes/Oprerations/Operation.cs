@@ -18,7 +18,5 @@ namespace MedicalCenters.Domain.Classes.Oprerations
         [Required]
         public long OperationTypeId { get; set; }
         public OperationType OperationType { get; set; }
-        public IList<Medicine>? Medicines { get; set; }
-        public IList<Doctor>? Doctors { get; set; }
     }
 }

@@ -55,7 +55,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         {
                             Id = 1L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 18, 51, 17, 193, DateTimeKind.Local).AddTicks(1826),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(928),
                             Description = "افزودن مرکز درمانی",
                             Name = "AddMedicalCenter"
                         },
@@ -63,7 +63,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         {
                             Id = 2L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 18, 51, 17, 193, DateTimeKind.Local).AddTicks(1828),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(932),
                             Description = "ویرایش مرکز درمانی",
                             Name = "EditMedicalCenter"
                         },
@@ -71,7 +71,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         {
                             Id = 3L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 18, 51, 17, 193, DateTimeKind.Local).AddTicks(1829),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(933),
                             Description = "حذف مرکز درمانی",
                             Name = "DeleteMedicalCenter"
                         },
@@ -79,7 +79,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         {
                             Id = 4L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 18, 51, 17, 193, DateTimeKind.Local).AddTicks(1830),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(935),
                             Description = "مشاهده اطلاعات مرکز درمانی",
                             Name = "GetMedicalCenterInfo"
                         },
@@ -87,7 +87,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         {
                             Id = 5L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 18, 51, 17, 193, DateTimeKind.Local).AddTicks(1831),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(936),
                             Description = "مشاهده اطلاعات تمامی مراکز درمانی",
                             Name = "GetAllMedicalCenterInfos"
                         },
@@ -95,7 +95,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         {
                             Id = 6L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 18, 51, 17, 193, DateTimeKind.Local).AddTicks(1832),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(937),
                             Description = "افزودن بخش درمانی",
                             Name = "AddMedicalWard"
                         },
@@ -103,7 +103,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         {
                             Id = 7L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 18, 51, 17, 193, DateTimeKind.Local).AddTicks(1833),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(938),
                             Description = "ویرایش بخش درمانی",
                             Name = "EditMedicalWard"
                         },
@@ -111,7 +111,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         {
                             Id = 8L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 18, 51, 17, 193, DateTimeKind.Local).AddTicks(1835),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(940),
                             Description = "حذف بخش درمانی",
                             Name = "DeleteMedicalWard"
                         },
@@ -119,7 +119,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         {
                             Id = 9L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 18, 51, 17, 193, DateTimeKind.Local).AddTicks(1836),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(941),
                             Description = "مشاهده اطلاعات بخش درمانی",
                             Name = "GetMedicalWardInfo"
                         },
@@ -127,7 +127,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         {
                             Id = 10L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 18, 51, 17, 193, DateTimeKind.Local).AddTicks(1837),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(942),
                             Description = "مشاهده اطلاعات تمامی بخش های مرکز درمانی",
                             Name = "GetAllMedicalCenterWardsInfos"
                         });
@@ -166,6 +166,93 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                     b.HasKey("Id");
 
                     b.ToTable("PermissionGroup");
+                });
+
+            modelBuilder.Entity("MedicalCenters.Identity.Models.Domains.PermissionGroup_User", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DateTimeCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("PermissionGroupId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PermissionGroupId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("PermissionGroup_User");
+                });
+
+            modelBuilder.Entity("MedicalCenters.Identity.Models.Domains.Permission_PermissionGroup", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DateTimeCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("PermissionGroupId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("PermissionId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PermissionGroupId");
+
+                    b.HasIndex("PermissionId");
+
+                    b.ToTable("Permission_PermissionGroup");
+                });
+
+            modelBuilder.Entity("MedicalCenters.Identity.Models.Domains.Permission_User", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DateTimeCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("PermissionId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PermissionId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Permission_User");
                 });
 
             modelBuilder.Entity("MedicalCenters.Identity.Models.Domains.User", b =>
@@ -215,104 +302,71 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         {
                             Id = 1L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 18, 51, 17, 193, DateTimeKind.Local).AddTicks(1273),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(305),
                             HashAlgorithmType = 0,
-                            HashedPassword = new byte[] { 88, 225, 228, 132, 157, 27, 204, 235, 67, 173, 200, 247, 187, 191, 11, 249, 239, 148, 161, 38, 252, 155, 248, 16, 147, 142, 121, 12, 252, 72, 254, 78, 211, 19, 23, 154, 62, 135, 71, 139, 133, 117, 225, 219, 41, 190, 66, 244, 142, 164, 127, 1, 72, 92, 244, 171, 115, 52, 9, 209, 17, 80, 242, 140 },
+                            HashedPassword = new byte[] { 213, 134, 157, 117, 158, 33, 199, 25, 230, 151, 160, 100, 64, 233, 215, 55, 158, 87, 201, 219, 76, 10, 84, 10, 44, 70, 38, 203, 34, 18, 125, 57, 50, 104, 127, 229, 106, 92, 212, 179, 210, 128, 127, 226, 93, 1, 55, 105, 62, 193, 231, 205, 233, 150, 50, 147, 170, 52, 162, 19, 44, 178, 119, 73 },
                             Name = "ادمین",
                             PeaperType = 0,
-                            Salt = new byte[] { 255, 95, 114, 75, 182, 241, 163, 200, 132, 158, 150, 162, 65, 87, 140, 95, 179, 228, 69, 163, 165, 14, 134, 187, 163, 112, 202, 173, 123, 52, 202, 34, 3, 166, 238, 152, 50, 154, 26, 200, 182, 58, 23, 140, 21, 39, 252, 143, 83, 139, 214, 232, 234, 130, 118, 188, 118, 94, 77, 140, 110, 45, 39, 135 },
+                            Salt = new byte[] { 192, 218, 41, 195, 69, 27, 169, 124, 222, 79, 209, 189, 228, 128, 216, 252, 251, 130, 194, 131, 7, 129, 47, 70, 65, 70, 97, 49, 107, 18, 156, 148, 254, 142, 89, 150, 157, 25, 65, 41, 102, 34, 214, 60, 14, 189, 14, 65, 247, 47, 254, 211, 214, 15, 116, 160, 46, 140, 42, 111, 53, 157, 197, 34 },
                             UserName = "Administrator"
                         });
                 });
 
-            modelBuilder.Entity("PermissionGroupUser", b =>
+            modelBuilder.Entity("MedicalCenters.Identity.Models.Domains.PermissionGroup_User", b =>
                 {
-                    b.Property<long>("PermissionGroupsId")
-                        .HasColumnType("bigint");
+                    b.HasOne("MedicalCenters.Identity.Models.Domains.PermissionGroup", "PermissionGroup")
+                        .WithMany()
+                        .HasForeignKey("PermissionGroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<long>("UsersId")
-                        .HasColumnType("bigint");
+                    b.HasOne("MedicalCenters.Identity.Models.Domains.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasKey("PermissionGroupsId", "UsersId");
+                    b.Navigation("PermissionGroup");
 
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("PermissionGroupUser");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("PermissionPermissionGroup", b =>
+            modelBuilder.Entity("MedicalCenters.Identity.Models.Domains.Permission_PermissionGroup", b =>
                 {
-                    b.Property<long>("PermissionGroupsId")
-                        .HasColumnType("bigint");
+                    b.HasOne("MedicalCenters.Identity.Models.Domains.PermissionGroup", "PermissionGroup")
+                        .WithMany()
+                        .HasForeignKey("PermissionGroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<long>("PermissionsId")
-                        .HasColumnType("bigint");
+                    b.HasOne("MedicalCenters.Identity.Models.Domains.Permission", "Permission")
+                        .WithMany()
+                        .HasForeignKey("PermissionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasKey("PermissionGroupsId", "PermissionsId");
+                    b.Navigation("Permission");
 
-                    b.HasIndex("PermissionsId");
-
-                    b.ToTable("PermissionPermissionGroup");
+                    b.Navigation("PermissionGroup");
                 });
 
-            modelBuilder.Entity("PermissionUser", b =>
+            modelBuilder.Entity("MedicalCenters.Identity.Models.Domains.Permission_User", b =>
                 {
-                    b.Property<long>("PermissionsId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("UsersId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("PermissionsId", "UsersId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("PermissionUser");
-                });
-
-            modelBuilder.Entity("PermissionGroupUser", b =>
-                {
-                    b.HasOne("MedicalCenters.Identity.Models.Domains.PermissionGroup", null)
+                    b.HasOne("MedicalCenters.Identity.Models.Domains.Permission", "Permission")
                         .WithMany()
-                        .HasForeignKey("PermissionGroupsId")
+                        .HasForeignKey("PermissionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MedicalCenters.Identity.Models.Domains.User", null)
+                    b.HasOne("MedicalCenters.Identity.Models.Domains.User", "User")
                         .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("PermissionPermissionGroup", b =>
-                {
-                    b.HasOne("MedicalCenters.Identity.Models.Domains.PermissionGroup", null)
-                        .WithMany()
-                        .HasForeignKey("PermissionGroupsId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MedicalCenters.Identity.Models.Domains.Permission", null)
-                        .WithMany()
-                        .HasForeignKey("PermissionsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+                    b.Navigation("Permission");
 
-            modelBuilder.Entity("PermissionUser", b =>
-                {
-                    b.HasOne("MedicalCenters.Identity.Models.Domains.Permission", null)
-                        .WithMany()
-                        .HasForeignKey("PermissionsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MedicalCenters.Identity.Models.Domains.User", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

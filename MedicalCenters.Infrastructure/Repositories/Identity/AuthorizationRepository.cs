@@ -21,22 +21,23 @@ namespace MedicalCenters.Persistence.Repositories.Identity
         }
         public async Task<bool> HasUserGroupPermition(long userId,int permitionId)
         {
-
-            var result = (from u in _dBContext.User
-                          where u.Id == userId &&
-                          u.PermissionGroups.Select(pg => pg.Permissions)
-                          .Where(ps => ps.Select(p => p.Id).Contains(permitionId)).Any()
-                          select 1).Any();
+            var result = (from PGU in _dBContext.PermissionGroup_User
+                          join PG in _dBContext.PermissionGroup on PGU.PermissionGroupId equals PG.Id
+                          join PPG in _dBContext.Permission_PermissionGroup on PG.Id equals PPG.PermissionGroupId
+                          where PGU.UserId == userId && PPG.PermissionId == permitionId
+                          select 1
+                ).Any();
 
             return result;
         }
 
         public async Task<bool> HasUserPermition(long userId, int permitionId)
         {
-            var result =(from u in _dBContext.User
-            where u.Id== userId && u.Permissions.Any(u => u.Id == permitionId)
-            select 1).Any();
 
+            var result = (from U in _dBContext.User
+                          join PU in _dBContext.Permission_User on  U.Id equals PU.UserId
+                          where PU.UserId == userId && PU.PermissionId == permitionId
+                          select 1).Any();
             return result;
         }
     }

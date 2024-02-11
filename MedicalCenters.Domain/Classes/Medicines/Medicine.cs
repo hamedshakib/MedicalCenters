@@ -19,10 +19,5 @@ namespace MedicalCenters.Domain.Classes.Medicines
         [Required]
         public long TypeId { get; set; }
         public MedicineType Type { get; set; }
-
-
-
-        public IList<Operation>? Operations { get; set; }
-        public IList<PatientHistory>? PatientHistories { get; set; }
     }
 }

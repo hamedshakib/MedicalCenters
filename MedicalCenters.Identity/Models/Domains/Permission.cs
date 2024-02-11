@@ -14,9 +14,5 @@ namespace MedicalCenters.Identity.Models.Domains
         public string Name { get; set; }
         [StringLength(1000)]
         public string Description { get; set; }
-
-
-        public IList<User> Users { get; set; }
-        public IList<PermissionGroup> PermissionGroups { get; set; }
     }
 }

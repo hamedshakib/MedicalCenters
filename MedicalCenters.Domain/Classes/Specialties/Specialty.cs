@@ -22,7 +22,5 @@ namespace MedicalCenters.Domain.Classes.Specialties
         public SpecialtyGroup SpecialtyGroup { get; set; }
 
 
-
-        public IList<Doctor> Doctors { get; set; }
     }
 }

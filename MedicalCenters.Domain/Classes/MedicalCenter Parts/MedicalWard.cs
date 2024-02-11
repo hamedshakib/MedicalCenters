@@ -22,6 +22,5 @@ namespace MedicalCenters.Domain.Classes
         [Required]
         public long MedicalCenterId { get; set; }
         public MedicalCenter MedicalCenter { get; set; }
-        public IList<MedicalUnit> Units { get; set; }
     }
 }

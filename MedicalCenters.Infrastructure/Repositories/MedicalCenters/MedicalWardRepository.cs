@@ -23,9 +23,15 @@ namespace MedicalCenters.Persistence.Repositories.MedicalCenters
 
         public async Task<IList<MedicalWard>> GetAllMedicalCenterWards(long id)
         {
-            var Wards = (from medicalCenter in _dBContext.MedicalCenter
-                         where medicalCenter.Id == id
-                         select medicalCenter.Wards).FirstOrDefault();
+
+            var Wards =(from ward in _dBContext.MedicalWard
+                        where ward.MedicalCenterId == id
+                        select ward).ToList();
+
+
+            //var Wards = (from medicalCenter in _dBContext.MedicalCenter
+            //             where medicalCenter.Id == id
+            //             select medicalCenter.Wards).FirstOrDefault();
             return Wards;
         }
 

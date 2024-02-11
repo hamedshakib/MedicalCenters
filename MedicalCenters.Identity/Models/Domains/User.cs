@@ -20,8 +20,5 @@ namespace MedicalCenters.Identity.Models.Domains
         public int HashAlgorithmType { get; set; }
         [Required]
         public int PeaperType { get; set; }
-
-        public IList<Permission> Permissions { get; set; }
-        public IList<PermissionGroup> PermissionGroups { get; set; }
     }
 }

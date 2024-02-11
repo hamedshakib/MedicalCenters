@@ -23,81 +23,6 @@ namespace MedicalCenters.Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("AllergyMedicineType", b =>
-                {
-                    b.Property<long>("AllergiesId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("MedicineTypesId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("AllergiesId", "MedicineTypesId");
-
-                    b.HasIndex("MedicineTypesId");
-
-                    b.ToTable("AllergyMedicineType");
-                });
-
-            modelBuilder.Entity("AllergyPatient", b =>
-                {
-                    b.Property<long>("AllergiesId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("PatientsId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("AllergiesId", "PatientsId");
-
-                    b.HasIndex("PatientsId");
-
-                    b.ToTable("AllergyPatient");
-                });
-
-            modelBuilder.Entity("DoctorOperation", b =>
-                {
-                    b.Property<long>("DoctorsId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("OperationsId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("DoctorsId", "OperationsId");
-
-                    b.HasIndex("OperationsId");
-
-                    b.ToTable("DoctorOperation");
-                });
-
-            modelBuilder.Entity("DoctorSpecialty", b =>
-                {
-                    b.Property<long>("DoctorsId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("SpecialtiesId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("DoctorsId", "SpecialtiesId");
-
-                    b.HasIndex("SpecialtiesId");
-
-                    b.ToTable("DoctorSpecialty");
-                });
-
-            modelBuilder.Entity("DoctorVisit", b =>
-                {
-                    b.Property<long>("DoctorsId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("VisitsId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("DoctorsId", "VisitsId");
-
-                    b.HasIndex("VisitsId");
-
-                    b.ToTable("DoctorVisit");
-                });
-
             modelBuilder.Entity("MedicalCenters.Domain.Classes.Allergy", b =>
                 {
                     b.Property<long>("Id")
@@ -181,6 +106,209 @@ namespace MedicalCenters.Persistence.Migrations
                     b.UseTptMappingStrategy();
                 });
 
+            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Allergy_MedicineType", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("AllergyId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DateTimeCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("MedicineTypeId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AllergyId");
+
+                    b.HasIndex("MedicineTypeId");
+
+                    b.ToTable("Allergy_MedicineType");
+                });
+
+            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Allergy_Patient", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("AllergyId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DateTimeCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("PatientId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AllergyId");
+
+                    b.HasIndex("PatientId");
+
+                    b.ToTable("Allergy_Patient");
+                });
+
+            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Doctor_Operation", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DateTimeCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("DoctorId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("OperationId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
+
+                    b.HasIndex("OperationId");
+
+                    b.ToTable("Doctor_Operation");
+                });
+
+            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Doctor_Specialty", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DateTimeCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("DoctorId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("SpecialtyId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
+
+                    b.HasIndex("SpecialtyId");
+
+                    b.ToTable("Doctor_Specialty");
+                });
+
+            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Doctor_Visit", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DateTimeCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("DoctorId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("VisitId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
+
+                    b.HasIndex("VisitId");
+
+                    b.ToTable("Doctor_Visit");
+                });
+
+            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Medicine_Operation", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DateTimeCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("MedicineId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("OperationId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MedicineId");
+
+                    b.HasIndex("OperationId");
+
+                    b.ToTable("Medicine_Operation");
+                });
+
+            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Medicine_PatientHistory", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DateTimeCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("MedicineId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("PatientHistoryId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MedicineId");
+
+                    b.HasIndex("PatientHistoryId");
+
+                    b.ToTable("Medicine_PatientHistory");
+                });
+
             modelBuilder.Entity("MedicalCenters.Domain.Classes.MedicalCenter", b =>
                 {
                     b.Property<long>("Id")
@@ -257,56 +385,56 @@ namespace MedicalCenters.Persistence.Migrations
                         {
                             Id = 1L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 18, 51, 12, 88, DateTimeKind.Local).AddTicks(7945),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 16, 307, DateTimeKind.Local).AddTicks(1836),
                             Name = "بیمارستان"
                         },
                         new
                         {
                             Id = 2L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 18, 51, 12, 88, DateTimeKind.Local).AddTicks(7960),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 16, 307, DateTimeKind.Local).AddTicks(1850),
                             Name = "کلینیک پزشکی"
                         },
                         new
                         {
                             Id = 3L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 18, 51, 12, 88, DateTimeKind.Local).AddTicks(7961),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 16, 307, DateTimeKind.Local).AddTicks(1851),
                             Name = "مرکز جراحی سر پایی"
                         },
                         new
                         {
                             Id = 4L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 18, 51, 12, 88, DateTimeKind.Local).AddTicks(7962),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 16, 307, DateTimeKind.Local).AddTicks(1852),
                             Name = "مرکز زایمان "
                         },
                         new
                         {
                             Id = 5L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 18, 51, 12, 88, DateTimeKind.Local).AddTicks(7963),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 16, 307, DateTimeKind.Local).AddTicks(1853),
                             Name = "مرکز تصویر برداری"
                         },
                         new
                         {
                             Id = 6L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 18, 51, 12, 88, DateTimeKind.Local).AddTicks(7964),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 16, 307, DateTimeKind.Local).AddTicks(1854),
                             Name = "مرکز دیابت"
                         },
                         new
                         {
                             Id = 7L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 18, 51, 12, 88, DateTimeKind.Local).AddTicks(7965),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 16, 307, DateTimeKind.Local).AddTicks(1855),
                             Name = "مرکز دیالیز"
                         },
                         new
                         {
                             Id = 8L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 18, 51, 12, 88, DateTimeKind.Local).AddTicks(7966),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 16, 307, DateTimeKind.Local).AddTicks(1856),
                             Name = "مرکز توان بخشی"
                         });
                 });
@@ -343,35 +471,35 @@ namespace MedicalCenters.Persistence.Migrations
                         {
                             Id = 1L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 18, 51, 12, 88, DateTimeKind.Local).AddTicks(8197),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 16, 307, DateTimeKind.Local).AddTicks(2083),
                             Name = "بخش قلب"
                         },
                         new
                         {
                             Id = 2L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 18, 51, 12, 88, DateTimeKind.Local).AddTicks(8199),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 16, 307, DateTimeKind.Local).AddTicks(2084),
                             Name = "بخش ریه"
                         },
                         new
                         {
                             Id = 3L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 18, 51, 12, 88, DateTimeKind.Local).AddTicks(8200),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 16, 307, DateTimeKind.Local).AddTicks(2085),
                             Name = "بخش کلیه"
                         },
                         new
                         {
                             Id = 4L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 18, 51, 12, 88, DateTimeKind.Local).AddTicks(8201),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 16, 307, DateTimeKind.Local).AddTicks(2086),
                             Name = "بخش کبد"
                         },
                         new
                         {
                             Id = 5L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 18, 51, 12, 88, DateTimeKind.Local).AddTicks(8202),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 16, 307, DateTimeKind.Local).AddTicks(2088),
                             Name = "بخش پیوند"
                         });
                 });
@@ -398,9 +526,6 @@ namespace MedicalCenters.Persistence.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<long?>("MedicalWardId")
-                        .HasColumnType("bigint");
-
                     b.Property<long>("ModifiedBy")
                         .HasColumnType("bigint");
 
@@ -410,8 +535,6 @@ namespace MedicalCenters.Persistence.Migrations
                         .HasColumnType("nvarchar(70)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MedicalWardId");
 
                     b.ToTable("MedicalUnit");
                 });
@@ -542,9 +665,6 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Property<DateTime?>("DateTimeModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<long?>("MedicalUnitId")
-                        .HasColumnType("bigint");
-
                     b.Property<long>("ModifiedBy")
                         .HasColumnType("bigint");
 
@@ -554,16 +674,9 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Property<long>("OperationTypeId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("PatientHistoryId")
-                        .HasColumnType("bigint");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("MedicalUnitId");
-
                     b.HasIndex("OperationTypeId");
-
-                    b.HasIndex("PatientHistoryId");
 
                     b.ToTable("Operation");
                 });
@@ -882,36 +995,6 @@ namespace MedicalCenters.Persistence.Migrations
                     b.ToTable("Visit");
                 });
 
-            modelBuilder.Entity("MedicineOperation", b =>
-                {
-                    b.Property<long>("MedicinesId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("OperationsId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("MedicinesId", "OperationsId");
-
-                    b.HasIndex("OperationsId");
-
-                    b.ToTable("MedicineOperation");
-                });
-
-            modelBuilder.Entity("MedicinePatientHistory", b =>
-                {
-                    b.Property<long>("MedicinesId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("PatientHistoriesId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("MedicinesId", "PatientHistoriesId");
-
-                    b.HasIndex("PatientHistoriesId");
-
-                    b.ToTable("MedicinePatientHistory");
-                });
-
             modelBuilder.Entity("MedicalCenters.Domain.Classes.Staffs.Doctor", b =>
                 {
                     b.HasBaseType("MedicalCenters.Domain.Classes.Base.Personel");
@@ -926,79 +1009,137 @@ namespace MedicalCenters.Persistence.Migrations
                     b.ToTable("Nurse");
                 });
 
-            modelBuilder.Entity("AllergyMedicineType", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Allergy_MedicineType", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Classes.Allergy", null)
+                    b.HasOne("MedicalCenters.Domain.Classes.Allergy", "Allergy")
                         .WithMany()
-                        .HasForeignKey("AllergiesId")
+                        .HasForeignKey("AllergyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MedicalCenters.Domain.Classes.Medicines.MedicineType", null)
+                    b.HasOne("MedicalCenters.Domain.Classes.Medicines.MedicineType", "MedicineType")
                         .WithMany()
-                        .HasForeignKey("MedicineTypesId")
+                        .HasForeignKey("MedicineTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Allergy");
+
+                    b.Navigation("MedicineType");
                 });
 
-            modelBuilder.Entity("AllergyPatient", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Allergy_Patient", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Classes.Allergy", null)
+                    b.HasOne("MedicalCenters.Domain.Classes.Allergy", "Allergy")
                         .WithMany()
-                        .HasForeignKey("AllergiesId")
+                        .HasForeignKey("AllergyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MedicalCenters.Domain.Classes.Patients.Patient", null)
+                    b.HasOne("MedicalCenters.Domain.Classes.Patients.Patient", "Patient")
                         .WithMany()
-                        .HasForeignKey("PatientsId")
+                        .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Allergy");
+
+                    b.Navigation("Patient");
                 });
 
-            modelBuilder.Entity("DoctorOperation", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Doctor_Operation", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Classes.Staffs.Doctor", null)
+                    b.HasOne("MedicalCenters.Domain.Classes.Staffs.Doctor", "Doctor")
                         .WithMany()
-                        .HasForeignKey("DoctorsId")
+                        .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MedicalCenters.Domain.Classes.Oprerations.Operation", null)
+                    b.HasOne("MedicalCenters.Domain.Classes.Oprerations.Operation", "Operation")
                         .WithMany()
-                        .HasForeignKey("OperationsId")
+                        .HasForeignKey("OperationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Doctor");
+
+                    b.Navigation("Operation");
                 });
 
-            modelBuilder.Entity("DoctorSpecialty", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Doctor_Specialty", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Classes.Staffs.Doctor", null)
+                    b.HasOne("MedicalCenters.Domain.Classes.Staffs.Doctor", "Doctor")
                         .WithMany()
-                        .HasForeignKey("DoctorsId")
+                        .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MedicalCenters.Domain.Classes.Specialties.Specialty", null)
+                    b.HasOne("MedicalCenters.Domain.Classes.Specialties.Specialty", "Specialty")
                         .WithMany()
-                        .HasForeignKey("SpecialtiesId")
+                        .HasForeignKey("SpecialtyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Doctor");
+
+                    b.Navigation("Specialty");
                 });
 
-            modelBuilder.Entity("DoctorVisit", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Doctor_Visit", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Classes.Staffs.Doctor", null)
+                    b.HasOne("MedicalCenters.Domain.Classes.Staffs.Doctor", "Doctor")
                         .WithMany()
-                        .HasForeignKey("DoctorsId")
+                        .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MedicalCenters.Domain.Classes.Visit", null)
+                    b.HasOne("MedicalCenters.Domain.Classes.Visit", "Visit")
                         .WithMany()
-                        .HasForeignKey("VisitsId")
+                        .HasForeignKey("VisitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Doctor");
+
+                    b.Navigation("Visit");
+                });
+
+            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Medicine_Operation", b =>
+                {
+                    b.HasOne("MedicalCenters.Domain.Classes.Medicines.Medicine", "Medicine")
+                        .WithMany()
+                        .HasForeignKey("MedicineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MedicalCenters.Domain.Classes.Oprerations.Operation", "Operation")
+                        .WithMany()
+                        .HasForeignKey("OperationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Medicine");
+
+                    b.Navigation("Operation");
+                });
+
+            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Medicine_PatientHistory", b =>
+                {
+                    b.HasOne("MedicalCenters.Domain.Classes.Medicines.Medicine", "Medicine")
+                        .WithMany()
+                        .HasForeignKey("MedicineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MedicalCenters.Domain.Classes.Patients.PatientHistory", "PatientHistory")
+                        .WithMany()
+                        .HasForeignKey("PatientHistoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Medicine");
+
+                    b.Navigation("PatientHistory");
                 });
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.MedicalCenter", b =>
@@ -1012,17 +1153,10 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Navigation("Type");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.MedicalUnit", b =>
-                {
-                    b.HasOne("MedicalCenters.Domain.Classes.MedicalWard", null)
-                        .WithMany("Units")
-                        .HasForeignKey("MedicalWardId");
-                });
-
             modelBuilder.Entity("MedicalCenters.Domain.Classes.MedicalWard", b =>
                 {
                     b.HasOne("MedicalCenters.Domain.Classes.MedicalCenter", "MedicalCenter")
-                        .WithMany("Wards")
+                        .WithMany()
                         .HasForeignKey("MedicalCenterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1051,19 +1185,11 @@ namespace MedicalCenters.Persistence.Migrations
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.Oprerations.Operation", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Classes.MedicalUnit", null)
-                        .WithMany("PossibleOperations")
-                        .HasForeignKey("MedicalUnitId");
-
                     b.HasOne("MedicalCenters.Domain.Classes.Oprerations.OperationType", "OperationType")
                         .WithMany()
                         .HasForeignKey("OperationTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("MedicalCenters.Domain.Classes.Patients.PatientHistory", null)
-                        .WithMany("Operations")
-                        .HasForeignKey("PatientHistoryId");
 
                     b.Navigation("OperationType");
                 });
@@ -1071,7 +1197,7 @@ namespace MedicalCenters.Persistence.Migrations
             modelBuilder.Entity("MedicalCenters.Domain.Classes.Patients.PatientHistory", b =>
                 {
                     b.HasOne("MedicalCenters.Domain.Classes.Staffs.Doctor", "Doctor")
-                        .WithMany("PatientHistories")
+                        .WithMany()
                         .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1090,7 +1216,7 @@ namespace MedicalCenters.Persistence.Migrations
             modelBuilder.Entity("MedicalCenters.Domain.Classes.Reservation", b =>
                 {
                     b.HasOne("MedicalCenters.Domain.Classes.Patients.Patient", "Patient")
-                        .WithMany("Reservations")
+                        .WithMany()
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1156,7 +1282,7 @@ namespace MedicalCenters.Persistence.Migrations
             modelBuilder.Entity("MedicalCenters.Domain.Classes.Visit", b =>
                 {
                     b.HasOne("MedicalCenters.Domain.Classes.Patients.Patient", "Patient")
-                        .WithMany("Visits")
+                        .WithMany()
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1168,36 +1294,6 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Navigation("Patient");
 
                     b.Navigation("Reservation");
-                });
-
-            modelBuilder.Entity("MedicineOperation", b =>
-                {
-                    b.HasOne("MedicalCenters.Domain.Classes.Medicines.Medicine", null)
-                        .WithMany()
-                        .HasForeignKey("MedicinesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MedicalCenters.Domain.Classes.Oprerations.Operation", null)
-                        .WithMany()
-                        .HasForeignKey("OperationsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("MedicinePatientHistory", b =>
-                {
-                    b.HasOne("MedicalCenters.Domain.Classes.Medicines.Medicine", null)
-                        .WithMany()
-                        .HasForeignKey("MedicinesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MedicalCenters.Domain.Classes.Patients.PatientHistory", null)
-                        .WithMany()
-                        .HasForeignKey("PatientHistoriesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.Staffs.Doctor", b =>
@@ -1216,38 +1312,6 @@ namespace MedicalCenters.Persistence.Migrations
                         .HasForeignKey("MedicalCenters.Domain.Classes.Staffs.Nurse", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.MedicalCenter", b =>
-                {
-                    b.Navigation("Wards");
-                });
-
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.MedicalUnit", b =>
-                {
-                    b.Navigation("PossibleOperations");
-                });
-
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.MedicalWard", b =>
-                {
-                    b.Navigation("Units");
-                });
-
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Patients.Patient", b =>
-                {
-                    b.Navigation("Reservations");
-
-                    b.Navigation("Visits");
-                });
-
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Patients.PatientHistory", b =>
-                {
-                    b.Navigation("Operations");
-                });
-
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Staffs.Doctor", b =>
-                {
-                    b.Navigation("PatientHistories");
                 });
 #pragma warning restore 612, 618
         }

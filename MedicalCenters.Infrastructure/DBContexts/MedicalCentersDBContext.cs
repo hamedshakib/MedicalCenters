@@ -1,4 +1,5 @@
 ﻿using MedicalCenters.Domain.Classes;
+using MedicalCenters.Domain.Classes.IntermediateEntities;
 using MedicalCenters.Domain.Classes.MedicalCenter_Parts;
 using MedicalCenters.Domain.Classes.Medicines;
 using MedicalCenters.Domain.Classes.Oprerations;
@@ -51,6 +52,16 @@ namespace MedicalCenters.Infrastructure.DBContexts
         public DbSet<Operation> Operation { get; set; }
         public DbSet<MedicineType> MedicineType { get; set;}
         public DbSet<Medicine> Medicine { get; set; }
+
+
+
+        public DbSet<Allergy_MedicineType> Allergy_MedicineType { get; set; }
+        public DbSet<Allergy_Patient> Allergy_Patient { get; set; }
+        public DbSet<Doctor_Operation> Doctor_Operation { get; set; }
+        public DbSet<Doctor_Specialty> Doctor_Specialty { get; set; }
+        public DbSet<Doctor_Visit> Doctor_Visit { get; set; }
+        public DbSet<Medicine_Operation> Medicine_Operation { get; set; }
+        public DbSet<Medicine_PatientHistory> Medicine_PatientHistory { get; set; }
 
     }
 }
