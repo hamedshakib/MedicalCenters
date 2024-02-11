@@ -10,6 +10,6 @@ namespace MedicalCenters.Application.DTOs.MedicalWard
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public int Type { get; set; }
+        public int TypeId { get; set; }
     }
 }

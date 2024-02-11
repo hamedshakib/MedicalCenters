@@ -15,9 +15,11 @@ namespace MedicalCenters.Domain.Classes
     public class Visit : BaseModifiableDomainEntity
     {
         [Required]
+        public long PatientId { get; set; }
         public Patient Patient { get; set; }
         public DateTime DateTime { get; set; }
         public IList<Doctor> Doctors {  get; set; }
+        public long? ReservationId { get; set; }
         public Reservation? Reservation { get; set; }
     }
 }

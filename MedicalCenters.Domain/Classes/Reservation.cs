@@ -16,6 +16,7 @@ namespace MedicalCenters.Domain.Classes
         [Required]
         public DateTime ReservationDT { get; set; }
         [Required]
+        public long PatientId { get; set; }
         public Patient Patient { get; set; }
 
     }

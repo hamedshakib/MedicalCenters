@@ -13,8 +13,10 @@ namespace MedicalCenters.Domain.Classes.Shifts
     public class ShiftPlan : BaseModifiableDomainEntity
     {
         [Required]
+        public long PersonelId { get; set; }
         public Personel Personel { get; set; }
         [Required]
+        public long MedicalUnitId { get; set; }
         public MedicalUnit MedicalUnit { get; set; }
     }
 }

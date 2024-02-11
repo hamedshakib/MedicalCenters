@@ -12,6 +12,7 @@ namespace MedicalCenters.Domain.Classes
         [Required,StringLength(70)]
         public string Name { get; set; }
         [Required]
+        public long TypeId { get; set; }
         public MedicalCenterType Type { get; set; }
         [StringLength(1000)]
         public string Description { get; set; }

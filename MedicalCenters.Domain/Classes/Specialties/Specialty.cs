@@ -18,7 +18,8 @@ namespace MedicalCenters.Domain.Classes.Specialties
         [StringLength(1000)]
         public string Description { get; set; }
         [Required]
-        public SpecialtyGroup Group { get; set; }
+        public long SpecialtyGroupId { get; set; }
+        public SpecialtyGroup SpecialtyGroup { get; set; }
 
 
 

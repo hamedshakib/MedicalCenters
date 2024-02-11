@@ -17,6 +17,7 @@ namespace MedicalCenters.Domain.Classes.Medicines
         [Required,StringLength(100)]
         public string Name { get; set; }
         [Required]
+        public long TypeId { get; set; }
         public MedicineType Type { get; set; }
 
 

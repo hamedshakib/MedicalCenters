@@ -15,9 +15,12 @@ namespace MedicalCenters.Domain.Classes
     {
         [Required, StringLength(70)]
         public string Name { get; set; }
+        public long TypeId { get; set; }
         public MedicalWardType Type { get; set; }
         [StringLength(1000)]
         public string Description { get; set; }
+        [Required]
+        public long MedicalCenterId { get; set; }
         public MedicalCenter MedicalCenter { get; set; }
         public IList<MedicalUnit> Units { get; set; }
     }

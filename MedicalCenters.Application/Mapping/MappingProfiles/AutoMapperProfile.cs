@@ -19,23 +19,18 @@ namespace MedicalCenters.Application.Mapping.MappingProfiles
         public AutoMapperProfile()
         {
             CreateMap<CreateMedicalCenterDto, MedicalCenter>()
-                    .ForMember(dest => dest.Type, opt => opt.MapFrom<MedicalCenterTypeResolver<CreateMedicalCenterDto>>())
                     .ForMember(dest => dest.Location, opt => opt.MapFrom<PointResolver<CreateMedicalCenterDto, MedicalCenter>>())
                     .ReverseMap();
 
             CreateMap<MedicalCenterDto,MedicalCenter>()
-                    .ForMember(dest => dest.Type, opt => opt.MapFrom<MedicalCenterTypeResolver<MedicalCenterDto>>())
                     .ForMember(dest => dest.Location, opt => opt.MapFrom<PointResolver<MedicalCenterDto, MedicalCenter>>())
                     .ReverseMap();
 
 
             CreateMap<CreateMedicalWardDto, MedicalWard>()
-                    .ForMember(dest => dest.Type, opt => opt.MapFrom<MedicalWardTypeResolver<CreateMedicalWardDto>>())
-                    .ForMember(dest => dest.MedicalCenter, opt => opt.MapFrom<MedicalCenterResolver>())
                     .ReverseMap();
 
             CreateMap<MedicalWardDto, MedicalWard>()
-                    .ForMember(dest => dest.Type, opt => opt.MapFrom<MedicalWardTypeResolver<MedicalWardDto>>())
                     .ReverseMap();
         }
     }
