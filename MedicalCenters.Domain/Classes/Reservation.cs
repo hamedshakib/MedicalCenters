@@ -13,6 +13,8 @@ namespace MedicalCenters.Domain.Classes
     [Table("Reservation")]
     public class Reservation : BaseModifiableDomainEntity
     {
+        [Key]
+        public long Id { get; set; }
         [Required]
         public DateTime ReservationDT { get; set; }
         [Required]

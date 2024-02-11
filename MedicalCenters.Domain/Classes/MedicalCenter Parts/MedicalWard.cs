@@ -13,14 +13,16 @@ namespace MedicalCenters.Domain.Classes
     [Table("MedicalWard")]
     public class MedicalWard : BaseModifiableDomainEntity
     {
+        [Key]
+        public int Id { get; set; }
         [Required, StringLength(70)]
         public string Name { get; set; }
-        public long TypeId { get; set; }
+        public int TypeId { get; set; }
         public MedicalWardType Type { get; set; }
         [StringLength(1000)]
         public string Description { get; set; }
         [Required]
-        public long MedicalCenterId { get; set; }
+        public int MedicalCenterId { get; set; }
         public MedicalCenter MedicalCenter { get; set; }
     }
 }

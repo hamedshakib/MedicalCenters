@@ -13,7 +13,7 @@ using NetTopologySuite.Geometries;
 namespace MedicalCenters.Persistence.Migrations
 {
     [DbContext(typeof(MedicalCentersDBContext))]
-    [Migration("20240211162516_InitialCreate")]
+    [Migration("20240211184930_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -28,11 +28,11 @@ namespace MedicalCenters.Persistence.Migrations
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.Allergy", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
@@ -111,14 +111,11 @@ namespace MedicalCenters.Persistence.Migrations
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Allergy_MedicineType", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                    b.Property<int>("AllergyId")
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<long>("AllergyId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("MedicineTypeId")
+                        .HasColumnType("int");
 
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
@@ -126,12 +123,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Property<DateTime?>("DateTimeCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("MedicineTypeId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AllergyId");
+                    b.HasKey("AllergyId", "MedicineTypeId");
 
                     b.HasIndex("MedicineTypeId");
 
@@ -140,13 +132,10 @@ namespace MedicalCenters.Persistence.Migrations
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Allergy_Patient", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                    b.Property<int>("AllergyId")
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<long>("AllergyId")
+                    b.Property<long>("PatientId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("CreatedBy")
@@ -155,12 +144,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Property<DateTime?>("DateTimeCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("PatientId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AllergyId");
+                    b.HasKey("AllergyId", "PatientId");
 
                     b.HasIndex("PatientId");
 
@@ -169,11 +153,11 @@ namespace MedicalCenters.Persistence.Migrations
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Doctor_Operation", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<long>("DoctorId")
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    b.Property<long>("OperationId")
+                        .HasColumnType("bigint");
 
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
@@ -181,15 +165,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Property<DateTime?>("DateTimeCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("DoctorId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("OperationId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DoctorId");
+                    b.HasKey("DoctorId", "OperationId");
 
                     b.HasIndex("OperationId");
 
@@ -198,11 +174,11 @@ namespace MedicalCenters.Persistence.Migrations
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Doctor_Specialty", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<long>("DoctorId")
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    b.Property<int>("SpecialtyId")
+                        .HasColumnType("int");
 
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
@@ -210,15 +186,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Property<DateTime?>("DateTimeCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("DoctorId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("SpecialtyId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DoctorId");
+                    b.HasKey("DoctorId", "SpecialtyId");
 
                     b.HasIndex("SpecialtyId");
 
@@ -227,11 +195,11 @@ namespace MedicalCenters.Persistence.Migrations
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Doctor_Visit", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<long>("DoctorId")
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    b.Property<long>("VisitId")
+                        .HasColumnType("bigint");
 
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
@@ -239,15 +207,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Property<DateTime?>("DateTimeCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("DoctorId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("VisitId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DoctorId");
+                    b.HasKey("DoctorId", "VisitId");
 
                     b.HasIndex("VisitId");
 
@@ -256,11 +216,11 @@ namespace MedicalCenters.Persistence.Migrations
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Medicine_Operation", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                    b.Property<int>("MedicineId")
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    b.Property<long>("OperationId")
+                        .HasColumnType("bigint");
 
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
@@ -268,15 +228,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Property<DateTime?>("DateTimeCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("MedicineId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("OperationId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MedicineId");
+                    b.HasKey("MedicineId", "OperationId");
 
                     b.HasIndex("OperationId");
 
@@ -285,11 +237,11 @@ namespace MedicalCenters.Persistence.Migrations
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Medicine_PatientHistory", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                    b.Property<int>("MedicineId")
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    b.Property<long>("PatientHistoryId")
+                        .HasColumnType("bigint");
 
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
@@ -297,15 +249,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Property<DateTime?>("DateTimeCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("MedicineId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("PatientHistoryId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MedicineId");
+                    b.HasKey("MedicineId", "PatientHistoryId");
 
                     b.HasIndex("PatientHistoryId");
 
@@ -314,11 +258,11 @@ namespace MedicalCenters.Persistence.Migrations
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.MedicalCenter", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -350,8 +294,8 @@ namespace MedicalCenters.Persistence.Migrations
                         .HasMaxLength(70)
                         .HasColumnType("nvarchar(70)");
 
-                    b.Property<long>("TypeId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("TypeId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -362,11 +306,11 @@ namespace MedicalCenters.Persistence.Migrations
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.MedicalCenter_Parts.MedicalCenterType", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
@@ -386,69 +330,69 @@ namespace MedicalCenters.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1L,
+                            Id = 1,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 16, 307, DateTimeKind.Local).AddTicks(1836),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 22, 19, 29, 907, DateTimeKind.Local).AddTicks(3190),
                             Name = "بیمارستان"
                         },
                         new
                         {
-                            Id = 2L,
+                            Id = 2,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 16, 307, DateTimeKind.Local).AddTicks(1850),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 22, 19, 29, 907, DateTimeKind.Local).AddTicks(3204),
                             Name = "کلینیک پزشکی"
                         },
                         new
                         {
-                            Id = 3L,
+                            Id = 3,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 16, 307, DateTimeKind.Local).AddTicks(1851),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 22, 19, 29, 907, DateTimeKind.Local).AddTicks(3206),
                             Name = "مرکز جراحی سر پایی"
                         },
                         new
                         {
-                            Id = 4L,
+                            Id = 4,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 16, 307, DateTimeKind.Local).AddTicks(1852),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 22, 19, 29, 907, DateTimeKind.Local).AddTicks(3207),
                             Name = "مرکز زایمان "
                         },
                         new
                         {
-                            Id = 5L,
+                            Id = 5,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 16, 307, DateTimeKind.Local).AddTicks(1853),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 22, 19, 29, 907, DateTimeKind.Local).AddTicks(3208),
                             Name = "مرکز تصویر برداری"
                         },
                         new
                         {
-                            Id = 6L,
+                            Id = 6,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 16, 307, DateTimeKind.Local).AddTicks(1854),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 22, 19, 29, 907, DateTimeKind.Local).AddTicks(3209),
                             Name = "مرکز دیابت"
                         },
                         new
                         {
-                            Id = 7L,
+                            Id = 7,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 16, 307, DateTimeKind.Local).AddTicks(1855),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 22, 19, 29, 907, DateTimeKind.Local).AddTicks(3210),
                             Name = "مرکز دیالیز"
                         },
                         new
                         {
-                            Id = 8L,
+                            Id = 8,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 16, 307, DateTimeKind.Local).AddTicks(1856),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 22, 19, 29, 907, DateTimeKind.Local).AddTicks(3211),
                             Name = "مرکز توان بخشی"
                         });
                 });
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.MedicalCenter_Parts.MedicalWardType", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
@@ -472,48 +416,48 @@ namespace MedicalCenters.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1L,
+                            Id = 1,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 16, 307, DateTimeKind.Local).AddTicks(2083),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 22, 19, 29, 907, DateTimeKind.Local).AddTicks(3444),
                             Name = "بخش قلب"
                         },
                         new
                         {
-                            Id = 2L,
+                            Id = 2,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 16, 307, DateTimeKind.Local).AddTicks(2084),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 22, 19, 29, 907, DateTimeKind.Local).AddTicks(3447),
                             Name = "بخش ریه"
                         },
                         new
                         {
-                            Id = 3L,
+                            Id = 3,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 16, 307, DateTimeKind.Local).AddTicks(2085),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 22, 19, 29, 907, DateTimeKind.Local).AddTicks(3448),
                             Name = "بخش کلیه"
                         },
                         new
                         {
-                            Id = 4L,
+                            Id = 4,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 16, 307, DateTimeKind.Local).AddTicks(2086),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 22, 19, 29, 907, DateTimeKind.Local).AddTicks(3449),
                             Name = "بخش کبد"
                         },
                         new
                         {
-                            Id = 5L,
+                            Id = 5,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 16, 307, DateTimeKind.Local).AddTicks(2088),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 22, 19, 29, 907, DateTimeKind.Local).AddTicks(3450),
                             Name = "بخش پیوند"
                         });
                 });
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.MedicalUnit", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
@@ -544,11 +488,11 @@ namespace MedicalCenters.Persistence.Migrations
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.MedicalWard", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
@@ -564,8 +508,8 @@ namespace MedicalCenters.Persistence.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<long>("MedicalCenterId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("MedicalCenterId")
+                        .HasColumnType("int");
 
                     b.Property<long>("ModifiedBy")
                         .HasColumnType("bigint");
@@ -575,8 +519,8 @@ namespace MedicalCenters.Persistence.Migrations
                         .HasMaxLength(70)
                         .HasColumnType("nvarchar(70)");
 
-                    b.Property<long>("TypeId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("TypeId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -589,11 +533,11 @@ namespace MedicalCenters.Persistence.Migrations
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.Medicines.Medicine", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
@@ -612,8 +556,8 @@ namespace MedicalCenters.Persistence.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<long>("TypeId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("TypeId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -624,11 +568,11 @@ namespace MedicalCenters.Persistence.Migrations
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.Medicines.MedicineType", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
@@ -674,8 +618,8 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Property<DateTime>("OperationDT")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("OperationTypeId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("OperationTypeId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -686,11 +630,11 @@ namespace MedicalCenters.Persistence.Migrations
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.Oprerations.OperationType", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
@@ -848,8 +792,8 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Property<long?>("ShiftPlanId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("UnitId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("UnitId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -879,8 +823,8 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Property<DateTime?>("DateTimeModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("MedicalUnitId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("MedicalUnitId")
+                        .HasColumnType("int");
 
                     b.Property<long>("ModifiedBy")
                         .HasColumnType("bigint");
@@ -899,11 +843,11 @@ namespace MedicalCenters.Persistence.Migrations
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.Specialties.Specialty", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
@@ -921,8 +865,8 @@ namespace MedicalCenters.Persistence.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<long>("SpecialtyGroupId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("SpecialtyGroupId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -933,11 +877,11 @@ namespace MedicalCenters.Persistence.Migrations
 
             modelBuilder.Entity("MedicalCenters.Domain.Classes.Specialties.SpecialtyGroup", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");

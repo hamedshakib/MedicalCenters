@@ -24,11 +24,11 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
 
             modelBuilder.Entity("MedicalCenters.Identity.Models.Domains.Permission", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
@@ -53,81 +53,81 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                     b.HasData(
                         new
                         {
-                            Id = 1L,
+                            Id = 1,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(928),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5510),
                             Description = "افزودن مرکز درمانی",
                             Name = "AddMedicalCenter"
                         },
                         new
                         {
-                            Id = 2L,
+                            Id = 2,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(932),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5513),
                             Description = "ویرایش مرکز درمانی",
                             Name = "EditMedicalCenter"
                         },
                         new
                         {
-                            Id = 3L,
+                            Id = 3,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(933),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5514),
                             Description = "حذف مرکز درمانی",
                             Name = "DeleteMedicalCenter"
                         },
                         new
                         {
-                            Id = 4L,
+                            Id = 4,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(935),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5515),
                             Description = "مشاهده اطلاعات مرکز درمانی",
                             Name = "GetMedicalCenterInfo"
                         },
                         new
                         {
-                            Id = 5L,
+                            Id = 5,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(936),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5516),
                             Description = "مشاهده اطلاعات تمامی مراکز درمانی",
                             Name = "GetAllMedicalCenterInfos"
                         },
                         new
                         {
-                            Id = 6L,
+                            Id = 6,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(937),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5519),
                             Description = "افزودن بخش درمانی",
                             Name = "AddMedicalWard"
                         },
                         new
                         {
-                            Id = 7L,
+                            Id = 7,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(938),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5520),
                             Description = "ویرایش بخش درمانی",
                             Name = "EditMedicalWard"
                         },
                         new
                         {
-                            Id = 8L,
+                            Id = 8,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(940),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5521),
                             Description = "حذف بخش درمانی",
                             Name = "DeleteMedicalWard"
                         },
                         new
                         {
-                            Id = 9L,
+                            Id = 9,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(941),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5523),
                             Description = "مشاهده اطلاعات بخش درمانی",
                             Name = "GetMedicalWardInfo"
                         },
                         new
                         {
-                            Id = 10L,
+                            Id = 10,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(942),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5524),
                             Description = "مشاهده اطلاعات تمامی بخش های مرکز درمانی",
                             Name = "GetAllMedicalCenterWardsInfos"
                         });
@@ -135,11 +135,11 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
 
             modelBuilder.Entity("MedicalCenters.Identity.Models.Domains.PermissionGroup", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
@@ -170,11 +170,11 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
 
             modelBuilder.Entity("MedicalCenters.Identity.Models.Domains.PermissionGroup_User", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                    b.Property<int>("PermissionGroupId")
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
 
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
@@ -182,15 +182,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                     b.Property<DateTime?>("DateTimeCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("PermissionGroupId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PermissionGroupId");
+                    b.HasKey("PermissionGroupId", "UserId");
 
                     b.HasIndex("UserId");
 
@@ -199,11 +191,11 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
 
             modelBuilder.Entity("MedicalCenters.Identity.Models.Domains.Permission_PermissionGroup", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                    b.Property<int>("PermissionId")
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    b.Property<int>("PermissionGroupId")
+                        .HasColumnType("int");
 
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
@@ -211,28 +203,20 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                     b.Property<DateTime?>("DateTimeCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("PermissionGroupId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("PermissionId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
+                    b.HasKey("PermissionId", "PermissionGroupId");
 
                     b.HasIndex("PermissionGroupId");
-
-                    b.HasIndex("PermissionId");
 
                     b.ToTable("Permission_PermissionGroup");
                 });
 
             modelBuilder.Entity("MedicalCenters.Identity.Models.Domains.Permission_User", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                    b.Property<int>("PermissionId")
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
 
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
@@ -240,15 +224,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                     b.Property<DateTime?>("DateTimeCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("PermissionId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PermissionId");
+                    b.HasKey("PermissionId", "UserId");
 
                     b.HasIndex("UserId");
 
@@ -302,12 +278,12 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         {
                             Id = 1L,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(305),
+                            DateTimeCreated = new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(4598),
                             HashAlgorithmType = 0,
-                            HashedPassword = new byte[] { 213, 134, 157, 117, 158, 33, 199, 25, 230, 151, 160, 100, 64, 233, 215, 55, 158, 87, 201, 219, 76, 10, 84, 10, 44, 70, 38, 203, 34, 18, 125, 57, 50, 104, 127, 229, 106, 92, 212, 179, 210, 128, 127, 226, 93, 1, 55, 105, 62, 193, 231, 205, 233, 150, 50, 147, 170, 52, 162, 19, 44, 178, 119, 73 },
+                            HashedPassword = new byte[] { 177, 61, 55, 15, 206, 166, 179, 63, 22, 5, 248, 161, 254, 136, 238, 32, 18, 48, 127, 203, 156, 188, 85, 161, 138, 105, 148, 174, 115, 177, 73, 167, 253, 26, 179, 102, 155, 3, 105, 150, 225, 36, 57, 249, 193, 107, 24, 103, 116, 86, 160, 111, 187, 156, 209, 213, 11, 108, 194, 80, 169, 208, 83, 100 },
                             Name = "ادمین",
                             PeaperType = 0,
-                            Salt = new byte[] { 192, 218, 41, 195, 69, 27, 169, 124, 222, 79, 209, 189, 228, 128, 216, 252, 251, 130, 194, 131, 7, 129, 47, 70, 65, 70, 97, 49, 107, 18, 156, 148, 254, 142, 89, 150, 157, 25, 65, 41, 102, 34, 214, 60, 14, 189, 14, 65, 247, 47, 254, 211, 214, 15, 116, 160, 46, 140, 42, 111, 53, 157, 197, 34 },
+                            Salt = new byte[] { 159, 54, 184, 219, 157, 143, 180, 119, 192, 147, 67, 184, 54, 204, 248, 114, 68, 105, 129, 252, 58, 29, 116, 196, 14, 37, 6, 176, 146, 132, 249, 157, 29, 195, 35, 236, 19, 135, 215, 47, 109, 183, 243, 147, 187, 243, 190, 93, 14, 110, 84, 207, 89, 112, 89, 94, 222, 47, 108, 130, 242, 166, 68, 38 },
                             UserName = "Administrator"
                         });
                 });

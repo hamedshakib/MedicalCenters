@@ -10,6 +10,8 @@ namespace MedicalCenters.Identity.Models.Domains
 {
     public class User : BaseUser
     {
+        [Key]
+        public long Id { get; set; }
         [Required, StringLength(150)]
         public string Name { get; set; }
         [Required]

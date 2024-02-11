@@ -17,7 +17,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                 name: "Permission",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
@@ -33,7 +33,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                 name: "PermissionGroup",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
@@ -71,16 +71,14 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                 name: "Permission_PermissionGroup",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PermissionGroupId = table.Column<long>(type: "bigint", nullable: false),
-                    PermissionId = table.Column<long>(type: "bigint", nullable: false),
+                    PermissionId = table.Column<int>(type: "int", nullable: false),
+                    PermissionGroupId = table.Column<int>(type: "int", nullable: false),
                     DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Permission_PermissionGroup", x => x.Id);
+                    table.PrimaryKey("PK_Permission_PermissionGroup", x => new { x.PermissionId, x.PermissionGroupId });
                     table.ForeignKey(
                         name: "FK_Permission_PermissionGroup_PermissionGroup_PermissionGroupId",
                         column: x => x.PermissionGroupId,
@@ -99,16 +97,14 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                 name: "Permission_User",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PermissionId = table.Column<long>(type: "bigint", nullable: false),
+                    PermissionId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<long>(type: "bigint", nullable: false),
                     DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Permission_User", x => x.Id);
+                    table.PrimaryKey("PK_Permission_User", x => new { x.PermissionId, x.UserId });
                     table.ForeignKey(
                         name: "FK_Permission_User_Permission_PermissionId",
                         column: x => x.PermissionId,
@@ -127,16 +123,14 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                 name: "PermissionGroup_User",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PermissionGroupId = table.Column<long>(type: "bigint", nullable: false),
+                    PermissionGroupId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<long>(type: "bigint", nullable: false),
                     DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PermissionGroup_User", x => x.Id);
+                    table.PrimaryKey("PK_PermissionGroup_User", x => new { x.PermissionGroupId, x.UserId });
                     table.ForeignKey(
                         name: "FK_PermissionGroup_User_PermissionGroup_PermissionGroupId",
                         column: x => x.PermissionGroupId,
@@ -156,22 +150,22 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                 columns: new[] { "Id", "CreatedBy", "DateTimeCreated", "Description", "Name" },
                 values: new object[,]
                 {
-                    { 1L, 1L, new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(928), "افزودن مرکز درمانی", "AddMedicalCenter" },
-                    { 2L, 1L, new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(932), "ویرایش مرکز درمانی", "EditMedicalCenter" },
-                    { 3L, 1L, new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(933), "حذف مرکز درمانی", "DeleteMedicalCenter" },
-                    { 4L, 1L, new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(935), "مشاهده اطلاعات مرکز درمانی", "GetMedicalCenterInfo" },
-                    { 5L, 1L, new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(936), "مشاهده اطلاعات تمامی مراکز درمانی", "GetAllMedicalCenterInfos" },
-                    { 6L, 1L, new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(937), "افزودن بخش درمانی", "AddMedicalWard" },
-                    { 7L, 1L, new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(938), "ویرایش بخش درمانی", "EditMedicalWard" },
-                    { 8L, 1L, new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(940), "حذف بخش درمانی", "DeleteMedicalWard" },
-                    { 9L, 1L, new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(941), "مشاهده اطلاعات بخش درمانی", "GetMedicalWardInfo" },
-                    { 10L, 1L, new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(942), "مشاهده اطلاعات تمامی بخش های مرکز درمانی", "GetAllMedicalCenterWardsInfos" }
+                    { 1, 1L, new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5510), "افزودن مرکز درمانی", "AddMedicalCenter" },
+                    { 2, 1L, new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5513), "ویرایش مرکز درمانی", "EditMedicalCenter" },
+                    { 3, 1L, new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5514), "حذف مرکز درمانی", "DeleteMedicalCenter" },
+                    { 4, 1L, new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5515), "مشاهده اطلاعات مرکز درمانی", "GetMedicalCenterInfo" },
+                    { 5, 1L, new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5516), "مشاهده اطلاعات تمامی مراکز درمانی", "GetAllMedicalCenterInfos" },
+                    { 6, 1L, new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5519), "افزودن بخش درمانی", "AddMedicalWard" },
+                    { 7, 1L, new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5520), "ویرایش بخش درمانی", "EditMedicalWard" },
+                    { 8, 1L, new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5521), "حذف بخش درمانی", "DeleteMedicalWard" },
+                    { 9, 1L, new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5523), "مشاهده اطلاعات بخش درمانی", "GetMedicalWardInfo" },
+                    { 10, 1L, new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5524), "مشاهده اطلاعات تمامی بخش های مرکز درمانی", "GetAllMedicalCenterWardsInfos" }
                 });
 
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "Id", "CreatedBy", "DateTimeCreated", "HashAlgorithmType", "HashedPassword", "Name", "PeaperType", "Salt", "UserName" },
-                values: new object[] { 1L, 1L, new DateTime(2024, 2, 11, 19, 55, 21, 773, DateTimeKind.Local).AddTicks(305), 0, new byte[] { 213, 134, 157, 117, 158, 33, 199, 25, 230, 151, 160, 100, 64, 233, 215, 55, 158, 87, 201, 219, 76, 10, 84, 10, 44, 70, 38, 203, 34, 18, 125, 57, 50, 104, 127, 229, 106, 92, 212, 179, 210, 128, 127, 226, 93, 1, 55, 105, 62, 193, 231, 205, 233, 150, 50, 147, 170, 52, 162, 19, 44, 178, 119, 73 }, "ادمین", 0, new byte[] { 192, 218, 41, 195, 69, 27, 169, 124, 222, 79, 209, 189, 228, 128, 216, 252, 251, 130, 194, 131, 7, 129, 47, 70, 65, 70, 97, 49, 107, 18, 156, 148, 254, 142, 89, 150, 157, 25, 65, 41, 102, 34, 214, 60, 14, 189, 14, 65, 247, 47, 254, 211, 214, 15, 116, 160, 46, 140, 42, 111, 53, 157, 197, 34 }, "Administrator" });
+                values: new object[] { 1L, 1L, new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(4598), 0, new byte[] { 177, 61, 55, 15, 206, 166, 179, 63, 22, 5, 248, 161, 254, 136, 238, 32, 18, 48, 127, 203, 156, 188, 85, 161, 138, 105, 148, 174, 115, 177, 73, 167, 253, 26, 179, 102, 155, 3, 105, 150, 225, 36, 57, 249, 193, 107, 24, 103, 116, 86, 160, 111, 187, 156, 209, 213, 11, 108, 194, 80, 169, 208, 83, 100 }, "ادمین", 0, new byte[] { 159, 54, 184, 219, 157, 143, 180, 119, 192, 147, 67, 184, 54, 204, 248, 114, 68, 105, 129, 252, 58, 29, 116, 196, 14, 37, 6, 176, 146, 132, 249, 157, 29, 195, 35, 236, 19, 135, 215, 47, 109, 183, 243, 147, 187, 243, 190, 93, 14, 110, 84, 207, 89, 112, 89, 94, 222, 47, 108, 130, 242, 166, 68, 38 }, "Administrator" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Permission_PermissionGroup_PermissionGroupId",
@@ -179,24 +173,9 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                 column: "PermissionGroupId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Permission_PermissionGroup_PermissionId",
-                table: "Permission_PermissionGroup",
-                column: "PermissionId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Permission_User_PermissionId",
-                table: "Permission_User",
-                column: "PermissionId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Permission_User_UserId",
                 table: "Permission_User",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PermissionGroup_User_PermissionGroupId",
-                table: "PermissionGroup_User",
-                column: "PermissionGroupId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PermissionGroup_User_UserId",

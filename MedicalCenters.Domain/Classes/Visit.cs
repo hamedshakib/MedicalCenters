@@ -14,6 +14,8 @@ namespace MedicalCenters.Domain.Classes
     [Table("Visit")]
     public class Visit : BaseModifiableDomainEntity
     {
+        [Key]
+        public long Id { get; set; }
         [Required]
         public long PatientId { get; set; }
         public Patient Patient { get; set; }

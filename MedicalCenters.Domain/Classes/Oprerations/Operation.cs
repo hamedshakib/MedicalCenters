@@ -14,9 +14,11 @@ namespace MedicalCenters.Domain.Classes.Oprerations
     [Table("Operation")]
     public class Operation : BaseModifiableDomainEntity
     {
+        [Key]
+        public long Id { get; set; }
         public DateTime OperationDT { get; set; }
         [Required]
-        public long OperationTypeId { get; set; }
+        public int OperationTypeId { get; set; }
         public OperationType OperationType { get; set; }
     }
 }

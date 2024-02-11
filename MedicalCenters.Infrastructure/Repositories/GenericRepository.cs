@@ -40,17 +40,6 @@ namespace MedicalCenters.Infrastructure.Repositories
             return entity != null;
         }
 
-        public async Task<bool> Exist(T entity)
-        {
-            if(entity is BaseDomainEntity baseEntity)
-            {
-                var ExistEntity = await Get(baseEntity.Id);
-                return ExistEntity != null;
-            }
-
-            return false;
-        }
-
         public async Task<T> Get(long id)
         {
             return await _dBContext.Set<T>().FindAsync(id);

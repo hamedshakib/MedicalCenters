@@ -12,6 +12,8 @@ namespace MedicalCenters.Domain.Classes.Oprerations
     [Table("OperationType")]
     public class OperationType : BaseCreateableDomainEntity
     {
+        [Key]
+        public int Id { get; set; }
         [Required,StringLength(70)]
         public string Name { get; set; }
         [StringLength(1000)]

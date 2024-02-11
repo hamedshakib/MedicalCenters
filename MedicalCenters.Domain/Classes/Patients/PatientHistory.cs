@@ -15,6 +15,8 @@ namespace MedicalCenters.Domain.Classes.Patients
     [Table("PatientHistory")]
     public class PatientHistory : BaseModifiableDomainEntity
     {
+        [Key]
+        public long Id { get; set; }
         [Required]
         public long PatientId { get; set; }
         public Patient Patient { get; set; }

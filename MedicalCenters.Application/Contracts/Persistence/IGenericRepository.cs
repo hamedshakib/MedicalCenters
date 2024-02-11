@@ -12,7 +12,6 @@ namespace MedicalCenters.Application.Contracts.Persistence
         Task<T> Get(long id);
         Task<IEnumerable<T>> GetAll();
         Task<bool> Exist(long id);
-        Task<bool> Exist(T entity);
         Task Update(T entity);
         Task Update(long id);
         Task Delete(long id);

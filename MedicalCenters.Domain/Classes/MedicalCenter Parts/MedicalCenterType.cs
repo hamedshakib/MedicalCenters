@@ -12,6 +12,8 @@ namespace MedicalCenters.Domain.Classes.MedicalCenter_Parts
     [Table("MedicalCenterType")]
     public class MedicalCenterType : BaseCreateableDomainEntity
     {
+        [Key]
+        public int Id { get; set; }
         [Required,StringLength(70)]
         public string Name { get; set; }
     }

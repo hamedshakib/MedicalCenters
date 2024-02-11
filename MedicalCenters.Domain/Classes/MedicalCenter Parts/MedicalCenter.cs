@@ -9,10 +9,12 @@ namespace MedicalCenters.Domain.Classes
     [Table("MedicalCenter")]
     public class MedicalCenter : BaseModifiableDomainEntity
     {
+        [Key]
+        public int Id { get; set; }
         [Required,StringLength(70)]
         public string Name { get; set; }
         [Required]
-        public long TypeId { get; set; }
+        public int TypeId { get; set; }
         public MedicalCenterType Type { get; set; }
         [StringLength(1000)]
         public string Description { get; set; }

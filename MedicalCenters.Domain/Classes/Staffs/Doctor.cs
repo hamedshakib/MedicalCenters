@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 using MedicalCenters.Domain.Classes.Patients;
 using MedicalCenters.Domain.Classes.Oprerations;
+using System.ComponentModel.DataAnnotations;
 
 namespace MedicalCenters.Domain.Classes.Staffs
 {
     [Table("Doctor")]
     public class Doctor : Personel
     {
-
+        [Key]
+        public long Id { get; set; }
     }
 }

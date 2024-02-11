@@ -12,6 +12,8 @@ namespace MedicalCenters.Domain.Classes.Shifts
     [Table("Shift")]
     public class Shift : BaseModifiableDomainEntity
     {
+        [Key]
+        public long Id { get; set; }
         public long? ShiftPlanId { get; set; }
         public ShiftPlan? ShiftPlan { get; set; }
         [Required]
@@ -19,7 +21,7 @@ namespace MedicalCenters.Domain.Classes.Shifts
         public Personel Personel { get; set; }
 
         [Required]
-        public long UnitId { get; set; }
+        public int UnitId { get; set; }
         public MedicalUnit Unit { get; set; }
     }
 }

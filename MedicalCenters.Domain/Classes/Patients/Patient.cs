@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,7 @@ namespace MedicalCenters.Domain.Classes.Patients
     [Table("Patient")]
     public class Patient : Person
     {
+        [Key]
+        public long Id { get; set; }
     }
 }

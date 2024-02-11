@@ -13,6 +13,8 @@ namespace MedicalCenters.Domain.Classes.Medicines
     [Table("MedicineType")]
     public class MedicineType : BaseCreateableDomainEntity
     {
+        [Key]
+        public int Id { get; set; }
         [Required,StringLength(100)]
         public string Name {  get; set; }
         [Required,StringLength(1000)]
