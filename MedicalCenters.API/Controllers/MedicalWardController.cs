@@ -15,23 +15,6 @@ namespace MedicalCenters.API.Controllers
     [ApiController]
     public class MedicalWardController(IMediator mediator) : ControllerBase
     {
-        [HttpGet]
-        [RequiresPermission(10)]
-        public async Task<ActionResult<BaseQueryResponse>> GetAllMedicalCenterWards(long mecicalCenterId)
-        {
-            var query = new AllMedicalCenterWardsQuery() { MedicalCenterId = mecicalCenterId };
-            BaseQueryResponse result = null;
-            try
-            {
-                result = await mediator.Send(query);
-            }
-            catch (Exception ex)
-            {
-                return ex.ToObjectResult();
-            }
-            return Ok(result);
-        }
-
         [Authorize]
         [HttpGet("{id}")]
         [RequiresPermission(9)]

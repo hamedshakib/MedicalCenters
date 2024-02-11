@@ -17,6 +17,7 @@ using MedicalCenters.API.ErrorHelper;
 using Microsoft.AspNetCore.Authorization;
 using MedicalCenters.Identity.Attributes;
 using MedicalCenters.Identity.Contracts;
+using MedicalCenters.Application.Features.MedicalWard.Requests.Queries;
 
 namespace MedicalCenters.API.Controllers
 {
@@ -103,6 +104,23 @@ namespace MedicalCenters.API.Controllers
             try
             {
                 result = await mediator.Send(command);
+            }
+            catch (Exception ex)
+            {
+                return ex.ToObjectResult();
+            }
+            return Ok(result);
+        }
+
+        [HttpGet("Wards/{MecicalCenterId}")]
+        [RequiresPermission(10)]
+        public async Task<ActionResult<BaseQueryResponse>> GetAllMedicalCenterWards(long mecicalCenterId)
+        {
+            var query = new AllMedicalCenterWardsQuery() { MedicalCenterId = mecicalCenterId };
+            BaseQueryResponse result = null;
+            try
+            {
+                result = await mediator.Send(query);
             }
             catch (Exception ex)
             {
