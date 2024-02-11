@@ -33,11 +33,6 @@ namespace MedicalCenters.Persistence.Repositories.Identity
 
         public async Task<bool> HasUserPermition(long userId, int permitionId)
         {
-            //var result = await _dBContext.User.Where(u => u.Id==userId)
-            //    .Include(u => u.Permissions)
-            //    .Where(u => u.Permissions.Where(p => p.Id== permitionId).Any())
-
-
             var result =(from u in _dBContext.User
             where u.Id== userId && u.Permissions.Any(u => u.Id == permitionId)
             select 1).Any();

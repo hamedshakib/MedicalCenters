@@ -16,9 +16,6 @@ namespace MedicalCenters.Application.Mapping.MappingProfiles
     {
         public AutoMapperProfile()
         {
-            //CreateMap<int, MedicalCenterType>().ReverseMap().ConvertUsing(typeof(MedicalCenterType_TypeConverter));
-            //CreateMap<MedicalCenter, MedicalCenterDto>().ReverseMap();
-
             CreateMap<CreateMedicalCenterDto, MedicalCenter>()
                     .ForMember(dest => dest.Type, opt => opt.MapFrom<MedicalCenterTypeResolver<CreateMedicalCenterDto>>())
                     .ForMember(dest => dest.Location, opt => opt.MapFrom<PointResolver<CreateMedicalCenterDto, MedicalCenter>>())

@@ -16,10 +16,6 @@ namespace MedicalCenters.API.ErrorHelper
     {
         public static ObjectResult ToObjectResult(this Exception exception)
         {
-            BaseQueryResponse result = default;
-            ObjectResult objectResult = default;
-
-            List<ErrorResponse> Errors = null;
             BaseExceptionHandler handler = null;
 
             switch (exception)
