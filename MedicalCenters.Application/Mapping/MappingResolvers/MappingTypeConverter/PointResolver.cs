@@ -9,9 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using NetTopologySuite.Geometries;
 
-namespace MedicalCenters.Application.Mapping.MappingTypeConverter
+namespace MedicalCenters.Application.Mapping.MappingResolvers.MappingTypeConverter
 {
-    internal class PointResolver<T,Y> : IValueResolver<T, Y, Point>
+    internal class PointResolver<T, Y> : IValueResolver<T, Y, Point>
         where T : IMedicalCenterDto
     {
         public Point Resolve(T source, Y destination, Point destMember, ResolutionContext context)

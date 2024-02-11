@@ -36,6 +36,7 @@ namespace MedicalCenters.Infrastructure.DBContexts
         public DbSet<MedicalCenter> MedicalCenter { get; set; }
         public DbSet<MedicalCenterType> MedicalCenterType { get; set; }
         public DbSet<MedicalWard> MedicalWard { get; set;}
+        public DbSet<MedicalWardType> MedicalWardType { get; set; }
         public DbSet<MedicalUnit> MedicalUnit { get; set; }
         public DbSet<Visit> Visit { get; set; }
         public DbSet<ShiftPlan> ShiftPlan { get; set; }

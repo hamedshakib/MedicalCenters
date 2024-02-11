@@ -10,6 +10,7 @@ namespace MedicalCenters.Application.Contracts.Persistence
 {
     public interface IMedicalWardRepository : IGenericRepository<MedicalWard>
     {
+        Task<MedicalWardType> GetMedicalWardType(long id);
         Task<IList<MedicalWard>> GetAllMedicalCenterWards(long id);
     }
 }

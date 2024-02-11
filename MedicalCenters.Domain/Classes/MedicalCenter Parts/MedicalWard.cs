@@ -18,6 +18,7 @@ namespace MedicalCenters.Domain.Classes
         public MedicalWardType Type { get; set; }
         [StringLength(1000)]
         public string Description { get; set; }
+        public MedicalCenter MedicalCenter { get; set; }
         public IList<MedicalUnit> Units { get; set; }
     }
 }

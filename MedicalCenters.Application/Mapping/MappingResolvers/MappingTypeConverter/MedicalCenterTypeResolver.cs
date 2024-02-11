@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace MedicalCenters.Application.Mapping.MappingTypeConverter
+namespace MedicalCenters.Application.Mapping.MappingResolvers.MappingTypeConverter
 {
     internal class MedicalCenterTypeResolver<T>(IMedicalCentersUnitOfWork unitOfWork) : IValueResolver<T, MedicalCenter, MedicalCenterType>
         where T : IMedicalCenterDto
@@ -22,7 +22,7 @@ namespace MedicalCenters.Application.Mapping.MappingTypeConverter
 
             dataNullable = dataNullable ?? throw new ArgumentNullException(nameof(dataNullable));
 
-            return (MedicalCenterType)dataNullable;
+            return dataNullable;
         }
     }
 }

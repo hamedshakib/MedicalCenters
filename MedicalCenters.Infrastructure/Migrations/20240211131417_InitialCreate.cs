@@ -339,7 +339,7 @@ namespace MedicalCenters.Persistence.Migrations
                     Name = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
                     TypeId = table.Column<long>(type: "bigint", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
-                    MedicalCenterId = table.Column<long>(type: "bigint", nullable: true),
+                    MedicalCenterId = table.Column<long>(type: "bigint", nullable: false),
                     DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false),
                     DateTimeModified = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -352,7 +352,8 @@ namespace MedicalCenters.Persistence.Migrations
                         name: "FK_MedicalWard_MedicalCenter_MedicalCenterId",
                         column: x => x.MedicalCenterId,
                         principalTable: "MedicalCenter",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_MedicalWard_MedicalWardType_TypeId",
                         column: x => x.TypeId,
@@ -672,14 +673,14 @@ namespace MedicalCenters.Persistence.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateTimeCreated", "Name" },
                 values: new object[,]
                 {
-                    { 1L, 1L, new DateTime(2024, 2, 11, 14, 4, 53, 948, DateTimeKind.Local).AddTicks(3779), "بیمارستان" },
-                    { 2L, 1L, new DateTime(2024, 2, 11, 14, 4, 53, 948, DateTimeKind.Local).AddTicks(3790), "کلینیک پزشکی" },
-                    { 3L, 1L, new DateTime(2024, 2, 11, 14, 4, 53, 948, DateTimeKind.Local).AddTicks(3791), "مرکز جراحی سر پایی" },
-                    { 4L, 1L, new DateTime(2024, 2, 11, 14, 4, 53, 948, DateTimeKind.Local).AddTicks(3792), "مرکز زایمان " },
-                    { 5L, 1L, new DateTime(2024, 2, 11, 14, 4, 53, 948, DateTimeKind.Local).AddTicks(3793), "مرکز تصویر برداری" },
-                    { 6L, 1L, new DateTime(2024, 2, 11, 14, 4, 53, 948, DateTimeKind.Local).AddTicks(3795), "مرکز دیابت" },
-                    { 7L, 1L, new DateTime(2024, 2, 11, 14, 4, 53, 948, DateTimeKind.Local).AddTicks(3797), "مرکز دیالیز" },
-                    { 8L, 1L, new DateTime(2024, 2, 11, 14, 4, 53, 948, DateTimeKind.Local).AddTicks(3798), "مرکز توان بخشی" }
+                    { 1L, 1L, new DateTime(2024, 2, 11, 16, 44, 16, 355, DateTimeKind.Local).AddTicks(5614), "بیمارستان" },
+                    { 2L, 1L, new DateTime(2024, 2, 11, 16, 44, 16, 355, DateTimeKind.Local).AddTicks(5630), "کلینیک پزشکی" },
+                    { 3L, 1L, new DateTime(2024, 2, 11, 16, 44, 16, 355, DateTimeKind.Local).AddTicks(5631), "مرکز جراحی سر پایی" },
+                    { 4L, 1L, new DateTime(2024, 2, 11, 16, 44, 16, 355, DateTimeKind.Local).AddTicks(5632), "مرکز زایمان " },
+                    { 5L, 1L, new DateTime(2024, 2, 11, 16, 44, 16, 355, DateTimeKind.Local).AddTicks(5633), "مرکز تصویر برداری" },
+                    { 6L, 1L, new DateTime(2024, 2, 11, 16, 44, 16, 355, DateTimeKind.Local).AddTicks(5634), "مرکز دیابت" },
+                    { 7L, 1L, new DateTime(2024, 2, 11, 16, 44, 16, 355, DateTimeKind.Local).AddTicks(5635), "مرکز دیالیز" },
+                    { 8L, 1L, new DateTime(2024, 2, 11, 16, 44, 16, 355, DateTimeKind.Local).AddTicks(5636), "مرکز توان بخشی" }
                 });
 
             migrationBuilder.InsertData(
@@ -687,11 +688,11 @@ namespace MedicalCenters.Persistence.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateTimeCreated", "Description", "Name" },
                 values: new object[,]
                 {
-                    { 1L, 1L, new DateTime(2024, 2, 11, 14, 4, 53, 948, DateTimeKind.Local).AddTicks(4109), null, "بخش قلب" },
-                    { 2L, 1L, new DateTime(2024, 2, 11, 14, 4, 53, 948, DateTimeKind.Local).AddTicks(4111), null, "بخش ریه" },
-                    { 3L, 1L, new DateTime(2024, 2, 11, 14, 4, 53, 948, DateTimeKind.Local).AddTicks(4112), null, "بخش کلیه" },
-                    { 4L, 1L, new DateTime(2024, 2, 11, 14, 4, 53, 948, DateTimeKind.Local).AddTicks(4113), null, "بخش کبد" },
-                    { 5L, 1L, new DateTime(2024, 2, 11, 14, 4, 53, 948, DateTimeKind.Local).AddTicks(4115), null, "بخش پیوند" }
+                    { 1L, 1L, new DateTime(2024, 2, 11, 16, 44, 16, 355, DateTimeKind.Local).AddTicks(5871), null, "بخش قلب" },
+                    { 2L, 1L, new DateTime(2024, 2, 11, 16, 44, 16, 355, DateTimeKind.Local).AddTicks(5873), null, "بخش ریه" },
+                    { 3L, 1L, new DateTime(2024, 2, 11, 16, 44, 16, 355, DateTimeKind.Local).AddTicks(5874), null, "بخش کلیه" },
+                    { 4L, 1L, new DateTime(2024, 2, 11, 16, 44, 16, 355, DateTimeKind.Local).AddTicks(5875), null, "بخش کبد" },
+                    { 5L, 1L, new DateTime(2024, 2, 11, 16, 44, 16, 355, DateTimeKind.Local).AddTicks(5876), null, "بخش پیوند" }
                 });
 
             migrationBuilder.CreateIndex(

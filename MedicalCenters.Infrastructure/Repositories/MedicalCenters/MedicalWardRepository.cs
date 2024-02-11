@@ -29,5 +29,11 @@ namespace MedicalCenters.Persistence.Repositories.MedicalCenters
 
             return Wards;
         }
+
+        public async Task<MedicalWardType> GetMedicalWardType(long id)
+        {
+            var value = await _dBContext.MedicalWardType.FindAsync(id);
+            return value;
+        }
     }
 }

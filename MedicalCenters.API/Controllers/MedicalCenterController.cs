@@ -40,6 +40,7 @@ namespace MedicalCenters.API.Controllers
             }
             return Ok(result);
         }
+
         [Authorize]
         [HttpGet("{id}")]
         [RequiresPermission(4)]

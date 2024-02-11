@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Application.Features.MedicalWard.Requests.Commands
 {
-    internal class CreateMedicalWardCommand : IRequest<BaseValuedCommandResponse>
+    public class CreateMedicalWardCommand : IRequest<BaseValuedCommandResponse>
     {
         public CreateMedicalWardDto CreateMedicalWardDto { get; set; }
     }
