@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace MedicalCenters.Application.Features.MedicalWard.Handlers.Queries
 {
@@ -22,10 +23,9 @@ namespace MedicalCenters.Application.Features.MedicalWard.Handlers.Queries
             var response = new BaseQueryResponse();
 
             var result = await unitOfWork.MedicalWardRepository.Get((int)request.Id);
-
             if(result == null) 
             {
-                throw new NotFoundException("بخش درمانی");
+                throw new NotFoundException("بخش درمانی", request.Id.ToString());
             }
 
             var dto = mapper.Map<MedicalWardDto>(result);

@@ -11,7 +11,7 @@ namespace MedicalCenters.API.ErrorHelper.ExceptionHelper
         public override ObjectResult ProcessException()
         {
             response.Errors = new List<ErrorResponse>();
-            response.Errors.Add(new ErrorResponse((int)ErrorEnums.NotFound, $" {ex.NotFound_Object} مورد نظر یافت نشد"));
+            response.Errors.Add(new ErrorResponse((int)ErrorEnums.NotFound, $" {ex.NotFound_ObjectType} با شناسه '{ex.Id}' یافت نشد"));
 
             objectResult = new ObjectResult(response);
             objectResult.StatusCode = StatusCodes.Status400BadRequest;

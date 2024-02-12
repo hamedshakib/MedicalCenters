@@ -23,7 +23,7 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Queries
 
             if (result == null)
             {
-                throw new NotFoundException("مرکز درمانی");
+                throw new NotFoundException("مرکز درمانی", request.Id.ToString());
             }
 
             var dto = mapper.Map<MedicalCenterDto>(result);

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Azure.Core;
 using MediatR;
 using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Application.DTOs;
@@ -28,8 +29,7 @@ namespace MedicalCenters.Application.Features.MedicalWard.Handlers.Commands
             }
             else
             {
-                string Object = "بخش درمانی" + command.Id;
-                throw new NotFoundException(Object);
+                throw new NotFoundException("بخش درمانی", command.Id.ToString());
             }
 
             await unitOfWork.Save();

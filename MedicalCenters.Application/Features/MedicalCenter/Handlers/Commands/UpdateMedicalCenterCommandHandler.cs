@@ -22,8 +22,7 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Commands
             var medicalCenter=await unitOfWork.MedicalCenterRepository.Get((int)command.MedicalCenterDto.Id);
             if (medicalCenter is null)
             {
-                string Object= "مرکز درمانی" + command.MedicalCenterDto.Id.ToString();
-                throw new NotFoundException(Object);
+                throw new NotFoundException("مرکز درمانی", command.MedicalCenterDto.Id.ToString());
             }
 
             mapper.Map(command.MedicalCenterDto, medicalCenter);

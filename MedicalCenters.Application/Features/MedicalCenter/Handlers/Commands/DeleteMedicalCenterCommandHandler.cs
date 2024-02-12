@@ -27,8 +27,7 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Commands
             }
             else
             {
-                string Object = "مرکز درمانی" + command.Id;
-                throw new NotFoundException(Object);
+                throw new NotFoundException("مرکز درمانی", command.Id.ToString());
             }
 
             await unitOfWork.Save();

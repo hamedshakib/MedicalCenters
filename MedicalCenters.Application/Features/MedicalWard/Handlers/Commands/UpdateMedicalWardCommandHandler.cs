@@ -23,8 +23,7 @@ namespace MedicalCenters.Application.Features.MedicalWard.Handlers.Commands
             var medicalWard=await unitOfWork.MedicalWardRepository.Get((int)command.MedicalWardDto.Id);
             if (medicalWard is null)
             {
-                string Object= "بخش درمانی" + command.MedicalWardDto.Id.ToString();
-                throw new NotFoundException(Object);
+                throw new NotFoundException("بخش درمانی", command.MedicalWardDto.Id.ToString());
             }
 
             mapper.Map(command.MedicalWardDto, medicalWard);
