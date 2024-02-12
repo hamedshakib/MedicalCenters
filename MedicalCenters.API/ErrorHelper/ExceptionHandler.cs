@@ -8,6 +8,7 @@ using MedicalCenters.Application.Responses;
 using MedicalCenters.Identity.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System.Data.Common;
 
 namespace MedicalCenters.API.ErrorHelper
@@ -42,6 +43,10 @@ namespace MedicalCenters.API.ErrorHelper
 
                 case UnauthorizedAccessException ex:
                     handler = new UnauthorizedAccessExceptionHandler(ex);
+                    return handler.ProcessException();
+
+                case DbUpdateException ex:
+                    handler = new DbUpdateExceptionHandler(ex);
                     return handler.ProcessException();
 
                 default:
