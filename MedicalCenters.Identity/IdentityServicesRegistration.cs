@@ -25,7 +25,8 @@ namespace MedicalCenters.Identity
             {
                 x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
                 {
-                    ValidateLifetime = false,
+                    ClockSkew = TimeSpan.Zero,
+                    ValidateLifetime = true,
                     RequireExpirationTime = true,
                     IssuerSigningKey = CustomSecurityKeyBasic.SymmetricSecurityKey,
                     ValidateIssuerSigningKey = true,
@@ -33,12 +34,22 @@ namespace MedicalCenters.Identity
                     ValidIssuer = "Medical Center Server",
                     ValidAudience = "Medical Center Client",
                     ValidateAudience = true,
+                    LifetimeValidator = CustomLifetimeValidator
                 };
             });
 
             services.AddAuthorization();
 
             return services;
+        }
+        private static bool CustomLifetimeValidator(DateTime? notBefore, DateTime? expires,
+                                                    SecurityToken tokenToValidate, TokenValidationParameters @param)
+        {
+            if (expires != null)
+            {
+                return expires > DateTime.UtcNow;
+            }
+            return false;
         }
     }
 }

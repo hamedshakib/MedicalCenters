@@ -14,7 +14,7 @@ namespace MedicalCenters.Application.Features.MedicalWard.Handlers.Queries
         {
             var response = new BaseQueryResponse();
 
-            var result = await unitOfWork.MedicalWardRepository.GetAllMedicalCenterWards(request.MedicalCenterId);
+            var result = await unitOfWork.MedicalWardRepository.GetAllMedicalCenterWards((int)request.MedicalCenterId);
 
             List <MedicalWardDto> dtos = new List<MedicalWardDto>();
             result.ToList().ForEach(x => dtos.Add(mapper.Map<MedicalWardDto>(x)));

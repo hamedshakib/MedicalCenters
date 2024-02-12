@@ -21,7 +21,7 @@ namespace MedicalCenters.Application.Features.MedicalWard.Handlers.Queries
         {
             var response = new BaseQueryResponse();
 
-            var result = await unitOfWork.MedicalWardRepository.Get(request.Id);
+            var result = await unitOfWork.MedicalWardRepository.Get((int)request.Id);
 
             if(result == null) 
             {

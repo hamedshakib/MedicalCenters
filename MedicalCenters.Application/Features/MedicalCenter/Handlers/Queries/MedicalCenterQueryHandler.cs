@@ -19,7 +19,7 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Queries
         {
             var response = new BaseQueryResponse();
 
-            var result = await unitOfWork.MedicalCenterRepository.Get(request.Id);
+            var result = await unitOfWork.MedicalCenterRepository.Get((int)request.Id);
 
             if (result == null)
             {
