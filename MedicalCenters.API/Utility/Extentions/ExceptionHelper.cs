@@ -1,7 +1,7 @@
-﻿using FluentValidation.Results;
+﻿using FluentValidation;
+using FluentValidation.Results;
 using MedicalCenters.Application.Contracts.Error;
 using MedicalCenters.Application.Responses;
-using System.ComponentModel.DataAnnotations;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Model;
 
 namespace MedicalCenters.API.Utility.Extentions
@@ -11,7 +11,7 @@ namespace MedicalCenters.API.Utility.Extentions
         public static IList<ErrorResponse> ErrorsResponse(this ValidationException exception)
         {
             var Errors = new List<ErrorResponse>();
-            var ValidationFailureList = (List<ValidationFailure>)exception.Value;
+            var ValidationFailureList = (List<ValidationFailure>)exception.Errors;
             ValidationFailureList.ForEach(x => Errors.Add(new ErrorResponse((int)ErrorEnums.Validation, x.ErrorMessage)));
             return Errors;
         }

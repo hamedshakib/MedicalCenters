@@ -22,13 +22,4 @@ namespace MedicalCenters.Application.Mapping.MappingResolvers.MappingTypeConvert
             };
         }
     }
-
-    internal class GPSxResolver<T, Y> : IValueResolver<T, Y, double>
-    where T : IMedicalCenterDto
-    {
-        double IValueResolver<T, Y, double>.Resolve(T source, Y destination, double destMember, ResolutionContext context)
-        {
-            return source.GPSx;
-        }
-    }
 }
