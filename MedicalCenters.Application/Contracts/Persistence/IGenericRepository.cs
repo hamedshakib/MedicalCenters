@@ -9,11 +9,11 @@ namespace MedicalCenters.Application.Contracts.Persistence
     public interface IGenericRepository<T> where T : class
     {
         Task<T> Add(T entity);
-        Task<T> Get(long id);
-        Task<T> Get(int id);
-        Task<IEnumerable<T>> GetAll();
-        Task<bool> Exist(long id);
-        Task<bool> Exist(int id);
+        Task<T> Get(long id, CancellationToken cancellationToken = default);
+        Task<T> Get(int id, CancellationToken cancellationToken = default);
+        Task<IEnumerable<T>> GetAll(CancellationToken cancellationToken = default);
+        Task<bool> Exist(long id, CancellationToken cancellationToken = default);
+        Task<bool> Exist(int id, CancellationToken cancellationToken = default);
         Task Update(T entity);
         Task Update(long id);
         Task Update(int id);

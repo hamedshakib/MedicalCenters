@@ -40,31 +40,31 @@ namespace MedicalCenters.Infrastructure.Repositories
             _dBContext.Set<T>().Remove(entity);
         }
 
-        public async Task<bool> Exist(long id)
+        public async Task<bool> Exist(long id,CancellationToken cancellationToken = default)
         {
-            var entity = await Get(id);
+            var entity = await Get(id,cancellationToken);
             return entity != null;
         }
 
-        public async Task<bool> Exist(int id)
+        public async Task<bool> Exist(int id, CancellationToken cancellationToken = default)
         {
-            var entity = await Get(id);
+            var entity = await Get(id,cancellationToken);
             return entity != null;
         }
 
-        public async Task<T> Get(long id)
+        public async Task<T> Get(long id,CancellationToken cancellationToken=default)
         {
-            return await _dBContext.Set<T>().FindAsync(id);
+            return await _dBContext.Set<T>().FindAsync(id,cancellationToken);
         }
 
-        public async Task<T> Get(int id)
+        public async Task<T> Get(int id,CancellationToken cancellationToken = default)
         {
-            return await _dBContext.Set<T>().FindAsync(id);
+            return await _dBContext.Set<T>().FindAsync(id,cancellationToken);
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public async Task<IEnumerable<T>> GetAll(CancellationToken cancellationToken = default)
         {
-            return await _dBContext.Set<T>().ToListAsync();
+            return await _dBContext.Set<T>().ToListAsync(cancellationToken);
         }
 
         public async Task Update(T entity)

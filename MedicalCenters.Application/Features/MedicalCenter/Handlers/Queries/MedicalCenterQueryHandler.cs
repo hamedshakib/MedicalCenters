@@ -18,8 +18,8 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Queries
         public async Task<BaseQueryResponse> Handle(MedicalCenterQuery request, CancellationToken cancellationToken)
         {
             var response = new BaseQueryResponse();
-
-            var result = await unitOfWork.MedicalCenterRepository.Get((int)request.Id);
+            cancellationToken.ThrowIfCancellationRequested();
+            var result = await unitOfWork.MedicalCenterRepository.Get((int)request.Id,cancellationToken);
 
             if (result == null)
             {

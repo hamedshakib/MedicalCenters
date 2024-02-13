@@ -27,13 +27,13 @@ namespace MedicalCenters.API.Controllers
     {
         [HttpGet]
         [RequiresPermission(5)]
-        public async Task<ActionResult<BaseQueryResponse>> GetAllMedicalCenters()
+        public async Task<ActionResult<BaseQueryResponse>> GetAllMedicalCenters(CancellationToken cancellationToken=default)
         {
             var query = new AllMedicalCentersQuery();
             BaseQueryResponse result = null;
             try
             {
-                result = await mediator.Send(query);
+                result = await mediator.Send(query,cancellationToken);
             }
             catch (Exception ex)
             {
@@ -45,7 +45,7 @@ namespace MedicalCenters.API.Controllers
         [Authorize]
         [HttpGet("{id}")]
         [RequiresPermission(4)]
-        public async Task<ActionResult<BaseQueryResponse>> GetMedicalCenters(long Id)
+        public async Task<ActionResult<BaseQueryResponse>> GetMedicalCenters(long Id, CancellationToken cancellationToken = default)
         {
             var query = new MedicalCenterQuery() {Id=Id };
             BaseQueryResponse result = null;

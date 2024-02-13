@@ -21,23 +21,19 @@ namespace MedicalCenters.Persistence.Repositories.MedicalCenters
             _dBContext = dBContext;
         }
 
-        public async Task<IList<MedicalWard>> GetAllMedicalCenterWards(long id)
+        public async Task<IList<MedicalWard>> GetAllMedicalCenterWards(long id, CancellationToken cancellationToken = default)
         {
 
-            var Wards =(from ward in _dBContext.MedicalWard
+            var Wards =await (from ward in _dBContext.MedicalWard
                         where ward.MedicalCenterId == id
-                        select ward).ToList();
+                        select ward).ToListAsync(cancellationToken);
 
-
-            //var Wards = (from medicalCenter in _dBContext.MedicalCenter
-            //             where medicalCenter.Id == id
-            //             select medicalCenter.Wards).FirstOrDefault();
             return Wards;
         }
 
-        public async Task<MedicalWardType> GetMedicalWardType(long id)
+        public async Task<MedicalWardType> GetMedicalWardType(long id, CancellationToken cancellationToken = default)
         {
-            var value = await _dBContext.MedicalWardType.FindAsync(id);
+            var value = await _dBContext.MedicalWardType.FindAsync(id,cancellationToken);
             return value;
         }
     }

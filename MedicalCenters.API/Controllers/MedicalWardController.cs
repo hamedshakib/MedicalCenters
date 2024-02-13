@@ -18,13 +18,13 @@ namespace MedicalCenters.API.Controllers
         [Authorize]
         [HttpGet("{id}")]
         [RequiresPermission(9)]
-        public async Task<ActionResult<BaseQueryResponse>> GetMedicalWard(long Id)
+        public async Task<ActionResult<BaseQueryResponse>> GetMedicalWard(long Id, CancellationToken cancellationToken = default)
         {
             var query = new MedicalWardQuery() { Id = Id };
             BaseQueryResponse result = null;
             try
             {
-                result = await mediator.Send(query);
+                result = await mediator.Send(query,cancellationToken);
             }
             catch (Exception ex)
             {
@@ -35,13 +35,13 @@ namespace MedicalCenters.API.Controllers
 
         [HttpPost]
         [RequiresPermission(6)]
-        public async Task<ActionResult<BaseValuedCommandResponse>> AddMedicalWard([FromBody] CreateMedicalWardDto newMedicalWard)
+        public async Task<ActionResult<BaseValuedCommandResponse>> AddMedicalWard([FromBody] CreateMedicalWardDto newMedicalWard, CancellationToken cancellationToken = default)
         {
             var command = new CreateMedicalWardCommand() { CreateMedicalWardDto = newMedicalWard };
             BaseValuedCommandResponse result = null;
             try
             {
-                result = await mediator.Send(command);
+                result = await mediator.Send(command,cancellationToken);
             }
             catch (Exception ex)
             {

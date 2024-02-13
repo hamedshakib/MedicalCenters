@@ -21,8 +21,8 @@ namespace MedicalCenters.Application.Features.MedicalWard.Handlers.Queries
         public async Task<BaseQueryResponse> Handle(MedicalWardQuery request, CancellationToken cancellationToken)
         {
             var response = new BaseQueryResponse();
-
-            var result = await unitOfWork.MedicalWardRepository.Get((int)request.Id);
+            cancellationToken.ThrowIfCancellationRequested();
+            var result = await unitOfWork.MedicalWardRepository.Get((int)request.Id,cancellationToken);
             if(result == null) 
             {
                 throw new NotFoundException("بخش درمانی", request.Id.ToString());

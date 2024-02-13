@@ -18,9 +18,10 @@ namespace MedicalCenters.Application.Features
         }
         Task<TResponse> IPipelineBehavior<TRequest, TResponse>.Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
         {
-
             var validationContext = new ValidationContext<TRequest>(request);
-            var validationFailures=_validators.Select(x => x.Validate(validationContext))
+            cancellationToken.ThrowIfCancellationRequested();
+
+            var validationFailures = _validators.Select(x => x.Validate(validationContext))
                                               .SelectMany(x => x.Errors)
                                               .Where(x => x != null)
                                               .ToList();
