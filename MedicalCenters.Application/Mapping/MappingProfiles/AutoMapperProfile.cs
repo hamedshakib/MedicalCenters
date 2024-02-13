@@ -5,6 +5,7 @@ using MedicalCenters.Application.Mapping.MappingResolvers;
 using MedicalCenters.Application.Mapping.MappingResolvers.MappingTypeConverter;
 using MedicalCenters.Domain.Classes;
 using MedicalCenters.Domain.Classes.MedicalCenter_Parts;
+using NetTopologySuite.Geometries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,12 +20,20 @@ namespace MedicalCenters.Application.Mapping.MappingProfiles
         public AutoMapperProfile()
         {
             CreateMap<CreateMedicalCenterDto, MedicalCenter>()
-                    .ForMember(dest => dest.Location, opt => opt.MapFrom<PointResolver<CreateMedicalCenterDto, MedicalCenter>>())
-                    .ReverseMap();
+                    .ForMember(dest => dest.Location, opt => opt.MapFrom<PointResolver<CreateMedicalCenterDto, MedicalCenter>>());
+            CreateMap<MedicalCenter, CreateMedicalCenterDto>()
+                    .ForMember(dest => dest.GPSx, opt => opt.MapFrom(src => src.Location.X))
+                    .ForMember(dest => dest.GPSy, opt => opt.MapFrom(src => src.Location.Y));
 
-            CreateMap<MedicalCenterDto,MedicalCenter>()
-                    .ForMember(dest => dest.Location, opt => opt.MapFrom<PointResolver<MedicalCenterDto, MedicalCenter>>())
-                    .ReverseMap();
+
+            CreateMap<MedicalCenterDto, MedicalCenter>()
+                    .ForMember(dest => dest.Location, opt => opt.MapFrom<PointResolver<MedicalCenterDto, MedicalCenter>>());
+            CreateMap<MedicalCenter, MedicalCenterDto>()
+                    .ForMember(dest => dest.GPSx, opt => opt.MapFrom(src => src.Location.X))
+                    .ForMember(dest => dest.GPSy, opt => opt.MapFrom(src => src.Location.Y));
+
+
+
 
 
             CreateMap<CreateMedicalWardDto, MedicalWard>()

@@ -21,13 +21,14 @@ namespace MedicalCenters.Application.Mapping.MappingResolvers.MappingTypeConvert
                 SRID = 4326
             };
         }
+    }
 
-        public Point Resolve(Y source, T destination, Point destMember, ResolutionContext context)
+    internal class GPSxResolver<T, Y> : IValueResolver<T, Y, double>
+    where T : IMedicalCenterDto
+    {
+        double IValueResolver<T, Y, double>.Resolve(T source, Y destination, double destMember, ResolutionContext context)
         {
-            return new Point(destination.GPSx, destination.GPSy)
-            {
-                SRID = 4326
-            };
+            return source.GPSx;
         }
     }
 }
