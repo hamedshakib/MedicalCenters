@@ -32,6 +32,7 @@ namespace MedicalCenters.Infrastructure.DBContexts
         {
             modelBuilder.ApplyConfiguration(new MedicalCenterTypeConfiguration());
             modelBuilder.ApplyConfiguration(new MedicalWardTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new MedicineTypeConfiguration());
         }
 
         public DbSet<MedicalCenter> MedicalCenter { get; set; }

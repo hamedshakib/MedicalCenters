@@ -150,22 +150,27 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                 columns: new[] { "Id", "CreatedBy", "DateTimeCreated", "Description", "Name" },
                 values: new object[,]
                 {
-                    { 1, 1L, new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5510), "افزودن مرکز درمانی", "AddMedicalCenter" },
-                    { 2, 1L, new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5513), "ویرایش مرکز درمانی", "EditMedicalCenter" },
-                    { 3, 1L, new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5514), "حذف مرکز درمانی", "DeleteMedicalCenter" },
-                    { 4, 1L, new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5515), "مشاهده اطلاعات مرکز درمانی", "GetMedicalCenterInfo" },
-                    { 5, 1L, new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5516), "مشاهده اطلاعات تمامی مراکز درمانی", "GetAllMedicalCenterInfos" },
-                    { 6, 1L, new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5519), "افزودن بخش درمانی", "AddMedicalWard" },
-                    { 7, 1L, new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5520), "ویرایش بخش درمانی", "EditMedicalWard" },
-                    { 8, 1L, new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5521), "حذف بخش درمانی", "DeleteMedicalWard" },
-                    { 9, 1L, new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5523), "مشاهده اطلاعات بخش درمانی", "GetMedicalWardInfo" },
-                    { 10, 1L, new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(5524), "مشاهده اطلاعات تمامی بخش های مرکز درمانی", "GetAllMedicalCenterWardsInfos" }
+                    { 1, 1L, new DateTime(2024, 2, 16, 19, 10, 29, 730, DateTimeKind.Local).AddTicks(2524), "افزودن مرکز درمانی", "AddMedicalCenter" },
+                    { 2, 1L, new DateTime(2024, 2, 16, 19, 10, 29, 730, DateTimeKind.Local).AddTicks(2527), "ویرایش مرکز درمانی", "EditMedicalCenter" },
+                    { 3, 1L, new DateTime(2024, 2, 16, 19, 10, 29, 730, DateTimeKind.Local).AddTicks(2528), "حذف مرکز درمانی", "DeleteMedicalCenter" },
+                    { 4, 1L, new DateTime(2024, 2, 16, 19, 10, 29, 730, DateTimeKind.Local).AddTicks(2530), "مشاهده اطلاعات مرکز درمانی", "SeeMedicalCenterInfo" },
+                    { 5, 1L, new DateTime(2024, 2, 16, 19, 10, 29, 730, DateTimeKind.Local).AddTicks(2531), "مشاهده اطلاعات تمامی مراکز درمانی", "SeeAllMedicalCentersInfos" },
+                    { 6, 1L, new DateTime(2024, 2, 16, 19, 10, 29, 730, DateTimeKind.Local).AddTicks(2532), "افزودن بخش درمانی", "AddMedicalWard" },
+                    { 7, 1L, new DateTime(2024, 2, 16, 19, 10, 29, 730, DateTimeKind.Local).AddTicks(2533), "ویرایش بخش درمانی", "EditMedicalWard" },
+                    { 8, 1L, new DateTime(2024, 2, 16, 19, 10, 29, 730, DateTimeKind.Local).AddTicks(2534), "حذف بخش درمانی", "DeleteMedicalWard" },
+                    { 9, 1L, new DateTime(2024, 2, 16, 19, 10, 29, 730, DateTimeKind.Local).AddTicks(2535), "مشاهده اطلاعات بخش درمانی", "SeeMedicalWardInfo" },
+                    { 10, 1L, new DateTime(2024, 2, 16, 19, 10, 29, 730, DateTimeKind.Local).AddTicks(2536), "مشاهده اطلاعات تمامی بخش های مرکز درمانی", "SeeAllMedicalCenterWardsInfos" },
+                    { 11, 1L, new DateTime(2024, 2, 16, 19, 10, 29, 730, DateTimeKind.Local).AddTicks(2537), "افزودن دارو", "AddMedicine" },
+                    { 12, 1L, new DateTime(2024, 2, 16, 19, 10, 29, 730, DateTimeKind.Local).AddTicks(2538), "ویرایش دارو", "EditMedicine" },
+                    { 13, 1L, new DateTime(2024, 2, 16, 19, 10, 29, 730, DateTimeKind.Local).AddTicks(2539), "حذف دارو", "DeleteMedicine" },
+                    { 14, 1L, new DateTime(2024, 2, 16, 19, 10, 29, 730, DateTimeKind.Local).AddTicks(2540), "مشاهده دارو ها", "SeeMedicines" },
+                    { 15, 1L, new DateTime(2024, 2, 16, 19, 10, 29, 730, DateTimeKind.Local).AddTicks(2541), "مشاهده دارو های یک نوع", "SeeAllMedicineTypeMedicinesInfos" }
                 });
 
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "Id", "CreatedBy", "DateTimeCreated", "HashAlgorithmType", "HashedPassword", "Name", "PeaperType", "Salt", "UserName" },
-                values: new object[] { 1L, 1L, new DateTime(2024, 2, 11, 22, 19, 58, 25, DateTimeKind.Local).AddTicks(4598), 0, new byte[] { 177, 61, 55, 15, 206, 166, 179, 63, 22, 5, 248, 161, 254, 136, 238, 32, 18, 48, 127, 203, 156, 188, 85, 161, 138, 105, 148, 174, 115, 177, 73, 167, 253, 26, 179, 102, 155, 3, 105, 150, 225, 36, 57, 249, 193, 107, 24, 103, 116, 86, 160, 111, 187, 156, 209, 213, 11, 108, 194, 80, 169, 208, 83, 100 }, "ادمین", 0, new byte[] { 159, 54, 184, 219, 157, 143, 180, 119, 192, 147, 67, 184, 54, 204, 248, 114, 68, 105, 129, 252, 58, 29, 116, 196, 14, 37, 6, 176, 146, 132, 249, 157, 29, 195, 35, 236, 19, 135, 215, 47, 109, 183, 243, 147, 187, 243, 190, 93, 14, 110, 84, 207, 89, 112, 89, 94, 222, 47, 108, 130, 242, 166, 68, 38 }, "Administrator" });
+                values: new object[] { 1L, 1L, new DateTime(2024, 2, 16, 19, 10, 29, 730, DateTimeKind.Local).AddTicks(2010), 0, new byte[] { 203, 60, 34, 59, 109, 221, 144, 116, 30, 159, 154, 232, 52, 188, 60, 93, 41, 97, 87, 177, 44, 208, 244, 0, 84, 227, 113, 7, 156, 216, 236, 66, 149, 108, 17, 125, 174, 112, 61, 14, 152, 162, 248, 183, 71, 65, 58, 231, 67, 126, 200, 25, 193, 81, 76, 90, 10, 65, 131, 222, 252, 44, 93, 141 }, "ادمین", 0, new byte[] { 237, 189, 17, 71, 1, 0, 177, 83, 203, 204, 61, 27, 218, 96, 55, 157, 185, 163, 40, 180, 113, 32, 138, 199, 212, 63, 191, 246, 87, 214, 103, 27, 241, 86, 73, 78, 38, 129, 197, 45, 168, 172, 209, 69, 164, 219, 233, 34, 49, 181, 158, 184, 87, 145, 171, 49, 0, 6, 209, 61, 56, 82, 179, 150 }, "Administrator" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Permission_PermissionGroup_PermissionGroupId",

@@ -11,11 +11,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MedicalCenters.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class MedicalWardController(IMediator mediator) : ControllerBase
     {
-        [Authorize]
         [HttpGet("{id}")]
         [RequiresPermission(9)]
         public async Task<ActionResult<BaseQueryResponse>> GetMedicalWard(long Id, CancellationToken cancellationToken = default)

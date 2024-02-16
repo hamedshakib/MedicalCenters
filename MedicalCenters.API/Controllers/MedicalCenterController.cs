@@ -21,6 +21,7 @@ using MedicalCenters.Application.Features.MedicalWard.Requests.Queries;
 
 namespace MedicalCenters.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class MedicalCenterController(IMediator mediator) : ControllerBase
@@ -42,7 +43,6 @@ namespace MedicalCenters.API.Controllers
             return Ok(result);
         }
 
-        [Authorize]
         [HttpGet("{id}")]
         [RequiresPermission(4)]
         public async Task<ActionResult<BaseQueryResponse>> GetMedicalCenters(long Id, CancellationToken cancellationToken = default)

@@ -13,6 +13,7 @@ namespace MedicalCenters.Application.Contracts.Persistence
 
         IMedicalCenterRepository MedicalCenterRepository { get; }
         IMedicalWardRepository MedicalWardRepository { get; }
+        IMedicineRepository MedicineRepository { get; }
 
     }
 }

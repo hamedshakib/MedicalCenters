@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using MedicalCenters.Application.DTOs.MedicalCenter;
 using MedicalCenters.Application.DTOs.MedicalWard;
+using MedicalCenters.Application.DTOs.Medicine;
 using MedicalCenters.Application.Mapping.MappingResolvers;
 using MedicalCenters.Application.Mapping.MappingResolvers.MappingTypeConverter;
 using MedicalCenters.Domain.Classes;
 using MedicalCenters.Domain.Classes.MedicalCenter_Parts;
+using MedicalCenters.Domain.Classes.Medicines;
 using NetTopologySuite.Geometries;
 using System;
 using System.Collections.Generic;
@@ -40,6 +42,12 @@ namespace MedicalCenters.Application.Mapping.MappingProfiles
                     .ReverseMap();
 
             CreateMap<MedicalWardDto, MedicalWard>()
+                    .ReverseMap();
+
+            CreateMap<CreateMedicineDto, Medicine>()
+                    .ReverseMap();
+
+            CreateMap<MedicineDto, Medicine>()
                     .ReverseMap();
         }
     }
