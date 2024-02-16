@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MedicalCenters.Application.Contracts.Error
+namespace MedicalCenters.Domain.Enums
 {
     public enum ErrorEnums
     {

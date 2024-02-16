@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
-using MedicalCenters.Application.Contracts.Error;
+using MedicalCenters.Domain.Enums;
 using MedicalCenters.Application.Responses;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Model;
 

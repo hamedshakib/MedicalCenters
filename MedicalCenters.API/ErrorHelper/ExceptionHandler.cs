@@ -2,7 +2,7 @@
 using FluentValidation;
 using MedicalCenters.API.ErrorHelper.ExceptionHelper;
 using MedicalCenters.API.Utility.Extentions;
-using MedicalCenters.Application.Contracts.Error;
+using MedicalCenters.Domain.Enums;
 using MedicalCenters.Application.Exceptions;
 using MedicalCenters.Application.Responses;
 using MedicalCenters.Identity.Exceptions;

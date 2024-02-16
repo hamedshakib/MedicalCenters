@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MedicalCenters.Application.Contracts.Error;
+using MedicalCenters.Domain.Enums;
 using MedicalCenters.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
 using static System.Runtime.InteropServices.JavaScript.JSType;

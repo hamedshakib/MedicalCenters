@@ -1,4 +1,4 @@
-﻿using MedicalCenters.Application.Contracts.Error;
+﻿using MedicalCenters.Domain.Enums;
 using MedicalCenters.Application.Responses;
 using MedicalCenters.Identity.Exceptions;
 using Microsoft.AspNetCore.Mvc;
