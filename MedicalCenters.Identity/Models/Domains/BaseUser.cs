@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MedicalCenters.Domain.Classes.Base
+namespace MedicalCenters.Domain.Entities.Base
 {
     public abstract class BaseUser : BaseCreateableDomainEntity
     {

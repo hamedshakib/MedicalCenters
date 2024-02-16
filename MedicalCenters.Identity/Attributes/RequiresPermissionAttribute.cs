@@ -22,7 +22,7 @@ namespace MedicalCenters.Identity.Attributes
     {
         async void IAuthorizationFilter.OnAuthorization(AuthorizationFilterContext context)
         {
-            bool HasPermition = false;
+            bool HasPermission = false;
             try
             {
                 var identityUnitOfWork = (IIdentityUnitOfWork)context.HttpContext.RequestServices.GetService<IIdentityUnitOfWork>();
@@ -35,17 +35,17 @@ namespace MedicalCenters.Identity.Attributes
                     long UserId = Convert.ToInt64(User.FindFirst(JwtRegisteredClaimNames.Sid).Value);
 
                     //Check User Permission
-                    HasPermition = await identityUnitOfWork.AuthorizationRepository.HasUserPermition(UserId, permissionId);
+                    HasPermission = await identityUnitOfWork.AuthorizationRepository.HasUserPermission(UserId, permissionId);
 
                     //Check Group Permission
-                    if(!HasPermition)
-                        HasPermition=await identityUnitOfWork.AuthorizationRepository.HasUserGroupPermition(UserId, permissionId);
+                    if(!HasPermission)
+                        HasPermission=await identityUnitOfWork.AuthorizationRepository.HasUserGroupPermission(UserId, permissionId);
                 }
             }
             catch { }
 
 #if (!DEBUG)
-            if (!HasPermition)
+            if (!HasPermission)
             {
                 context.Result = new ForbidResult();
             }

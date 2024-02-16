@@ -1,5 +1,5 @@
-﻿using MedicalCenters.Domain.Classes.Base;
-using MedicalCenters.Domain.Classes.Staffs;
+﻿using MedicalCenters.Domain.Entities.Base;
+using MedicalCenters.Domain.Entities.Staffs;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

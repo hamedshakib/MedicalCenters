@@ -1,6 +1,6 @@
 ﻿using MedicalCenters.Application.Contracts.Persistence;
-using MedicalCenters.Domain.Classes;
-using MedicalCenters.Domain.Classes.MedicalCenter_Parts;
+using MedicalCenters.Domain.Entities;
+using MedicalCenters.Domain.Entities.MedicalCenter_Parts;
 using MedicalCenters.Infrastructure.DBContexts;
 using MedicalCenters.Infrastructure.Repositories;
 using System;

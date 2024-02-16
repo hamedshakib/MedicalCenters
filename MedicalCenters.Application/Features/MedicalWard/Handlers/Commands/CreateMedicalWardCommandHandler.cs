@@ -18,7 +18,7 @@ namespace MedicalCenters.Application.Features.MedicalWard.Handlers.Commands
         {
             var response = new BaseValuedCommandResponse();
 
-            var data = mapper.Map<MedicalCenters.Domain.Classes.MedicalWard>(command.CreateMedicalWardDto);
+            var data = mapper.Map<MedicalCenters.Domain.Entities.MedicalWard>(command.CreateMedicalWardDto);
             data = await unitOfWork.MedicalWardRepository.Add(data);
 
             await unitOfWork.Save();

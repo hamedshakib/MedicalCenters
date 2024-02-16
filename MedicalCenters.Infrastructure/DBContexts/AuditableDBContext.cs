@@ -1,4 +1,4 @@
-﻿using MedicalCenters.Domain.Classes.Base;
+﻿using MedicalCenters.Domain.Entities.Base;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

@@ -26,7 +26,7 @@ namespace MedicalCenters.Persistence.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Allergy", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Allergy", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -61,7 +61,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.ToTable("Allergy");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Base.Personel", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Base.Personel", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -109,7 +109,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.UseTptMappingStrategy();
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Allergy_MedicineType", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.IntermediateEntities.Allergy_MedicineType", b =>
                 {
                     b.Property<int>("AllergyId")
                         .HasColumnType("int");
@@ -130,7 +130,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.ToTable("Allergy_MedicineType");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Allergy_Patient", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.IntermediateEntities.Allergy_Patient", b =>
                 {
                     b.Property<int>("AllergyId")
                         .HasColumnType("int");
@@ -151,7 +151,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.ToTable("Allergy_Patient");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Doctor_Operation", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.IntermediateEntities.Doctor_Operation", b =>
                 {
                     b.Property<long>("DoctorId")
                         .HasColumnType("bigint");
@@ -172,7 +172,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.ToTable("Doctor_Operation");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Doctor_Specialty", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.IntermediateEntities.Doctor_Specialty", b =>
                 {
                     b.Property<long>("DoctorId")
                         .HasColumnType("bigint");
@@ -193,7 +193,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.ToTable("Doctor_Specialty");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Doctor_Visit", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.IntermediateEntities.Doctor_Visit", b =>
                 {
                     b.Property<long>("DoctorId")
                         .HasColumnType("bigint");
@@ -214,7 +214,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.ToTable("Doctor_Visit");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Medicine_Operation", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.IntermediateEntities.Medicine_Operation", b =>
                 {
                     b.Property<int>("MedicineId")
                         .HasColumnType("int");
@@ -235,7 +235,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.ToTable("Medicine_Operation");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Medicine_PatientHistory", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.IntermediateEntities.Medicine_PatientHistory", b =>
                 {
                     b.Property<int>("MedicineId")
                         .HasColumnType("int");
@@ -256,7 +256,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.ToTable("Medicine_PatientHistory");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.MedicalCenter", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.MedicalCenter", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -304,7 +304,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.ToTable("MedicalCenter");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.MedicalCenter_Parts.MedicalCenterType", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.MedicalCenter_Parts.MedicalCenterType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -386,7 +386,7 @@ namespace MedicalCenters.Persistence.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.MedicalCenter_Parts.MedicalWardType", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.MedicalCenter_Parts.MedicalWardType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -451,7 +451,7 @@ namespace MedicalCenters.Persistence.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.MedicalUnit", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.MedicalUnit", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -486,7 +486,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.ToTable("MedicalUnit");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.MedicalWard", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.MedicalWard", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -531,7 +531,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.ToTable("MedicalWard");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Medicines.Medicine", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Medicines.Medicine", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -566,7 +566,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.ToTable("Medicine");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Medicines.MedicineType", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Medicines.MedicineType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -629,7 +629,7 @@ namespace MedicalCenters.Persistence.Migrations
                         });
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Oprerations.Operation", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Oprerations.Operation", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -662,7 +662,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.ToTable("Operation");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Oprerations.OperationType", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Oprerations.OperationType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -691,7 +691,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.ToTable("OperationType");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Patients.Patient", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Patients.Patient", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -732,7 +732,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.ToTable("Patient");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Patients.PatientHistory", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Patients.PatientHistory", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -767,7 +767,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.ToTable("PatientHistory");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Reservation", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Reservation", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -800,7 +800,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.ToTable("Reservation");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Shifts.Shift", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Shifts.Shift", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -840,7 +840,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.ToTable("Shift");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Shifts.ShiftPlan", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Shifts.ShiftPlan", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -875,7 +875,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.ToTable("ShiftPlan");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Specialties.Specialty", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Specialties.Specialty", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -909,7 +909,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.ToTable("Specialty");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Specialties.SpecialtyGroup", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Specialties.SpecialtyGroup", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -938,7 +938,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.ToTable("SpecialtyGroup");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Visit", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Visit", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -976,29 +976,29 @@ namespace MedicalCenters.Persistence.Migrations
                     b.ToTable("Visit");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Staffs.Doctor", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Staffs.Doctor", b =>
                 {
-                    b.HasBaseType("MedicalCenters.Domain.Classes.Base.Personel");
+                    b.HasBaseType("MedicalCenters.Domain.Entities.Base.Personel");
 
                     b.ToTable("Doctor");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Staffs.Nurse", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Staffs.Nurse", b =>
                 {
-                    b.HasBaseType("MedicalCenters.Domain.Classes.Base.Personel");
+                    b.HasBaseType("MedicalCenters.Domain.Entities.Base.Personel");
 
                     b.ToTable("Nurse");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Allergy_MedicineType", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.IntermediateEntities.Allergy_MedicineType", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Classes.Allergy", "Allergy")
+                    b.HasOne("MedicalCenters.Domain.Entities.Allergy", "Allergy")
                         .WithMany()
                         .HasForeignKey("AllergyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MedicalCenters.Domain.Classes.Medicines.MedicineType", "MedicineType")
+                    b.HasOne("MedicalCenters.Domain.Entities.Medicines.MedicineType", "MedicineType")
                         .WithMany()
                         .HasForeignKey("MedicineTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1009,15 +1009,15 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Navigation("MedicineType");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Allergy_Patient", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.IntermediateEntities.Allergy_Patient", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Classes.Allergy", "Allergy")
+                    b.HasOne("MedicalCenters.Domain.Entities.Allergy", "Allergy")
                         .WithMany()
                         .HasForeignKey("AllergyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MedicalCenters.Domain.Classes.Patients.Patient", "Patient")
+                    b.HasOne("MedicalCenters.Domain.Entities.Patients.Patient", "Patient")
                         .WithMany()
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1028,15 +1028,15 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Navigation("Patient");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Doctor_Operation", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.IntermediateEntities.Doctor_Operation", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Classes.Staffs.Doctor", "Doctor")
+                    b.HasOne("MedicalCenters.Domain.Entities.Staffs.Doctor", "Doctor")
                         .WithMany()
                         .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MedicalCenters.Domain.Classes.Oprerations.Operation", "Operation")
+                    b.HasOne("MedicalCenters.Domain.Entities.Oprerations.Operation", "Operation")
                         .WithMany()
                         .HasForeignKey("OperationId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1047,15 +1047,15 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Navigation("Operation");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Doctor_Specialty", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.IntermediateEntities.Doctor_Specialty", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Classes.Staffs.Doctor", "Doctor")
+                    b.HasOne("MedicalCenters.Domain.Entities.Staffs.Doctor", "Doctor")
                         .WithMany()
                         .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MedicalCenters.Domain.Classes.Specialties.Specialty", "Specialty")
+                    b.HasOne("MedicalCenters.Domain.Entities.Specialties.Specialty", "Specialty")
                         .WithMany()
                         .HasForeignKey("SpecialtyId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1066,15 +1066,15 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Navigation("Specialty");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Doctor_Visit", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.IntermediateEntities.Doctor_Visit", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Classes.Staffs.Doctor", "Doctor")
+                    b.HasOne("MedicalCenters.Domain.Entities.Staffs.Doctor", "Doctor")
                         .WithMany()
                         .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MedicalCenters.Domain.Classes.Visit", "Visit")
+                    b.HasOne("MedicalCenters.Domain.Entities.Visit", "Visit")
                         .WithMany()
                         .HasForeignKey("VisitId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1085,15 +1085,15 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Navigation("Visit");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Medicine_Operation", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.IntermediateEntities.Medicine_Operation", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Classes.Medicines.Medicine", "Medicine")
+                    b.HasOne("MedicalCenters.Domain.Entities.Medicines.Medicine", "Medicine")
                         .WithMany()
                         .HasForeignKey("MedicineId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MedicalCenters.Domain.Classes.Oprerations.Operation", "Operation")
+                    b.HasOne("MedicalCenters.Domain.Entities.Oprerations.Operation", "Operation")
                         .WithMany()
                         .HasForeignKey("OperationId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1104,15 +1104,15 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Navigation("Operation");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.IntermediateEntities.Medicine_PatientHistory", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.IntermediateEntities.Medicine_PatientHistory", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Classes.Medicines.Medicine", "Medicine")
+                    b.HasOne("MedicalCenters.Domain.Entities.Medicines.Medicine", "Medicine")
                         .WithMany()
                         .HasForeignKey("MedicineId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MedicalCenters.Domain.Classes.Patients.PatientHistory", "PatientHistory")
+                    b.HasOne("MedicalCenters.Domain.Entities.Patients.PatientHistory", "PatientHistory")
                         .WithMany()
                         .HasForeignKey("PatientHistoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1123,9 +1123,9 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Navigation("PatientHistory");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.MedicalCenter", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.MedicalCenter", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Classes.MedicalCenter_Parts.MedicalCenterType", "Type")
+                    b.HasOne("MedicalCenters.Domain.Entities.MedicalCenter_Parts.MedicalCenterType", "Type")
                         .WithMany()
                         .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1134,15 +1134,15 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Navigation("Type");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.MedicalWard", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.MedicalWard", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Classes.MedicalCenter", "MedicalCenter")
+                    b.HasOne("MedicalCenters.Domain.Entities.MedicalCenter", "MedicalCenter")
                         .WithMany()
                         .HasForeignKey("MedicalCenterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MedicalCenters.Domain.Classes.MedicalCenter_Parts.MedicalWardType", "Type")
+                    b.HasOne("MedicalCenters.Domain.Entities.MedicalCenter_Parts.MedicalWardType", "Type")
                         .WithMany()
                         .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1153,9 +1153,9 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Navigation("Type");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Medicines.Medicine", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Medicines.Medicine", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Classes.Medicines.MedicineType", "Type")
+                    b.HasOne("MedicalCenters.Domain.Entities.Medicines.MedicineType", "Type")
                         .WithMany()
                         .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1164,9 +1164,9 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Navigation("Type");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Oprerations.Operation", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Oprerations.Operation", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Classes.Oprerations.OperationType", "OperationType")
+                    b.HasOne("MedicalCenters.Domain.Entities.Oprerations.OperationType", "OperationType")
                         .WithMany()
                         .HasForeignKey("OperationTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1175,15 +1175,15 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Navigation("OperationType");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Patients.PatientHistory", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Patients.PatientHistory", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Classes.Staffs.Doctor", "Doctor")
+                    b.HasOne("MedicalCenters.Domain.Entities.Staffs.Doctor", "Doctor")
                         .WithMany()
                         .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MedicalCenters.Domain.Classes.Patients.Patient", "Patient")
+                    b.HasOne("MedicalCenters.Domain.Entities.Patients.Patient", "Patient")
                         .WithMany()
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1194,9 +1194,9 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Navigation("Patient");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Reservation", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Reservation", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Classes.Patients.Patient", "Patient")
+                    b.HasOne("MedicalCenters.Domain.Entities.Patients.Patient", "Patient")
                         .WithMany()
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1205,19 +1205,19 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Navigation("Patient");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Shifts.Shift", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Shifts.Shift", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Classes.Base.Personel", "Personel")
+                    b.HasOne("MedicalCenters.Domain.Entities.Base.Personel", "Personel")
                         .WithMany()
                         .HasForeignKey("PersonelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MedicalCenters.Domain.Classes.Shifts.ShiftPlan", "ShiftPlan")
+                    b.HasOne("MedicalCenters.Domain.Entities.Shifts.ShiftPlan", "ShiftPlan")
                         .WithMany()
                         .HasForeignKey("ShiftPlanId");
 
-                    b.HasOne("MedicalCenters.Domain.Classes.MedicalUnit", "Unit")
+                    b.HasOne("MedicalCenters.Domain.Entities.MedicalUnit", "Unit")
                         .WithMany()
                         .HasForeignKey("UnitId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1230,15 +1230,15 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Navigation("Unit");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Shifts.ShiftPlan", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Shifts.ShiftPlan", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Classes.MedicalUnit", "MedicalUnit")
+                    b.HasOne("MedicalCenters.Domain.Entities.MedicalUnit", "MedicalUnit")
                         .WithMany()
                         .HasForeignKey("MedicalUnitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MedicalCenters.Domain.Classes.Base.Personel", "Personel")
+                    b.HasOne("MedicalCenters.Domain.Entities.Base.Personel", "Personel")
                         .WithMany()
                         .HasForeignKey("PersonelId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1249,9 +1249,9 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Navigation("Personel");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Specialties.Specialty", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Specialties.Specialty", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Classes.Specialties.SpecialtyGroup", "SpecialtyGroup")
+                    b.HasOne("MedicalCenters.Domain.Entities.Specialties.SpecialtyGroup", "SpecialtyGroup")
                         .WithMany()
                         .HasForeignKey("SpecialtyGroupId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1260,15 +1260,15 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Navigation("SpecialtyGroup");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Visit", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Visit", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Classes.Patients.Patient", "Patient")
+                    b.HasOne("MedicalCenters.Domain.Entities.Patients.Patient", "Patient")
                         .WithMany()
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MedicalCenters.Domain.Classes.Reservation", "Reservation")
+                    b.HasOne("MedicalCenters.Domain.Entities.Reservation", "Reservation")
                         .WithMany()
                         .HasForeignKey("ReservationId");
 
@@ -1277,20 +1277,20 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Navigation("Reservation");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Staffs.Doctor", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Staffs.Doctor", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Classes.Base.Personel", null)
+                    b.HasOne("MedicalCenters.Domain.Entities.Base.Personel", null)
                         .WithOne()
-                        .HasForeignKey("MedicalCenters.Domain.Classes.Staffs.Doctor", "Id")
+                        .HasForeignKey("MedicalCenters.Domain.Entities.Staffs.Doctor", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Classes.Staffs.Nurse", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Staffs.Nurse", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Classes.Base.Personel", null)
+                    b.HasOne("MedicalCenters.Domain.Entities.Base.Personel", null)
                         .WithOne()
-                        .HasForeignKey("MedicalCenters.Domain.Classes.Staffs.Nurse", "Id")
+                        .HasForeignKey("MedicalCenters.Domain.Entities.Staffs.Nurse", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

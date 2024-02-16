@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MedicalCenters.Application.DTOs.MedicalCenter;
-using MedicalCenters.Domain.Classes.MedicalCenter_Parts;
-using MedicalCenters.Domain.Classes;
+using MedicalCenters.Domain.Entities.MedicalCenter_Parts;
+using MedicalCenters.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

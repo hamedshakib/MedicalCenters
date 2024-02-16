@@ -1,4 +1,4 @@
-﻿using MedicalCenters.Domain.Classes.MedicalCenter_Parts;
+﻿using MedicalCenters.Domain.Entities.MedicalCenter_Parts;
 using MedicalCenters.Identity.Classes;
 using MedicalCenters.Identity.Models.Domains;
 using MedicalCenters.Infrastructure.DBContexts;

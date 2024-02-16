@@ -1,6 +1,6 @@
-﻿using MedicalCenters.Domain.Classes.Base;
-using MedicalCenters.Domain.Classes.Medicines;
-using MedicalCenters.Domain.Classes.Patients;
+﻿using MedicalCenters.Domain.Entities.Base;
+using MedicalCenters.Domain.Entities.Medicines;
+using MedicalCenters.Domain.Entities.Patients;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

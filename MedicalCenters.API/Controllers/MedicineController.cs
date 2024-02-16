@@ -8,7 +8,7 @@ using MedicalCenters.Application.Features.MedicalWard.Requests.Queries;
 using MedicalCenters.Application.Features.Medicine.Requests.Commands;
 using MedicalCenters.Application.Features.Medicine.Requests.Queries;
 using MedicalCenters.Application.Responses;
-using MedicalCenters.Domain.Classes.Medicines;
+using MedicalCenters.Domain.Entities.Medicines;
 using MedicalCenters.Identity.Attributes;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

@@ -1,4 +1,4 @@
-﻿using MedicalCenters.Domain.Classes.MedicalCenter_Parts;
+﻿using MedicalCenters.Domain.Entities.MedicalCenter_Parts;
 using MedicalCenters.Infrastructure.DBContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;

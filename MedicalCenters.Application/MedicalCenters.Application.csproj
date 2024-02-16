@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <Folder Include="Features\Medicine\Validators\" />
+    <Folder Include="Features\Patient\" />
   </ItemGroup>
 
 </Project>

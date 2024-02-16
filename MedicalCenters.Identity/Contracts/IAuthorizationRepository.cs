@@ -9,7 +9,7 @@ namespace MedicalCenters.Identity.Contracts
 {
     public interface IAuthorizationRepository
     {
-        Task<bool> HasUserPermition(long userId,int permitionId);
-        Task<bool> HasUserGroupPermition(long userId, int permitionId);
+        Task<bool> HasUserPermission(long userId,int permitionId);
+        Task<bool> HasUserGroupPermission(long userId, int permitionId);
     }
 }

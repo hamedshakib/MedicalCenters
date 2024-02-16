@@ -1,4 +1,4 @@
-﻿using MedicalCenters.Domain.Classes;
+﻿using MedicalCenters.Domain.Entities;
 using MedicalCenters.Identity.Models.Domains;
 using MedicalCenters.Identity.Models.DTOs;
 using System;

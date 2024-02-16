@@ -1,5 +1,5 @@
-﻿using MedicalCenters.Domain.Classes.MedicalCenter_Parts;
-using MedicalCenters.Domain.Classes.Medicines;
+﻿using MedicalCenters.Domain.Entities.MedicalCenter_Parts;
+using MedicalCenters.Domain.Entities.Medicines;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
