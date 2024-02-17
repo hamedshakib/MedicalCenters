@@ -45,28 +45,35 @@ namespace MedicalCenters.Application.UnitTests.Medicine
 
 
         [Fact]
-        public async Task CreateMedicineMapping_IsValid()
+        public async Task CreateMedicine_MedicineRepository_IsCalled()
         {
-            var command = new CreateMedicineCommand() { CreateMedicineDto = _createMedicineDto };
-            var data = _mapper.Map<MedicalCenters.Domain.Entities.Medicines.Medicine>(command.CreateMedicineDto);
-
-            Assert.NotNull(data);
+            var result = (BaseValuedCommandResponse)await InitResult();
+            _unitOfWork.MedicineRepository.Received();
         }
 
         [Fact]
-        public async Task CreateMedicine_IsValid()
+        public async Task CreateMedicine_HandlerResult_IsValidTyped()
         {
-            var command = new CreateMedicineCommand() { CreateMedicineDto = _createMedicineDto };
-            var data=_mapper.Map<MedicalCenters.Domain.Entities.Medicines.Medicine>(command.CreateMedicineDto);
-            data.Id = 1;
-            _unitOfWork.MedicineRepository.Add(Arg.Any<MedicalCenters.Domain.Entities.Medicines.Medicine>())
-                .Returns(data);
-                
-            var result = await _handler.Handle(command, CancellationToken.None);
+            var result = (BaseValuedCommandResponse)await InitResult();
             Assert.IsType<BaseValuedCommandResponse>(result);
-            _unitOfWork.MedicineRepository.Received();
+        }
+
+        [Fact]
+        public async Task CreateMedicine_HandlerResultIsSusses_IsTrue()
+        {
+            var result = (BaseValuedCommandResponse)await InitResult();
             Assert.True(result.IsSusses);
         }
 
+        private async Task<object> InitResult()
+        {
+            var command = new CreateMedicineCommand() { CreateMedicineDto = _createMedicineDto };
+            var data = _mapper.Map<MedicalCenters.Domain.Entities.Medicines.Medicine>(command.CreateMedicineDto);
+            data.Id = 1;
+            _unitOfWork.MedicineRepository.Add(Arg.Any<MedicalCenters.Domain.Entities.Medicines.Medicine>())
+                .Returns(data);
+
+            return await _handler.Handle(command, CancellationToken.None);
+        }
     }
 }
