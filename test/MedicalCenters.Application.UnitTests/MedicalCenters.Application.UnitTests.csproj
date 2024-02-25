@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MedicalCenters.Application\MedicalCenters.Application.csproj" />
+    <ProjectReference Include="..\..\src\Core\MedicalCenters.Application\MedicalCenters.Application.csproj" />
   </ItemGroup>
 
 </Project>

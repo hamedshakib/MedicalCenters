@@ -7,25 +7,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{170658C3-FDD
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{C42AFE13-6A18-4356-96B0-119F321FC1DD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalCenters.Domain", "MedicalCenters.Domain\MedicalCenters.Domain.csproj", "{24903DFE-58D8-4953-9DD3-64133BAF39A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalCenters.Domain", "src\Core\MedicalCenters.Domain\MedicalCenters.Domain.csproj", "{24903DFE-58D8-4953-9DD3-64133BAF39A1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalCenters.Application", "MedicalCenters.Application\MedicalCenters.Application.csproj", "{0781F864-5B74-4311-A5C5-DEEEF3DC9A3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalCenters.Application", "src\Core\MedicalCenters.Application\MedicalCenters.Application.csproj", "{0781F864-5B74-4311-A5C5-DEEEF3DC9A3F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utility", "Utility\Utility.csproj", "{FEB5975D-87A4-4BF0-8639-C7D45B20A5D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utility", "src\Utility\Utility.csproj", "{FEB5975D-87A4-4BF0-8639-C7D45B20A5D1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{4942CF23-9C6F-42D6-8A7D-DEC8D4EE34DE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalCenters.Persistence", "MedicalCenters.Infrastructure\MedicalCenters.Persistence.csproj", "{44EBD488-D2CC-4F9E-B433-43487717AA50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalCenters.Persistence", "src\Infrastructure\MedicalCenters.Infrastructure\MedicalCenters.Persistence.csproj", "{44EBD488-D2CC-4F9E-B433-43487717AA50}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{06954F25-B24F-442B-908D-32FB58B040FD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalCenters.API", "MedicalCenters.API\MedicalCenters.API.csproj", "{0B47036D-6935-4409-8D09-63F294C75157}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalCenters.API", "src\API\MedicalCenters.API\MedicalCenters.API.csproj", "{0B47036D-6935-4409-8D09-63F294C75157}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalCenters.Identity", "MedicalCenters.Identity\MedicalCenters.Identity.csproj", "{43F0A8D7-CBA7-4C63-B6EF-EFFC2139C518}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalCenters.Identity", "src\Infrastructure\MedicalCenters.Identity\MedicalCenters.Identity.csproj", "{43F0A8D7-CBA7-4C63-B6EF-EFFC2139C518}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{04817D30-E63A-4C91-AAD6-F72D78F8F578}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalCenters.Application.UnitTests", "MedicalCenters.Application.UnitTests\MedicalCenters.Application.UnitTests.csproj", "{0D94A680-C81E-413B-BA91-58A47BAF4D65}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalCenters.Application.UnitTests", "test\MedicalCenters.Application.UnitTests\MedicalCenters.Application.UnitTests.csproj", "{0D94A680-C81E-413B-BA91-58A47BAF4D65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

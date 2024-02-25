@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MedicalCenters.Application\MedicalCenters.Application.csproj" />
+    <ProjectReference Include="..\..\Core\MedicalCenters.Application\MedicalCenters.Application.csproj" />
     <ProjectReference Include="..\MedicalCenters.Identity\MedicalCenters.Identity.csproj" />
   </ItemGroup>
 
