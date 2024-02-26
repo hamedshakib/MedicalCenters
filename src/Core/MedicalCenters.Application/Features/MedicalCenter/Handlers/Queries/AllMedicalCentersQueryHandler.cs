@@ -25,7 +25,7 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Queries
             result.ToList().ForEach(x => dtos.Add(mapper.Map<MedicalCenterDto>(x)));
 
             response.Data = dtos;
-            response.IsSusses = true;
+            response.IsSuccess = true;
 
 
             return response;

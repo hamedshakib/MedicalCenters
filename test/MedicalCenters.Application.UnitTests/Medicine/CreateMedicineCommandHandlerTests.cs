@@ -59,10 +59,10 @@ namespace MedicalCenters.Application.UnitTests.Medicine
         }
 
         [Fact]
-        public async Task CreateMedicine_HandlerResultIsSusses_IsTrue()
+        public async Task CreateMedicine_HandlerResultIsSuccess_IsTrue()
         {
             var result = (BaseValuedCommandResponse)await InitResult();
-            Assert.True(result.IsSusses);
+            Assert.True(result.IsSuccess);
         }
 
         private async Task<object> InitResult()

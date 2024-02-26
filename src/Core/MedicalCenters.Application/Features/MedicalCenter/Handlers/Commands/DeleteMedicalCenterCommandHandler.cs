@@ -31,7 +31,7 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Commands
             }
 
             await unitOfWork.Save();
-            response.IsSusses = true;
+            response.IsSuccess = true;
 
             return response;
         }

@@ -22,10 +22,22 @@ namespace MedicalCenters.Persistence
     {
         public static IServiceCollection ConfigurePersistenceServices(this IServiceCollection services)
         {
-            var medicalCentersConnectionString = Configuration.GetAppSettingJson()
-                                                              .GetConnectionString("MedicalCentersConnectionString");
-            var IdentityConnectionString = Configuration.GetAppSettingJson()
+            string medicalCentersConnectionString, IdentityConnectionString;
+            
+            medicalCentersConnectionString = Environment.GetEnvironmentVariable("MedicalCentersConnectionString");
+            if(string.IsNullOrEmpty(medicalCentersConnectionString)) 
+            {
+                medicalCentersConnectionString = Configuration.GetAppSettingJson()
+                                                  .GetConnectionString("MedicalCentersConnectionString");
+            }
+
+            IdentityConnectionString = Environment.GetEnvironmentVariable("IdentityConnectionString");
+            if (string.IsNullOrEmpty(IdentityConnectionString))
+            {
+                IdentityConnectionString = Configuration.GetAppSettingJson()
                                                   .GetConnectionString("IdentityConnectionString");
+            }
+
 
             services.AddDbContext<MedicalCentersDBContext>(options => 
                                         options.UseSqlServer(medicalCentersConnectionString, x => x.UseNetTopologySuite()));

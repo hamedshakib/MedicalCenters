@@ -23,7 +23,7 @@ namespace MedicalCenters.Application.Features.Medicine.Handlers.Commands
 
             await unitOfWork.Save();
 
-            response.IsSusses = true;
+            response.IsSuccess = true;
             response.Id = data.Id;
 
 

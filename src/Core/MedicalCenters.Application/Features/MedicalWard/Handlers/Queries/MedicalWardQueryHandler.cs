@@ -31,7 +31,7 @@ namespace MedicalCenters.Application.Features.MedicalWard.Handlers.Queries
             var dto = mapper.Map<MedicalWardDto>(result);
 
             response.Data = dto;
-            response.IsSusses = true;
+            response.IsSuccess = true;
 
             return response;
         }

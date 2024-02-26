@@ -30,7 +30,7 @@ namespace MedicalCenters.Application.Features.Medicine.Handlers.Queries
             var dto = mapper.Map<MedicineDto>(result);
 
             response.Data = dto;
-            response.IsSusses = true;
+            response.IsSuccess = true;
 
             return response;
         }

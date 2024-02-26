@@ -8,7 +8,7 @@ namespace MedicalCenters.Application.Responses
 {
     public class BaseResponse
     {
-        public bool IsSusses { get; set; } = false;
+        public bool IsSuccess { get; set; } = false;
         public IList<ErrorResponse>? Errors { get; set; }
     }
 }

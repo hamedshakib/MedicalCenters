@@ -33,7 +33,7 @@ namespace MedicalCenters.Application.Features.MedicalWard.Handlers.Commands
             }
 
             await unitOfWork.Save();
-            response.IsSusses = true;
+            response.IsSuccess = true;
 
             return response;
         }

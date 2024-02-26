@@ -49,7 +49,7 @@ namespace MedicalCenters.API.Controllers
                 var result = new BaseQueryResponse()
                 {
                     Errors = null,
-                    IsSusses = true,
+                    IsSuccess = true,
                     Data = jwt
                 };
                 return Ok(result);

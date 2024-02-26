@@ -20,7 +20,7 @@ namespace MedicalCenters.Application.Features.MedicalWard.Handlers.Queries
             result.ToList().ForEach(x => dtos.Add(mapper.Map<MedicalWardDto>(x)));
 
             response.Data = dtos;
-            response.IsSusses = true;
+            response.IsSuccess = true;
 
 
             return response;
