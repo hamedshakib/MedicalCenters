@@ -1,12 +1,6 @@
 ﻿using MedicalCenters.Application.Contracts.Persistence;
-using MedicalCenters.Domain.Entities.Base;
 using MedicalCenters.Infrastructure.DBContexts;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MedicalCenters.Infrastructure.Repositories
 {
@@ -15,7 +9,7 @@ namespace MedicalCenters.Infrastructure.Repositories
         private readonly MedicalCentersDBContext _dBContext;
         public GenericRepository(MedicalCentersDBContext dBContext)
         {
-            _dBContext= dBContext;
+            _dBContext = dBContext;
         }
         public async Task<T> Add(T entity)
         {
@@ -40,26 +34,26 @@ namespace MedicalCenters.Infrastructure.Repositories
             _dBContext.Set<T>().Remove(entity);
         }
 
-        public async Task<bool> Exist(long id,CancellationToken cancellationToken = default)
+        public async Task<bool> Exist(long id, CancellationToken cancellationToken = default)
         {
-            var entity = await Get(id,cancellationToken);
+            var entity = await Get(id, cancellationToken);
             return entity != null;
         }
 
         public async Task<bool> Exist(int id, CancellationToken cancellationToken = default)
         {
-            var entity = await Get(id,cancellationToken);
+            var entity = await Get(id, cancellationToken);
             return entity != null;
         }
 
-        public async Task<T> Get(long id,CancellationToken cancellationToken=default)
+        public async Task<T> Get(long id, CancellationToken cancellationToken = default)
         {
-            return await _dBContext.Set<T>().FindAsync(id,cancellationToken);
+            return await _dBContext.Set<T>().FindAsync(id, cancellationToken);
         }
 
-        public async Task<T> Get(int id,CancellationToken cancellationToken = default)
+        public async Task<T> Get(int id, CancellationToken cancellationToken = default)
         {
-            return await _dBContext.Set<T>().FindAsync(id,cancellationToken);
+            return await _dBContext.Set<T>().FindAsync(id, cancellationToken);
         }
 
         public async Task<IEnumerable<T>> GetAll(CancellationToken cancellationToken = default)

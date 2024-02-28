@@ -2,14 +2,8 @@
 using MediatR;
 using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Application.DTOs.MedicalCenter;
-using MedicalCenters.Application.Exceptions;
 using MedicalCenters.Application.Features.MedicalCenter.Requests.Queries;
 using MedicalCenters.Application.Responses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Queries
 {

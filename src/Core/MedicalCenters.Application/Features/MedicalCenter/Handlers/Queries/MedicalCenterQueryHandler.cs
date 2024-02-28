@@ -5,11 +5,6 @@ using MedicalCenters.Application.DTOs.MedicalCenter;
 using MedicalCenters.Application.Exceptions;
 using MedicalCenters.Application.Features.MedicalCenter.Requests.Queries;
 using MedicalCenters.Application.Responses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Queries
 {
@@ -19,7 +14,7 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Queries
         {
             var response = new BaseQueryResponse();
             cancellationToken.ThrowIfCancellationRequested();
-            var result = await unitOfWork.MedicalCenterRepository.Get((int)request.Id,cancellationToken);
+            var result = await unitOfWork.MedicalCenterRepository.Get((int)request.Id, cancellationToken);
 
             if (result == null)
             {

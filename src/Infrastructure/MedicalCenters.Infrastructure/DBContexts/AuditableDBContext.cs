@@ -1,10 +1,5 @@
 ﻿using MedicalCenters.Domain.Entities.Base;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MedicalCenters.Infrastructure.DBContexts
 {
@@ -13,12 +8,12 @@ namespace MedicalCenters.Infrastructure.DBContexts
         public AuditableDBContext(DbContextOptions options) : base(options)
         {
         }
-        public async Task<int> SaveChangesAsync(long UserId=1) 
+        public async Task<int> SaveChangesAsync(long UserId = 1)
         {
-            foreach(var entry in base.ChangeTracker.Entries<BaseDomainEntity>()
+            foreach (var entry in base.ChangeTracker.Entries<BaseDomainEntity>()
                         .Where(q => q.State == EntityState.Added || q.State == EntityState.Modified))
             {
-                if(entry.Entity is BaseCreateableDomainEntity creatableEntity)
+                if (entry.Entity is BaseCreateableDomainEntity creatableEntity)
                 {
                     if (entry.State == EntityState.Added)
                     {
@@ -26,7 +21,7 @@ namespace MedicalCenters.Infrastructure.DBContexts
                         creatableEntity.DateTimeCreated = DateTime.Now;
                     }
 
-                    if(creatableEntity is BaseModifiableDomainEntity modifiableEntity)
+                    if (creatableEntity is BaseModifiableDomainEntity modifiableEntity)
                     {
                         modifiableEntity.ModifiedBy = UserId;
                         modifiableEntity.DateTimeModified = DateTime.Now;
@@ -34,7 +29,7 @@ namespace MedicalCenters.Infrastructure.DBContexts
                 }
             }
 
-            var result= await base.SaveChangesAsync();
+            var result = await base.SaveChangesAsync();
             return result;
         }
     }

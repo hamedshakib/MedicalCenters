@@ -1,12 +1,6 @@
-﻿using MedicalCenters.Domain.Entities.MedicalCenter_Parts;
-using MedicalCenters.Domain.Entities.Medicines;
+﻿using MedicalCenters.Domain.Entities.Medicines;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MedicalCenters.Persistence.Configurations.Entities.MedicalCenters
 {

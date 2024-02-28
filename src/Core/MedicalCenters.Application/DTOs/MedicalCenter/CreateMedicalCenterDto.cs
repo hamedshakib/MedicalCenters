@@ -1,14 +1,4 @@
-﻿using MedicalCenters.Domain.Entities;
-using MedicalCenters.Domain.Entities.MedicalCenter_Parts;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MedicalCenters.Application.DTOs.MedicalCenter
+﻿namespace MedicalCenters.Application.DTOs.MedicalCenter
 {
     public class CreateMedicalCenterDto : IMedicalCenterDto
     {

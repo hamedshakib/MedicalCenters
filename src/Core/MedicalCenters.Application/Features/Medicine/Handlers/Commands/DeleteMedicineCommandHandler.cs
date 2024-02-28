@@ -4,12 +4,6 @@ using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Application.Exceptions;
 using MedicalCenters.Application.Features.Medicine.Requests.Commands;
 using MedicalCenters.Application.Responses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace MedicalCenters.Application.Features.Medicine.Handlers.Commands
 {

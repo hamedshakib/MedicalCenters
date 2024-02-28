@@ -2,18 +2,10 @@
 using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Application.DTOs.Medicine;
 using MedicalCenters.Application.Features.Medicine.Handlers.Commands;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using NSubstitute;
-using MedicalCenters.Application.Mapping.MappingProfiles;
-using AutoMapper;
 using MedicalCenters.Application.Features.Medicine.Requests.Commands;
+using MedicalCenters.Application.Mapping.MappingProfiles;
 using MedicalCenters.Application.Responses;
-using MedicalCenters.Domain.Entities.Medicines;
+using NSubstitute;
 
 namespace MedicalCenters.Application.UnitTests.Medicine
 {

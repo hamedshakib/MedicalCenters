@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using MedicalCenters.API.ErrorHelper;
-using MedicalCenters.Application.DTOs.MedicalCenter;
 using MedicalCenters.Application.DTOs.MedicalWard;
 using MedicalCenters.Application.Features.MedicalWard.Requests.Commands;
 using MedicalCenters.Application.Features.MedicalWard.Requests.Queries;

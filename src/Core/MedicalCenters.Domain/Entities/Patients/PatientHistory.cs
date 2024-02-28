@@ -1,14 +1,7 @@
 ﻿using MedicalCenters.Domain.Entities.Base;
-using MedicalCenters.Domain.Entities.Oprerations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MedicalCenters.Domain.Entities.Medicines;
 using MedicalCenters.Domain.Entities.Staffs;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MedicalCenters.Domain.Entities.Patients
 {

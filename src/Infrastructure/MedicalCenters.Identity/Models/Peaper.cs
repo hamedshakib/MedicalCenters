@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MedicalCenters.Identity.Models
+﻿namespace MedicalCenters.Identity.Models
 {
     internal class Peaper
     {

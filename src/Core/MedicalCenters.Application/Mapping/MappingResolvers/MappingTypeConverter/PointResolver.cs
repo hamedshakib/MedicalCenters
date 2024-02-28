@@ -1,12 +1,5 @@
 ﻿using AutoMapper;
 using MedicalCenters.Application.DTOs.MedicalCenter;
-using MedicalCenters.Domain.Entities.MedicalCenter_Parts;
-using MedicalCenters.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NetTopologySuite.Geometries;
 
 namespace MedicalCenters.Application.Mapping.MappingResolvers.MappingTypeConverter

@@ -1,19 +1,9 @@
 ﻿using MedicalCenters.Identity.Contracts;
-using MedicalCenters.Identity.Models.Domains;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Runtime.ConstrainedExecution;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using IAuthorizationFilter = Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter;
-using Microsoft.AspNetCore.Http;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MedicalCenters.Identity.Attributes
 {
@@ -38,8 +28,8 @@ namespace MedicalCenters.Identity.Attributes
                     HasPermission = await identityUnitOfWork.AuthorizationRepository.HasUserPermission(UserId, permissionId);
 
                     //Check Group Permission
-                    if(!HasPermission)
-                        HasPermission=await identityUnitOfWork.AuthorizationRepository.HasUserGroupPermission(UserId, permissionId);
+                    if (!HasPermission)
+                        HasPermission = await identityUnitOfWork.AuthorizationRepository.HasUserGroupPermission(UserId, permissionId);
                 }
             }
             catch { }

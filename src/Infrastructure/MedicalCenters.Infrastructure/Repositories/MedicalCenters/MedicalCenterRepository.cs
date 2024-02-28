@@ -3,11 +3,6 @@ using MedicalCenters.Domain.Entities;
 using MedicalCenters.Domain.Entities.MedicalCenter_Parts;
 using MedicalCenters.Infrastructure.DBContexts;
 using MedicalCenters.Infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MedicalCenters.Persistence.Repositories.MedicalCenters
 {
@@ -21,7 +16,7 @@ namespace MedicalCenters.Persistence.Repositories.MedicalCenters
 
         public async Task<MedicalCenterType?> GetMedicalCenterType(long id, CancellationToken cancellationToken = default)
         {
-            var value = await _dBContext.MedicalCenterType.FindAsync(id,cancellationToken);
+            var value = await _dBContext.MedicalCenterType.FindAsync(id, cancellationToken);
             return value;
         }
     }

@@ -1,8 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
-using MedicalCenters.Domain.Enums;
 using MedicalCenters.Application.Responses;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Model;
+using MedicalCenters.Domain.Enums;
 
 namespace MedicalCenters.API.Utility.Extentions
 {

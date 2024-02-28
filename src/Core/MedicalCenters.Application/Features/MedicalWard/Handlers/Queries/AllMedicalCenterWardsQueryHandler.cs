@@ -14,9 +14,9 @@ namespace MedicalCenters.Application.Features.MedicalWard.Handlers.Queries
         {
             var response = new BaseQueryResponse();
             cancellationToken.ThrowIfCancellationRequested();
-            var result = await unitOfWork.MedicalWardRepository.GetAllMedicalCenterWards((int)request.MedicalCenterId,cancellationToken);
+            var result = await unitOfWork.MedicalWardRepository.GetAllMedicalCenterWards((int)request.MedicalCenterId, cancellationToken);
 
-            List <MedicalWardDto> dtos = new List<MedicalWardDto>();
+            List<MedicalWardDto> dtos = new List<MedicalWardDto>();
             result.ToList().ForEach(x => dtos.Add(mapper.Map<MedicalWardDto>(x)));
 
             response.Data = dtos;

@@ -1,14 +1,8 @@
-﻿using MedicalCenters.Domain.Entities;
-using MedicalCenters.Identity.Models.Domains;
+﻿using MedicalCenters.Identity.Models.Domains;
 using MedicalCenters.Infrastructure.DBContexts;
 using MedicalCenters.Persistence.Configurations.Entities;
 using MedicalCenters.Persistence.Configurations.Entities.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MedicalCenters.Persistence.DBContexts
 {

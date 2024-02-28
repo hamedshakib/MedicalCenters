@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentValidation;
-using MedicalCenters.Application.DTOs.MedicalCenter;
+﻿using FluentValidation;
 using MedicalCenters.Application.Features.MedicalCenter.Requests.Commands;
 
 namespace MedicalCenters.Application.Features.MedicalCenter.Validates
@@ -18,8 +12,8 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Validates
 
             RuleFor(e => e.CreateMedicalCenterDto.Name).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty();
             RuleFor(e => e.CreateMedicalCenterDto.TypeId).NotNull();
-            When(x => x.CreateMedicalCenterDto.GPSx!= null || x.CreateMedicalCenterDto.GPSy != null, () =>
-            { 
+            When(x => x.CreateMedicalCenterDto.GPSx != null || x.CreateMedicalCenterDto.GPSy != null, () =>
+            {
                 RuleFor(x => x.CreateMedicalCenterDto.GPSx).GreaterThanOrEqualTo(-90).WithMessage("GPSx must Greater than -90");
                 RuleFor(x => x.CreateMedicalCenterDto.GPSx).LessThanOrEqualTo(+90).WithMessage("GPSx must Less than -90");
 

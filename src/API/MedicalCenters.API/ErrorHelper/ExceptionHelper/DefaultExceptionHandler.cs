@@ -1,7 +1,5 @@
 ﻿using MedicalCenters.API.Utility.Extentions;
-using MedicalCenters.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
-using System;
 
 namespace MedicalCenters.API.ErrorHelper.ExceptionHelper
 {

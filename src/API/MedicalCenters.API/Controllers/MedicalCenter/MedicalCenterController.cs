@@ -1,23 +1,13 @@
-﻿using FluentValidation.Results;
-using MediatR;
-using MedicalCenters.API.Utility.Extentions;
+﻿using MediatR;
+using MedicalCenters.API.ErrorHelper;
 using MedicalCenters.Application.DTOs.MedicalCenter;
 using MedicalCenters.Application.Features.MedicalCenter.Requests.Commands;
-using MedicalCenters.Application.Responses;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using System.ComponentModel.DataAnnotations;
 using MedicalCenters.Application.Features.MedicalCenter.Requests.Queries;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using System.Text.RegularExpressions;
-using System;
-using MedicalCenters.API.ErrorHelper;
-using Microsoft.AspNetCore.Authorization;
-using MedicalCenters.Identity.Attributes;
-using MedicalCenters.Identity.Contracts;
 using MedicalCenters.Application.Features.MedicalWard.Requests.Queries;
+using MedicalCenters.Application.Responses;
+using MedicalCenters.Identity.Attributes;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OutputCaching;
 
 namespace MedicalCenters.API.Controllers.MedicalCenter
@@ -30,7 +20,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
         const string CacheTage = "MedicalCenter_Cache";
         [HttpGet]
         [RequiresPermission(5)]
-        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy",Tags = [CacheTage])]
+        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTage])]
         public async Task<ActionResult<BaseQueryResponse>> GetAllMedicalCenters(CancellationToken cancellationToken = default)
         {
             var query = new AllMedicalCentersQuery();
@@ -48,7 +38,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
 
         [HttpGet("{id}")]
         [RequiresPermission(4)]
-        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTage],VaryByQueryKeys = ["Id"])]
+        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTage], VaryByQueryKeys = ["Id"])]
         public async Task<ActionResult<BaseQueryResponse>> GetMedicalCenters(long Id, CancellationToken cancellationToken = default)
         {
 
@@ -122,7 +112,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
 
         [HttpGet("Wards/{MecicalCenterId}")]
         [RequiresPermission(10)]
-        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = ["MedicalWard_Cache"],VaryByQueryKeys = ["mecicalCenterId"])]
+        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = ["MedicalWard_Cache"], VaryByQueryKeys = ["mecicalCenterId"])]
         public async Task<ActionResult<BaseQueryResponse>> GetAllMedicalCenterWards(long mecicalCenterId)
         {
             var query = new AllMedicalCenterWardsQuery() { MedicalCenterId = mecicalCenterId };

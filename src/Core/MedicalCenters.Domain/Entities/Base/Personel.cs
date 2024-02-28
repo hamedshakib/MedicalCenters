@@ -7,7 +7,7 @@ namespace MedicalCenters.Domain.Entities.Base
     {
         [Key]
         public long Id { get; set; }
-        [Required,StringLength(50)]
+        [Required, StringLength(50)]
         public string PersonnelCode { get; set; }
     }
 }

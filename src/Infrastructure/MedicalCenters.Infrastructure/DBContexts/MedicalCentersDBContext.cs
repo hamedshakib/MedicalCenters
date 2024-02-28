@@ -6,18 +6,8 @@ using MedicalCenters.Domain.Entities.Oprerations;
 using MedicalCenters.Domain.Entities.Patients;
 using MedicalCenters.Domain.Entities.Shifts;
 using MedicalCenters.Domain.Entities.Staffs;
-using MedicalCenters.Persistence.Configurations.Entities;
 using MedicalCenters.Persistence.Configurations.Entities.MedicalCenters;
-using MedicalCenters.Persistence.DBContexts;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Reflection;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MedicalCenters.Infrastructure.DBContexts
 {
@@ -25,7 +15,7 @@ namespace MedicalCenters.Infrastructure.DBContexts
     {
         public MedicalCentersDBContext(DbContextOptions<MedicalCentersDBContext> options) : base(options)
         {
-            
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -37,7 +27,7 @@ namespace MedicalCenters.Infrastructure.DBContexts
 
         public DbSet<MedicalCenter> MedicalCenter { get; set; }
         public DbSet<MedicalCenterType> MedicalCenterType { get; set; }
-        public DbSet<MedicalWard> MedicalWard { get; set;}
+        public DbSet<MedicalWard> MedicalWard { get; set; }
         public DbSet<MedicalWardType> MedicalWardType { get; set; }
         public DbSet<MedicalUnit> MedicalUnit { get; set; }
         public DbSet<Visit> Visit { get; set; }
@@ -51,7 +41,7 @@ namespace MedicalCenters.Infrastructure.DBContexts
         public DbSet<PatientHistory> PatientHistory { get; set; }
         public DbSet<OperationType> OperationType { get; set; }
         public DbSet<Operation> Operation { get; set; }
-        public DbSet<MedicineType> MedicineType { get; set;}
+        public DbSet<MedicineType> MedicineType { get; set; }
         public DbSet<Medicine> Medicine { get; set; }
 
 

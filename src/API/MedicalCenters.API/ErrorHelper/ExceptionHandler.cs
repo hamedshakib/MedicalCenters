@@ -1,13 +1,9 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using MedicalCenters.API.ErrorHelper.ExceptionHelper;
-using MedicalCenters.API.Utility.Extentions;
-using MedicalCenters.Domain.Enums;
 using MedicalCenters.Application.Exceptions;
-using MedicalCenters.Application.Responses;
 using MedicalCenters.Identity.Exceptions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Data.Common;
 

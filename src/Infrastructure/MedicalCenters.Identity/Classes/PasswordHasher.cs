@@ -1,13 +1,6 @@
 ﻿using MedicalCenters.Identity.Basics;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using NetTopologySuite.Algorithm;
-using System;
-using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MedicalCenters.Identity.Classes
 {
@@ -28,7 +21,7 @@ namespace MedicalCenters.Identity.Classes
                             prf: _GetAlgorithm(),
                             iterationCount: 100000,
                             numBytesRequested: 512 / 8);
-            
+
             return hashed;
         }
 

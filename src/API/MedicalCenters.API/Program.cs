@@ -1,6 +1,4 @@
 using MedicalCenters.API;
-using MedicalCenters.API.Policies;
-using MedicalCenters.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 

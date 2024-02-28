@@ -1,12 +1,6 @@
 ﻿using MedicalCenters.Identity.Contracts;
 using MedicalCenters.Identity.Models.Domains;
 using MedicalCenters.Identity.Models.DTOs;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MedicalCenters.Identity.Classes
 {
@@ -18,11 +12,11 @@ namespace MedicalCenters.Identity.Classes
             User? user = await identityUnitOfWork.AuthenticationRepository.FindUser(loginDto.Username);
             if (user == null)
             {
-                loginResultDto= new LoginResultDto { IsFindUser = false ,LoginUser = null};
+                loginResultDto = new LoginResultDto { IsFindUser = false, LoginUser = null };
                 return loginResultDto;
             }
 
-            if(PasswordValidate(loginDto.Password,user))
+            if (PasswordValidate(loginDto.Password, user))
             {
                 LoginUserModel loginUserModel = new LoginUserModel(user.Id, user.UserName);
                 loginResultDto = new LoginResultDto { IsFindUser = true, LoginUser = loginUserModel };
@@ -34,7 +28,7 @@ namespace MedicalCenters.Identity.Classes
 
         private bool PasswordValidate(string loginPassword, User user)
         {
-            var hasher = new PasswordHasher(user.HashAlgorithmType,user.PeaperType);
+            var hasher = new PasswordHasher(user.HashAlgorithmType, user.PeaperType);
             byte[] loginHashedPassword = hasher.Hash(loginPassword, user.Salt);
             return loginHashedPassword.SequenceEqual(user.HashedPassword);
         }

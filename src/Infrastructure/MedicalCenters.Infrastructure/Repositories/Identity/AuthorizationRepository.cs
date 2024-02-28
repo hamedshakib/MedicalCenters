@@ -1,14 +1,5 @@
 ﻿using MedicalCenters.Identity.Contracts;
-using MedicalCenters.Identity.Models.Domains;
-using MedicalCenters.Infrastructure.DBContexts;
 using MedicalCenters.Persistence.DBContexts;
-using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MedicalCenters.Persistence.Repositories.Identity
 {
@@ -19,7 +10,7 @@ namespace MedicalCenters.Persistence.Repositories.Identity
         {
             _dBContext = dBContext;
         }
-        public async Task<bool> HasUserGroupPermission(long userId,int permissionId)
+        public async Task<bool> HasUserGroupPermission(long userId, int permissionId)
         {
             var result = (from PGU in _dBContext.PermissionGroup_User
                           join PG in _dBContext.PermissionGroup on PGU.PermissionGroupId equals PG.Id
@@ -35,7 +26,7 @@ namespace MedicalCenters.Persistence.Repositories.Identity
         {
 
             var result = (from U in _dBContext.User
-                          join PU in _dBContext.Permission_User on  U.Id equals PU.UserId
+                          join PU in _dBContext.Permission_User on U.Id equals PU.UserId
                           where PU.UserId == userId && PU.PermissionId == permissionId
                           select 1).Any();
             return result;

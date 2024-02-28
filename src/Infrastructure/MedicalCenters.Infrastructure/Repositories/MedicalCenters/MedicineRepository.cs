@@ -3,11 +3,6 @@ using MedicalCenters.Domain.Entities.Medicines;
 using MedicalCenters.Infrastructure.DBContexts;
 using MedicalCenters.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MedicalCenters.Persistence.Repositories.MedicalCenters
 {
@@ -22,8 +17,8 @@ namespace MedicalCenters.Persistence.Repositories.MedicalCenters
         public async Task<IList<Medicine>> GetAllMedicineTypeMedicines(int medicineType, CancellationToken cancellationToken = default)
         {
             var Medicines = await (from medicine in _dBContext.Medicine
-                              where medicine.TypeId == medicineType
-                              select medicine).ToListAsync(cancellationToken);
+                                   where medicine.TypeId == medicineType
+                                   select medicine).ToListAsync(cancellationToken);
 
             return Medicines;
         }

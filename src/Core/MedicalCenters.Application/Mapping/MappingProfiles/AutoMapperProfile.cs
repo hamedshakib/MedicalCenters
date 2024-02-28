@@ -2,18 +2,9 @@
 using MedicalCenters.Application.DTOs.MedicalCenter;
 using MedicalCenters.Application.DTOs.MedicalWard;
 using MedicalCenters.Application.DTOs.Medicine;
-using MedicalCenters.Application.Mapping.MappingResolvers;
 using MedicalCenters.Application.Mapping.MappingResolvers.MappingTypeConverter;
 using MedicalCenters.Domain.Entities;
-using MedicalCenters.Domain.Entities.MedicalCenter_Parts;
 using MedicalCenters.Domain.Entities.Medicines;
-using NetTopologySuite.Geometries;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MedicalCenters.Application.Mapping.MappingProfiles
 {

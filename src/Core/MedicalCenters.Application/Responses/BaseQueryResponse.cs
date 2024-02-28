@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MedicalCenters.Application.Responses
+﻿namespace MedicalCenters.Application.Responses
 {
     public class BaseQueryResponse : BaseResponse
     {
-        public object? Data { get; set; } =null;
+        public object? Data { get; set; } = null;
     }
 }

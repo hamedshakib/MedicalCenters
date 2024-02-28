@@ -1,11 +1,4 @@
-﻿using MedicalCenters.Domain.Entities;
-using MedicalCenters.Domain.Entities.MedicalCenter_Parts;
-using MedicalCenters.Domain.Entities.Medicines;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MedicalCenters.Domain.Entities.Medicines;
 
 namespace MedicalCenters.Application.Contracts.Persistence
 {

@@ -1,8 +1,7 @@
-﻿using MedicalCenters.Domain.Enums;
-using MedicalCenters.Application.Responses;
+﻿using MedicalCenters.Application.Responses;
+using MedicalCenters.Domain.Enums;
 using Microsoft.AspNetCore.Mvc;
 using System.Data.Common;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MedicalCenters.API.ErrorHelper.ExceptionHelper
 {

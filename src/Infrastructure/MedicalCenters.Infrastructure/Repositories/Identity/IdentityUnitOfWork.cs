@@ -1,15 +1,5 @@
-﻿using MedicalCenters.Application.Contracts.Persistence;
-using MedicalCenters.Domain.Entities;
-using MedicalCenters.Identity.Contracts;
-using MedicalCenters.Infrastructure.DBContexts;
-using MedicalCenters.Infrastructure.Repositories;
+﻿using MedicalCenters.Identity.Contracts;
 using MedicalCenters.Persistence.DBContexts;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MedicalCenters.Persistence.Repositories.Identity
 {

@@ -5,12 +5,6 @@ using MedicalCenters.Application.Features.Medicine.Handlers.Commands;
 using MedicalCenters.Application.Features.Medicine.Requests.Commands;
 using MedicalCenters.Application.Mapping.MappingProfiles;
 using NSubstitute;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MedicalCenters.Application.UnitTests.Medicine
 {

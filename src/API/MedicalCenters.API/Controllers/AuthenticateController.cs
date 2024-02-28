@@ -1,6 +1,4 @@
-﻿using MediatR;
-using MedicalCenters.API.ErrorHelper;
-using MedicalCenters.Application.Features.MedicalCenter.Requests.Queries;
+﻿using MedicalCenters.API.ErrorHelper;
 using MedicalCenters.Application.Responses;
 using MedicalCenters.Identity.Classes;
 using MedicalCenters.Identity.Contracts;
@@ -8,10 +6,8 @@ using MedicalCenters.Identity.Exceptions;
 using MedicalCenters.Identity.Models.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Text;
 
 namespace MedicalCenters.API.Controllers
 {

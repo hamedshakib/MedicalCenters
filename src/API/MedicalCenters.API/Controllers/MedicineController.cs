@@ -1,18 +1,12 @@
 ﻿using MediatR;
 using MedicalCenters.API.ErrorHelper;
-using MedicalCenters.Application.DTOs.MedicalCenter;
 using MedicalCenters.Application.DTOs.Medicine;
-using MedicalCenters.Application.Features.MedicalCenter.Requests.Commands;
-using MedicalCenters.Application.Features.MedicalCenter.Requests.Queries;
-using MedicalCenters.Application.Features.MedicalWard.Requests.Queries;
 using MedicalCenters.Application.Features.Medicine.Requests.Commands;
 using MedicalCenters.Application.Features.Medicine.Requests.Queries;
 using MedicalCenters.Application.Responses;
-using MedicalCenters.Domain.Entities.Medicines;
 using MedicalCenters.Identity.Attributes;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.TagHelpers.Cache;
 using Microsoft.AspNetCore.OutputCaching;
 
 namespace MedicalCenters.API.Controllers
