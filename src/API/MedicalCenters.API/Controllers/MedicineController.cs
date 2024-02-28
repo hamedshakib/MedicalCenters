@@ -12,16 +12,21 @@ using MedicalCenters.Domain.Entities.Medicines;
 using MedicalCenters.Identity.Attributes;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.TagHelpers.Cache;
+using Microsoft.AspNetCore.OutputCaching;
 
 namespace MedicalCenters.API.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class MedicineController(IMediator mediator) : ControllerBase
+    public class MedicineController(IMediator mediator, IOutputCacheStore cacheStore) : ControllerBase
     {
+        const string CacheTage = "Medicine_Cache";
+
         [HttpGet("MedicineType/{MedicineTypeId}")]
         [RequiresPermission(15)]
+        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTage], VaryByQueryKeys = ["Id"])]
         public async Task<ActionResult<BaseQueryResponse>> GetAllMedicineTypeMedicines(long MedicineTypeId, CancellationToken cancellationToken = default)
         {
             var query = new AllMedicineTypeMedicinesQuery() { MedicineTypeId = MedicineTypeId };
@@ -39,6 +44,7 @@ namespace MedicalCenters.API.Controllers
 
         [HttpGet("{id}")]
         [RequiresPermission(14)]
+        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTage], VaryByQueryKeys = ["Id"])]
         public async Task<ActionResult<BaseQueryResponse>> GetMedicine(long Id, CancellationToken cancellationToken = default)
         {
             var query = new MedicineQuery() { Id = Id };
@@ -63,6 +69,7 @@ namespace MedicalCenters.API.Controllers
             try
             {
                 result = await mediator.Send(command);
+                await cacheStore.EvictByTagAsync(CacheTage, CancellationToken.None);
             }
             catch (Exception ex)
             {
@@ -80,6 +87,7 @@ namespace MedicalCenters.API.Controllers
             try
             {
                 result = await mediator.Send(command);
+                await cacheStore.EvictByTagAsync(CacheTage, CancellationToken.None);
             }
             catch (Exception ex)
             {
@@ -98,6 +106,7 @@ namespace MedicalCenters.API.Controllers
             try
             {
                 result = await mediator.Send(command);
+                await cacheStore.EvictByTagAsync(CacheTage, CancellationToken.None);
             }
             catch (Exception ex)
             {

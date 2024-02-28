@@ -1,4 +1,5 @@
 using MedicalCenters.API;
+using MedicalCenters.API.Policies;
 using MedicalCenters.Application;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseOutputCache();
 
 app.UseAuthentication();
 app.UseAuthorization();

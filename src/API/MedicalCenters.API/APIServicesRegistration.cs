@@ -1,4 +1,5 @@
-﻿using MedicalCenters.Application;
+﻿using MedicalCenters.API.Policies;
+using MedicalCenters.Application;
 using MedicalCenters.Identity;
 using MedicalCenters.Persistence;
 namespace MedicalCenters.API
@@ -8,6 +9,14 @@ namespace MedicalCenters.API
         public static IServiceCollection ConfigureAPIServices(this IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddOutputCache(options =>
+            {
+                options.AddBasePolicy(builder => builder.Cache());
+                options.AddPolicy("OutputCacheWithAuthPolicy", OutputCacheWithAuthPolicy.Instance);
+                options.UseCaseSensitivePaths = false;
+                options.DefaultExpirationTimeSpan = TimeSpan.FromDays(1);
+            });
 
             services.AddEndpointsApiExplorer();
             services.ConfigureApplicationServices();
