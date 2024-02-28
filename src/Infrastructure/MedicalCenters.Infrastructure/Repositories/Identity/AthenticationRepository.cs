@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Persistence.Repositories.Identity
 {
-    internal class AthenticationRepository : IAthenticationRepository
+    internal class AthenticationRepository : IAuthenticationRepository
     {
         private readonly IdentityDBContext _dBContext;
         public AthenticationRepository(IdentityDBContext dBContext)

@@ -49,7 +49,7 @@ namespace MedicalCenters.Persistence
             services.AddScoped<IMedicalCenterRepository, MedicalCenterRepository>();
 
             services.AddScoped<IIdentityUnitOfWork, IdentityUnitOfWork>();
-            services.AddScoped<IAthenticationRepository, AthenticationRepository>();
+            services.AddScoped<IAuthenticationRepository, AthenticationRepository>();
             return services;
         }
     }

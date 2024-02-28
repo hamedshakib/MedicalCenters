@@ -15,7 +15,7 @@ namespace MedicalCenters.Identity.Classes
         public async Task<LoginResultDto> LoginValidate(LoginDto loginDto)
         {
             LoginResultDto loginResultDto = null;
-            User? user = await identityUnitOfWork.AthenticationRepository.FindUser(loginDto.Username);
+            User? user = await identityUnitOfWork.AuthenticationRepository.FindUser(loginDto.Username);
             if (user == null)
             {
                 loginResultDto= new LoginResultDto { IsFindUser = false ,LoginUser = null};

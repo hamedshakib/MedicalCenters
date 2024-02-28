@@ -10,7 +10,7 @@ namespace MedicalCenters.Identity.Contracts
     {
         Task Save();
 
-        IAthenticationRepository AthenticationRepository { get; }
+        IAuthenticationRepository AuthenticationRepository { get; }
         IAuthorizationRepository AuthorizationRepository { get; }
     }
 }
