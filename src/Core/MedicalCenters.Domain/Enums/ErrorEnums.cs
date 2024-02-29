@@ -10,5 +10,6 @@
         LoginFailed = 5,
         UnAuthroze = 6,
         TaskCanceled = 7,
+        TokenBlocked = 8,
     }
 }

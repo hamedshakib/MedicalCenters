@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalCenters.Application.
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{56798BC5-B372-421A-ABCC-E81AB51700FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalCenters.Cache", "src\Infrastructure\MedicalCenters.Cache\MedicalCenters.Cache.csproj", "{5450B491-2321-4578-9861-C5B0D0673EAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{56798BC5-B372-421A-ABCC-E81AB51700FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56798BC5-B372-421A-ABCC-E81AB51700FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56798BC5-B372-421A-ABCC-E81AB51700FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5450B491-2321-4578-9861-C5B0D0673EAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5450B491-2321-4578-9861-C5B0D0673EAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5450B491-2321-4578-9861-C5B0D0673EAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5450B491-2321-4578-9861-C5B0D0673EAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,6 +88,7 @@ Global
 		{0B47036D-6935-4409-8D09-63F294C75157} = {06954F25-B24F-442B-908D-32FB58B040FD}
 		{43F0A8D7-CBA7-4C63-B6EF-EFFC2139C518} = {4942CF23-9C6F-42D6-8A7D-DEC8D4EE34DE}
 		{0D94A680-C81E-413B-BA91-58A47BAF4D65} = {04817D30-E63A-4C91-AAD6-F72D78F8F578}
+		{5450B491-2321-4578-9861-C5B0D0673EAD} = {4942CF23-9C6F-42D6-8A7D-DEC8D4EE34DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A27C1660-17B4-4D5F-8104-C196D82D0C13}

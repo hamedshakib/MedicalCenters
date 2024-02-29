@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MedicalCenters.Cache;
+using MedicalCenters.Identity.Exceptions;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -31,7 +34,7 @@ namespace MedicalCenters.Identity.Classes
                 long UserId = Convert.ToInt64(context.User.FindFirst(JwtRegisteredClaimNames.Sid).Value);
 
                 if(IsBlockedToken(jwtSecurityToken, UserId))
-                    throw new UnauthorizedAccessException();
+                    throw new TokenBlockedException();
             }
 
 
@@ -41,12 +44,17 @@ namespace MedicalCenters.Identity.Classes
         private bool IsBlockedToken(JwtSecurityToken securityToken,long UserId)
         {
             var CreatedTime = securityToken.IssuedAt;
-            DateTime? LastBlockDatetime = null;
 
-
-            if(LastBlockDatetime.HasValue && CreatedTime <= LastBlockDatetime)
-                return true;
-
+            var data=RedisDatabase.Database.StringGet($"Users:{UserId}:BlockedTokenDateTime");
+            if(data.HasValue)
+            {
+                DateTime LastBlockDatetime;
+                if(DateTime.TryParse(data.ToString(), out LastBlockDatetime))
+                {
+                    if (CreatedTime <= LastBlockDatetime)
+                        return true;
+                }
+            }
             return false;
         }
 

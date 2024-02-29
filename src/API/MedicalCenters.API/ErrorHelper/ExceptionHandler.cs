@@ -7,6 +7,7 @@ using MedicalCenters.Identity.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using StackExchange.Redis;
 using System.Data.Common;
 
 namespace MedicalCenters.API.ErrorHelper
@@ -45,6 +46,14 @@ namespace MedicalCenters.API.ErrorHelper
 
                 case DbUpdateException ex:
                     handler = new DbUpdateExceptionHandler(ex);
+                    return handler.ProcessException();
+
+                case TokenBlockedException ex:
+                    handler = new TokenBlockedExceptionHandler(ex);
+                    return handler.ProcessException();
+
+                case RedisConnectionException ex:
+                    handler = new RedisConnectionExceptionHandler(ex);
                     return handler.ProcessException();
 
                 default:
