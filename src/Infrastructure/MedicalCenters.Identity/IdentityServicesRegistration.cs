@@ -1,4 +1,5 @@
 ﻿using MedicalCenters.Identity.Basic;
+using MedicalCenters.Identity.Classes;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -17,33 +18,12 @@ namespace MedicalCenters.Identity
             }
             ).AddJwtBearer(x =>
             {
-                x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
-                {
-                    ClockSkew = TimeSpan.Zero,
-                    ValidateLifetime = true,
-                    RequireExpirationTime = true,
-                    IssuerSigningKey = CustomSecurityKeyBasic.SymmetricSecurityKey,
-                    ValidateIssuerSigningKey = true,
-                    ValidateIssuer = true,
-                    ValidIssuer = "Medical Center Server",
-                    ValidAudience = "Medical Center Client",
-                    ValidateAudience = true,
-                    LifetimeValidator = CustomLifetimeValidator
-                };
+                x.TokenValidationParameters = PreparerTokenValidationParameters.GetTokenValidationParameters();
             });
 
             services.AddAuthorization();
 
             return services;
-        }
-        private static bool CustomLifetimeValidator(DateTime? notBefore, DateTime? expires,
-                                                    SecurityToken tokenToValidate, TokenValidationParameters @param)
-        {
-            if (expires != null)
-            {
-                return expires > DateTime.UtcNow;
-            }
-            return false;
         }
     }
 }

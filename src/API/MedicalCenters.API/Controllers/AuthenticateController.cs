@@ -36,7 +36,7 @@ namespace MedicalCenters.API.Controllers
             {
                 new Claim(JwtRegisteredClaimNames.Jti , Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.UniqueName ,model.Username),
-                new Claim(JwtRegisteredClaimNames.Sid , UserId.ToString())
+                new Claim(JwtRegisteredClaimNames.Sid , UserId.ToString()),
             };
 
             var jwt = JWTTokenCreator.GetJWTToken(claims);

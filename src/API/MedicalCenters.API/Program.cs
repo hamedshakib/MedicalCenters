@@ -1,4 +1,5 @@
 using MedicalCenters.API;
+using MedicalCenters.Identity.Classes;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-
+app.UseMiddleware<JwtMiddleware>();
 
 app.Run();
