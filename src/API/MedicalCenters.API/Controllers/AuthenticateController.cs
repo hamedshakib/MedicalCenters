@@ -21,39 +21,32 @@ namespace MedicalCenters.API.Controllers
         public async Task<IActionResult> Token([FromBody] LoginDto model)
         {
             long UserId;
-            try
+            var userValidator = new AuthenticationLogin(unitOfWork);
+            var ValidateUserresult = await userValidator.LoginValidate(model);
+
+            if (!ValidateUserresult.IsFindUser)
+                throw new LoginFailedException(false);
+
+            if (ValidateUserresult.LoginUser is null)
+                throw new LoginFailedException(true);
+
+            UserId = ValidateUserresult.LoginUser.UserId;
+
+            var claims = new List<Claim>()
             {
-                var userValidator = new AuthenticationLogin(unitOfWork);
-                var ValidateUserresult = await userValidator.LoginValidate(model);
+                new Claim(JwtRegisteredClaimNames.Jti , Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.UniqueName ,model.Username),
+                new Claim(JwtRegisteredClaimNames.Sid , UserId.ToString())
+            };
 
-                if (!ValidateUserresult.IsFindUser)
-                    throw new LoginFailedException(false);
-
-                if (ValidateUserresult.LoginUser is null)
-                    throw new LoginFailedException(true);
-
-                UserId = ValidateUserresult.LoginUser.UserId;
-
-                var claims = new List<Claim>()
-                {
-                    new Claim(JwtRegisteredClaimNames.Jti , Guid.NewGuid().ToString()),
-                    new Claim(JwtRegisteredClaimNames.UniqueName ,model.Username),
-                    new Claim(JwtRegisteredClaimNames.Sid , UserId.ToString())
-                };
-
-                var jwt = JWTTokenCreator.GetJWTToken(claims);
-                var result = new BaseQueryResponse()
-                {
-                    Errors = null,
-                    IsSuccess = true,
-                    Data = jwt
-                };
-                return Ok(result);
-            }
-            catch (Exception ex)
+            var jwt = JWTTokenCreator.GetJWTToken(claims);
+            var result = new BaseQueryResponse()
             {
-                return ex.ToObjectResult();
-            }
+                Errors = null,
+                IsSuccess = true,
+                Data = jwt
+            };
+            return Ok(result);
         }
     }
 }

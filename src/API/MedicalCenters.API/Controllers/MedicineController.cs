@@ -25,14 +25,9 @@ namespace MedicalCenters.API.Controllers
         {
             var query = new AllMedicineTypeMedicinesQuery() { MedicineTypeId = MedicineTypeId };
             BaseQueryResponse result = null;
-            try
-            {
-                result = await mediator.Send(query, cancellationToken);
-            }
-            catch (Exception ex)
-            {
-                return ex.ToObjectResult();
-            }
+
+            result = await mediator.Send(query, cancellationToken);
+
             return Ok(result);
         }
 
@@ -43,14 +38,9 @@ namespace MedicalCenters.API.Controllers
         {
             var query = new MedicineQuery() { Id = Id };
             BaseQueryResponse result = null;
-            try
-            {
-                result = await mediator.Send(query);
-            }
-            catch (Exception ex)
-            {
-                return ex.ToObjectResult();
-            }
+
+            result = await mediator.Send(query);
+
             return Ok(result);
         }
 
@@ -60,15 +50,10 @@ namespace MedicalCenters.API.Controllers
         {
             var command = new CreateMedicineCommand() { CreateMedicineDto = newMedicine };
             BaseValuedCommandResponse result = null;
-            try
-            {
-                result = await mediator.Send(command);
-                await cacheStore.EvictByTagAsync(CacheTage, CancellationToken.None);
-            }
-            catch (Exception ex)
-            {
-                return ex.ToObjectResult();
-            }
+
+            result = await mediator.Send(command);
+            await cacheStore.EvictByTagAsync(CacheTage, CancellationToken.None);
+
             return Ok(result);
         }
 
@@ -78,15 +63,10 @@ namespace MedicalCenters.API.Controllers
         {
             var command = new UpdateMedicineCommand() { MedicineDto = medicine };
             BaseResponse result = null;
-            try
-            {
-                result = await mediator.Send(command);
-                await cacheStore.EvictByTagAsync(CacheTage, CancellationToken.None);
-            }
-            catch (Exception ex)
-            {
-                return ex.ToObjectResult();
-            }
+
+            result = await mediator.Send(command);
+            await cacheStore.EvictByTagAsync(CacheTage, CancellationToken.None);
+
             return Ok(result);
 
         }
@@ -97,15 +77,10 @@ namespace MedicalCenters.API.Controllers
         {
             var command = new DeleteMedicineCommand() { Id = id };
             BaseResponse result = null;
-            try
-            {
-                result = await mediator.Send(command);
-                await cacheStore.EvictByTagAsync(CacheTage, CancellationToken.None);
-            }
-            catch (Exception ex)
-            {
-                return ex.ToObjectResult();
-            }
+
+            result = await mediator.Send(command);
+            await cacheStore.EvictByTagAsync(CacheTage, CancellationToken.None);
+
             return Ok(result);
         }
     }

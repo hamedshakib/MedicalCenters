@@ -25,14 +25,9 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
         {
             var query = new MedicalWardQuery() { Id = Id };
             BaseQueryResponse result = null;
-            try
-            {
-                result = await mediator.Send(query, cancellationToken);
-            }
-            catch (Exception ex)
-            {
-                return ex.ToObjectResult();
-            }
+
+            result = await mediator.Send(query, cancellationToken);
+
             return Ok(result);
         }
 
@@ -42,15 +37,10 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
         {
             var command = new CreateMedicalWardCommand() { CreateMedicalWardDto = newMedicalWard };
             BaseValuedCommandResponse result = null;
-            try
-            {
-                result = await mediator.Send(command, cancellationToken);
-                await cacheStore.EvictByTagAsync(CacheTage, CancellationToken.None);
-            }
-            catch (Exception ex)
-            {
-                return ex.ToObjectResult();
-            }
+
+            result = await mediator.Send(command, cancellationToken);
+            await cacheStore.EvictByTagAsync(CacheTage, CancellationToken.None);
+
             return Ok(result);
         }
 
@@ -60,15 +50,10 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
         {
             var command = new UpdateMedicalWardCommand() { MedicalWardDto = MedicalWard };
             BaseResponse result = null;
-            try
-            {
-                result = await mediator.Send(command);
-                await cacheStore.EvictByTagAsync(CacheTage, CancellationToken.None);
-            }
-            catch (Exception ex)
-            {
-                return ex.ToObjectResult();
-            }
+
+            result = await mediator.Send(command);
+            await cacheStore.EvictByTagAsync(CacheTage, CancellationToken.None);
+
             return Ok(result);
 
         }
@@ -79,15 +64,10 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
         {
             var command = new DeleteMedicalWardCommand() { Id = id };
             BaseResponse result = null;
-            try
-            {
-                result = await mediator.Send(command);
-                await cacheStore.EvictByTagAsync(CacheTage, CancellationToken.None);
-            }
-            catch (Exception ex)
-            {
-                return ex.ToObjectResult();
-            }
+
+            result = await mediator.Send(command);
+            await cacheStore.EvictByTagAsync(CacheTage, CancellationToken.None);
+
             return Ok(result);
         }
     }

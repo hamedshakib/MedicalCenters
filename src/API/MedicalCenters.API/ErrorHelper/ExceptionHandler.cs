@@ -2,16 +2,18 @@
 using FluentValidation;
 using MedicalCenters.API.ErrorHelper.ExceptionHelper;
 using MedicalCenters.Application.Exceptions;
+using MedicalCenters.Application.Responses;
 using MedicalCenters.Identity.Exceptions;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Data.Common;
 
 namespace MedicalCenters.API.ErrorHelper
 {
-    public static class ExceptionHandler
+    public class ExceptionHandler : IExceptionHandler
     {
-        public static ObjectResult ToObjectResult(this Exception exception)
+        public ObjectResult ProcessException(Exception exception)
         {
             BaseExceptionHandler handler = null;
 
@@ -49,6 +51,14 @@ namespace MedicalCenters.API.ErrorHelper
                     handler = new DefaultExceptionHandler(exception);
                     return handler.ProcessException();
             }
+        }
+
+        public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
+        {
+            ObjectResult objectResult = ProcessException(exception);
+            httpContext.Response.StatusCode = objectResult.StatusCode.Value;
+            await httpContext.Response.WriteAsJsonAsync(objectResult.Value, cancellationToken);
+            return true;
         }
     }
 }

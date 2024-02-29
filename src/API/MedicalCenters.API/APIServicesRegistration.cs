@@ -1,4 +1,5 @@
-﻿using MedicalCenters.API.Policies;
+﻿using MedicalCenters.API.ErrorHelper;
+using MedicalCenters.API.Policies;
 using MedicalCenters.Application;
 using MedicalCenters.Identity;
 using MedicalCenters.Persistence;
@@ -17,6 +18,11 @@ namespace MedicalCenters.API
                 options.UseCaseSensitivePaths = false;
                 options.DefaultExpirationTimeSpan = TimeSpan.FromDays(1);
             });
+
+            services.AddExceptionHandler<ExceptionHandler>();
+            services.AddProblemDetails();
+
+
 
             services.AddEndpointsApiExplorer();
             services.ConfigureApplicationServices();
