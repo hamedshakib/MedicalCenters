@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using MedicalCenters.API.Constants;
 using MedicalCenters.API.ErrorHelper;
 using MedicalCenters.Application.DTOs.Medicine;
 using MedicalCenters.Application.Features.Medicine.Requests.Commands;
@@ -16,11 +17,10 @@ namespace MedicalCenters.API.Controllers
     [ApiController]
     public class MedicineController(IMediator mediator, IOutputCacheStore cacheStore) : ControllerBase
     {
-        const string CacheTage = "Medicine_Cache";
 
         [HttpGet("MedicineType/{MedicineTypeId}")]
         [RequiresPermission(15)]
-        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTage], VaryByQueryKeys = ["Id"])]
+        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.Medicine], VaryByQueryKeys = ["Id"])]
         public async Task<ActionResult<BaseQueryResponse>> GetAllMedicineTypeMedicines(long MedicineTypeId, CancellationToken cancellationToken = default)
         {
             var query = new AllMedicineTypeMedicinesQuery() { MedicineTypeId = MedicineTypeId };
@@ -33,7 +33,7 @@ namespace MedicalCenters.API.Controllers
 
         [HttpGet("{id}")]
         [RequiresPermission(14)]
-        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTage], VaryByQueryKeys = ["Id"])]
+        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.Medicine], VaryByQueryKeys = ["Id"])]
         public async Task<ActionResult<BaseQueryResponse>> GetMedicine(long Id, CancellationToken cancellationToken = default)
         {
             var query = new MedicineQuery() { Id = Id };
@@ -52,7 +52,7 @@ namespace MedicalCenters.API.Controllers
             BaseValuedCommandResponse result = null;
 
             result = await mediator.Send(command);
-            await cacheStore.EvictByTagAsync(CacheTage, CancellationToken.None);
+            await cacheStore.EvictByTagAsync(CacheTags.Medicine, CancellationToken.None);
 
             return Ok(result);
         }
@@ -65,7 +65,7 @@ namespace MedicalCenters.API.Controllers
             BaseResponse result = null;
 
             result = await mediator.Send(command);
-            await cacheStore.EvictByTagAsync(CacheTage, CancellationToken.None);
+            await cacheStore.EvictByTagAsync(CacheTags.Medicine, CancellationToken.None);
 
             return Ok(result);
 
@@ -79,7 +79,7 @@ namespace MedicalCenters.API.Controllers
             BaseResponse result = null;
 
             result = await mediator.Send(command);
-            await cacheStore.EvictByTagAsync(CacheTage, CancellationToken.None);
+            await cacheStore.EvictByTagAsync(CacheTags.Medicine, CancellationToken.None);
 
             return Ok(result);
         }

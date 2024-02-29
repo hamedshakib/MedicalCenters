@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using MedicalCenters.API.Constants;
 using MedicalCenters.API.ErrorHelper;
 using MedicalCenters.Application.DTOs.MedicalCenter;
 using MedicalCenters.Application.Features.MedicalCenter.Requests.Commands;
@@ -17,10 +18,9 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
     [ApiController]
     public class MedicalCenterController(IMediator mediator, IOutputCacheStore cacheStore) : ControllerBase
     {
-        const string CacheTage = "MedicalCenter_Cache";
         [HttpGet]
         [RequiresPermission(5)]
-        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTage])]
+        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.MedicalCenter])]
         public async Task<ActionResult<BaseQueryResponse>> GetAllMedicalCenters(CancellationToken cancellationToken = default)
         {
             var query = new AllMedicalCentersQuery();
@@ -33,7 +33,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
 
         [HttpGet("{id}")]
         [RequiresPermission(4)]
-        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTage], VaryByQueryKeys = ["Id"])]
+        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.MedicalCenter], VaryByQueryKeys = ["Id"])]
         public async Task<ActionResult<BaseQueryResponse>> GetMedicalCenters(long Id, CancellationToken cancellationToken = default)
         {
 
@@ -53,7 +53,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
             BaseValuedCommandResponse result = null;
 
             result = await mediator.Send(command);
-            await cacheStore.EvictByTagAsync(CacheTage, CancellationToken.None);
+            await cacheStore.EvictByTagAsync(CacheTags.MedicalCenter, CancellationToken.None);
 
             return Ok(result);
         }
@@ -66,7 +66,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
             BaseResponse result = null;
 
             result = await mediator.Send(command);
-            await cacheStore.EvictByTagAsync(CacheTage, CancellationToken.None);
+            await cacheStore.EvictByTagAsync(CacheTags.MedicalCenter, CancellationToken.None);
 
             return Ok(result);
 
@@ -80,14 +80,14 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
             BaseResponse result = null;
 
             result = await mediator.Send(command);
-            await cacheStore.EvictByTagAsync(CacheTage, CancellationToken.None);
+            await cacheStore.EvictByTagAsync(CacheTags.MedicalCenter, CancellationToken.None);
 
             return Ok(result);
         }
 
         [HttpGet("Wards/{MecicalCenterId}")]
         [RequiresPermission(10)]
-        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = ["MedicalWard_Cache"], VaryByQueryKeys = ["mecicalCenterId"])]
+        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.MedicalWard], VaryByQueryKeys = ["mecicalCenterId"])]
         public async Task<ActionResult<BaseQueryResponse>> GetAllMedicalCenterWards(long mecicalCenterId)
         {
             var query = new AllMedicalCenterWardsQuery() { MedicalCenterId = mecicalCenterId };

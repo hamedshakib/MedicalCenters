@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using MedicalCenters.API.Constants;
 using MedicalCenters.API.ErrorHelper;
 using MedicalCenters.Application.DTOs.MedicalWard;
 using MedicalCenters.Application.Features.MedicalWard.Requests.Commands;
@@ -16,11 +17,10 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
     [ApiController]
     public class MedicalWardController(IMediator mediator, IOutputCacheStore cacheStore) : ControllerBase
     {
-        const string CacheTage = "MedicalWard_Cache";
 
         [HttpGet("{id}")]
         [RequiresPermission(9)]
-        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTage])]
+        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.MedicalWard])]
         public async Task<ActionResult<BaseQueryResponse>> GetMedicalWard(long Id, CancellationToken cancellationToken = default)
         {
             var query = new MedicalWardQuery() { Id = Id };
@@ -39,7 +39,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
             BaseValuedCommandResponse result = null;
 
             result = await mediator.Send(command, cancellationToken);
-            await cacheStore.EvictByTagAsync(CacheTage, CancellationToken.None);
+            await cacheStore.EvictByTagAsync(CacheTags.MedicalWard, CancellationToken.None);
 
             return Ok(result);
         }
@@ -52,7 +52,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
             BaseResponse result = null;
 
             result = await mediator.Send(command);
-            await cacheStore.EvictByTagAsync(CacheTage, CancellationToken.None);
+            await cacheStore.EvictByTagAsync(CacheTags.MedicalWard, CancellationToken.None);
 
             return Ok(result);
 
@@ -66,7 +66,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
             BaseResponse result = null;
 
             result = await mediator.Send(command);
-            await cacheStore.EvictByTagAsync(CacheTage, CancellationToken.None);
+            await cacheStore.EvictByTagAsync(CacheTags.MedicalWard, CancellationToken.None);
 
             return Ok(result);
         }
