@@ -30,6 +30,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseMiddleware<JwtMiddleware>();
+app.UseMiddleware<RequestAcceptabilityMiddleware>();
 
 app.Run();

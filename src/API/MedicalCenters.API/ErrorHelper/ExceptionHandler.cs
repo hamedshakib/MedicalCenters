@@ -47,6 +47,9 @@ namespace MedicalCenters.API.ErrorHelper
                 case DbUpdateException ex:
                     handler = new DbUpdateExceptionHandler(ex);
                     return handler.ProcessException();
+                case UserOverLimitRequestedException ex:
+                    handler = new UserOverLimitRequestedExceptionHandler(ex);
+                    return handler.ProcessException();
 
                 case TokenBlockedException ex:
                     handler = new TokenBlockedExceptionHandler(ex);

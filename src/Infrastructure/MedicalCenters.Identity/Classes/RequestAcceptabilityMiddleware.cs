@@ -1,8 +1,11 @@
 ﻿using MedicalCenters.Cache;
+using MedicalCenters.Domain.Entities;
 using MedicalCenters.Identity.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
+using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -13,11 +16,11 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Identity.Classes
 {
-    public class JwtMiddleware
+    public class RequestAcceptabilityMiddleware
     {
         private readonly RequestDelegate _next;
 
-        public JwtMiddleware(RequestDelegate next)
+        public RequestAcceptabilityMiddleware(RequestDelegate next)
         {
             _next = next;
         }
@@ -35,6 +38,8 @@ namespace MedicalCenters.Identity.Classes
 
                 if(IsBlockedToken(jwtSecurityToken, UserId))
                     throw new TokenBlockedException();
+                if (!OverLimitRequestChecker.Check(UserId))
+                    throw new UserOverLimitRequestedException();
             }
 
 
@@ -46,7 +51,8 @@ namespace MedicalCenters.Identity.Classes
             var CreatedTime = securityToken.IssuedAt;
 
             var data=RedisDatabase.Database.StringGet($"Users:{UserId}:BlockedTokenDateTime");
-            if(data.HasValue)
+
+            if (data.HasValue)
             {
                 DateTime LastBlockDatetime;
                 if(DateTime.TryParse(data.ToString(), out LastBlockDatetime))
@@ -57,6 +63,5 @@ namespace MedicalCenters.Identity.Classes
             }
             return false;
         }
-
     }
 }
