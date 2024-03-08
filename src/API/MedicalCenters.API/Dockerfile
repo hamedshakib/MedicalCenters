@@ -14,8 +14,9 @@ COPY ["src/Core/MedicalCenters.Application/MedicalCenters.Application.csproj", "
 COPY ["src/Utility/Utility.csproj", "src/Utility/"]
 COPY ["src/Core/MedicalCenters.Domain/MedicalCenters.Domain.csproj", "src/Core/MedicalCenters.Domain/"]
 COPY ["src/Infrastructure/MedicalCenters.Identity/MedicalCenters.Identity.csproj", "src/Infrastructure/MedicalCenters.Identity/"]
+COPY ["src/Infrastructure/MedicalCenters.Cache/MedicalCenters.Cache.csproj", "src/Infrastructure/MedicalCenters.Cache/"]
 COPY ["src/Infrastructure/MedicalCenters.Infrastructure/MedicalCenters.Persistence.csproj", "src/Infrastructure/MedicalCenters.Infrastructure/"]
-RUN dotnet restore "./src/API/MedicalCenters.API/./MedicalCenters.API.csproj"
+RUN dotnet restore "./src/API/MedicalCenters.API/MedicalCenters.API.csproj"
 COPY . .
 WORKDIR "/src/src/API/MedicalCenters.API"
 RUN dotnet build "./MedicalCenters.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
