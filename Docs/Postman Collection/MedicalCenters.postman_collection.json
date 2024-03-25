@@ -183,7 +183,8 @@
 									"var responseJson = pm.response.json();\r",
 									"\r",
 									"var jwtToken=responseJson.data;\r",
-									"pm.environment.set('Token',jwtToken)\r",
+									"pm.environment.set('Token',jwtToken.accessToken)\r",
+									"pm.environment.set('RefreshToken',jwtToken.refreshToken)\r",
 									"\r",
 									""
 								],
@@ -212,6 +213,34 @@
 								"api",
 								"Authenticate",
 								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh-token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"AccessToken\" : \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2NWY1YTA4NC0yZGY0LTQ4NTEtYTY4MS00ZjA2ODc5ZDc1NjUiLCJ1bmlxdWVfbmFtZSI6IkFkbWluaXN0cmF0b3IiLCJzaWQiOiIxIiwibmJmIjoxNzExMzY4ODQ4LCJleHAiOjE3MTEzNzI0NDgsImlhdCI6MTcxMTM2ODg0OCwiaXNzIjoiTWVkaWNhbCBDZW50ZXIgU2VydmVyIiwiYXVkIjoiTWVkaWNhbCBDZW50ZXIgQ2xpZW50In0.FElfc1pPEAVBI0xV5F12Uzaj2WEAUc32Gbo_yl7fv2U\",\r\n    \"RefreshToken\" : \"diE0mLezhz3FUm0fgHM8a1sHCBr99CRcGOL1qtxNi8o=\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/api/Authenticate/refresh-token",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"api",
+								"Authenticate",
+								"refresh-token"
 							]
 						}
 					},
@@ -406,7 +435,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"Name\" : \"قلب و عروق\",\r\n    \"TypeId\" : 1\r\n}",
+							"raw": "{\r\n    \"Name\" : \"استامینوفن\",\r\n    \"TypeId\" : 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
