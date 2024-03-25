@@ -10,7 +10,7 @@ namespace MedicalCenters.API.ErrorHelper.ExceptionHelper
         public override ObjectResult ProcessException()
         {
             response.Errors = new List<ErrorResponse>();
-            response.Errors.Add(new ErrorResponse(((int)ErrorEnums.RefreshTokenFailed), $"در تجدید توکن با موفقیت انجام نشد، لطفا مجددا لاگین نمایید"));
+            response.Errors.Add(new ErrorResponse(((int)ErrorEnums.RefreshTokenFailed), $"تجدید توکن با موفقیت انجام نشد، لطفا مجددا لاگین نمایید"));
 
             objectResult = new ObjectResult(response);
             objectResult.StatusCode = StatusCodes.Status403Forbidden;
