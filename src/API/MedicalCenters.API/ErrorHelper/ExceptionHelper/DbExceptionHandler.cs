@@ -14,7 +14,7 @@ namespace MedicalCenters.API.ErrorHelper.ExceptionHelper
             response.Errors.Add(new ErrorResponse((int)ErrorEnums.Query, $"در کوئری به دیتابیس خطایی رخ داد"));
 
             objectResult = new ObjectResult(response);
-            objectResult.StatusCode = StatusCodes.Status400BadRequest;
+            objectResult.StatusCode = StatusCodes.Status500InternalServerError;
             return objectResult;
         }
     }

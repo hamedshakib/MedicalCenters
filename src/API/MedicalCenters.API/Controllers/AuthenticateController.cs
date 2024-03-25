@@ -6,6 +6,8 @@ using MedicalCenters.Identity.Exceptions;
 using MedicalCenters.Identity.Models.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
+using RTools_NTS.Util;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
@@ -32,21 +34,34 @@ namespace MedicalCenters.API.Controllers
 
             UserId = ValidateUserresult.LoginUser.UserId;
 
-            var claims = new List<Claim>()
-            {
-                new Claim(JwtRegisteredClaimNames.Jti , Guid.NewGuid().ToString()),
-                new Claim(JwtRegisteredClaimNames.UniqueName ,model.Username),
-                new Claim(JwtRegisteredClaimNames.Sid , UserId.ToString()),
-            };
+            var tokenCreator = new JWTTokenCreator(unitOfWork);
 
-            var jwt = JWTTokenCreator.GetJWTToken(claims);
+            var resultTokenDto = tokenCreator.GenerateTokenDto(UserId, model.Username);
+
             var result = new BaseQueryResponse()
             {
                 Errors = null,
                 IsSuccess = true,
-                Data = jwt
+                Data = resultTokenDto
             };
             return Ok(result);
         }
+
+        [AllowAnonymous]
+        [HttpPost("refresh-token")]
+        public async Task<IActionResult> RefreshToken([FromBody] TokenDto tokenDto)
+        {
+            var tokenCreator = new JWTTokenCreator(unitOfWork);
+            var resultTokenDto=tokenCreator.GenerateTokenDto(tokenDto.AccessToken, tokenDto.RefreshToken);
+
+            var result = new BaseQueryResponse()
+            {
+                Errors = null,
+                IsSuccess = true,
+                Data = resultTokenDto
+            };
+            return Ok(result);
+        }
+
     }
 }

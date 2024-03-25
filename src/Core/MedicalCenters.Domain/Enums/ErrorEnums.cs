@@ -12,5 +12,6 @@
         TaskCanceled = 7,
         TokenBlocked = 8,
         UserOverLimitRequested = 9,
+        RefreshTokenFailed = 10,
     }
 }

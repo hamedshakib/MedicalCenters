@@ -44,6 +44,10 @@ namespace MedicalCenters.API.ErrorHelper
                     handler = new UnauthorizedAccessExceptionHandler(ex);
                     return handler.ProcessException();
 
+                case RefreshTokenFailedException ex:
+                    handler = new RefreshTokenFailedExceptionHandler(ex);
+                    return handler.ProcessException();
+
                 case DbUpdateException ex:
                     handler = new DbUpdateExceptionHandler(ex);
                     return handler.ProcessException();
