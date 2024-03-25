@@ -86,21 +86,32 @@ namespace MedicalCenters.Identity.Classes
             var tokenValidationParameters = PreparerTokenValidationParameters.GetTokenValidationParameters();
 
             tokenValidationParameters.ValidateLifetime = false;
-
+            tokenValidationParameters.LifetimeValidator = null;
 
             var tokenHandler = new JwtSecurityTokenHandler();
-            var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken securityToken);
-            JwtSecurityToken jwtSecurityToken = securityToken as JwtSecurityToken;
-
-            bool isnull = jwtSecurityToken == null;
-            bool IsAlg_equal = jwtSecurityToken.Header.Alg == SecurityAlgorithms.HmacSha256;
-
-            if (jwtSecurityToken == null)
+            try
             {
-                throw new SecurityTokenException("Invalid token");
-            }
+                var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken securityToken);
 
-            return principal;
+
+                JwtSecurityToken jwtSecurityToken = securityToken as JwtSecurityToken;
+
+                bool isnull = jwtSecurityToken == null;
+                bool IsAlg_equal = jwtSecurityToken.Header.Alg == SecurityAlgorithms.HmacSha256;
+
+                if (jwtSecurityToken == null)
+                {
+                    throw new SecurityTokenException("Invalid token");
+                }
+
+                return principal;
+            }
+            catch (Exception ex)
+            {
+                int i = 8;
+                i++;
+                return null;
+            }
         }
 
     }
