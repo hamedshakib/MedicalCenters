@@ -220,6 +220,21 @@
 				},
 				{
 					"name": "refresh-token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var responseJson = pm.response.json();\r",
+									"\r",
+									"var jwtToken=responseJson.data;\r",
+									"pm.environment.set('Token',jwtToken.accessToken)\r",
+									"pm.environment.set('RefreshToken',jwtToken.refreshToken)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
