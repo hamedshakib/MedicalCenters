@@ -7,17 +7,18 @@ namespace MedicalCenters.Cache
     public class RedisDatabase
     {
         private static IDatabase instance;
-        public static IDatabase Database {
+        public static IDatabase Database
+        {
             get
             {
                 if (instance is null)
                     instance = GetDatabase();
                 return instance;
-            } 
+            }
         }
         private RedisDatabase()
         {
-            
+
         }
 
         private static IDatabase GetDatabase()

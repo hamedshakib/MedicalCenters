@@ -1,5 +1,4 @@
-﻿using Azure;
-using MedicalCenters.Application.Responses;
+﻿using MedicalCenters.Application.Responses;
 using MedicalCenters.Domain.Enums;
 using MedicalCenters.Identity.Exceptions;
 using Microsoft.AspNetCore.Mvc;

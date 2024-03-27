@@ -3,7 +3,7 @@ using MedicalCenters.Identity.Models.Domains;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace MedicalCenters.Persistence.Configurations.Entities
+namespace MedicalCenters.Persistence.Configurations.Entities.Identity
 {
     internal class UserConfiguration : IEntityTypeConfiguration<User>
     {

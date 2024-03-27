@@ -2,7 +2,6 @@
 using FluentValidation;
 using MedicalCenters.API.ErrorHelper.ExceptionHelper;
 using MedicalCenters.Application.Exceptions;
-using MedicalCenters.Application.Responses;
 using MedicalCenters.Identity.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;

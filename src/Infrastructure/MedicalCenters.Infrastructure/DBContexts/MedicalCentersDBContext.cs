@@ -6,7 +6,6 @@ using MedicalCenters.Domain.Entities.Oprerations;
 using MedicalCenters.Domain.Entities.Patients;
 using MedicalCenters.Domain.Entities.Shifts;
 using MedicalCenters.Domain.Entities.Staffs;
-using MedicalCenters.Persistence.Configurations.Entities.MedicalCenters;
 using Microsoft.EntityFrameworkCore;
 
 namespace MedicalCenters.Infrastructure.DBContexts
@@ -20,10 +19,11 @@ namespace MedicalCenters.Infrastructure.DBContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new MedicalCenterTypeConfiguration());
-            modelBuilder.ApplyConfiguration(new MedicalWardTypeConfiguration());
-            modelBuilder.ApplyConfiguration(new MedicineTypeConfiguration());
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(MedicalCentersDBContext).Assembly, MedicalCentersConfigurationFilter);
         }
+
+        private static bool MedicalCentersConfigurationFilter(Type type) =>
+            type.FullName?.Contains("Configurations.Entities.MedicalCenters") ?? false;
 
         public DbSet<MedicalCenter> MedicalCenter { get; set; }
         public DbSet<MedicalCenterType> MedicalCenterType { get; set; }

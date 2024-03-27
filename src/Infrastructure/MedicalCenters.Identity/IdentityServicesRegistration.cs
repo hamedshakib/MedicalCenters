@@ -1,8 +1,6 @@
-﻿using MedicalCenters.Identity.Basic;
-using MedicalCenters.Identity.Classes;
+﻿using MedicalCenters.Identity.Classes;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
 
 namespace MedicalCenters.Identity
 {

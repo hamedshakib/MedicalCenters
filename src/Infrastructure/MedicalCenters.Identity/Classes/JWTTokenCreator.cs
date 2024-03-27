@@ -1,13 +1,11 @@
 ﻿using MedicalCenters.Identity.Basic;
 using MedicalCenters.Identity.Contracts;
 using MedicalCenters.Identity.Exceptions;
-using MedicalCenters.Identity.Models.Domains;
 using MedicalCenters.Identity.Models.DTOs;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
-using System.Text;
 
 namespace MedicalCenters.Identity.Classes
 {
@@ -42,7 +40,7 @@ namespace MedicalCenters.Identity.Classes
             return null;
         }
 
-        public TokenDto GenerateTokenDto(long UserId,string Username)
+        public TokenDto GenerateTokenDto(long UserId, string Username)
         {
             var claims = new List<Claim>()
             {
@@ -58,12 +56,12 @@ namespace MedicalCenters.Identity.Classes
 
             return new TokenDto() { AccessToken = AccessToken, RefreshToken = RefreshToken };
         }
-        public TokenDto GenerateTokenDto(string AccessToken,string RefreshToken) 
+        public TokenDto GenerateTokenDto(string AccessToken, string RefreshToken)
         {
             var principal = GetPrincipalFromExpiredToken(AccessToken);
 
             long userId = Convert.ToInt64(principal.FindFirstValue(JwtRegisteredClaimNames.Sid));
-            var vvvvv=principal.FindFirst(JwtRegisteredClaimNames.UniqueName);
+            var vvvvv = principal.FindFirst(JwtRegisteredClaimNames.UniqueName);
             string Username = principal.Identity.Name;
 
             var savedRefreshToken = identityUnitOfWork.AuthenticationRepository.GetRefreshToken(userId).Result;

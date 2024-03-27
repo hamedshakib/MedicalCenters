@@ -1,15 +1,10 @@
-﻿using MedicalCenters.API.ErrorHelper;
-using MedicalCenters.Application.Responses;
+﻿using MedicalCenters.Application.Responses;
 using MedicalCenters.Identity.Classes;
 using MedicalCenters.Identity.Contracts;
 using MedicalCenters.Identity.Exceptions;
 using MedicalCenters.Identity.Models.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
-using RTools_NTS.Util;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 
 namespace MedicalCenters.API.Controllers
 {
@@ -52,7 +47,7 @@ namespace MedicalCenters.API.Controllers
         public async Task<IActionResult> RefreshToken([FromBody] TokenDto tokenDto)
         {
             var tokenCreator = new JWTTokenCreator(unitOfWork);
-            var resultTokenDto=tokenCreator.GenerateTokenDto(tokenDto.AccessToken, tokenDto.RefreshToken);
+            var resultTokenDto = tokenCreator.GenerateTokenDto(tokenDto.AccessToken, tokenDto.RefreshToken);
 
             var result = new BaseQueryResponse()
             {

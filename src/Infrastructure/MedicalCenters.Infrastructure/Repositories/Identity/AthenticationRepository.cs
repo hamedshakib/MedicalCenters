@@ -32,7 +32,7 @@ namespace MedicalCenters.Persistence.Repositories.Identity
 
         Task<bool> IAuthenticationRepository.SaveRefreshToken(long UserId, string RefreshToken)
         {
-            return RedisDatabase.Database.StringSetAsync($"Users:{UserId}:RefreshToken" , RefreshToken);
+            return RedisDatabase.Database.StringSetAsync($"Users:{UserId}:RefreshToken", RefreshToken);
         }
     }
 }
