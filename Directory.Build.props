@@ -1,0 +1,7 @@
+<Project>
+	<PropertyGroup>
+		<LangVersion>12.0</LangVersion>
+		<TargetFramework>net8.0</TargetFramework>
+		<Authors>hamed shakib</Authors>
+	</PropertyGroup>
+</Project>
