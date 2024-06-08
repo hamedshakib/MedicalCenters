@@ -1,5 +1,8 @@
 using MedicalCenters.API;
 using MedicalCenters.Identity.Classes;
+using Serilog;
+using Serilog.Events;
+using Utility.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +13,21 @@ builder.Services.ConfigureAPIServices();
 
 //builder.Services.AddSwaggerGen();
 
+var logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(Configuration.GetAppSettingJson())
+    .MinimumLevel.Override("Microsoft", LogEventLevel.Error)
+    .MinimumLevel.Override("System", LogEventLevel.Error)
+    .CreateLogger();
+
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger);
+
 var app = builder.Build();
+
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(Configuration.GetAppSettingJson())
+    .CreateLogger();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

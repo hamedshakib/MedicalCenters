@@ -32,5 +32,9 @@
 		<PackageReference Update="xunit.runner.visualstudio" Version="2.8.1" />
 		<PackageReference Update="coverlet.collector" Version="6.0.2" />
 
+		<PackageReference Update="Serilog.Settings.Configuration" Version="8.0.1" />
+		<PackageReference Update="Serilog.Sinks.Seq" Version="8.0.0" />
+		<PackageReference Update="Serilog.Extensions.Logging" Version="8.0.0" />
+
 	</ItemGroup>
 </Project>
