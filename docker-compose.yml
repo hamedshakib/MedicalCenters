@@ -3,6 +3,8 @@ version: '3.4'
 services:
   medicalcenters.api:
     image: ${DOCKER_REGISTRY-}medicalcentersapi
+    container_name: "Medical Center API"
+    
     build:
       context: .
       dockerfile: src/API/MedicalCenters.API/Dockerfile

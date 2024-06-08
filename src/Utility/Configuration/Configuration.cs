@@ -10,7 +10,7 @@ namespace Utility.Configuration
 
             IConfigurationRoot configuration = new ConfigurationBuilder()
                                         .SetBasePath(Directory.GetCurrentDirectory())
-                                        .AddJsonFile(environment == "Development" ? "appsettings.Development.json" : "appsettings.json")
+                                        .AddJsonFile(string.Equals(environment,"development",StringComparison.OrdinalIgnoreCase) ? "appsettings.Development.json" : "appsettings.json",optional:false,reloadOnChange:true)
                                         .Build();
             return configuration;
         }
