@@ -5,15 +5,8 @@ using System.IdentityModel.Tokens.Jwt;
 
 namespace MedicalCenters.Identity.Classes
 {
-    public class RequestAcceptabilityMiddleware
+    public class RequestAcceptabilityMiddleware(RequestDelegate _next, IMasterCacheProvider _cacheProvider)
     {
-        private readonly RequestDelegate _next;
-
-        public RequestAcceptabilityMiddleware(RequestDelegate next)
-        {
-            _next = next;
-        }
-
         public async Task Invoke(HttpContext context)
         {
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
@@ -25,7 +18,7 @@ namespace MedicalCenters.Identity.Classes
 
                 long UserId = Convert.ToInt64(context.User.FindFirst(JwtRegisteredClaimNames.Sid).Value);
 
-                if (IsBlockedToken(jwtSecurityToken, UserId))
+                if (IsBlockedToken(jwtSecurityToken, UserId).Result)
                     throw new TokenBlockedException();
                 if (!OverLimitRequestChecker.Check(UserId))
                     throw new UserOverLimitRequestedException();
@@ -35,22 +28,16 @@ namespace MedicalCenters.Identity.Classes
             await _next(context);
         }
 
-        private bool IsBlockedToken(JwtSecurityToken securityToken, long UserId)
+        private async Task<bool> IsBlockedToken(JwtSecurityToken securityToken, long UserId)
         {
             var CreatedTime = securityToken.IssuedAt;
 
-            var data = RedisDatabase.Database.StringGet($"Users:{UserId}:BlockedTokenDateTime");
+            var LastBlockDatetime = await _cacheProvider.GetAsync<DateTime?>($"Users:{UserId}:BlockedTokenDateTime");
 
-            if (data.HasValue)
-            {
-                DateTime LastBlockDatetime;
-                if (DateTime.TryParse(data.ToString(), out LastBlockDatetime))
-                {
-                    if (CreatedTime <= LastBlockDatetime)
-                        return true;
-                }
-            }
-            return false;
+            if (LastBlockDatetime.HasValue && CreatedTime <= LastBlockDatetime)
+                return true;
+            else
+                return false;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using MedicalCenters.API.ErrorHelper;
 using MedicalCenters.API.Policies;
 using MedicalCenters.Application;
+using MedicalCenters.Cache;
 using MedicalCenters.Identity;
 using MedicalCenters.Persistence;
 namespace MedicalCenters.API
@@ -28,6 +29,7 @@ namespace MedicalCenters.API
             services.ConfigureApplicationServices();
             services.ConfigurePersistenceServices();
             services.ConfigureIdentityServices();
+            services.ConfigureCacheServices();
 
             return services;
         }
