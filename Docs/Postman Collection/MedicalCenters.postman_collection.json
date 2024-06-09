@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "8a98f658-ad21-4d2b-a273-330d59ac9517",
+		"_postman_id": "5c21cd2d-75ae-4415-9cbd-9d0d81be518d",
 		"name": "MedicalCenters",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -25,7 +25,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"Id\" : 1,\r\n    \"Name\" : \"لاله\",\r\n    \"Description\" : \"بیمارستان فوق تخصصی\",\r\n    \"Address\" : \"خیابان جنوبی بهار شرقی\",\r\n    \"TypeId\" : 1,\r\n    \"GPSx\" : 30,\r\n    \"GPSy\" : 15\r\n}",
+							"raw": "{\r\n    \"Name\" : \"لاله\",\r\n    \"Description\" : \"بیمارستان فوق تخصصی\",\r\n    \"Address\" : \"خیابان جنوبی بهار شرقی\",\r\n    \"TypeId\" : 1,\r\n    \"GPSx\" : 30,\r\n    \"GPSy\" : 15\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -33,13 +33,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{BaseUrl}}/api/MedicalCenter",
+							"raw": "{{BaseUrl}}/api/MedicalCenter/1",
 							"host": [
 								"{{BaseUrl}}"
 							],
 							"path": [
 								"api",
-								"MedicalCenter"
+								"MedicalCenter",
+								"1"
 							]
 						}
 					},
@@ -379,7 +380,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"Id\" : 1,\r\n    \"Name\" : \"قلب و عروق\",\r\n    \"Description\" : \"بخش تخصصی بررسی و درمان مشکلات مربوط به قلب و عروق مربوط به آن\",\r\n    \"TypeId\" : 1,\r\n    \"MedicalCenterId\" : 1\r\n}",
+							"raw": "{\r\n    \"Name\" : \"قلب و عروق\",\r\n    \"Description\" : \"بخش تخصصی بررسی و درمان مشکلات مربوط به قلب و عروق مربوط به آن\",\r\n    \"TypeId\" : 1,\r\n    \"MedicalCenterId\" : 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -387,13 +388,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{BaseUrl}}/api/MedicalWard",
+							"raw": "{{BaseUrl}}/api/MedicalWard/1",
 							"host": [
 								"{{BaseUrl}}"
 							],
 							"path": [
 								"api",
-								"MedicalWard"
+								"MedicalWard",
+								"1"
 							]
 						}
 					},
@@ -486,9 +488,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BaseUrl}}/api/Medicine/1",
+							"raw": "{{{{BaseUrl}}}}/api/Medicine/1",
 							"host": [
-								"{{BaseUrl}}"
+								"{{{{BaseUrl}}}}"
 							],
 							"path": [
 								"api",
@@ -546,7 +548,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"Id\" : 1,\r\n    \"Name\" : \"قلب و عروق\",\r\n    \"TypeId\" : 1\r\n}",
+							"raw": "{\r\n    \"Name\" : \"قلب و عروق\",\r\n    \"TypeId\" : 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -554,13 +556,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{BaseUrl}}/api/Medicine",
+							"raw": "{{BaseUrl}}/api/Medicine/1",
 							"host": [
 								"{{BaseUrl}}"
 							],
 							"path": [
 								"api",
-								"Medicine"
+								"Medicine",
+								"1"
 							]
 						}
 					},
