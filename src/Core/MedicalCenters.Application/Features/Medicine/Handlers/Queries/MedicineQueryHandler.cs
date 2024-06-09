@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using MedicalCenters.Application.Contracts.Persistence;
-using MedicalCenters.Application.DTOs.Medicine;
+using MedicalCenters.Application.DTOs;
 using MedicalCenters.Application.Exceptions;
 using MedicalCenters.Application.Features.Medicine.Requests.Queries;
 using MedicalCenters.Application.Responses;

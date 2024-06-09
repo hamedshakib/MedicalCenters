@@ -1,6 +1,6 @@
-﻿namespace MedicalCenters.Application.DTOs.MedicalWard
+﻿namespace MedicalCenters.Application.DTOs
 {
-    public class CreateMedicalWardDto : IMedicalWardDto
+    public record MedicalWardDto
     {
         public string Name { get; set; }
         public string Description { get; set; }

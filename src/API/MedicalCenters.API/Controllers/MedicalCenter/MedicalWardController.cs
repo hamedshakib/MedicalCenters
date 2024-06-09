@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using MedicalCenters.API.Constants;
-using MedicalCenters.Application.DTOs.MedicalWard;
+using MedicalCenters.Application.DTOs;
 using MedicalCenters.Application.Features.MedicalWard.Requests.Commands;
 using MedicalCenters.Application.Features.MedicalWard.Requests.Queries;
 using MedicalCenters.Application.Responses;
@@ -32,9 +32,9 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
 
         [HttpPost]
         [RequiresPermission(6)]
-        public async Task<ActionResult<BaseValuedCommandResponse>> AddMedicalWard([FromBody] CreateMedicalWardDto newMedicalWard, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<BaseValuedCommandResponse>> AddMedicalWard([FromBody] MedicalWardDto newMedicalWard, CancellationToken cancellationToken = default)
         {
-            var command = new CreateMedicalWardCommand() { CreateMedicalWardDto = newMedicalWard };
+            var command = new CreateMedicalWardCommand() { MedicalWardDto = newMedicalWard };
             BaseValuedCommandResponse result = null;
 
             result = await mediator.Send(command, cancellationToken);
@@ -43,11 +43,11 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
             return Ok(result);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         [RequiresPermission(7)]
-        public async Task<ActionResult<BaseResponse>> UpdateMedicalWard([FromBody] MedicalWardDto MedicalWard)
+        public async Task<ActionResult<BaseResponse>> UpdateMedicalWard([FromRoute] int id, [FromBody] MedicalWardDto MedicalWard)
         {
-            var command = new UpdateMedicalWardCommand() { MedicalWardDto = MedicalWard };
+            var command = new UpdateMedicalWardCommand() { Id=id,MedicalWardDto = MedicalWard };
             BaseResponse result = null;
 
             result = await mediator.Send(command);

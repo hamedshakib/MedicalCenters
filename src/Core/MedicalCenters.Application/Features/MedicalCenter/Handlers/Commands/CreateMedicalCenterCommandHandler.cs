@@ -12,7 +12,7 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Handlers.Commands
         {
             var response = new BaseValuedCommandResponse();
 
-            var data = mapper.Map<MedicalCenters.Domain.Entities.MedicalCenter>(command.CreateMedicalCenterDto);
+            var data = mapper.Map<MedicalCenters.Domain.Entities.MedicalCenter>(command.MedicalCenterDto);
             data = await unitOfWork.MedicalCenterRepository.Add(data);
 
             await unitOfWork.Save();

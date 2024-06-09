@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using MedicalCenters.Application.DTOs.MedicalCenter;
-using MedicalCenters.Application.DTOs.MedicalWard;
-using MedicalCenters.Application.DTOs.Medicine;
+using MedicalCenters.Application.DTOs;
 using MedicalCenters.Application.Mapping.MappingResolvers.MappingTypeConverter;
 using MedicalCenters.Domain.Entities;
 using MedicalCenters.Domain.Entities.Medicines;
@@ -12,9 +10,9 @@ namespace MedicalCenters.Application.Mapping.MappingProfiles
     {
         public AutoMapperProfile()
         {
-            CreateMap<CreateMedicalCenterDto, MedicalCenter>()
-                    .ForMember(dest => dest.Location, opt => opt.MapFrom<PointResolver<CreateMedicalCenterDto, MedicalCenter>>());
-            CreateMap<MedicalCenter, CreateMedicalCenterDto>()
+            CreateMap<MedicalCenterDto, MedicalCenter>()
+                    .ForMember(dest => dest.Location, opt => opt.MapFrom<PointResolver<MedicalCenterDto, MedicalCenter>>());
+            CreateMap<MedicalCenter, MedicalCenterDto>()
                     .ForMember(dest => dest.GPSx, opt => opt.MapFrom(src => src.Location.X))
                     .ForMember(dest => dest.GPSy, opt => opt.MapFrom(src => src.Location.Y));
 
@@ -29,13 +27,13 @@ namespace MedicalCenters.Application.Mapping.MappingProfiles
 
 
 
-            CreateMap<CreateMedicalWardDto, MedicalWard>()
+            CreateMap<MedicalWardDto, MedicalWard>()
                     .ReverseMap();
 
             CreateMap<MedicalWardDto, MedicalWard>()
                     .ReverseMap();
 
-            CreateMap<CreateMedicineDto, Medicine>()
+            CreateMap<MedicineDto, Medicine>()
                     .ReverseMap();
 
             CreateMap<MedicineDto, Medicine>()

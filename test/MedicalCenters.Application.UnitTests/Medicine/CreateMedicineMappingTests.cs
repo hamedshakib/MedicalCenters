@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MedicalCenters.Application.Contracts.Persistence;
-using MedicalCenters.Application.DTOs.Medicine;
+using MedicalCenters.Application.DTOs;
 using MedicalCenters.Application.Features.Medicine.Handlers.Commands;
 using MedicalCenters.Application.Features.Medicine.Requests.Commands;
 using MedicalCenters.Application.Mapping.MappingProfiles;
@@ -13,11 +13,11 @@ namespace MedicalCenters.Application.UnitTests.Medicine
     {
         private readonly IMapper _mapper;
         private readonly CreateMedicineCommandHandler _handler;
-        private readonly CreateMedicineDto _createMedicineDto;
+        private readonly MedicineDto _MedicineDto;
         private readonly IMedicalCentersUnitOfWork _unitOfWork;
         public CreateMedicineMappingTests()
         {
-            _createMedicineDto = new CreateMedicineDto()
+            _MedicineDto = new MedicineDto()
             {
                 Name = "Medicine test",
                 TypeId = 1
@@ -34,7 +34,7 @@ namespace MedicalCenters.Application.UnitTests.Medicine
             _handler = new CreateMedicineCommandHandler(_unitOfWork, _mapper);
         }
         [Fact]
-        public async Task CreateMedicineMapping_createMedicineDto_NotNull()
+        public async Task CreateMedicineMapping_MedicineDto_NotNull()
         {
             var data = InitMappedMedicineData();
 
@@ -42,7 +42,7 @@ namespace MedicalCenters.Application.UnitTests.Medicine
         }
 
         [Fact]
-        public async Task CreateMedicineMapping_createMedicineDto_NameIsNotNull()
+        public async Task CreateMedicineMapping_MedicineDto_NameIsNotNull()
         {
             var data = InitMappedMedicineData();
 
@@ -50,7 +50,7 @@ namespace MedicalCenters.Application.UnitTests.Medicine
         }
 
         [Fact]
-        public async Task CreateMedicineMapping_createMedicineDto_TypeIdIsNotNull()
+        public async Task CreateMedicineMapping_MedicineDto_TypeIdIsNotNull()
         {
             var data = InitMappedMedicineData();
 
@@ -58,8 +58,8 @@ namespace MedicalCenters.Application.UnitTests.Medicine
         }
         private MedicalCenters.Domain.Entities.Medicines.Medicine? InitMappedMedicineData()
         {
-            var command = new CreateMedicineCommand() { CreateMedicineDto = _createMedicineDto };
-            return _mapper.Map<MedicalCenters.Domain.Entities.Medicines.Medicine>(command.CreateMedicineDto);
+            var command = new CreateMedicineCommand() { MedicineDto = _MedicineDto };
+            return _mapper.Map<MedicalCenters.Domain.Entities.Medicines.Medicine>(command.MedicineDto);
         }
 
     }

@@ -7,9 +7,9 @@ namespace MedicalCenters.Application.Features.MedicalWard.Validators
     {
         public CreateMedicalWardCommandValidator()
         {
-            RuleFor(e => e.CreateMedicalWardDto.Name).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty();
-            RuleFor(e => e.CreateMedicalWardDto.TypeId).NotNull();
-            RuleFor(e => e.CreateMedicalWardDto.MedicalCenterId).NotNull();
+            RuleFor(e => e.MedicalWardDto.Name).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty();
+            RuleFor(e => e.MedicalWardDto.TypeId).NotNull();
+            RuleFor(e => e.MedicalWardDto.MedicalCenterId).NotNull();
         }
     }
 }

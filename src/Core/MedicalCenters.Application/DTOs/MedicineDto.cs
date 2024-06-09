@@ -1,6 +1,6 @@
-﻿namespace MedicalCenters.Application.DTOs.Medicine
+﻿namespace MedicalCenters.Application.DTOs
 {
-    public interface IMedicineDto
+    public record MedicineDto
     {
         public string Name { get; set; }
         public int TypeId { get; set; }

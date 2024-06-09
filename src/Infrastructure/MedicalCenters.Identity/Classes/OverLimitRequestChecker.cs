@@ -5,8 +5,8 @@ namespace MedicalCenters.Identity.Classes
 {
     internal static class OverLimitRequestChecker
     {
-        private static int burst = 15;
-        private static float emission_interval = 1.5f;
+        private static string burst = "15";
+        private static string emission_interval = "1.5";
 
         private static string Lua_Script = @"
                                 redis.replicate_commands()
@@ -60,8 +60,8 @@ namespace MedicalCenters.Identity.Classes
             var res = luaPrepare.Evaluate(RedisDatabase.Database, new
             {
                 rate_limit_key = Key,
-                burst = burst.ToString(),
-                emission_interval = emission_interval.ToString()
+                burst = burst,
+                emission_interval = emission_interval
             });
             var items = ((RedisResult[]?)res);
             bool isAcceptable = Convert.ToBoolean(items[0]);

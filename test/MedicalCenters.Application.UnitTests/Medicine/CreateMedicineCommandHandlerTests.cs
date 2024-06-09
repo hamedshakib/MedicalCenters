@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MedicalCenters.Application.Contracts.Persistence;
-using MedicalCenters.Application.DTOs.Medicine;
+using MedicalCenters.Application.DTOs;
 using MedicalCenters.Application.Features.Medicine.Handlers.Commands;
 using MedicalCenters.Application.Features.Medicine.Requests.Commands;
 using MedicalCenters.Application.Mapping.MappingProfiles;
@@ -13,12 +13,12 @@ namespace MedicalCenters.Application.UnitTests.Medicine
     {
         private readonly IMapper _mapper;
         private readonly CreateMedicineCommandHandler _handler;
-        private readonly CreateMedicineDto _createMedicineDto;
+        private readonly MedicineDto _MedicineDto;
         private readonly IMedicalCentersUnitOfWork _unitOfWork;
 
         public CreateMedicineCommandHandlerTests()
         {
-            _createMedicineDto = new CreateMedicineDto()
+            _MedicineDto = new MedicineDto()
             {
                 Name = "Medicine test",
                 TypeId = 1
@@ -59,8 +59,8 @@ namespace MedicalCenters.Application.UnitTests.Medicine
 
         private async Task<object> InitResult()
         {
-            var command = new CreateMedicineCommand() { CreateMedicineDto = _createMedicineDto };
-            var data = _mapper.Map<MedicalCenters.Domain.Entities.Medicines.Medicine>(command.CreateMedicineDto);
+            var command = new CreateMedicineCommand() { MedicineDto = _MedicineDto };
+            var data = _mapper.Map<MedicalCenters.Domain.Entities.Medicines.Medicine>(command.MedicineDto);
             data.Id = 1;
             _unitOfWork.MedicineRepository.Add(Arg.Any<MedicalCenters.Domain.Entities.Medicines.Medicine>())
                 .Returns(data);

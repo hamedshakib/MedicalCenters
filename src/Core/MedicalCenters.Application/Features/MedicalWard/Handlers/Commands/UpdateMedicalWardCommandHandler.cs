@@ -13,10 +13,10 @@ namespace MedicalCenters.Application.Features.MedicalWard.Handlers.Commands
         {
             var response = new BaseResponse();
 
-            var medicalWard = await unitOfWork.MedicalWardRepository.Get((int)command.MedicalWardDto.Id);
+            var medicalWard = await unitOfWork.MedicalWardRepository.Get(command.Id);
             if (medicalWard is null)
             {
-                throw new NotFoundException("بخش درمانی", command.MedicalWardDto.Id.ToString());
+                throw new NotFoundException("بخش درمانی", command.Id.ToString());
             }
 
             mapper.Map(command.MedicalWardDto, medicalWard);

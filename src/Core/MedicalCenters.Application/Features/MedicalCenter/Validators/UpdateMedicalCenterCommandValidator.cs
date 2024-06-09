@@ -7,7 +7,6 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Validates
     {
         public UpdateMedicalCenterCommandValidator()
         {
-            RuleFor(e => e.MedicalCenterDto.Id).NotNull();
             RuleFor(e => e.MedicalCenterDto.TypeId).NotNull();
             RuleFor(e => e.MedicalCenterDto.Name).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty();
             When(x => x.MedicalCenterDto.GPSx != null || x.MedicalCenterDto.GPSy != null, () =>
