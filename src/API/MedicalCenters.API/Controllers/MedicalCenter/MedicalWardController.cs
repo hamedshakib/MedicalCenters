@@ -5,6 +5,7 @@ using MedicalCenters.Application.Features.MedicalWard.Requests.Commands;
 using MedicalCenters.Application.Features.MedicalWard.Requests.Queries;
 using MedicalCenters.Application.Responses;
 using MedicalCenters.Identity.Attributes;
+using MedicalCenters.Identity.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OutputCaching;
@@ -18,7 +19,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
     {
 
         [HttpGet("{id}")]
-        [RequiresPermission(9)]
+        [RequiresPermission(PermissionEnum.SeeMedicalWardInfo)]
         [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.MedicalWard])]
         public async Task<ActionResult<BaseQueryResponse>> GetMedicalWard(long Id, CancellationToken cancellationToken = default)
         {
@@ -31,7 +32,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
         }
 
         [HttpPost]
-        [RequiresPermission(6)]
+        [RequiresPermission(PermissionEnum.AddMedicalWard)]
         public async Task<ActionResult<BaseValuedCommandResponse>> AddMedicalWard([FromBody] MedicalWardDto newMedicalWard, CancellationToken cancellationToken = default)
         {
             var command = new CreateMedicalWardCommand() { MedicalWardDto = newMedicalWard };
@@ -44,7 +45,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
         }
 
         [HttpPut("{id}")]
-        [RequiresPermission(7)]
+        [RequiresPermission(PermissionEnum.EditMedicalWard)]
         public async Task<ActionResult<BaseResponse>> UpdateMedicalWard([FromRoute] int id, [FromBody] MedicalWardDto MedicalWard)
         {
             var command = new UpdateMedicalWardCommand() { Id=id,MedicalWardDto = MedicalWard };
@@ -58,7 +59,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
         }
 
         [HttpDelete("{id}")]
-        [RequiresPermission(8)]
+        [RequiresPermission(PermissionEnum.DeleteMedicalWard)]
         public async Task<ActionResult<BaseResponse>> DeleteMedicalWard(long id)
         {
             var command = new DeleteMedicalWardCommand() { Id = id };

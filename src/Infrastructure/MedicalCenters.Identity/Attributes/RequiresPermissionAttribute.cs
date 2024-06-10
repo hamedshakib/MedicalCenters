@@ -9,7 +9,7 @@ using IAuthorizationFilter = Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilt
 namespace MedicalCenters.Identity.Attributes
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-    public class RequiresPermissionAttribute(int permissionId) : Attribute, IAuthorizationFilter
+    public class RequiresPermissionAttribute(PermissionEnum permission) : Attribute, IAuthorizationFilter
     {
         async void IAuthorizationFilter.OnAuthorization(AuthorizationFilterContext context)
         {
@@ -26,11 +26,11 @@ namespace MedicalCenters.Identity.Attributes
                     long UserId = Convert.ToInt64(User.FindFirst(JwtRegisteredClaimNames.Sid).Value);
 
                     //Check User Permission
-                    HasPermission = await identityUnitOfWork.AuthorizationRepository.HasUserPermission(UserId, permissionId);
+                    HasPermission = await identityUnitOfWork.AuthorizationRepository.HasUserPermission(UserId, (int)permission);
 
                     //Check Group Permission
                     if (!HasPermission)
-                        HasPermission = await identityUnitOfWork.AuthorizationRepository.HasUserGroupPermission(UserId, permissionId);
+                        HasPermission = await identityUnitOfWork.AuthorizationRepository.HasUserGroupPermission(UserId, (int)permission);
                 }
             }
             catch { }

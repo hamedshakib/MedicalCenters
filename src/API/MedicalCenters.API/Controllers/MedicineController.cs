@@ -5,6 +5,7 @@ using MedicalCenters.Application.Features.Medicine.Requests.Commands;
 using MedicalCenters.Application.Features.Medicine.Requests.Queries;
 using MedicalCenters.Application.Responses;
 using MedicalCenters.Identity.Attributes;
+using MedicalCenters.Identity.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OutputCaching;
@@ -18,7 +19,7 @@ namespace MedicalCenters.API.Controllers
     {
 
         [HttpGet("MedicineType/{MedicineTypeId}")]
-        [RequiresPermission(15)]
+        [RequiresPermission(PermissionEnum.SeeAllMedicineTypeMedicinesInfos)]
         [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.Medicine], VaryByQueryKeys = ["Id"])]
         public async Task<ActionResult<BaseQueryResponse>> GetAllMedicineTypeMedicines(long MedicineTypeId, CancellationToken cancellationToken = default)
         {
@@ -31,7 +32,7 @@ namespace MedicalCenters.API.Controllers
         }
 
         [HttpGet("{id}")]
-        [RequiresPermission(14)]
+        [RequiresPermission(PermissionEnum.SeeMedicines)]
         [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.Medicine], VaryByQueryKeys = ["Id"])]
         public async Task<ActionResult<BaseQueryResponse>> GetMedicine(long Id, CancellationToken cancellationToken = default)
         {
@@ -44,7 +45,7 @@ namespace MedicalCenters.API.Controllers
         }
 
         [HttpPost]
-        [RequiresPermission(11)]
+        [RequiresPermission(PermissionEnum.AddMedicine)]
         public async Task<ActionResult<BaseValuedCommandResponse>> AddMedicine([FromBody] MedicineDto newMedicine)
         {
             var command = new CreateMedicineCommand() { MedicineDto = newMedicine };
@@ -57,7 +58,7 @@ namespace MedicalCenters.API.Controllers
         }
 
         [HttpPut("{id}")]
-        [RequiresPermission(12)]
+        [RequiresPermission(PermissionEnum.EditMedicine)]
         public async Task<ActionResult<BaseResponse>> UpdateMedicine([FromRoute] int id,[FromBody] MedicineDto medicine)
         {
             var command = new UpdateMedicineCommand() { Id= id,MedicineDto = medicine };
@@ -71,7 +72,7 @@ namespace MedicalCenters.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        [RequiresPermission(13)]
+        [RequiresPermission(PermissionEnum.DeleteMedicine)]
         public async Task<ActionResult<BaseResponse>> DeleteMedicine(long id)
         {
             var command = new DeleteMedicineCommand() { Id = id };

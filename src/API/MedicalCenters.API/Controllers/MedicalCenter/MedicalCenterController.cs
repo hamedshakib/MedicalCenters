@@ -6,6 +6,7 @@ using MedicalCenters.Application.Features.MedicalCenter.Requests.Queries;
 using MedicalCenters.Application.Features.MedicalWard.Requests.Queries;
 using MedicalCenters.Application.Responses;
 using MedicalCenters.Identity.Attributes;
+using MedicalCenters.Identity.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OutputCaching;
@@ -18,7 +19,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
     public class MedicalCenterController(IMediator mediator, IOutputCacheStore cacheStore) : ControllerBase
     {
         [HttpGet]
-        [RequiresPermission(5)]
+        [RequiresPermission(PermissionEnum.SeeAllMedicalCentersInfos)]
         [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.MedicalCenter])]
         public async Task<ActionResult<BaseQueryResponse>> GetAllMedicalCenters(CancellationToken cancellationToken = default)
         {
@@ -31,7 +32,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
         }
 
         [HttpGet("{id}")]
-        [RequiresPermission(4)]
+        [RequiresPermission(PermissionEnum.SeeMedicalCenterInfo)]
         [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.MedicalCenter], VaryByQueryKeys = ["Id"])]
         public async Task<ActionResult<BaseQueryResponse>> GetMedicalCenters(long Id, CancellationToken cancellationToken = default)
         {
@@ -45,7 +46,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
         }
 
         [HttpPost]
-        [RequiresPermission(1)]
+        [RequiresPermission(PermissionEnum.AddMedicalCenter)]
         public async Task<ActionResult<BaseValuedCommandResponse>> AddMedicalCenter([FromBody] MedicalCenterDto newMedicalCenter)
         {
             var command = new CreateMedicalCenterCommand() { MedicalCenterDto = newMedicalCenter };
@@ -58,7 +59,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
         }
 
         [HttpPut("{id}")]
-        [RequiresPermission(2)]
+        [RequiresPermission(PermissionEnum.EditMedicalCenter)]
         public async Task<ActionResult<BaseResponse>> UpdateMedicalCenter([FromRoute] int id, [FromBody] MedicalCenterDto medicalCenter)
         {
             var command = new UpdateMedicalCenterCommand() { Id=id,MedicalCenterDto = medicalCenter };
@@ -72,7 +73,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
         }
 
         [HttpDelete("{id}")]
-        [RequiresPermission(3)]
+        [RequiresPermission(PermissionEnum.DeleteMedicalCenter)]
         public async Task<ActionResult<BaseResponse>> DeleteMedicalCenter(long id)
         {
             var command = new DeleteMedicalCenterCommand() { Id = id };
@@ -85,7 +86,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
         }
 
         [HttpGet("Wards/{MecicalCenterId}")]
-        [RequiresPermission(10)]
+        [RequiresPermission(PermissionEnum.SeeAllMedicalCenterWardsInfos)]
         [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.MedicalWard], VaryByQueryKeys = ["mecicalCenterId"])]
         public async Task<ActionResult<BaseQueryResponse>> GetAllMedicalCenterWards(long mecicalCenterId)
         {
