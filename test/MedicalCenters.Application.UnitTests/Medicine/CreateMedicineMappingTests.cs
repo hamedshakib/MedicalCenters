@@ -14,6 +14,8 @@ namespace MedicalCenters.Application.UnitTests.Medicine
         private readonly CreateMedicineCommandHandler _handler;
         private readonly MedicineDto _MedicineDto;
         private readonly IMedicalCentersUnitOfWork _unitOfWork;
+        private readonly IMedicineRepository _medicineRepository;
+
         public CreateMedicineMappingTests()
         {
             _MedicineDto = new MedicineDto()
@@ -22,6 +24,7 @@ namespace MedicalCenters.Application.UnitTests.Medicine
                 TypeId = 1
             };
 
+            _medicineRepository = Substitute.For<IMedicineRepository>();
             _unitOfWork = Substitute.For<IMedicalCentersUnitOfWork>();
 
             var mapConfig = new MapperConfiguration(c =>
@@ -30,7 +33,7 @@ namespace MedicalCenters.Application.UnitTests.Medicine
             });
 
             _mapper = mapConfig.CreateMapper();
-            _handler = new CreateMedicineCommandHandler(_unitOfWork, _mapper);
+            _handler = new CreateMedicineCommandHandler(_medicineRepository, _unitOfWork, _mapper);
         }
         [Fact]
         public async Task CreateMedicineMapping_MedicineDto_NotNull()

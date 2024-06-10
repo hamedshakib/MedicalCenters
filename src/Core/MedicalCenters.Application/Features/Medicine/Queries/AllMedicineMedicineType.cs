@@ -12,13 +12,13 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Application.Features.Medicine.Queries
 {
-    internal class AllMedicineMedicineTypeQueryHanlder(IMedicalCentersUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<AllMedicineTypeMedicinesQuery, BaseQueryResponse>
+    internal class AllMedicineMedicineTypeQueryHanlder(IMedicineRepository medicineRepository, IMapper mapper) : IRequestHandler<AllMedicineTypeMedicinesQuery, BaseQueryResponse>
     {
         public async Task<BaseQueryResponse> Handle(AllMedicineTypeMedicinesQuery request, CancellationToken cancellationToken)
         {
             var response = new BaseQueryResponse();
             cancellationToken.ThrowIfCancellationRequested();
-            var result = await unitOfWork.MedicineRepository.GetAllMedicineTypeMedicines((int)request.MedicineTypeId, cancellationToken);
+            var result = await medicineRepository.GetAllMedicineTypeMedicines((int)request.MedicineTypeId, cancellationToken);
 
             List<MedicineDto> dtos = new List<MedicineDto>();
             result.ToList().ForEach(x => dtos.Add(mapper.Map<MedicineDto>(x)));

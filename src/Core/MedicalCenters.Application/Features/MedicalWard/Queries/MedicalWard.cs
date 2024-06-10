@@ -13,13 +13,13 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Application.Features.MedicalWard.Queries
 {
-    internal class MedicalWardQueryHandler(IMedicalCentersUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<MedicalWardQuery, BaseQueryResponse>
+    internal class MedicalWardQueryHandler(IMedicalWardRepository medicalWardRepository, IMapper mapper) : IRequestHandler<MedicalWardQuery, BaseQueryResponse>
     {
         public async Task<BaseQueryResponse> Handle(MedicalWardQuery request, CancellationToken cancellationToken)
         {
             var response = new BaseQueryResponse();
             cancellationToken.ThrowIfCancellationRequested();
-            var result = await unitOfWork.MedicalWardRepository.Get((int)request.Id, cancellationToken);
+            var result = await medicalWardRepository.Get((int)request.Id, cancellationToken);
             if (result == null)
             {
                 throw new NotFoundException("بخش درمانی", request.Id.ToString());

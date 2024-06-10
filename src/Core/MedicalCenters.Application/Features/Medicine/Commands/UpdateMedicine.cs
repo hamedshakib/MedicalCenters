@@ -13,13 +13,13 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Application.Features.Medicine.Commands
 {
-    internal class UpdateMedicineCommandHandler(IMedicalCentersUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<UpdateMedicineCommand, BaseResponse>
+    internal class UpdateMedicineCommandHandler(IMedicineRepository medicineRepository, IMedicalCentersUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<UpdateMedicineCommand, BaseResponse>
     {
         public async Task<BaseResponse> Handle(UpdateMedicineCommand command, CancellationToken cancellationToken)
         {
             var response = new BaseResponse();
 
-            var medicalWard = await unitOfWork.MedicineRepository.Get(command.Id);
+            var medicalWard = await medicineRepository.Get(command.Id);
             if (medicalWard is null)
             {
                 throw new NotFoundException("دارو", command.Id.ToString());
@@ -27,7 +27,7 @@ namespace MedicalCenters.Application.Features.Medicine.Commands
 
             mapper.Map(command.MedicineDto, medicalWard);
 
-            await unitOfWork.MedicineRepository.Update(medicalWard);
+            await medicineRepository.Update(medicalWard);
             await unitOfWork.Save();
 
             response.IsSuccess = true;

@@ -12,15 +12,15 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Application.Features.Medicine.Commands
 {
-    internal class DeleteMedicineCommandHandler(IMedicalCentersUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<DeleteMedicineCommand, BaseResponse>
+    internal class DeleteMedicineCommandHandler(IMedicineRepository medicineRepository, IMedicalCentersUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<DeleteMedicineCommand, BaseResponse>
     {
         public async Task<BaseResponse> Handle(DeleteMedicineCommand command, CancellationToken cancellationToken)
         {
             var response = new BaseResponse();
 
-            if (await unitOfWork.MedicineRepository.Exist((int)command.Id))
+            if (await medicineRepository.Exist((int)command.Id))
             {
-                await unitOfWork.MedicineRepository.Delete((int)command.Id);
+                await medicineRepository.Delete((int)command.Id);
                 await unitOfWork.Save();
             }
             else

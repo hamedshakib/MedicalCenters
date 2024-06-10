@@ -12,14 +12,14 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Application.Features.MedicalCenter.Commands
 {
-    internal class CreateMedicalCenterCommandHandler(IMedicalCentersUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<CreateMedicalCenterCommand, BaseValuedCommandResponse>
+    internal class CreateMedicalCenterCommandHandler(IMedicalCenterRepository medicalCenterRepository, IMedicalCentersUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<CreateMedicalCenterCommand, BaseValuedCommandResponse>
     {
         public async Task<BaseValuedCommandResponse> Handle(CreateMedicalCenterCommand command, CancellationToken cancellationToken)
         {
             var response = new BaseValuedCommandResponse();
 
             var data = mapper.Map<MedicalCenters.Domain.Entities.MedicalCenter>(command.MedicalCenterDto);
-            data = await unitOfWork.MedicalCenterRepository.Add(data);
+            data = await medicalCenterRepository.Add(data);
 
             await unitOfWork.Save();
 

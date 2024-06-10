@@ -4,6 +4,7 @@ using MedicalCenters.Application.DTOs;
 using MedicalCenters.Application.Features.Medicine.Commands;
 using MedicalCenters.Application.Mapping.MappingProfiles;
 using MedicalCenters.Application.Responses;
+using MedicalCenters.Domain.Entities.Medicines;
 using NSubstitute;
 using System.Runtime.CompilerServices;
 
@@ -15,6 +16,7 @@ namespace MedicalCenters.Application.UnitTests.Medicine
         private readonly CreateMedicineCommandHandler _handler;
         private readonly MedicineDto _MedicineDto;
         private readonly IMedicalCentersUnitOfWork _unitOfWork;
+        private readonly IMedicineRepository _medicineRepository;
 
         public CreateMedicineCommandHandlerTests()
         {
@@ -24,6 +26,7 @@ namespace MedicalCenters.Application.UnitTests.Medicine
                 TypeId = 1
             };
 
+            _medicineRepository = Substitute.For<IMedicineRepository>();
             _unitOfWork = Substitute.For<IMedicalCentersUnitOfWork>();
 
             var mapConfig = new MapperConfiguration(c =>
@@ -32,7 +35,7 @@ namespace MedicalCenters.Application.UnitTests.Medicine
             });
 
             _mapper = mapConfig.CreateMapper();
-            _handler = new CreateMedicineCommandHandler(_unitOfWork, _mapper);
+            _handler = new CreateMedicineCommandHandler(_medicineRepository, _unitOfWork, _mapper);
         }
 
 
@@ -40,7 +43,7 @@ namespace MedicalCenters.Application.UnitTests.Medicine
         public async Task CreateMedicine_MedicineRepository_IsCalled()
         {
             var result = (BaseValuedCommandResponse)await InitResult();
-            _unitOfWork.MedicineRepository.Received();
+            _medicineRepository.Received();
         }
 
         [Fact]
@@ -62,7 +65,7 @@ namespace MedicalCenters.Application.UnitTests.Medicine
             var command = new CreateMedicineCommand() { MedicineDto = _MedicineDto };
             var data = _mapper.Map<MedicalCenters.Domain.Entities.Medicines.Medicine>(command.MedicineDto);
             data.Id = 1;
-            _unitOfWork.MedicineRepository.Add(Arg.Any<MedicalCenters.Domain.Entities.Medicines.Medicine>())
+            _medicineRepository.Add(Arg.Any<MedicalCenters.Domain.Entities.Medicines.Medicine>())
                 .Returns(data);
 
             return await _handler.Handle(command, CancellationToken.None);
