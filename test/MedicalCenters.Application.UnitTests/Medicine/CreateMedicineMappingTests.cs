@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Application.DTOs;
-using MedicalCenters.Application.Features.Medicine.Handlers.Commands;
-using MedicalCenters.Application.Features.Medicine.Requests.Commands;
+using MedicalCenters.Application.Features.Medicine.Commands;
 using MedicalCenters.Application.Mapping.MappingProfiles;
 using NSubstitute;
 

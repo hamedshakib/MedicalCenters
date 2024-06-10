@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using MedicalCenters.Application.Features.MedicalWard.Requests.Commands;
+using MedicalCenters.Application.Features.MedicalWard.Commands;
 
 namespace MedicalCenters.Application.Features.MedicalWard.Validators
 {

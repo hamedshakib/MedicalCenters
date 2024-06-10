@@ -13,7 +13,7 @@ namespace MedicalCenters.Domain.Entities.Shifts
         public ShiftPlan? ShiftPlan { get; set; }
         [Required]
         public long PersonelId { get; set; }
-        public Personel Personel { get; set; }
+        public Personnel Personel { get; set; }
 
         [Required]
         public int UnitId { get; set; }

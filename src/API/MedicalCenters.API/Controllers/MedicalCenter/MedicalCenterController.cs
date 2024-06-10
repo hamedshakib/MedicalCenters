@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using MedicalCenters.API.Constants;
 using MedicalCenters.Application.DTOs;
-using MedicalCenters.Application.Features.MedicalCenter.Requests.Commands;
-using MedicalCenters.Application.Features.MedicalCenter.Requests.Queries;
-using MedicalCenters.Application.Features.MedicalWard.Requests.Queries;
+using MedicalCenters.Application.Features.MedicalCenter.Commands;
+using MedicalCenters.Application.Features.MedicalCenter.Queries;
+using MedicalCenters.Application.Features.MedicalWard.Queries;
 using MedicalCenters.Application.Responses;
 using MedicalCenters.Identity.Attributes;
 using MedicalCenters.Identity.Contracts;

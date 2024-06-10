@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace MedicalCenters.Domain.Entities.Staffs
 {
     [Table("Nurse")]
-    public class Nurse : Personel
+    public class Nurse : Personnel
     {
         [Key]
         public long Id { get; set; }

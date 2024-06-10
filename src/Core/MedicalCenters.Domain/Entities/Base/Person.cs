@@ -9,7 +9,6 @@ namespace MedicalCenters.Domain.Entities.Base
         public string FirstName { get; set; }
         [Required, StringLength(50)]
         public string LastName { get; set; }
-        string nationalCode;
         [Required, StringLength(20)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string NationalCode { get; set; }
