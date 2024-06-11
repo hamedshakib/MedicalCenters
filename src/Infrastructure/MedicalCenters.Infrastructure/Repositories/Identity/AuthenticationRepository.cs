@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MedicalCenters.Persistence.Repositories.Identity
 {
-    internal class AthenticationRepository : IAuthenticationRepository
+    internal class AuthenticationRepository : IAuthenticationRepository
     {
         private readonly IdentityDBContext _dBContext;
-        public AthenticationRepository(IdentityDBContext dBContext)
+        public AuthenticationRepository(IdentityDBContext dBContext)
         {
             _dBContext = dBContext;
         }

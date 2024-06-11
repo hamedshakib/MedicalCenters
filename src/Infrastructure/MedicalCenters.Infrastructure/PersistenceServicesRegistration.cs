@@ -40,11 +40,17 @@ namespace MedicalCenters.Persistence
                             options.UseSqlServer(IdentityConnectionString));
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-            services.AddKeyedScoped<IUnitOfWork, MedicalCentersUnitOfWork>("medicalCenters");
-            services.AddScoped<IMedicalCenterRepository, MedicalCenterRepository>();
 
             services.AddKeyedScoped<IUnitOfWork, IdentityUnitOfWork>("identity");
-            services.AddScoped<IAuthenticationRepository, AthenticationRepository>();
+            services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
+            services.AddScoped<IAuthorizationRepository, AuthorizationRepository>();
+
+            services.AddKeyedScoped<IUnitOfWork, MedicalCentersUnitOfWork>("medicalCenters");
+            services.AddScoped<IDoctorRepository, DoctorRepository>();
+            services.AddScoped<IMedicalCenterRepository, MedicalCenterRepository>();
+            services.AddScoped<IMedicalWardRepository, MedicalWardRepository>();
+            services.AddScoped<IMedicineRepository, MedicineRepository>();
+
             return services;
         }
     }
