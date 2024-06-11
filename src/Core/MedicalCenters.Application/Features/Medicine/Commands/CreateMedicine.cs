@@ -4,6 +4,8 @@ using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Application.DTOs;
 using MedicalCenters.Application.Features.Medicine.Commands;
 using MedicalCenters.Application.Responses;
+using MedicalCenters.Domain.Contracts;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Application.Features.Medicine.Commands
 {
-    internal class CreateMedicineCommandHandler(IMedicineRepository medicineRepository,IMedicalCentersUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<CreateMedicineCommand, BaseValuedCommandResponse>
+    internal class CreateMedicineCommandHandler(IMedicineRepository medicineRepository, [FromKeyedServices("medicalCenters")] IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<CreateMedicineCommand, BaseValuedCommandResponse>
     {
         public async Task<BaseValuedCommandResponse> Handle(CreateMedicineCommand command, CancellationToken cancellationToken)
         {
@@ -21,7 +23,7 @@ namespace MedicalCenters.Application.Features.Medicine.Commands
             var data = mapper.Map<MedicalCenters.Domain.Entities.Medicines.Medicine>(command.MedicineDto);
             data = await medicineRepository.Add(data);
 
-            await unitOfWork.Save();
+            await unitOfWork.SaveChangesAsync(cancellationToken);
 
             response.IsSuccess = true;
             response.Id = data.Id;

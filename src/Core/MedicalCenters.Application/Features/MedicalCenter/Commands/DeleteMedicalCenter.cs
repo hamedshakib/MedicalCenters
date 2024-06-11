@@ -4,6 +4,8 @@ using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Application.Exceptions;
 using MedicalCenters.Application.Features.MedicalCenter.Commands;
 using MedicalCenters.Application.Responses;
+using MedicalCenters.Domain.Contracts;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,23 +14,19 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Application.Features.MedicalCenter.Commands
 {
-    internal class DeleteMedicalCenterCommandHandler(IMedicalCenterRepository medicalCenterRepository,IMedicalCentersUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<DeleteMedicalCenterCommand, BaseResponse>
+    internal class DeleteMedicalCenterCommandHandler(IMedicalCenterRepository medicalCenterRepository, [FromKeyedServices("medicalCenters")] IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<DeleteMedicalCenterCommand, BaseResponse>
     {
         public async Task<BaseResponse> Handle(DeleteMedicalCenterCommand command, CancellationToken cancellationToken)
         {
             var response = new BaseResponse();
 
-            if (await medicalCenterRepository.Exist((int)command.Id))
-            {
-                await medicalCenterRepository.Delete((int)command.Id);
-                await unitOfWork.Save();
-            }
-            else
+            if (!await medicalCenterRepository.Exist((int)command.Id))
             {
                 throw new NotFoundException("مرکز درمانی", command.Id.ToString());
             }
 
-            await unitOfWork.Save();
+            await medicalCenterRepository.Delete((int)command.Id);
+            await unitOfWork.SaveChangesAsync(cancellationToken);
             response.IsSuccess = true;
 
             return response;

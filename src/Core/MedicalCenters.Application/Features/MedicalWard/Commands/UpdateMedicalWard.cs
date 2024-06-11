@@ -5,6 +5,8 @@ using MedicalCenters.Application.DTOs;
 using MedicalCenters.Application.Exceptions;
 using MedicalCenters.Application.Features.MedicalWard.Commands;
 using MedicalCenters.Application.Responses;
+using MedicalCenters.Domain.Contracts;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Application.Features.MedicalWard.Commands
 {
-    internal class UpdateMedicalWardCommandHandler(IMedicalWardRepository medicalWardRepository, IMedicalCentersUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<UpdateMedicalWardCommand, BaseResponse>
+    internal class UpdateMedicalWardCommandHandler(IMedicalWardRepository medicalWardRepository, [FromKeyedServices("medicalCenters")] IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<UpdateMedicalWardCommand, BaseResponse>
     {
         public async Task<BaseResponse> Handle(UpdateMedicalWardCommand command, CancellationToken cancellationToken)
         {
@@ -28,7 +30,7 @@ namespace MedicalCenters.Application.Features.MedicalWard.Commands
             mapper.Map(command.MedicalWardDto, medicalWard);
 
             await medicalWardRepository.Update(medicalWard);
-            await unitOfWork.Save();
+            await unitOfWork.SaveChangesAsync(cancellationToken);
 
             response.IsSuccess = true;
 

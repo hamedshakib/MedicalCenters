@@ -4,12 +4,12 @@ using MedicalCenters.Identity.Models.DTOs;
 
 namespace MedicalCenters.Identity.Classes
 {
-    public class AuthenticationLogin(IIdentityUnitOfWork identityUnitOfWork)
+    public class AuthenticationLogin(IAuthenticationRepository authenticationRepository)
     {
         public async Task<LoginResultDto> LoginValidate(LoginDto loginDto)
         {
             LoginResultDto loginResultDto = null;
-            User? user = await identityUnitOfWork.AuthenticationRepository.FindUser(loginDto.Username);
+            User? user = await authenticationRepository.FindUser(loginDto.Username);
             if (user == null)
             {
                 loginResultDto = new LoginResultDto { IsFindUser = false, LoginUser = null };

@@ -11,14 +11,14 @@ namespace MedicalCenters.API.Controllers
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthenticateController(IIdentityUnitOfWork unitOfWork) : ControllerBase
+    public class AuthenticateController(IAuthenticationRepository _authenticationRepository) : ControllerBase
     {
         [AllowAnonymous]
         [HttpPost("token")]
         public async Task<IActionResult> Token([FromBody] LoginDto model)
         {
             long UserId;
-            var userValidator = new AuthenticationLogin(unitOfWork);
+            var userValidator = new AuthenticationLogin(_authenticationRepository);
             var ValidateUserresult = await userValidator.LoginValidate(model);
 
             if (!ValidateUserresult.IsFindUser)
@@ -29,7 +29,7 @@ namespace MedicalCenters.API.Controllers
 
             UserId = ValidateUserresult.LoginUser.UserId;
 
-            var tokenCreator = new JWTTokenCreator(unitOfWork);
+            var tokenCreator = new JWTTokenCreator(_authenticationRepository);
 
             var resultTokenDto = tokenCreator.GenerateTokenDto(UserId, model.Username);
 
@@ -46,7 +46,7 @@ namespace MedicalCenters.API.Controllers
         [HttpPost("refresh-token")]
         public async Task<IActionResult> RefreshToken([FromBody] TokenDto tokenDto)
         {
-            var tokenCreator = new JWTTokenCreator(unitOfWork);
+            var tokenCreator = new JWTTokenCreator(_authenticationRepository);
             var resultTokenDto = tokenCreator.GenerateTokenDto(tokenDto.AccessToken, tokenDto.RefreshToken);
 
             var result = new BaseQueryResponse()

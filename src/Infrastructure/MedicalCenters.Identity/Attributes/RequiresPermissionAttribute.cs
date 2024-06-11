@@ -16,7 +16,7 @@ namespace MedicalCenters.Identity.Attributes
             bool HasPermission = false;
             try
             {
-                var identityUnitOfWork = (IIdentityUnitOfWork)context.HttpContext.RequestServices.GetService<IIdentityUnitOfWork>();
+                var authorizationRepository = (IAuthorizationRepository)context.HttpContext.RequestServices.GetService<IAuthorizationRepository>();
 
                 var User = context.HttpContext.User;
                 var Authenticalted = User.Identities.Any(e => e.IsAuthenticated == true);
@@ -26,11 +26,11 @@ namespace MedicalCenters.Identity.Attributes
                     long UserId = Convert.ToInt64(User.FindFirst(JwtRegisteredClaimNames.Sid).Value);
 
                     //Check User Permission
-                    HasPermission = await identityUnitOfWork.AuthorizationRepository.HasUserPermission(UserId, (int)permission);
+                    HasPermission = await authorizationRepository.HasUserPermission(UserId, (int)permission);
 
                     //Check Group Permission
                     if (!HasPermission)
-                        HasPermission = await identityUnitOfWork.AuthorizationRepository.HasUserGroupPermission(UserId, (int)permission);
+                        HasPermission = await authorizationRepository.HasUserGroupPermission(UserId, (int)permission);
                 }
             }
             catch { }

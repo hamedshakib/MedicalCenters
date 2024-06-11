@@ -1,32 +1,41 @@
-﻿using MedicalCenters.Identity.Contracts;
+﻿using MedicalCenters.Domain.Contracts;
+using MedicalCenters.Identity.Contracts;
 using MedicalCenters.Persistence.DBContexts;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+using System.Data;
 
 namespace MedicalCenters.Persistence.Repositories.Identity
 {
-    internal class IdentityUnitOfWork : IIdentityUnitOfWork
+    internal class IdentityUnitOfWork(IdentityDBContext _dBContext) : IUnitOfWork
     {
-        private readonly IdentityDBContext _dBContext;
-
-        private IAuthenticationRepository _athenticationRepository;
-        public IAuthenticationRepository AuthenticationRepository => _athenticationRepository ??= new AthenticationRepository(_dBContext);
-
-        private IAuthorizationRepository _authorizationRepository;
-        public IAuthorizationRepository AuthorizationRepository => _authorizationRepository ??= new AuthorizationRepository(_dBContext);
+        private IDbContextTransaction _transactionScope;
 
 
-        public IdentityUnitOfWork(IdentityDBContext dBContext)
-        {
-            _dBContext = dBContext;
-        }
-        public async Task Save()
-        {
-            //long UserId = 
-            await _dBContext.SaveChangesAsync();
-        }
         public void Dispose()
         {
             _dBContext.Dispose();
             GC.SuppressFinalize(this);
+        }
+
+        public async Task<bool> SaveChangesAsync(CancellationToken cancellationToken)
+        {
+            return (await _dBContext.SaveChangesAsync(cancellationToken)) > 0;
+        }
+
+        public async Task BeginTransactionScopeAsync(IsolationLevel isolationLevel)
+        {
+            _transactionScope = await _dBContext.Database.BeginTransactionAsync(isolationLevel);
+        }
+
+        public Task CommitTransactionAsync()
+        {
+            return _transactionScope.CommitAsync();
+        }
+
+        public Task RollBackTransactionAsync()
+        {
+            return _transactionScope.RollbackAsync();
         }
     }
 }

@@ -4,6 +4,7 @@ using MedicalCenters.Application.DTOs;
 using MedicalCenters.Application.Features.Medicine.Commands;
 using MedicalCenters.Application.Mapping.MappingProfiles;
 using MedicalCenters.Application.Responses;
+using MedicalCenters.Domain.Contracts;
 using MedicalCenters.Domain.Entities.Medicines;
 using NSubstitute;
 using System.Runtime.CompilerServices;
@@ -15,7 +16,7 @@ namespace MedicalCenters.Application.UnitTests.Medicine
         private readonly IMapper _mapper;
         private readonly CreateMedicineCommandHandler _handler;
         private readonly MedicineDto _MedicineDto;
-        private readonly IMedicalCentersUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMedicineRepository _medicineRepository;
 
         public CreateMedicineCommandHandlerTests()
@@ -27,7 +28,7 @@ namespace MedicalCenters.Application.UnitTests.Medicine
             };
 
             _medicineRepository = Substitute.For<IMedicineRepository>();
-            _unitOfWork = Substitute.For<IMedicalCentersUnitOfWork>();
+            _unitOfWork = Substitute.For<IUnitOfWork>();
 
             var mapConfig = new MapperConfiguration(c =>
             {

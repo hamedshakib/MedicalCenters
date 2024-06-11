@@ -9,7 +9,7 @@ using System.Security.Cryptography;
 
 namespace MedicalCenters.Identity.Classes
 {
-    public class JWTTokenCreator(IIdentityUnitOfWork identityUnitOfWork)
+    public class JWTTokenCreator(IAuthenticationRepository _authenticationRepository)
     {
         private string? GetJWTToken(List<Claim> claims)
         {
@@ -52,7 +52,7 @@ namespace MedicalCenters.Identity.Classes
             var AccessToken = GetJWTToken(claims);
             var RefreshToken = GetJWTRefreshToken();
 
-            identityUnitOfWork.AuthenticationRepository.SaveRefreshToken(UserId, RefreshToken);
+            _authenticationRepository.SaveRefreshToken(UserId, RefreshToken);
 
             return new TokenDto() { AccessToken = AccessToken, RefreshToken = RefreshToken };
         }
@@ -64,7 +64,7 @@ namespace MedicalCenters.Identity.Classes
             var vvvvv = principal.FindFirst(JwtRegisteredClaimNames.UniqueName);
             string Username = principal.Identity.Name;
 
-            var savedRefreshToken = identityUnitOfWork.AuthenticationRepository.GetRefreshToken(userId).Result;
+            var savedRefreshToken = _authenticationRepository.GetRefreshToken(userId).Result;
 
 
             if (string.IsNullOrEmpty(RefreshToken) || savedRefreshToken != RefreshToken)
@@ -74,7 +74,7 @@ namespace MedicalCenters.Identity.Classes
 
             var tokenDto = GenerateTokenDto(userId, Username);
 
-            identityUnitOfWork.AuthenticationRepository.SaveRefreshToken(userId, tokenDto.RefreshToken);
+            _authenticationRepository.SaveRefreshToken(userId, tokenDto.RefreshToken);
 
             return tokenDto;
         }

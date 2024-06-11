@@ -1,25 +1,40 @@
-﻿using MedicalCenters.Application.Contracts.Persistence;
+﻿using MedicalCenters.Domain.Contracts;
 using MedicalCenters.Infrastructure.DBContexts;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+using System.Data;
 
 namespace MedicalCenters.Persistence.Repositories.MedicalCenters
 {
-    public class MedicalCentersUnitOfWork : IMedicalCentersUnitOfWork
+    public class MedicalCentersUnitOfWork(MedicalCentersDBContext _dBContext) : IUnitOfWork
     {
-        private readonly MedicalCentersDBContext _dBContext;
+        private IDbContextTransaction _transactionScope;
 
-        public MedicalCentersUnitOfWork(MedicalCentersDBContext dBContext)
-        {
-            _dBContext = dBContext;
-        }
-        public async Task Save()
-        {
-            //long UserId = 
-            await _dBContext.SaveChangesAsync();
-        }
+
         public void Dispose()
         {
             _dBContext.Dispose();
             GC.SuppressFinalize(this);
+        }
+
+        public async Task<bool> SaveChangesAsync(CancellationToken cancellationToken)
+        {
+            return (await _dBContext.SaveChangesAsync(cancellationToken)) > 0;
+        }
+
+        public async Task BeginTransactionScopeAsync(IsolationLevel isolationLevel)
+        {
+            _transactionScope = await _dBContext.Database.BeginTransactionAsync(isolationLevel);
+        }
+
+        public Task CommitTransactionAsync()
+        {
+            return _transactionScope.CommitAsync();
+        }
+
+        public Task RollBackTransactionAsync()
+        {
+            return _transactionScope.RollbackAsync();
         }
     }
 }

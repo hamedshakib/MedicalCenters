@@ -1,4 +1,5 @@
 ﻿using MedicalCenters.Application.Contracts.Persistence;
+using MedicalCenters.Domain.Contracts;
 using MedicalCenters.Identity.Contracts;
 using MedicalCenters.Infrastructure.DBContexts;
 using MedicalCenters.Infrastructure.Repositories;
@@ -39,10 +40,10 @@ namespace MedicalCenters.Persistence
                             options.UseSqlServer(IdentityConnectionString));
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-            services.AddScoped<IMedicalCentersUnitOfWork, MedicalCentersUnitOfWork>();
+            services.AddKeyedScoped<IUnitOfWork, MedicalCentersUnitOfWork>("medicalCenters");
             services.AddScoped<IMedicalCenterRepository, MedicalCenterRepository>();
 
-            services.AddScoped<IIdentityUnitOfWork, IdentityUnitOfWork>();
+            services.AddKeyedScoped<IUnitOfWork, IdentityUnitOfWork>("identity");
             services.AddScoped<IAuthenticationRepository, AthenticationRepository>();
             return services;
         }
