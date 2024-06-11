@@ -13,7 +13,7 @@ using NetTopologySuite.Geometries;
 namespace MedicalCenters.Persistence.Migrations
 {
     [DbContext(typeof(MedicalCentersDBContext))]
-    [Migration("20240216154022_InitialCreate")]
+    [Migration("20240611101504_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -21,7 +21,7 @@ namespace MedicalCenters.Persistence.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.1")
+                .HasAnnotation("ProductVersion", "8.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -61,7 +61,7 @@ namespace MedicalCenters.Persistence.Migrations
                     b.ToTable("Allergy");
                 });
 
-            modelBuilder.Entity("MedicalCenters.Domain.Entities.Base.Personel", b =>
+            modelBuilder.Entity("MedicalCenters.Domain.Entities.Base.Personnel", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -104,7 +104,7 @@ namespace MedicalCenters.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Personel");
+                    b.ToTable("Personnel");
 
                     b.UseTptMappingStrategy();
                 });
@@ -332,56 +332,56 @@ namespace MedicalCenters.Persistence.Migrations
                         {
                             Id = 1,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 16, 19, 10, 21, 971, DateTimeKind.Local).AddTicks(7547),
+                            DateTimeCreated = new DateTime(2024, 6, 11, 13, 45, 3, 219, DateTimeKind.Local).AddTicks(8178),
                             Name = "بیمارستان"
                         },
                         new
                         {
                             Id = 2,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 16, 19, 10, 21, 971, DateTimeKind.Local).AddTicks(7559),
+                            DateTimeCreated = new DateTime(2024, 6, 11, 13, 45, 3, 219, DateTimeKind.Local).AddTicks(8195),
                             Name = "کلینیک پزشکی"
                         },
                         new
                         {
                             Id = 3,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 16, 19, 10, 21, 971, DateTimeKind.Local).AddTicks(7560),
+                            DateTimeCreated = new DateTime(2024, 6, 11, 13, 45, 3, 219, DateTimeKind.Local).AddTicks(8196),
                             Name = "مرکز جراحی سر پایی"
                         },
                         new
                         {
                             Id = 4,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 16, 19, 10, 21, 971, DateTimeKind.Local).AddTicks(7561),
+                            DateTimeCreated = new DateTime(2024, 6, 11, 13, 45, 3, 219, DateTimeKind.Local).AddTicks(8197),
                             Name = "مرکز زایمان "
                         },
                         new
                         {
                             Id = 5,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 16, 19, 10, 21, 971, DateTimeKind.Local).AddTicks(7562),
+                            DateTimeCreated = new DateTime(2024, 6, 11, 13, 45, 3, 219, DateTimeKind.Local).AddTicks(8198),
                             Name = "مرکز تصویر برداری"
                         },
                         new
                         {
                             Id = 6,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 16, 19, 10, 21, 971, DateTimeKind.Local).AddTicks(7563),
+                            DateTimeCreated = new DateTime(2024, 6, 11, 13, 45, 3, 219, DateTimeKind.Local).AddTicks(8199),
                             Name = "مرکز دیابت"
                         },
                         new
                         {
                             Id = 7,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 16, 19, 10, 21, 971, DateTimeKind.Local).AddTicks(7564),
+                            DateTimeCreated = new DateTime(2024, 6, 11, 13, 45, 3, 219, DateTimeKind.Local).AddTicks(8200),
                             Name = "مرکز دیالیز"
                         },
                         new
                         {
                             Id = 8,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 16, 19, 10, 21, 971, DateTimeKind.Local).AddTicks(7565),
+                            DateTimeCreated = new DateTime(2024, 6, 11, 13, 45, 3, 219, DateTimeKind.Local).AddTicks(8201),
                             Name = "مرکز توان بخشی"
                         });
                 });
@@ -418,35 +418,35 @@ namespace MedicalCenters.Persistence.Migrations
                         {
                             Id = 1,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 16, 19, 10, 21, 971, DateTimeKind.Local).AddTicks(7750),
+                            DateTimeCreated = new DateTime(2024, 6, 11, 13, 45, 3, 219, DateTimeKind.Local).AddTicks(9452),
                             Name = "بخش قلب"
                         },
                         new
                         {
                             Id = 2,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 16, 19, 10, 21, 971, DateTimeKind.Local).AddTicks(7753),
+                            DateTimeCreated = new DateTime(2024, 6, 11, 13, 45, 3, 219, DateTimeKind.Local).AddTicks(9456),
                             Name = "بخش ریه"
                         },
                         new
                         {
                             Id = 3,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 16, 19, 10, 21, 971, DateTimeKind.Local).AddTicks(7754),
+                            DateTimeCreated = new DateTime(2024, 6, 11, 13, 45, 3, 219, DateTimeKind.Local).AddTicks(9457),
                             Name = "بخش کلیه"
                         },
                         new
                         {
                             Id = 4,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 16, 19, 10, 21, 971, DateTimeKind.Local).AddTicks(7755),
+                            DateTimeCreated = new DateTime(2024, 6, 11, 13, 45, 3, 219, DateTimeKind.Local).AddTicks(9458),
                             Name = "بخش کبد"
                         },
                         new
                         {
                             Id = 5,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 16, 19, 10, 21, 971, DateTimeKind.Local).AddTicks(7756),
+                            DateTimeCreated = new DateTime(2024, 6, 11, 13, 45, 3, 219, DateTimeKind.Local).AddTicks(9459),
                             Name = "بخش پیوند"
                         });
                 });
@@ -599,7 +599,7 @@ namespace MedicalCenters.Persistence.Migrations
                         {
                             Id = 1,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 16, 19, 10, 21, 971, DateTimeKind.Local).AddTicks(7843),
+                            DateTimeCreated = new DateTime(2024, 6, 11, 13, 45, 3, 220, DateTimeKind.Local).AddTicks(457),
                             Description = "",
                             Name = "استامینوفن"
                         },
@@ -607,7 +607,7 @@ namespace MedicalCenters.Persistence.Migrations
                         {
                             Id = 2,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 16, 19, 10, 21, 971, DateTimeKind.Local).AddTicks(7844),
+                            DateTimeCreated = new DateTime(2024, 6, 11, 13, 45, 3, 220, DateTimeKind.Local).AddTicks(462),
                             Description = "",
                             Name = "پنی سیلین"
                         },
@@ -615,7 +615,7 @@ namespace MedicalCenters.Persistence.Migrations
                         {
                             Id = 3,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 16, 19, 10, 21, 971, DateTimeKind.Local).AddTicks(7845),
+                            DateTimeCreated = new DateTime(2024, 6, 11, 13, 45, 3, 220, DateTimeKind.Local).AddTicks(464),
                             Description = "",
                             Name = "دیفن هیدرامین"
                         },
@@ -623,7 +623,7 @@ namespace MedicalCenters.Persistence.Migrations
                         {
                             Id = 4,
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 2, 16, 19, 10, 21, 971, DateTimeKind.Local).AddTicks(7847),
+                            DateTimeCreated = new DateTime(2024, 6, 11, 13, 45, 3, 220, DateTimeKind.Local).AddTicks(465),
                             Description = "",
                             Name = "فاموتیدین"
                         });
@@ -978,14 +978,14 @@ namespace MedicalCenters.Persistence.Migrations
 
             modelBuilder.Entity("MedicalCenters.Domain.Entities.Staffs.Doctor", b =>
                 {
-                    b.HasBaseType("MedicalCenters.Domain.Entities.Base.Personel");
+                    b.HasBaseType("MedicalCenters.Domain.Entities.Base.Personnel");
 
                     b.ToTable("Doctor");
                 });
 
             modelBuilder.Entity("MedicalCenters.Domain.Entities.Staffs.Nurse", b =>
                 {
-                    b.HasBaseType("MedicalCenters.Domain.Entities.Base.Personel");
+                    b.HasBaseType("MedicalCenters.Domain.Entities.Base.Personnel");
 
                     b.ToTable("Nurse");
                 });
@@ -1207,7 +1207,7 @@ namespace MedicalCenters.Persistence.Migrations
 
             modelBuilder.Entity("MedicalCenters.Domain.Entities.Shifts.Shift", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Entities.Base.Personel", "Personel")
+                    b.HasOne("MedicalCenters.Domain.Entities.Base.Personnel", "Personel")
                         .WithMany()
                         .HasForeignKey("PersonelId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1238,7 +1238,7 @@ namespace MedicalCenters.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MedicalCenters.Domain.Entities.Base.Personel", "Personel")
+                    b.HasOne("MedicalCenters.Domain.Entities.Base.Personnel", "Personel")
                         .WithMany()
                         .HasForeignKey("PersonelId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1279,7 +1279,7 @@ namespace MedicalCenters.Persistence.Migrations
 
             modelBuilder.Entity("MedicalCenters.Domain.Entities.Staffs.Doctor", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Entities.Base.Personel", null)
+                    b.HasOne("MedicalCenters.Domain.Entities.Base.Personnel", null)
                         .WithOne()
                         .HasForeignKey("MedicalCenters.Domain.Entities.Staffs.Doctor", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1288,7 +1288,7 @@ namespace MedicalCenters.Persistence.Migrations
 
             modelBuilder.Entity("MedicalCenters.Domain.Entities.Staffs.Nurse", b =>
                 {
-                    b.HasOne("MedicalCenters.Domain.Entities.Base.Personel", null)
+                    b.HasOne("MedicalCenters.Domain.Entities.Base.Personnel", null)
                         .WithOne()
                         .HasForeignKey("MedicalCenters.Domain.Entities.Staffs.Nurse", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
