@@ -21,7 +21,7 @@ namespace MedicalCenters.API.Controllers
     public class DoctorController(IMediator mediator, IOutputCacheStore cacheStore) : ControllerBase
     {
         [HttpGet("{id}")]
-        [RequiresPermission(PermissionEnum.AddMedicalCenter)]
+        [RequiresPermission(PermissionEnum.SeeDotorInfo)]
         [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.Doctor], VaryByQueryKeys = ["Id"])]
         public async Task<ActionResult<BaseQueryResponse>> GetDoctor(int Id, CancellationToken cancellationToken = default)
         {
@@ -33,7 +33,7 @@ namespace MedicalCenters.API.Controllers
         }
 
         [HttpPost]
-        [RequiresPermission(PermissionEnum.AddMedicalCenter)]
+        [RequiresPermission(PermissionEnum.AddDoctor)]
         public async Task<ActionResult<BaseValuedCommandResponse<int>>> AddDoctor([FromBody] DoctorDto newDoctor)
         {
             var command = new CreateDoctorCommand() { DoctorDto = newDoctor };
@@ -46,7 +46,7 @@ namespace MedicalCenters.API.Controllers
         }
 
         [HttpPut("{id}")]
-        [RequiresPermission(PermissionEnum.AddMedicalCenter)]
+        [RequiresPermission(PermissionEnum.EditDoctor)]
         public async Task<ActionResult<BaseResponse>> UpdateDoctor([FromRoute] int id, [FromBody] DoctorDto doctor)
         {
             var command = new UpdateDoctorCommand() { Id = id, DoctorDto = doctor };
@@ -60,7 +60,7 @@ namespace MedicalCenters.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        [RequiresPermission(PermissionEnum.AddMedicalCenter)]
+        [RequiresPermission(PermissionEnum.DeleteDoctor)]
         public async Task<ActionResult<BaseResponse>> DeleteDoctor(int id)
         {
             var command = new DeleteDoctorCommand() { Id = id };

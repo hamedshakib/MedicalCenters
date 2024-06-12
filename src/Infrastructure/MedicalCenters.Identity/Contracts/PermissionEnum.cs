@@ -20,6 +20,7 @@ namespace MedicalCenters.Identity.Contracts
         SeeMedicalCenterInfo = 4,
         [Description("مشاهده اطلاعات تمامی مراکز درمانی")]
         SeeAllMedicalCentersInfos = 5,
+        
         [Description("افزودن بخش درمانی")]
         AddMedicalWard = 6,
         [Description("ویرایش بخش درمانی")]
@@ -30,6 +31,7 @@ namespace MedicalCenters.Identity.Contracts
         SeeMedicalWardInfo = 9,
         [Description("مشاهده اطلاعات تمامی بخش های مرکز درمانی")]
         SeeAllMedicalCenterWardsInfos = 10,
+        
         [Description("افزودن دارو")]
         AddMedicine = 11,
         [Description("ویرایش دارو")]
@@ -40,5 +42,23 @@ namespace MedicalCenters.Identity.Contracts
         SeeMedicines = 14,
         [Description("مشاهده دارو های یک نوع")]
         SeeAllMedicineTypeMedicinesInfos = 15,
+        
+        [Description("افزودن پزشک")]
+        AddDoctor = 16,
+        [Description("ویرایش پزشک")]
+        EditDoctor = 17,
+        [Description("حذف پزشک")]
+        DeleteDoctor = 18,
+        [Description("مشاهده اطلاعات پزشک")]
+        SeeDotorInfo = 19,
+
+        [Description("افزودن بیمار")]
+        AddPatient = 20,
+        [Description("ویرایش بیمار")]
+        EditPatient = 21,
+        [Description("حذف بیمار")]
+        DeletePatient = 22,
+        [Description("مشاهده اطلاعات بیمار")]
+        SeePatientInfo = 23,
     }
 }

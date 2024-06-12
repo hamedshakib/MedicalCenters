@@ -50,6 +50,7 @@ namespace MedicalCenters.Persistence
             services.AddScoped<IMedicalCenterRepository, MedicalCenterRepository>();
             services.AddScoped<IMedicalWardRepository, MedicalWardRepository>();
             services.AddScoped<IMedicineRepository, MedicineRepository>();
+            services.AddScoped<IPatientRepository, PatientRepository>();
 
             return services;
         }

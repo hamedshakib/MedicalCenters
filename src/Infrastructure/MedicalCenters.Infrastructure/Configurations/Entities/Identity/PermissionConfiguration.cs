@@ -32,6 +32,15 @@ namespace MedicalCenters.Persistence.Configurations.Entities.Identity
                 PermissionEnum.SeeMedicines,
                 PermissionEnum.SeeAllMedicineTypeMedicinesInfos,
 
+                PermissionEnum.AddDoctor,
+                PermissionEnum.EditDoctor,
+                PermissionEnum.DeleteDoctor,
+                PermissionEnum.SeeDotorInfo,
+
+                PermissionEnum.AddPatient,
+                PermissionEnum.EditPatient,
+                PermissionEnum.DeletePatient,
+                PermissionEnum.SeePatientInfo,
             };
 
             builder.HasData(Permissions.Select(p => new Permission { Id = (int)p, Name = nameof(p), Description = p.GetDescription(), CreatedBy = 1, DateTimeCreated = DateTime.Now }));

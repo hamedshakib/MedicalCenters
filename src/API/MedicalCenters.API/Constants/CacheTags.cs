@@ -6,5 +6,6 @@
         public const string MedicalCenter = "MedicalCenter_Cache";
         public const string MedicalWard = "MedicalWard_Cache";
         public const string Doctor = "Doctor_Cache";
+        public const string Patient = "Patient_Cache";
     }
 }
