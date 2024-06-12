@@ -1,9 +1,10 @@
 ﻿using MedicalCenters.Domain.Entities.Base;
-using MedicalCenters.Domain.Entities.Staffs;
+using MedicalCenters.Domain.Entities.Persons;
+using MedicalCenters.Domain.Entities.Persons.Staffs;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MedicalCenters.Domain.Entities.Patients
+namespace MedicalCenters.Domain.Entities
 {
     [Table("PatientHistory")]
     public class PatientHistory : BaseModifiableDomainEntity

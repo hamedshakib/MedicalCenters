@@ -23,7 +23,7 @@ namespace MedicalCenters.Application.Features.MedicalWard.Commands
 
             if (!await medicalWardRepository.Exist((int)command.Id))
             {
-                throw new NotFoundException("بخش درمانی", command.Id.ToString());
+                throw new NotFoundException(Domain.Entities.MedicalWard.EntityTitle, command.Id.ToString());
             }
 
             await medicalWardRepository.Delete((int)command.Id);

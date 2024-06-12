@@ -6,7 +6,7 @@ using MedicalCenters.Application.DTOs;
 using MedicalCenters.Application.Features.Medicine.Commands;
 using MedicalCenters.Application.Responses;
 using MedicalCenters.Domain.Contracts;
-using MedicalCenters.Domain.Entities.Staffs;
+using MedicalCenters.Domain.Entities.Persons;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -22,7 +22,7 @@ namespace MedicalCenters.Application.Features.Persons.Doctor.Commands
         {
             var response = new BaseValuedCommandResponse();
 
-            var data = mapper.Map<MedicalCenters.Domain.Entities.Staffs.Doctor>(command.DoctorDto);
+            var data = mapper.Map<Domain.Entities.Persons.Staffs.Doctor>(command.DoctorDto);
             data = await doctorRepository.Add(data);
 
             await unitOfWork.SaveChangesAsync(cancellationToken);
@@ -43,10 +43,10 @@ namespace MedicalCenters.Application.Features.Persons.Doctor.Commands
     {
         public CreateDoctorCommandValidator()
         {
-            RuleFor(e => e.DoctorDto.FirstName).NotNull().NotEmpty().MinimumLength(2).MaximumLength(Domain.Entities.Staffs.Doctor.MaxFistNameLenght);
-            RuleFor(e => e.DoctorDto.LastName).NotNull().NotEmpty().MinimumLength(2).MaximumLength(Domain.Entities.Staffs.Doctor.MaxLastNameLenght);
-            RuleFor(e => e.DoctorDto.NationalCode).NotNull().NotEmpty().MaximumLength(Domain.Entities.Staffs.Doctor.MaxNationalCodeLenght);
-            RuleFor(e => e.DoctorDto.PersonnelCode).NotNull().NotEmpty().MinimumLength(Domain.Entities.Base.Personnel.MaxPersonnelCodeLength);
+            RuleFor(e => e.DoctorDto.FirstName).NotNull().NotEmpty().MinimumLength(2).MaximumLength(Domain.Entities.Persons.Staffs.Doctor.MaxFistNameLenght);
+            RuleFor(e => e.DoctorDto.LastName).NotNull().NotEmpty().MinimumLength(2).MaximumLength(Domain.Entities.Persons.Staffs.Doctor.MaxLastNameLenght);
+            RuleFor(e => e.DoctorDto.NationalCode).NotNull().NotEmpty().MaximumLength(Domain.Entities.Persons.Staffs.Doctor.MaxNationalCodeLenght);
+            RuleFor(e => e.DoctorDto.PersonnelCode).NotNull().NotEmpty().MinimumLength(Personnel.MaxPersonnelCodeLength);
         }
     }
 }

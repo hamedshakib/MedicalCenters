@@ -1,6 +1,6 @@
 ﻿using MedicalCenters.Domain.Entities.Base;
+using MedicalCenters.Domain.Entities.Persons.Staffs;
 using MedicalCenters.Domain.Entities.Specialties;
-using MedicalCenters.Domain.Entities.Staffs;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 

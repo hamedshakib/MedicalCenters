@@ -25,7 +25,7 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Commands
             var medicalCenter = await medicalCenterRepository.Get((int)command.Id);
             if (medicalCenter is null)
             {
-                throw new NotFoundException("مرکز درمانی", command.Id.ToString());
+                throw new NotFoundException(Domain.Entities.MedicalCenter.EntityTitle, command.Id.ToString());
             }
 
             mapper.Map(command.MedicalCenterDto, medicalCenter);

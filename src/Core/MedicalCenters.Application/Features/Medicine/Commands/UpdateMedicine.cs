@@ -25,7 +25,7 @@ namespace MedicalCenters.Application.Features.Medicine.Commands
             var medicalWard = await medicineRepository.Get(command.Id);
             if (medicalWard is null)
             {
-                throw new NotFoundException("دارو", command.Id.ToString());
+                throw new NotFoundException(Domain.Entities.Medicines.Medicine.EntityTitle, command.Id.ToString());
             }
 
             mapper.Map(command.MedicineDto, medicalWard);

@@ -1,13 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MedicalCenters.Domain.Entities.Base;
 
-namespace MedicalCenters.Domain.Entities.Base
+namespace MedicalCenters.Domain.Entities.Persons
 {
     public abstract class Person : BaseModifiableDomainEntity
     {
-       public const int MaxFistNameLenght = 50;
-       public const int MaxLastNameLenght = 50;
-       public const int MaxNationalCodeLenght = 20;
+        public const int MaxFistNameLenght = 50;
+        public const int MaxLastNameLenght = 50;
+        public const int MaxNationalCodeLenght = 20;
 
 
 

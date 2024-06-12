@@ -7,6 +7,8 @@ namespace MedicalCenters.Domain.Entities
     [Table("MedicalUnit")]
     public class MedicalUnit : BaseModifiableDomainEntity
     {
+        public const string EntityTitle = "واحد درمانی";
+
         [Key]
         public int Id { get; set; }
         [Required, StringLength(70)]

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 
-namespace MedicalCenters.Domain.Entities.Base
+namespace MedicalCenters.Domain.Entities.Persons
 {
     public abstract class Personnel : Person
     {

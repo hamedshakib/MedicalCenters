@@ -22,7 +22,7 @@ namespace MedicalCenters.Application.Features.MedicalWard.Queries
             var result = await medicalWardRepository.Get((int)request.Id, cancellationToken);
             if (result == null)
             {
-                throw new NotFoundException("بخش درمانی", request.Id.ToString());
+                throw new NotFoundException(Domain.Entities.MedicalWard.EntityTitle, request.Id.ToString());
             }
 
             var dto = mapper.Map<MedicalWardDto>(result);

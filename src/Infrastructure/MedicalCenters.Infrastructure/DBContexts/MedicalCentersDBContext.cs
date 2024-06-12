@@ -3,9 +3,9 @@ using MedicalCenters.Domain.Entities.IntermediateEntities;
 using MedicalCenters.Domain.Entities.MedicalCenter_Parts;
 using MedicalCenters.Domain.Entities.Medicines;
 using MedicalCenters.Domain.Entities.Oprerations;
-using MedicalCenters.Domain.Entities.Patients;
+using MedicalCenters.Domain.Entities.Persons;
+using MedicalCenters.Domain.Entities.Persons.Staffs;
 using MedicalCenters.Domain.Entities.Shifts;
-using MedicalCenters.Domain.Entities.Staffs;
 using Microsoft.EntityFrameworkCore;
 
 namespace MedicalCenters.Infrastructure.DBContexts

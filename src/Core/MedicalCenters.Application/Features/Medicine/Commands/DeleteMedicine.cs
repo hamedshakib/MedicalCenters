@@ -23,7 +23,7 @@ namespace MedicalCenters.Application.Features.Medicine.Commands
 
             if(!await medicineRepository.Exist((int)command.Id))
             {
-                throw new NotFoundException("دارو", command.Id.ToString());
+                throw new NotFoundException(Domain.Entities.Medicines.Medicine.EntityTitle, command.Id.ToString());
             }
 
             await medicineRepository.Delete((int)command.Id);

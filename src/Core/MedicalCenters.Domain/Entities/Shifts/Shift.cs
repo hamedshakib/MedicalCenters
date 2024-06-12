@@ -1,4 +1,5 @@
 ﻿using MedicalCenters.Domain.Entities.Base;
+using MedicalCenters.Domain.Entities.Persons;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

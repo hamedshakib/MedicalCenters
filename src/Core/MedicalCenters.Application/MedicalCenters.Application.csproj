@@ -32,4 +32,8 @@
 		</AssemblyAttribute>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Features\Persons\Patient\Queries\" />
+	</ItemGroup>
+
 </Project>
