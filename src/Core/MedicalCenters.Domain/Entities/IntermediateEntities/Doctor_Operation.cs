@@ -10,7 +10,7 @@ namespace MedicalCenters.Domain.Entities.IntermediateEntities
     public class Doctor_Operation : BaseCreateableDomainEntity
     {
         [Required]
-        public long DoctorId { get; set; }
+        public int DoctorId { get; set; }
         public Doctor Doctor { get; set; }
 
         [Required]

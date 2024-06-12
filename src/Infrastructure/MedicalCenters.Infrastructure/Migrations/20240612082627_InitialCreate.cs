@@ -136,7 +136,7 @@ namespace MedicalCenters.Persistence.Migrations
                 name: "Personnel",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PersonnelCode = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -323,7 +323,7 @@ namespace MedicalCenters.Persistence.Migrations
                 name: "Doctor",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -340,7 +340,7 @@ namespace MedicalCenters.Persistence.Migrations
                 name: "Nurse",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -359,7 +359,7 @@ namespace MedicalCenters.Persistence.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PersonelId = table.Column<long>(type: "bigint", nullable: false),
+                    PersonelId = table.Column<int>(type: "int", nullable: false),
                     MedicalUnitId = table.Column<int>(type: "int", nullable: false),
                     DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false),
@@ -498,7 +498,7 @@ namespace MedicalCenters.Persistence.Migrations
                 name: "Doctor_Operation",
                 columns: table => new
                 {
-                    DoctorId = table.Column<long>(type: "bigint", nullable: false),
+                    DoctorId = table.Column<int>(type: "int", nullable: false),
                     OperationId = table.Column<long>(type: "bigint", nullable: false),
                     DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false)
@@ -527,7 +527,7 @@ namespace MedicalCenters.Persistence.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PatientId = table.Column<long>(type: "bigint", nullable: false),
-                    DoctorId = table.Column<long>(type: "bigint", nullable: false),
+                    DoctorId = table.Column<int>(type: "int", nullable: false),
                     DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false),
                     DateTimeModified = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -557,7 +557,7 @@ namespace MedicalCenters.Persistence.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ShiftPlanId = table.Column<long>(type: "bigint", nullable: true),
-                    PersonelId = table.Column<long>(type: "bigint", nullable: false),
+                    PersonelId = table.Column<int>(type: "int", nullable: false),
                     UnitId = table.Column<int>(type: "int", nullable: false),
                     DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false),
@@ -590,7 +590,7 @@ namespace MedicalCenters.Persistence.Migrations
                 name: "Doctor_Specialty",
                 columns: table => new
                 {
-                    DoctorId = table.Column<long>(type: "bigint", nullable: false),
+                    DoctorId = table.Column<int>(type: "int", nullable: false),
                     SpecialtyId = table.Column<int>(type: "int", nullable: false),
                     DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false)
@@ -616,7 +616,7 @@ namespace MedicalCenters.Persistence.Migrations
                 name: "Doctor_Visit",
                 columns: table => new
                 {
-                    DoctorId = table.Column<long>(type: "bigint", nullable: false),
+                    DoctorId = table.Column<int>(type: "int", nullable: false),
                     VisitId = table.Column<long>(type: "bigint", nullable: false),
                     DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false)
@@ -669,14 +669,14 @@ namespace MedicalCenters.Persistence.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateTimeCreated", "Name" },
                 values: new object[,]
                 {
-                    { 1, 1L, new DateTime(2024, 6, 11, 13, 45, 3, 219, DateTimeKind.Local).AddTicks(8178), "بیمارستان" },
-                    { 2, 1L, new DateTime(2024, 6, 11, 13, 45, 3, 219, DateTimeKind.Local).AddTicks(8195), "کلینیک پزشکی" },
-                    { 3, 1L, new DateTime(2024, 6, 11, 13, 45, 3, 219, DateTimeKind.Local).AddTicks(8196), "مرکز جراحی سر پایی" },
-                    { 4, 1L, new DateTime(2024, 6, 11, 13, 45, 3, 219, DateTimeKind.Local).AddTicks(8197), "مرکز زایمان " },
-                    { 5, 1L, new DateTime(2024, 6, 11, 13, 45, 3, 219, DateTimeKind.Local).AddTicks(8198), "مرکز تصویر برداری" },
-                    { 6, 1L, new DateTime(2024, 6, 11, 13, 45, 3, 219, DateTimeKind.Local).AddTicks(8199), "مرکز دیابت" },
-                    { 7, 1L, new DateTime(2024, 6, 11, 13, 45, 3, 219, DateTimeKind.Local).AddTicks(8200), "مرکز دیالیز" },
-                    { 8, 1L, new DateTime(2024, 6, 11, 13, 45, 3, 219, DateTimeKind.Local).AddTicks(8201), "مرکز توان بخشی" }
+                    { 1, 1L, new DateTime(2024, 6, 12, 11, 56, 26, 856, DateTimeKind.Local).AddTicks(1014), "بیمارستان" },
+                    { 2, 1L, new DateTime(2024, 6, 12, 11, 56, 26, 856, DateTimeKind.Local).AddTicks(1032), "کلینیک پزشکی" },
+                    { 3, 1L, new DateTime(2024, 6, 12, 11, 56, 26, 856, DateTimeKind.Local).AddTicks(1034), "مرکز جراحی سر پایی" },
+                    { 4, 1L, new DateTime(2024, 6, 12, 11, 56, 26, 856, DateTimeKind.Local).AddTicks(1035), "مرکز زایمان " },
+                    { 5, 1L, new DateTime(2024, 6, 12, 11, 56, 26, 856, DateTimeKind.Local).AddTicks(1036), "مرکز تصویر برداری" },
+                    { 6, 1L, new DateTime(2024, 6, 12, 11, 56, 26, 856, DateTimeKind.Local).AddTicks(1037), "مرکز دیابت" },
+                    { 7, 1L, new DateTime(2024, 6, 12, 11, 56, 26, 856, DateTimeKind.Local).AddTicks(1038), "مرکز دیالیز" },
+                    { 8, 1L, new DateTime(2024, 6, 12, 11, 56, 26, 856, DateTimeKind.Local).AddTicks(1039), "مرکز توان بخشی" }
                 });
 
             migrationBuilder.InsertData(
@@ -684,11 +684,11 @@ namespace MedicalCenters.Persistence.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateTimeCreated", "Description", "Name" },
                 values: new object[,]
                 {
-                    { 1, 1L, new DateTime(2024, 6, 11, 13, 45, 3, 219, DateTimeKind.Local).AddTicks(9452), null, "بخش قلب" },
-                    { 2, 1L, new DateTime(2024, 6, 11, 13, 45, 3, 219, DateTimeKind.Local).AddTicks(9456), null, "بخش ریه" },
-                    { 3, 1L, new DateTime(2024, 6, 11, 13, 45, 3, 219, DateTimeKind.Local).AddTicks(9457), null, "بخش کلیه" },
-                    { 4, 1L, new DateTime(2024, 6, 11, 13, 45, 3, 219, DateTimeKind.Local).AddTicks(9458), null, "بخش کبد" },
-                    { 5, 1L, new DateTime(2024, 6, 11, 13, 45, 3, 219, DateTimeKind.Local).AddTicks(9459), null, "بخش پیوند" }
+                    { 1, 1L, new DateTime(2024, 6, 12, 11, 56, 26, 856, DateTimeKind.Local).AddTicks(2352), null, "بخش قلب" },
+                    { 2, 1L, new DateTime(2024, 6, 12, 11, 56, 26, 856, DateTimeKind.Local).AddTicks(2357), null, "بخش ریه" },
+                    { 3, 1L, new DateTime(2024, 6, 12, 11, 56, 26, 856, DateTimeKind.Local).AddTicks(2358), null, "بخش کلیه" },
+                    { 4, 1L, new DateTime(2024, 6, 12, 11, 56, 26, 856, DateTimeKind.Local).AddTicks(2359), null, "بخش کبد" },
+                    { 5, 1L, new DateTime(2024, 6, 12, 11, 56, 26, 856, DateTimeKind.Local).AddTicks(2361), null, "بخش پیوند" }
                 });
 
             migrationBuilder.InsertData(
@@ -696,10 +696,10 @@ namespace MedicalCenters.Persistence.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateTimeCreated", "Description", "Name" },
                 values: new object[,]
                 {
-                    { 1, 1L, new DateTime(2024, 6, 11, 13, 45, 3, 220, DateTimeKind.Local).AddTicks(457), "", "استامینوفن" },
-                    { 2, 1L, new DateTime(2024, 6, 11, 13, 45, 3, 220, DateTimeKind.Local).AddTicks(462), "", "پنی سیلین" },
-                    { 3, 1L, new DateTime(2024, 6, 11, 13, 45, 3, 220, DateTimeKind.Local).AddTicks(464), "", "دیفن هیدرامین" },
-                    { 4, 1L, new DateTime(2024, 6, 11, 13, 45, 3, 220, DateTimeKind.Local).AddTicks(465), "", "فاموتیدین" }
+                    { 1, 1L, new DateTime(2024, 6, 12, 11, 56, 26, 856, DateTimeKind.Local).AddTicks(3503), "", "استامینوفن" },
+                    { 2, 1L, new DateTime(2024, 6, 12, 11, 56, 26, 856, DateTimeKind.Local).AddTicks(3507), "", "پنی سیلین" },
+                    { 3, 1L, new DateTime(2024, 6, 12, 11, 56, 26, 856, DateTimeKind.Local).AddTicks(3508), "", "دیفن هیدرامین" },
+                    { 4, 1L, new DateTime(2024, 6, 12, 11, 56, 26, 856, DateTimeKind.Local).AddTicks(3510), "", "فاموتیدین" }
                 });
 
             migrationBuilder.CreateIndex(

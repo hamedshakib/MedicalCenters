@@ -12,34 +12,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.ConfigureAPIServices();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
-builder.Services.AddSwaggerGen(options =>
-{
-    options.AddSecurityDefinition("Bearer Token", new Microsoft.OpenApi.Models.OpenApiSecurityScheme()
-    {
-        Description = "JWT Authorization header using the Bearer scheme (Example: 'Bearer token')",
-        Name = "Authorization",
-        Scheme = "Bearer",
-        In = Microsoft.OpenApi.Models.ParameterLocation.Header,
-        Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
-    });
-
-    options.AddSecurityRequirement(new OpenApiSecurityRequirement()
-    {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "Bearer"
-                }
-            },
-            Array.Empty<string>()
-        }
-    });
-
-});
-
 var logger = new LoggerConfiguration()
     .ReadFrom.Configuration(Configuration.GetAppSettingJson())
     .MinimumLevel.Override("Microsoft", LogEventLevel.Error)
@@ -48,6 +20,7 @@ var logger = new LoggerConfiguration()
 
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(logger);
+
 
 var app = builder.Build();
 
