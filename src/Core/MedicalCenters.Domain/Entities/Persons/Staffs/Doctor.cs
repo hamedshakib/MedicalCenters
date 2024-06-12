@@ -8,8 +8,5 @@ namespace MedicalCenters.Domain.Entities.Persons.Staffs
     public class Doctor : Personnel
     {
         public const string EntityTitle = "پزشک";
-
-        [Key]
-        public int Id { get; set; }
     }
 }

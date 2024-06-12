@@ -43,7 +43,7 @@ namespace MedicalCenters.Application.Features.Persons.Doctor.Commands
     }
     public record UpdateDoctorCommand : IRequest<BaseResponse>
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public DoctorDto DoctorDto { get; set; }
     }
 
