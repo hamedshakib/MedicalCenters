@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using MediatR;
 using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Application.DTOs;
 using MedicalCenters.Application.Features.Medicine.Commands;
+using MedicalCenters.Application.Features.Persons.Doctor.Commands;
 using MedicalCenters.Application.Responses;
 using MedicalCenters.Domain.Contracts;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,5 +38,14 @@ namespace MedicalCenters.Application.Features.Medicine.Commands
     public class CreateMedicineCommand : IRequest<BaseValuedCommandResponse>
     {
         public MedicineDto MedicineDto { get; set; }
+    }
+
+    internal class CreateMedicineCommandValidator : AbstractValidator<CreateMedicineCommand>
+    {
+        public CreateMedicineCommandValidator()
+        {
+            RuleFor(e => e.MedicineDto.Name).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty();
+            RuleFor(e => e.MedicineDto.TypeId).NotNull();
+        }
     }
 }

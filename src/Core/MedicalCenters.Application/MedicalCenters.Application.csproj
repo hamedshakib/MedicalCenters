@@ -6,6 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\Medicine\Validators\**" />
+    <EmbeddedResource Remove="Features\Medicine\Validators\**" />
+    <None Remove="Features\Medicine\Validators\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" />
     <PackageReference Include="FluentValidation" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
@@ -18,9 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Medicine\Validators\" />
     <Folder Include="Features\Patient\" />
-    <Folder Include="Features\Persons\Doctor\Validators\" />
   </ItemGroup>
 
 	<ItemGroup>

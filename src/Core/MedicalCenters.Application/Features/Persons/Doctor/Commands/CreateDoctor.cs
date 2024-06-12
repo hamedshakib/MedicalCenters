@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using MediatR;
 using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Application.DTOs;
@@ -35,5 +36,16 @@ namespace MedicalCenters.Application.Features.Persons.Doctor.Commands
     public record CreateDoctorCommand : IRequest<BaseValuedCommandResponse>
     {
         public DoctorDto DoctorDto { get; set; }
+    }
+
+    internal class CreateDoctorCommandValidator : AbstractValidator<CreateDoctorCommand> 
+    {
+        public CreateDoctorCommandValidator()
+        {
+            RuleFor(e => e.DoctorDto.FirstName).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty().MinimumLength(2).MaximumLength(50);
+            RuleFor(e => e.DoctorDto.LastName).NotNull().NotEmpty().MinimumLength(2).MaximumLength(50);
+            RuleFor(e => e.DoctorDto.NationalCode).NotNull().NotEmpty().MaximumLength(20);
+            RuleFor(e => e.DoctorDto.PersonnelCode).NotNull().NotEmpty().MinimumLength(50);
+        }
     }
 }

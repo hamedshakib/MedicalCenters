@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using MediatR;
 using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Application.DTOs;
@@ -43,5 +44,16 @@ namespace MedicalCenters.Application.Features.Persons.Doctor.Commands
     {
         public long Id { get; set; }
         public DoctorDto DoctorDto { get; set; }
+    }
+
+    internal class UpdateDoctorCommandValidator : AbstractValidator<UpdateDoctorCommand>
+    {
+        public UpdateDoctorCommandValidator()
+        {
+            RuleFor(e => e.DoctorDto.FirstName).NotNull().NotEmpty().MinimumLength(2).MaximumLength(50);
+            RuleFor(e => e.DoctorDto.LastName).NotNull().NotEmpty().MinimumLength(2).MaximumLength(50);
+            RuleFor(e => e.DoctorDto.NationalCode).NotNull().NotEmpty().MaximumLength(20);
+            RuleFor(e => e.DoctorDto.PersonnelCode).NotNull().NotEmpty().MinimumLength(50);
+        }
     }
 }

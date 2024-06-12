@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using MediatR;
 using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Application.DTOs;
@@ -44,5 +45,15 @@ namespace MedicalCenters.Application.Features.Medicine.Commands
     {
         public int Id { get; set; }
         public MedicineDto MedicineDto { get; set; }
+    }
+
+    internal class UpdateMedicineCommandValidator : AbstractValidator<UpdateMedicineCommand>
+    {
+        public UpdateMedicineCommandValidator()
+        {
+            RuleFor(x => x.Id).NotNull();
+            RuleFor(e => e.MedicineDto.Name).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty();
+            RuleFor(e => e.MedicineDto.TypeId).NotNull();
+        }
     }
 }

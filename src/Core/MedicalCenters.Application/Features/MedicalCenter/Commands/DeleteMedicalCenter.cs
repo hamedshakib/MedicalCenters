@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using MediatR;
 using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Application.Exceptions;
@@ -36,5 +37,12 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Commands
     public record DeleteMedicalCenterCommand : IRequest<BaseResponse>
     {
         public long Id { get; set; }
+    }
+    internal class DeleteMedicalCenterCommandValidator : AbstractValidator<DeleteMedicalCenterCommand>
+    {
+        public DeleteMedicalCenterCommandValidator()
+        {
+            RuleFor(e => e.Id).NotNull();
+        }
     }
 }
