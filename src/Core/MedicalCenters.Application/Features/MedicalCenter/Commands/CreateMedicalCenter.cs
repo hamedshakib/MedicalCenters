@@ -46,7 +46,7 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Commands
         public CreateMedicalCenterCommandValidator()
         {
 
-            RuleFor(e => e.MedicalCenterDto.Name).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty();
+            RuleFor(e => e.MedicalCenterDto.Name).Cascade(CascadeMode.Stop).NotNull().NotEmpty();
             RuleFor(e => e.MedicalCenterDto.TypeId).NotNull();
             When(x => x.MedicalCenterDto.GPSx != null || x.MedicalCenterDto.GPSy != null, () =>
             {

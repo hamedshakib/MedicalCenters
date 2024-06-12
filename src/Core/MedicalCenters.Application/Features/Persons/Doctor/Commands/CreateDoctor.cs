@@ -6,6 +6,7 @@ using MedicalCenters.Application.DTOs;
 using MedicalCenters.Application.Features.Medicine.Commands;
 using MedicalCenters.Application.Responses;
 using MedicalCenters.Domain.Contracts;
+using MedicalCenters.Domain.Entities.Staffs;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -42,10 +43,10 @@ namespace MedicalCenters.Application.Features.Persons.Doctor.Commands
     {
         public CreateDoctorCommandValidator()
         {
-            RuleFor(e => e.DoctorDto.FirstName).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty().MinimumLength(2).MaximumLength(50);
-            RuleFor(e => e.DoctorDto.LastName).NotNull().NotEmpty().MinimumLength(2).MaximumLength(50);
-            RuleFor(e => e.DoctorDto.NationalCode).NotNull().NotEmpty().MaximumLength(20);
-            RuleFor(e => e.DoctorDto.PersonnelCode).NotNull().NotEmpty().MinimumLength(50);
+            RuleFor(e => e.DoctorDto.FirstName).NotNull().NotEmpty().MinimumLength(2).MaximumLength(Domain.Entities.Staffs.Doctor.MaxFistNameLenght);
+            RuleFor(e => e.DoctorDto.LastName).NotNull().NotEmpty().MinimumLength(2).MaximumLength(Domain.Entities.Staffs.Doctor.MaxLastNameLenght);
+            RuleFor(e => e.DoctorDto.NationalCode).NotNull().NotEmpty().MaximumLength(Domain.Entities.Staffs.Doctor.MaxNationalCodeLenght);
+            RuleFor(e => e.DoctorDto.PersonnelCode).NotNull().NotEmpty().MinimumLength(Domain.Entities.Base.Personnel.MaxPersonnelCodeLength);
         }
     }
 }

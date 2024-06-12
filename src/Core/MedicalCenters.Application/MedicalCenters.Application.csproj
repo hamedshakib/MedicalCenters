@@ -7,8 +7,11 @@
 
   <ItemGroup>
     <Compile Remove="Features\Medicine\Validators\**" />
+    <Compile Remove="Features\Patient\**" />
     <EmbeddedResource Remove="Features\Medicine\Validators\**" />
+    <EmbeddedResource Remove="Features\Patient\**" />
     <None Remove="Features\Medicine\Validators\**" />
+    <None Remove="Features\Patient\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,10 +24,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Utility\Utility.csproj" />
     <ProjectReference Include="..\MedicalCenters.Domain\MedicalCenters.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Features\Patient\" />
   </ItemGroup>
 
 	<ItemGroup>

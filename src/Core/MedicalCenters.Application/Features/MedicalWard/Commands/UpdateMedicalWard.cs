@@ -51,7 +51,7 @@ namespace MedicalCenters.Application.Features.MedicalWard.Commands
         public UpdateMedicalWardCommandValidator()
         {
             RuleFor(x => x.Id).NotNull();
-            RuleFor(e => e.MedicalWardDto.Name).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty();
+            RuleFor(e => e.MedicalWardDto.Name).Cascade(CascadeMode.Stop).NotNull().NotEmpty();
             RuleFor(e => e.MedicalWardDto.TypeId).NotNull();
             RuleFor(e => e.MedicalWardDto.MedicalCenterId).NotNull();
         }

@@ -52,7 +52,7 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Commands
         {
             RuleFor(x => x.Id).NotNull();
             RuleFor(e => e.MedicalCenterDto.TypeId).NotNull();
-            RuleFor(e => e.MedicalCenterDto.Name).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty();
+            RuleFor(e => e.MedicalCenterDto.Name).Cascade(CascadeMode.Stop).NotNull().NotEmpty();
             When(x => x.MedicalCenterDto.GPSx != null || x.MedicalCenterDto.GPSy != null, () =>
             {
                 RuleFor(x => x.MedicalCenterDto.GPSx).GreaterThanOrEqualTo(-90).WithMessage("GPSx must Greater than -90");
