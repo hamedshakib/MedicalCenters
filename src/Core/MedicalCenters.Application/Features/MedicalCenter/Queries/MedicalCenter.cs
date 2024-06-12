@@ -19,7 +19,7 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Queries
         {
             var response = new BaseQueryResponse();
             cancellationToken.ThrowIfCancellationRequested();
-            var result = await medicalCenterRepository.Get((int)request.Id, cancellationToken);
+            var result = await medicalCenterRepository.Get(request.Id, cancellationToken);
 
             if (result == null)
             {
@@ -37,6 +37,6 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Queries
 
     public record MedicalCenterQuery : IRequest<BaseQueryResponse>
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
     }
 }

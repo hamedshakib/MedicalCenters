@@ -10,6 +10,6 @@ namespace MedicalCenters.Domain.Entities.Persons.Staffs
         public const string EntityTitle = "پرستار";
 
         [Key]
-        public long Id { get; set; }
+        public int Id { get; set; }
     }
 }

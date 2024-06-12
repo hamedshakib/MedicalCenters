@@ -9,6 +9,8 @@ namespace MedicalCenters.Domain.Entities
     [Table("PatientHistory")]
     public class PatientHistory : BaseModifiableDomainEntity
     {
+        public const string EntityTitle = "سابقه بیمار";
+
         [Key]
         public long Id { get; set; }
         [Required]
@@ -16,7 +18,7 @@ namespace MedicalCenters.Domain.Entities
         public Patient Patient { get; set; }
 
         [Required]
-        public long DoctorId { get; set; }
+        public int DoctorId { get; set; }
         public Doctor Doctor { get; set; }
     }
 }

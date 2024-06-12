@@ -21,7 +21,7 @@ namespace MedicalCenters.API.Controllers
         [HttpGet("MedicineType/{MedicineTypeId}")]
         [RequiresPermission(PermissionEnum.SeeAllMedicineTypeMedicinesInfos)]
         [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.Medicine], VaryByQueryKeys = ["Id"])]
-        public async Task<ActionResult<BaseQueryResponse>> GetAllMedicineTypeMedicines(long MedicineTypeId, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<BaseQueryResponse>> GetAllMedicineTypeMedicines(int MedicineTypeId, CancellationToken cancellationToken = default)
         {
             var query = new AllMedicineTypeMedicinesQuery() { MedicineTypeId = MedicineTypeId };
             BaseQueryResponse result = null;
@@ -34,7 +34,7 @@ namespace MedicalCenters.API.Controllers
         [HttpGet("{id}")]
         [RequiresPermission(PermissionEnum.SeeMedicines)]
         [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.Medicine], VaryByQueryKeys = ["Id"])]
-        public async Task<ActionResult<BaseQueryResponse>> GetMedicine(long Id, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<BaseQueryResponse>> GetMedicine(int Id, CancellationToken cancellationToken = default)
         {
             var query = new MedicineQuery() { Id = Id };
             BaseQueryResponse result = null;
@@ -46,10 +46,10 @@ namespace MedicalCenters.API.Controllers
 
         [HttpPost]
         [RequiresPermission(PermissionEnum.AddMedicine)]
-        public async Task<ActionResult<BaseValuedCommandResponse>> AddMedicine([FromBody] MedicineDto newMedicine)
+        public async Task<ActionResult<BaseValuedCommandResponse<int>>> AddMedicine([FromBody] MedicineDto newMedicine)
         {
             var command = new CreateMedicineCommand() { MedicineDto = newMedicine };
-            BaseValuedCommandResponse result = null;
+            BaseValuedCommandResponse<int> result = null;
 
             result = await mediator.Send(command);
             await cacheStore.EvictByTagAsync(CacheTags.Medicine, CancellationToken.None);
@@ -73,7 +73,7 @@ namespace MedicalCenters.API.Controllers
 
         [HttpDelete("{id}")]
         [RequiresPermission(PermissionEnum.DeleteMedicine)]
-        public async Task<ActionResult<BaseResponse>> DeleteMedicine(long id)
+        public async Task<ActionResult<BaseResponse>> DeleteMedicine(int id)
         {
             var command = new DeleteMedicineCommand() { Id = id };
             BaseResponse result = null;

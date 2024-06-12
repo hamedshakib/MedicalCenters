@@ -18,7 +18,7 @@ namespace MedicalCenters.Application.Features.Medicine.Queries
         {
             var response = new BaseQueryResponse();
             cancellationToken.ThrowIfCancellationRequested();
-            var result = await medicineRepository.GetAllMedicineTypeMedicines((int)request.MedicineTypeId, cancellationToken);
+            var result = await medicineRepository.GetAllMedicineTypeMedicines(request.MedicineTypeId, cancellationToken);
 
             List<MedicineDto> dtos = new List<MedicineDto>();
             result.ToList().ForEach(x => dtos.Add(mapper.Map<MedicineDto>(x)));
@@ -33,6 +33,6 @@ namespace MedicalCenters.Application.Features.Medicine.Queries
 
     public record class AllMedicineTypeMedicinesQuery : IRequest<BaseQueryResponse>
     {
-        public long MedicineTypeId { get; set; }
+        public int MedicineTypeId { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿namespace MedicalCenters.Application.Responses
 {
-    public class BaseValuedCommandResponse : BaseResponse
+    public class BaseValuedCommandResponse<T> : BaseResponse
     {
-        public long? Id { get; set; }
+        public T? Id { get; set; }
     }
 }

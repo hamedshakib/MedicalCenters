@@ -14,18 +14,18 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Application.Features.Persons.Patient.Commands
 {
-    internal class DeletePatientCommandHandler(IPatientRepository PatientRepository, [FromKeyedServices("medicalCenters")] IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<DeletePatientCommand, BaseResponse>
+    internal class DeletePatientCommandHandler(IPatientRepository _patientRepository, [FromKeyedServices("medicalCenters")] IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<DeletePatientCommand, BaseResponse>
     {
         public async Task<BaseResponse> Handle(DeletePatientCommand command, CancellationToken cancellationToken)
         {
             var response = new BaseResponse();
 
-            if (!await PatientRepository.Exist((int)command.Id))
+            if (!await _patientRepository.Exist(command.Id))
             {
-                throw new NotFoundException("پزشک", command.Id.ToString());
+                throw new NotFoundException(Domain.Entities.Persons.Patient.EntityTitle, command.Id.ToString());
             }
 
-            await PatientRepository.Delete((int)command.Id);
+            await _patientRepository.Delete((int)command.Id);
             await unitOfWork.SaveChangesAsync(cancellationToken);
             response.IsSuccess = true;
 

@@ -8,6 +8,8 @@ namespace MedicalCenters.Domain.Entities
     [Table("Reservation")]
     public class Reservation : BaseModifiableDomainEntity
     {
+        public const string EntityTitle = "نوبت";
+
         [Key]
         public long Id { get; set; }
         [Required]

@@ -7,6 +7,8 @@ namespace MedicalCenters.Domain.Entities.Specialties
     [Table("SpecialtyGroup")]
     public class SpecialtyGroup : BaseCreateableDomainEntity
     {
+        public const string EntityTitle = "گروه تخصص";
+
         [Key]
         public int Id { get; set; }
         [Required, StringLength(100)]

@@ -8,7 +8,7 @@ namespace MedicalCenters.Domain.Entities.Persons
         public const int MaxPersonnelCodeLength = 50;
 
         [Key]
-        public long Id { get; set; }
+        public int Id { get; set; }
         [Required, StringLength(MaxPersonnelCodeLength)]
         public string PersonnelCode { get; set; }
     }

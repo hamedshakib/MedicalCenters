@@ -16,11 +16,11 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Application.Features.Medicine.Commands
 {
-    internal class CreateMedicineCommandHandler(IMedicineRepository medicineRepository, [FromKeyedServices("medicalCenters")] IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<CreateMedicineCommand, BaseValuedCommandResponse>
+    internal class CreateMedicineCommandHandler(IMedicineRepository medicineRepository, [FromKeyedServices("medicalCenters")] IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<CreateMedicineCommand, BaseValuedCommandResponse<int>>
     {
-        public async Task<BaseValuedCommandResponse> Handle(CreateMedicineCommand command, CancellationToken cancellationToken)
+        public async Task<BaseValuedCommandResponse<int>> Handle(CreateMedicineCommand command, CancellationToken cancellationToken)
         {
-            var response = new BaseValuedCommandResponse();
+            var response = new BaseValuedCommandResponse<int>();
 
             var data = mapper.Map<MedicalCenters.Domain.Entities.Medicines.Medicine>(command.MedicineDto);
             data = await medicineRepository.Add(data);
@@ -35,7 +35,7 @@ namespace MedicalCenters.Application.Features.Medicine.Commands
         }
     }
 
-    public class CreateMedicineCommand : IRequest<BaseValuedCommandResponse>
+    public class CreateMedicineCommand : IRequest<BaseValuedCommandResponse<int>>
     {
         public MedicineDto MedicineDto { get; set; }
     }

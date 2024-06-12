@@ -21,12 +21,12 @@ namespace MedicalCenters.Application.Features.MedicalWard.Commands
         {
             var response = new BaseResponse();
 
-            if (!await medicalWardRepository.Exist((int)command.Id))
+            if (!await medicalWardRepository.Exist(command.Id))
             {
                 throw new NotFoundException(Domain.Entities.MedicalWard.EntityTitle, command.Id.ToString());
             }
 
-            await medicalWardRepository.Delete((int)command.Id);
+            await medicalWardRepository.Delete(command.Id);
             await unitOfWork.SaveChangesAsync(cancellationToken);
 
             response.IsSuccess = true;
@@ -37,7 +37,7 @@ namespace MedicalCenters.Application.Features.MedicalWard.Commands
 
     public record DeleteMedicalWardCommand : IRequest<BaseResponse>
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
     }
     internal class DeleteMedicalWardCommandValidator : AbstractValidator<DeleteMedicalWardCommand>
     {

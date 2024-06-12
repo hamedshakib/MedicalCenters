@@ -21,12 +21,12 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Commands
         {
             var response = new BaseResponse();
 
-            if (!await medicalCenterRepository.Exist((int)command.Id))
+            if (!await medicalCenterRepository.Exist(command.Id))
             {
                 throw new NotFoundException(Domain.Entities.MedicalCenter.EntityTitle, command.Id.ToString());
             }
 
-            await medicalCenterRepository.Delete((int)command.Id);
+            await medicalCenterRepository.Delete(command.Id);
             await unitOfWork.SaveChangesAsync(cancellationToken);
             response.IsSuccess = true;
 
@@ -36,7 +36,7 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Commands
 
     public record DeleteMedicalCenterCommand : IRequest<BaseResponse>
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
     }
     internal class DeleteMedicalCenterCommandValidator : AbstractValidator<DeleteMedicalCenterCommand>
     {

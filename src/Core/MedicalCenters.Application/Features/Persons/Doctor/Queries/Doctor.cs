@@ -18,10 +18,10 @@ namespace MedicalCenters.Application.Features.Persons.Doctor.Queries
         {
             var response = new BaseQueryResponse();
             cancellationToken.ThrowIfCancellationRequested();
-            var result = await doctorRepository.Get((int)request.Id, cancellationToken);
+            var result = await doctorRepository.Get(request.Id, cancellationToken);
             if (result == null)
             {
-                throw new NotFoundException("پزشک", request.Id.ToString());
+                throw new NotFoundException(Domain.Entities.Persons.Staffs.Doctor.EntityTitle, request.Id.ToString());
             }
 
             var dto = mapper.Map<DoctorDto>(result);
@@ -35,6 +35,6 @@ namespace MedicalCenters.Application.Features.Persons.Doctor.Queries
 
     public record class DoctorQuery : IRequest<BaseQueryResponse>
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
     }
 }

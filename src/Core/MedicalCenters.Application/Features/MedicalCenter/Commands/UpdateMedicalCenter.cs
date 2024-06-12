@@ -22,7 +22,7 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Commands
         {
             var response = new BaseResponse();
 
-            var medicalCenter = await medicalCenterRepository.Get((int)command.Id);
+            var medicalCenter = await medicalCenterRepository.Get(command.Id);
             if (medicalCenter is null)
             {
                 throw new NotFoundException(Domain.Entities.MedicalCenter.EntityTitle, command.Id.ToString());

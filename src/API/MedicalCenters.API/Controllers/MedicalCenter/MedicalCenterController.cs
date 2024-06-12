@@ -34,7 +34,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
         [HttpGet("{id}")]
         [RequiresPermission(PermissionEnum.SeeMedicalCenterInfo)]
         [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.MedicalCenter], VaryByQueryKeys = ["Id"])]
-        public async Task<ActionResult<BaseQueryResponse>> GetMedicalCenters(long Id, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<BaseQueryResponse>> GetMedicalCenters(int Id, CancellationToken cancellationToken = default)
         {
 
             var query = new MedicalCenterQuery() { Id = Id };
@@ -47,10 +47,10 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
 
         [HttpPost]
         [RequiresPermission(PermissionEnum.AddMedicalCenter)]
-        public async Task<ActionResult<BaseValuedCommandResponse>> AddMedicalCenter([FromBody] MedicalCenterDto newMedicalCenter)
+        public async Task<ActionResult<BaseValuedCommandResponse<int>>> AddMedicalCenter([FromBody] MedicalCenterDto newMedicalCenter)
         {
             var command = new CreateMedicalCenterCommand() { MedicalCenterDto = newMedicalCenter };
-            BaseValuedCommandResponse result = null;
+            BaseValuedCommandResponse<int> result = null;
 
             result = await mediator.Send(command);
             await cacheStore.EvictByTagAsync(CacheTags.MedicalCenter, CancellationToken.None);
@@ -74,7 +74,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
 
         [HttpDelete("{id}")]
         [RequiresPermission(PermissionEnum.DeleteMedicalCenter)]
-        public async Task<ActionResult<BaseResponse>> DeleteMedicalCenter(long id)
+        public async Task<ActionResult<BaseResponse>> DeleteMedicalCenter(int id)
         {
             var command = new DeleteMedicalCenterCommand() { Id = id };
             BaseResponse result = null;
@@ -88,7 +88,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
         [HttpGet("Wards/{MecicalCenterId}")]
         [RequiresPermission(PermissionEnum.SeeAllMedicalCenterWardsInfos)]
         [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.MedicalWard], VaryByQueryKeys = ["mecicalCenterId"])]
-        public async Task<ActionResult<BaseQueryResponse>> GetAllMedicalCenterWards(long mecicalCenterId)
+        public async Task<ActionResult<BaseQueryResponse>> GetAllMedicalCenterWards(int mecicalCenterId)
         {
             var query = new AllMedicalCenterWardsQuery() { MedicalCenterId = mecicalCenterId };
             BaseQueryResponse result = null;

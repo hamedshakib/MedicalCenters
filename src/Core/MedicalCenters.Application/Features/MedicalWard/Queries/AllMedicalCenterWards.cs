@@ -18,7 +18,7 @@ namespace MedicalCenters.Application.Features.MedicalWard.Queries
         {
             var response = new BaseQueryResponse();
             cancellationToken.ThrowIfCancellationRequested();
-            var result = await medicalWardRepository.GetAllMedicalCenterWards((int)request.MedicalCenterId, cancellationToken);
+            var result = await medicalWardRepository.GetAllMedicalCenterWards(request.MedicalCenterId, cancellationToken);
 
             List<MedicalWardDto> dtos = new List<MedicalWardDto>();
             result.ToList().ForEach(x => dtos.Add(mapper.Map<MedicalWardDto>(x)));
@@ -33,6 +33,6 @@ namespace MedicalCenters.Application.Features.MedicalWard.Queries
 
     public record AllMedicalCenterWardsQuery : IRequest<BaseQueryResponse>
     {
-        public long MedicalCenterId { get; set; }
+        public int MedicalCenterId { get; set; }
     }
 }

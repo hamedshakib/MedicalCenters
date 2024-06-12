@@ -19,10 +19,10 @@ namespace MedicalCenters.Application.Features.Medicine.Queries
         {
             var response = new BaseQueryResponse();
             cancellationToken.ThrowIfCancellationRequested();
-            var result = await medicineRepository.Get((int)request.Id, cancellationToken);
+            var result = await medicineRepository.Get(request.Id, cancellationToken);
             if (result == null)
             {
-                throw new NotFoundException("دارو", request.Id.ToString());
+                throw new NotFoundException(Domain.Entities.Medicines.Medicine.EntityTitle, request.Id.ToString());
             }
 
             var dto = mapper.Map<MedicineDto>(result);
@@ -36,6 +36,6 @@ namespace MedicalCenters.Application.Features.Medicine.Queries
 
     public record class MedicineQuery : IRequest<BaseQueryResponse>
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
     }
 }

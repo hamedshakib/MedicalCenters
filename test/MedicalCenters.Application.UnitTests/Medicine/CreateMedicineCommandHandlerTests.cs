@@ -43,21 +43,21 @@ namespace MedicalCenters.Application.UnitTests.Medicine
         [Fact]
         public async Task CreateMedicine_MedicineRepository_IsCalled()
         {
-            var result = (BaseValuedCommandResponse)await InitResult();
+            var result = (BaseValuedCommandResponse<int>)await InitResult();
             _medicineRepository.Received();
         }
 
         [Fact]
         public async Task CreateMedicine_HandlerResult_IsValidTyped()
         {
-            var result = (BaseValuedCommandResponse)await InitResult();
-            Assert.IsType<BaseValuedCommandResponse>(result);
+            var result = (BaseValuedCommandResponse<int>)await InitResult();
+            Assert.IsType<BaseValuedCommandResponse<int>>(result);
         }
 
         [Fact]
         public async Task CreateMedicine_HandlerResultIsSuccess_IsTrue()
         {
-            var result = (BaseValuedCommandResponse)await InitResult();
+            var result = (BaseValuedCommandResponse<int>)await InitResult();
             Assert.True(result.IsSuccess);
         }
 

@@ -21,7 +21,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
         [HttpGet("{id}")]
         [RequiresPermission(PermissionEnum.SeeMedicalWardInfo)]
         [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.MedicalWard])]
-        public async Task<ActionResult<BaseQueryResponse>> GetMedicalWard(long Id, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<BaseQueryResponse>> GetMedicalWard(int Id, CancellationToken cancellationToken = default)
         {
             var query = new MedicalWardQuery() { Id = Id };
             BaseQueryResponse result = null;
@@ -33,10 +33,10 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
 
         [HttpPost]
         [RequiresPermission(PermissionEnum.AddMedicalWard)]
-        public async Task<ActionResult<BaseValuedCommandResponse>> AddMedicalWard([FromBody] MedicalWardDto newMedicalWard, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<BaseValuedCommandResponse<int>>> AddMedicalWard([FromBody] MedicalWardDto newMedicalWard, CancellationToken cancellationToken = default)
         {
             var command = new CreateMedicalWardCommand() { MedicalWardDto = newMedicalWard };
-            BaseValuedCommandResponse result = null;
+            BaseValuedCommandResponse<int> result = null;
 
             result = await mediator.Send(command, cancellationToken);
             await cacheStore.EvictByTagAsync(CacheTags.MedicalWard, CancellationToken.None);
@@ -60,7 +60,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
 
         [HttpDelete("{id}")]
         [RequiresPermission(PermissionEnum.DeleteMedicalWard)]
-        public async Task<ActionResult<BaseResponse>> DeleteMedicalWard(long id)
+        public async Task<ActionResult<BaseResponse>> DeleteMedicalWard(int id)
         {
             var command = new DeleteMedicalWardCommand() { Id = id };
             BaseResponse result = null;
