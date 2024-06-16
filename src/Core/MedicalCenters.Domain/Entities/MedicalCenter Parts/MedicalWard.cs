@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MedicalCenters.Domain.Entities
 {
-    [Table("MedicalWard")]
+    [Table(nameof(MedicalWard))]
     public class MedicalWard : BaseModifiableDomainEntity
     {
         public const string EntityTitle = "بخش درمانی";

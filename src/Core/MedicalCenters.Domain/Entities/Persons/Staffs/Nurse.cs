@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MedicalCenters.Domain.Entities.Persons.Staffs
 {
-    [Table("Nurse")]
+    [Table(nameof(Nurse))]
     public class Nurse : Personnel
     {
         public const string EntityTitle = "پرستار";

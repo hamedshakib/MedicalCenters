@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MedicalCenters.Domain.Entities.Shifts
 {
-    [Table("Shift")]
+    [Table(nameof(Shift))]
     public class Shift : BaseModifiableDomainEntity
     {
         public const string EntityTitle = "شیفت";
