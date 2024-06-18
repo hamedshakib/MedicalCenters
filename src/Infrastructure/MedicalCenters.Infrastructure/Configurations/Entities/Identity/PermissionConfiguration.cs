@@ -12,36 +12,7 @@ namespace MedicalCenters.Persistence.Configurations.Entities.Identity
     {
         public void Configure(EntityTypeBuilder<Permission> builder)
         {
-            List<PermissionEnum> Permissions = new List<PermissionEnum>()
-            {
-                PermissionEnum.AddMedicalCenter,
-                PermissionEnum.EditMedicalCenter,
-                PermissionEnum.DeleteMedicalCenter,
-                PermissionEnum.SeeMedicalCenterInfo,
-                PermissionEnum.SeeAllMedicalCentersInfos,
-
-                PermissionEnum.AddMedicalWard,
-                PermissionEnum.EditMedicalWard,
-                PermissionEnum.DeleteMedicalWard,
-                PermissionEnum.SeeMedicalWardInfo,
-                PermissionEnum.SeeAllMedicalCenterWardsInfos,
-
-                PermissionEnum.AddMedicine,
-                PermissionEnum.EditMedicine,
-                PermissionEnum.DeleteMedicine,
-                PermissionEnum.SeeMedicines,
-                PermissionEnum.SeeAllMedicineTypeMedicinesInfos,
-
-                PermissionEnum.AddDoctor,
-                PermissionEnum.EditDoctor,
-                PermissionEnum.DeleteDoctor,
-                PermissionEnum.SeeDotorInfo,
-
-                PermissionEnum.AddPatient,
-                PermissionEnum.EditPatient,
-                PermissionEnum.DeletePatient,
-                PermissionEnum.SeePatientInfo,
-            };
+            var Permissions = Enum.GetValues(typeof(PermissionEnum)).Cast<PermissionEnum>();
 
             builder.HasData(Permissions.Select(p => new Permission { Id = (int)p, Name = nameof(p), Description = p.GetDescription(), CreatedBy = 1, DateTimeCreated = DateTime.Now }));
         }
