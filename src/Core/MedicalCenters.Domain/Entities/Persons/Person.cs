@@ -13,11 +13,11 @@ namespace MedicalCenters.Domain.Entities.Persons
 
 
 
-        [Required, StringLength(MaxFistNameLenght)]
+        [Required, MaxLength(MaxFistNameLenght)]
         public string FirstName { get; set; }
-        [Required, StringLength(MaxLastNameLenght)]
+        [Required, MaxLength(MaxLastNameLenght)]
         public string LastName { get; set; }
-        [Required, StringLength(MaxNationalCodeLenght)]
+        [Required, MaxLength(MaxNationalCodeLenght)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string NationalCode { get; set; }
     }

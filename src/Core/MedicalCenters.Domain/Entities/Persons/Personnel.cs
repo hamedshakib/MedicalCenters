@@ -9,7 +9,7 @@ namespace MedicalCenters.Domain.Entities.Persons
 
         [Key]
         public int Id { get; set; }
-        [Required, StringLength(MaxPersonnelCodeLength)]
+        [Required, MaxLength(MaxPersonnelCodeLength)]
         public string PersonnelCode { get; set; }
     }
 }

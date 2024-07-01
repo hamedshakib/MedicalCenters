@@ -7,9 +7,9 @@ namespace MedicalCenters.Identity.Models.Domains
     {
         [Key]
         public int Id { get; set; }
-        [Required, StringLength(150)]
+        [Required, MaxLength(150)]
         public string Name { get; set; }
-        [StringLength(1000)]
+        [MaxLength(1000)]
         public string Description { get; set; }
     }
 }

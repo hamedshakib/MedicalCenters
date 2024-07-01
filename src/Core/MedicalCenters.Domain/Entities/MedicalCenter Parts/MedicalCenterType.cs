@@ -9,7 +9,7 @@ namespace MedicalCenters.Domain.Entities.MedicalCenter_Parts
     {
         [Key]
         public int Id { get; set; }
-        [Required, StringLength(70)]
+        [Required, MaxLength(70)]
         public string Name { get; set; }
     }
 }

@@ -11,9 +11,9 @@ namespace MedicalCenters.Domain.Entities
 
         [Key]
         public int Id { get; set; }
-        [Required, StringLength(70)]
+        [Required, MaxLength(70)]
         public string Name { get; set; }
-        [StringLength(1000)]
+        [MaxLength(1000)]
         public string Description { get; set; }
     }
 }

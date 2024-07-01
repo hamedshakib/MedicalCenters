@@ -4,7 +4,7 @@ namespace MedicalCenters.Domain.Entities.Base
 {
     public abstract class BaseUser : BaseCreateableDomainEntity
     {
-        [Required, StringLength(100)]
+        [Required, MaxLength(100)]
         public string UserName { get; set; }
     }
 }
