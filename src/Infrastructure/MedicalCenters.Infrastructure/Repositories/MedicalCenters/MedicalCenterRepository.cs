@@ -1,7 +1,7 @@
 ﻿using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Domain.Entities;
 using MedicalCenters.Domain.Entities.MedicalCenter_Parts;
-using MedicalCenters.Infrastructure.DBContexts;
+using MedicalCenters.Persistence.DBContexts;
 using MedicalCenters.Infrastructure.Repositories;
 
 namespace MedicalCenters.Persistence.Repositories.MedicalCenters

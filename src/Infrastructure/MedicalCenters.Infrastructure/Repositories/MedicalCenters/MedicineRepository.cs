@@ -1,6 +1,6 @@
 ﻿using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Domain.Entities.Medicines;
-using MedicalCenters.Infrastructure.DBContexts;
+using MedicalCenters.Persistence.DBContexts;
 using MedicalCenters.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 

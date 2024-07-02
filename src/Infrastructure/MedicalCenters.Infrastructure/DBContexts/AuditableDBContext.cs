@@ -1,7 +1,7 @@
 ﻿using MedicalCenters.Domain.Entities.Base;
 using Microsoft.EntityFrameworkCore;
 
-namespace MedicalCenters.Infrastructure.DBContexts
+namespace MedicalCenters.Persistence.DBContexts
 {
     public class AuditableDBContext : DbContext
     {

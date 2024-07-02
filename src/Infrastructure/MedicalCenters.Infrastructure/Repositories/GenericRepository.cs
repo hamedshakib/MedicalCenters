@@ -1,5 +1,5 @@
 ﻿using MedicalCenters.Application.Contracts.Persistence;
-using MedicalCenters.Infrastructure.DBContexts;
+using MedicalCenters.Persistence.DBContexts;
 using Microsoft.EntityFrameworkCore;
 
 namespace MedicalCenters.Infrastructure.Repositories

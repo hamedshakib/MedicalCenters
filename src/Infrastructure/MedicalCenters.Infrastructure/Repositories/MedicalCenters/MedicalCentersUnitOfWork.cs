@@ -1,5 +1,5 @@
 ﻿using MedicalCenters.Domain.Contracts;
-using MedicalCenters.Infrastructure.DBContexts;
+using MedicalCenters.Persistence.DBContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Data;

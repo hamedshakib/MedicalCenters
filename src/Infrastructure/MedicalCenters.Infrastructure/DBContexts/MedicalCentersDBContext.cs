@@ -8,7 +8,7 @@ using MedicalCenters.Domain.Entities.Persons.Staffs;
 using MedicalCenters.Domain.Entities.Shifts;
 using Microsoft.EntityFrameworkCore;
 
-namespace MedicalCenters.Infrastructure.DBContexts
+namespace MedicalCenters.Persistence.DBContexts
 {
     public class MedicalCentersDBContext : AuditableDBContext
     {

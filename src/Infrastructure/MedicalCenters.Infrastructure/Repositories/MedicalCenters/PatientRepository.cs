@@ -1,7 +1,7 @@
 ﻿using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Domain.Entities.Medicines;
 using MedicalCenters.Domain.Entities.Persons;
-using MedicalCenters.Infrastructure.DBContexts;
+using MedicalCenters.Persistence.DBContexts;
 using MedicalCenters.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;

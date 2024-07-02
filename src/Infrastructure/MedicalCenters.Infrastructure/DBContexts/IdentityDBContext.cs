@@ -1,5 +1,4 @@
 ﻿using MedicalCenters.Identity.Models.Domains;
-using MedicalCenters.Infrastructure.DBContexts;
 using Microsoft.EntityFrameworkCore;
 
 namespace MedicalCenters.Persistence.DBContexts

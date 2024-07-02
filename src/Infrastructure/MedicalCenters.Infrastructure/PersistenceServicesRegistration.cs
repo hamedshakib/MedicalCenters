@@ -1,15 +1,16 @@
 ﻿using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Domain.Contracts;
 using MedicalCenters.Identity.Contracts;
-using MedicalCenters.Infrastructure.DBContexts;
-using MedicalCenters.Infrastructure.Repositories;
 using MedicalCenters.Persistence.DBContexts;
+using MedicalCenters.Infrastructure.Repositories;
 using MedicalCenters.Persistence.Repositories.Identity;
 using MedicalCenters.Persistence.Repositories.MedicalCenters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Utility.Configuration;
+using MedicalCenters.Persistence.CompiledModels.MedicalCenters;
+using MedicalCenters.Persistence.CompiledModels.Identity;
 
 namespace MedicalCenters.Persistence
 {
@@ -35,9 +36,16 @@ namespace MedicalCenters.Persistence
 
 
             services.AddDbContext<MedicalCentersDBContext>(options =>
-                                        options.UseSqlServer(medicalCentersConnectionString, x => x.UseNetTopologySuite()));
-            services.AddDbContext<IdentityDBContext>(options =>
-                            options.UseSqlServer(IdentityConnectionString));
+            {
+                options.UseSqlServer(medicalCentersConnectionString, x => x.UseNetTopologySuite());
+                options.UseModel(MedicalCentersDBContextModel.Instance);
+            });
+
+            services.AddDbContext<IdentityDBContext>(options => 
+            {
+                options.UseSqlServer(IdentityConnectionString);
+                options.UseModel(IdentityDBContextModel.Instance);
+            });
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
