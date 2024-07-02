@@ -38,13 +38,13 @@ namespace MedicalCenters.Persistence
             services.AddDbContext<MedicalCentersDBContext>(options =>
             {
                 options.UseSqlServer(medicalCentersConnectionString, x => x.UseNetTopologySuite());
-                options.UseModel(MedicalCentersDBContextModel.Instance);
+                //options.UseModel(MedicalCentersDBContextModel.Instance);
             });
 
             services.AddDbContext<IdentityDBContext>(options => 
             {
                 options.UseSqlServer(IdentityConnectionString);
-                options.UseModel(IdentityDBContextModel.Instance);
+                //options.UseModel(IdentityDBContextModel.Instance);
             });
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
