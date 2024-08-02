@@ -16,18 +16,11 @@ namespace MedicalCenters.Persistence.Repositories.Identity
 
         public async Task<User?> FindUser(string Username)
         {
-            try
-            {
-                var findUser = await (from user in _dBContext.User
-                                      where user.UserName == Username
-                                      select user).FirstOrDefaultAsync();
+            var findUser = await (from user in _dBContext.User
+                                    where user.UserName == Username
+                                    select user).FirstOrDefaultAsync();
 
-                return findUser;
-            }
-            catch (Exception ex)
-            {
-            }
-            return null;
+            return findUser;
         }
 
         Task<string> IAuthenticationRepository.GetRefreshToken(long UserId)
