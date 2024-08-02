@@ -9,8 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Utility.Configuration;
-using MedicalCenters.Persistence.CompiledModels.MedicalCenters;
-using MedicalCenters.Persistence.CompiledModels.Identity;
 
 namespace MedicalCenters.Persistence
 {

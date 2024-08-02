@@ -36,5 +36,13 @@
 		<PackageReference Update="Serilog.Sinks.Seq" Version="8.0.0" />
 		<PackageReference Update="Serilog.Extensions.Logging" Version="8.0.0" />
 
+		<PackageReference Update="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.9.0" />
+		<PackageReference Update="OpenTelemetry.Exporter.Prometheus.AspNetCore" Version="1.9.0-beta.2" />
+		<PackageReference Update="OpenTelemetry.Extensions.Hosting" Version="1.9.0" />
+		<PackageReference Update="OpenTelemetry.Instrumentation.AspNetCore" Version="1.9.0" />
+		<PackageReference Update="OpenTelemetry.Instrumentation.Http" Version="1.9.0" />
+		<PackageReference Update="OpenTelemetry.Instrumentation.Process" Version="0.5.0-beta.6" />
+		<PackageReference Update="OpenTelemetry.Instrumentation.Runtime" Version="1.9.0" />
+
 	</ItemGroup>
 </Project>
