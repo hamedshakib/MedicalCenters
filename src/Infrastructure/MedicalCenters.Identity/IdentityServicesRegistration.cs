@@ -1,5 +1,6 @@
 ﻿using MedicalCenters.Identity.Classes;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
 
@@ -7,7 +8,7 @@ namespace MedicalCenters.Identity
 {
     public static class IdentityServicesRegistration
     {
-        public static IServiceCollection ConfigureIdentityServices(this IServiceCollection services)
+        public static IServiceCollection ConfigureIdentityServices(this IServiceCollection services,IConfiguration configuration)
         {
 
             services.AddTransient(provider =>  new OverLimitRequestChecker(provider.GetService<IDatabase>()));

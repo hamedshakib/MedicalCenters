@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using StackExchange.Redis;
-using Utility.Configuration;
 
 namespace MedicalCenters.Cache
 {
@@ -8,7 +7,7 @@ namespace MedicalCenters.Cache
     {
         public IDatabase GetDatabase()
         {
-            string ConnectionString = configuration["ConnectionStrings:RedisConnectionString"];
+            string ConnectionString = configuration.GetConnectionString("RedisConnectionString");
             ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(ConnectionString);
             IDatabase db = redis.GetDatabase();
             return db;

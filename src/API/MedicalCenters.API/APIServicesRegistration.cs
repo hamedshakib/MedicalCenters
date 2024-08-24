@@ -13,7 +13,7 @@ namespace MedicalCenters.API
 {
     public static class APIServicesRegistration
     {
-        public static IServiceCollection ConfigureAPIServices(this IServiceCollection services)
+        public static IServiceCollection ConfigureAPIServices(this IServiceCollection services,IConfiguration configuration)
         {
             services.AddControllers();
 
@@ -31,10 +31,10 @@ namespace MedicalCenters.API
             services.AddSwagger();
 
             services.AddEndpointsApiExplorer();
-            services.ConfigureCacheServices(services.BuildServiceProvider().GetService<IConfiguration>());
-            services.ConfigureApplicationServices();
-            services.ConfigurePersistenceServices();
-            services.ConfigureIdentityServices();
+            services.ConfigureCacheServices(configuration);
+            services.ConfigureApplicationServices(configuration);
+            services.ConfigurePersistenceServices(configuration);
+            services.ConfigureIdentityServices(configuration);
 
             return services;
         }

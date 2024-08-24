@@ -8,28 +8,25 @@ using MedicalCenters.Persistence.Repositories.MedicalCenters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Utility.Configuration;
 
 namespace MedicalCenters.Persistence
 {
     public static class PersistenceServicesRegistration
     {
-        public static IServiceCollection ConfigurePersistenceServices(this IServiceCollection services)
+        public static IServiceCollection ConfigurePersistenceServices(this IServiceCollection services,IConfiguration configuration)
         {
             string medicalCentersConnectionString, IdentityConnectionString;
 
             medicalCentersConnectionString = Environment.GetEnvironmentVariable("MedicalCentersConnectionString");
             if (string.IsNullOrEmpty(medicalCentersConnectionString))
             {
-                medicalCentersConnectionString = Configuration.GetAppSettingJson()
-                                                  .GetConnectionString("MedicalCentersConnectionString");
+                medicalCentersConnectionString = configuration.GetConnectionString("MedicalCentersConnectionString");
             }
 
             IdentityConnectionString = Environment.GetEnvironmentVariable("IdentityConnectionString");
             if (string.IsNullOrEmpty(IdentityConnectionString))
             {
-                IdentityConnectionString = Configuration.GetAppSettingJson()
-                                                  .GetConnectionString("IdentityConnectionString");
+                IdentityConnectionString = configuration.GetConnectionString("IdentityConnectionString");
             }
 
 

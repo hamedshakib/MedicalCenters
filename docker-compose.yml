@@ -13,6 +13,8 @@ volumes:
     driver: local
   seq-data:
     driver: local
+  sql-data:
+    driver: local
 
 services:
   medicalcenters.api:
@@ -22,6 +24,8 @@ services:
       - monitoring
     depends_on:
       - redis
+      - sqlserver
+      - seq
     environment:
       Otel__Endpoint: http://jaeger:4317
     build:
@@ -84,6 +88,18 @@ services:
     volumes:
       - ./seq-data:/data
     restart: unless-stopped
+    networks:
+      - monitoring
+  sqlserver:
+    container_name: sqlserver
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Password123456789!
+    volumes:
+      - sql-data:/var/opt/mssql
+    ports:
+      - "1433:1433"
     networks:
       - monitoring
    

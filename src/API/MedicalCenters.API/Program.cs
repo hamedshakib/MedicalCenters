@@ -8,16 +8,17 @@ using OpenTelemetry.Trace;
 using Serilog;
 using Serilog.Events;
 using System.Reflection;
-using Utility.Configuration;
+using MedicalCenters.Persistence.DBContexts;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-SetAppSettings(builder);
+bool isInDocker = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true";
+SetAppSettings(builder, isInDocker);
 
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 
-builder.Services.ConfigureAPIServices();
+builder.Services.ConfigureAPIServices(builder.Configuration);
 
 var assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
 builder.Services.AddOpenTelemetry()
@@ -45,7 +46,7 @@ builder.Services.AddOpenTelemetry()
     .WithLogging();
 
 var logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(Configuration.GetAppSettingJson())
+    .ReadFrom.Configuration(builder.Configuration)
     .MinimumLevel.Override("Microsoft", LogEventLevel.Error)
     .MinimumLevel.Override("System", LogEventLevel.Error)
     .CreateLogger();
@@ -84,6 +85,27 @@ app.MapControllers();
 
 app.UseOpenTelemetryPrometheusScrapingEndpoint();
 
+using (var scope = app.Services.CreateScope())
+{
+    if (isInDocker)
+    {
+        var identityDb = scope.ServiceProvider.GetRequiredService<IdentityDBContext>();
+        if (identityDb.Database.GetPendingMigrations().Any())
+        {
+            identityDb.Database.Migrate();
+        }
+
+
+        var medicalCentersDB = scope.ServiceProvider.GetRequiredService<MedicalCentersDBContext>();
+        if (medicalCentersDB.Database.GetPendingMigrations().Any())
+        {
+            medicalCentersDB.Database.Migrate();
+        }
+        medicalCentersDB.Database.Migrate();
+    }
+}
+
+
 app.Run();
 
 /*
@@ -101,10 +123,8 @@ app.Run();
  */
 
 
-void SetAppSettings(WebApplicationBuilder builder)
+void SetAppSettings(WebApplicationBuilder builder,bool isInDocker = false)
 {
-    bool isInDocker = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true";
-
     if (isInDocker)
     {
         builder.Configuration.AddJsonFile("appsettings.Docker.json", false, true);
