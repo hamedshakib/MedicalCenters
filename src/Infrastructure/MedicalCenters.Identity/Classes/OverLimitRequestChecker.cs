@@ -3,12 +3,12 @@ using StackExchange.Redis;
 
 namespace MedicalCenters.Identity.Classes
 {
-    internal static class OverLimitRequestChecker
+    public class OverLimitRequestChecker(IDatabase redisDatabase)
     {
-        private static string burst = "15";
-        private static string emission_interval = "1.5";
+        private string burst = "15";
+        private string emission_interval = "1.5";
 
-        private static string Lua_Script = @"
+        private string Lua_Script = @"
                                 redis.replicate_commands()
 
                                 local rate_limit_key = @rate_limit_key
@@ -52,12 +52,12 @@ namespace MedicalCenters.Identity.Classes
                                 }
                                   ";
 
-        public static bool Check(long UserId)
+        public bool Check(long UserId)
         {
             var luaPrepare = LuaScript.Prepare(Lua_Script);
             string Key = $"USERS:{UserId}:RequestRateLimit";
 
-            var res = luaPrepare.Evaluate(RedisDatabase.Database, new
+            var res = luaPrepare.Evaluate(redisDatabase, new
             {
                 rate_limit_key = Key,
                 burst = burst,

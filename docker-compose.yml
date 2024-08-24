@@ -11,6 +11,8 @@ volumes:
     driver: local
   grafana-data:
     driver: local
+  seq-data:
+    driver: local
 
 services:
   medicalcenters.api:
@@ -19,28 +21,15 @@ services:
     networks:
       - monitoring
     depends_on:
-      - otel-collector
       - redis
     environment:
-      Otel__Endpoint: http://otel-collector:4317
+      Otel__Endpoint: http://jaeger:4317
     build:
       context: .
       dockerfile: src/API/MedicalCenters.API/Dockerfile
     ports:
       - "23412:23412"
       - "23413:23413"
-  otel-collector:
-    image: otel/opentelemetry-collector:latest
-    command: ["--config=/etc/otel-collector-config.yml"]
-    volumes:
-      - ./config/otel-collector-config.yml:/etc/otel-collector-config.yml
-    ports:
-      - "8888:8888" 
-      - "8889:8889" 
-      - "13133:13133"
-      - "4317:4317"
-    networks:
-      - monitoring
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
@@ -64,18 +53,6 @@ services:
     restart: unless-stopped
     networks:
       - monitoring
-  node_exporter:
-    image: quay.io/prometheus/node-exporter:latest
-    container_name: node_exporter
-    command: '--path.rootfs=/host'
-    pid: host
-    restart: unless-stopped
-    volumes:
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
-      - /:/rootfs:ro
-    networks:
-      - monitoring
   redis:
     image: redis:latest
     container_name: redis
@@ -91,3 +68,22 @@ services:
       - REDIS_DATABASES=16
     networks:
       - monitoring
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    ports:
+        - "16686:16686"  
+    networks:
+      - monitoring
+  seq:
+    image: datalust/seq:latest
+    container_name: seq
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - "5341:5341"
+    volumes:
+      - ./seq-data:/data
+    restart: unless-stopped
+    networks:
+      - monitoring
+   

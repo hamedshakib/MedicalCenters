@@ -3,15 +3,18 @@ using MedicalCenters.Identity.Contracts;
 using MedicalCenters.Identity.Models.Domains;
 using MedicalCenters.Persistence.DBContexts;
 using Microsoft.EntityFrameworkCore;
+using StackExchange.Redis;
 
 namespace MedicalCenters.Persistence.Repositories.Identity
 {
     internal class AuthenticationRepository : IAuthenticationRepository
     {
         private readonly IdentityDBContext _dBContext;
-        public AuthenticationRepository(IdentityDBContext dBContext)
+        private readonly IDatabase _redisDatabase;
+        public AuthenticationRepository(IdentityDBContext dBContext,IDatabase redisDatabase)
         {
             _dBContext = dBContext;
+            _redisDatabase = redisDatabase;
         }
 
         public async Task<User?> FindUser(string Username)
@@ -25,14 +28,14 @@ namespace MedicalCenters.Persistence.Repositories.Identity
 
         Task<string> IAuthenticationRepository.GetRefreshToken(long UserId)
         {
-            var data = RedisDatabase.Database.StringGet($"Users:{UserId}:RefreshToken");
+            var data = _redisDatabase.StringGet($"Users:{UserId}:RefreshToken");
 
             return Task.FromResult(data.HasValue ? data.ToString() : string.Empty);
         }
 
         Task<bool> IAuthenticationRepository.SaveRefreshToken(long UserId, string RefreshToken)
         {
-            return RedisDatabase.Database.StringSetAsync($"Users:{UserId}:RefreshToken", RefreshToken);
+            return _redisDatabase.StringSetAsync($"Users:{UserId}:RefreshToken", RefreshToken);
         }
     }
 }

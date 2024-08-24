@@ -5,6 +5,10 @@ using MedicalCenters.Cache;
 using MedicalCenters.Identity;
 using MedicalCenters.Persistence;
 using Microsoft.OpenApi.Models;
+using System.Diagnostics;
+using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace MedicalCenters.API
 {
     public static class APIServicesRegistration
@@ -27,10 +31,10 @@ namespace MedicalCenters.API
             services.AddSwagger();
 
             services.AddEndpointsApiExplorer();
+            services.ConfigureCacheServices(services.BuildServiceProvider().GetService<IConfiguration>());
             services.ConfigureApplicationServices();
             services.ConfigurePersistenceServices();
             services.ConfigureIdentityServices();
-            services.ConfigureCacheServices();
 
             return services;
         }
@@ -39,6 +43,19 @@ namespace MedicalCenters.API
         {
             services.AddSwaggerGen(options =>
             {
+                var version = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
+                options.SwaggerDoc("v1", new OpenApiInfo()
+                {
+                    Description = "Api document",
+                    Title = "Api Document",
+                    Version = $"v{version}"
+                });
+
+
+                options.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+
+
+
                 options.AddSecurityDefinition("Bearer Token", new Microsoft.OpenApi.Models.OpenApiSecurityScheme()
                 {
                     Description = "JWT Authorization header using the Bearer scheme (Example: 'Bearer token')",

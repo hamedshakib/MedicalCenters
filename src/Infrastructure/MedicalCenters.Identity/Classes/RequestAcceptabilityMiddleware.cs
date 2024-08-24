@@ -2,10 +2,11 @@
 using MedicalCenters.Identity.Exceptions;
 using Microsoft.AspNetCore.Http;
 using System.IdentityModel.Tokens.Jwt;
+using StackExchange.Redis;
 
 namespace MedicalCenters.Identity.Classes
 {
-    public class RequestAcceptabilityMiddleware(RequestDelegate _next, IMasterCacheProvider _cacheProvider)
+    public class RequestAcceptabilityMiddleware(RequestDelegate _next, IMasterCacheProvider _cacheProvider,OverLimitRequestChecker overLimitRequestChecker)
     {
         public async Task Invoke(HttpContext context)
         {
@@ -20,7 +21,7 @@ namespace MedicalCenters.Identity.Classes
 
                 if (IsBlockedToken(jwtSecurityToken, UserId).Result)
                     throw new TokenBlockedException();
-                if (!OverLimitRequestChecker.Check(UserId))
+                if (!overLimitRequestChecker.Check(UserId))
                     throw new UserOverLimitRequestedException();
             }
 

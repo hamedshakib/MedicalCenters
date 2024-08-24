@@ -4,27 +4,11 @@ using Utility.Configuration;
 
 namespace MedicalCenters.Cache
 {
-    public class RedisDatabase
+    public class RedisDatabaseProvider(IConfiguration configuration)
     {
-        private static IDatabase instance;
-        public static IDatabase Database
+        public IDatabase GetDatabase()
         {
-            get
-            {
-                if (instance is null)
-                    instance = GetDatabase();
-                return instance;
-            }
-        }
-        private RedisDatabase()
-        {
-
-        }
-
-        private static IDatabase GetDatabase()
-        {
-            string ConnectionString = Configuration.GetAppSettingJson()
-                                                  .GetConnectionString("RedisConnectionString");
+            string ConnectionString = configuration["ConnectionStrings:RedisConnectionString"];
             ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(ConnectionString);
             IDatabase db = redis.GetDatabase();
             return db;

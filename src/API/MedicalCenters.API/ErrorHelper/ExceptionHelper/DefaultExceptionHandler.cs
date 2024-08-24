@@ -10,7 +10,7 @@ namespace MedicalCenters.API.ErrorHelper.ExceptionHelper
             response.Errors = ex.ErrorsResponse();
 
             objectResult = new ObjectResult(response);
-            objectResult.StatusCode = StatusCodes.Status400BadRequest;
+            objectResult.StatusCode = StatusCodes.Status500InternalServerError;
             return objectResult;
         }
     }
