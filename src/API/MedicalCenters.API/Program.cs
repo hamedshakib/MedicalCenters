@@ -82,6 +82,7 @@ app.UseOutputCache();
 
 app.MapControllers();
 
+app.UseOpenTelemetryPrometheusScrapingEndpoint();
 
 app.Run();
 
