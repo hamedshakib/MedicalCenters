@@ -7,7 +7,7 @@ using MedicalCenters.Persistence;
 using Microsoft.OpenApi.Models;
 using System.Diagnostics;
 using System.Reflection;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MedicalCenters.API
 {
@@ -15,7 +15,29 @@ namespace MedicalCenters.API
     {
         public static IServiceCollection ConfigureAPIServices(this IServiceCollection services,IConfiguration configuration)
         {
-            services.AddControllers();
+            services.AddControllers().ConfigureApiBehaviorOptions(setupAction =>
+            {
+                setupAction.InvalidModelStateResponseFactory = context =>
+                 {
+                     var errors = context.ModelState
+                         .Where(e => e.Value.Errors.Count > 0)
+                         .Select(e => new
+                         {
+                             Field = e.Key,
+                             Messages = e.Value.Errors.Select(err => err.ErrorMessage).ToArray()
+                         }).ToArray();
+
+                     var errorMessages = errors.SelectMany(e => e.Messages).ToList();
+
+                     var result = new BaseResponse
+                     {
+                         IsSuccess = false,
+                         Errors = new List<ErrorResponse>(errorMessages.Select(e => new ErrorResponse((int)ErrorEnums.Validation,e)))
+                     };
+
+                     return new BadRequestObjectResult(result);
+                 };
+            });
 
             services.AddOutputCache(options =>
             {
