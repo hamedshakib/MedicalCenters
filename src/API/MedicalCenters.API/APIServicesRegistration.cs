@@ -8,6 +8,9 @@ using Microsoft.OpenApi.Models;
 using System.Diagnostics;
 using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
+using MedicalCenters.Application.Responses;
+using MedicalCenters.Domain.Enums;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace MedicalCenters.API
 {
@@ -73,6 +76,7 @@ namespace MedicalCenters.API
                     Version = $"v{version}"
                 });
 
+                options.SchemaFilter<DescriptionSchemaFilter>();
 
                 options.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
 
@@ -85,13 +89,8 @@ namespace MedicalCenters.API
                     Scheme = JwtBearerDefaults.AuthenticationScheme,
                     Description = "Put ONLY your JWT Bearer token",
 
-                options.AddSecurityRequirement(new OpenApiSecurityRequirement()
-                {
+                    Reference = new OpenApiReference
                     {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference
-                            {
                         Id = JwtBearerDefaults.AuthenticationScheme,
                         Type = ReferenceType.SecurityScheme
                     }
