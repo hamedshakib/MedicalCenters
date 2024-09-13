@@ -108,19 +108,17 @@ using (var scope = app.Services.CreateScope())
 
 app.Run();
 
-/*
- * For create Migration,Optimize DbContext,Update Database
-
-    Add-Migration InitialCreate -Context MedicalCentersDBContext -Project MedicalCenters.Persistence -StartupProject MedicalCenters.API
-    Optimize-DbContext -OutputDir CompiledModels/MedicalCenters -Context MedicalCentersDBContext -Project MedicalCenters.Persistence -StartupProject MedicalCenters.API
-    Update-Database -Context MedicalCentersDBContext -StartupProject MedicalCenters.API
 
 
-    Add-Migration InitialCreate -Context IdentityDBContext -Project MedicalCenters.Persistence -StartupProject MedicalCenters.API
-    Optimize-DbContext -OutputDir CompiledModels/Identity -Context IdentityDBContext -Project MedicalCenters.Persistence -StartupProject MedicalCenters.API
-    Update-Database -Context IdentityDBContext -StartupProject MedicalCenters.API
 
- */
+
+
+
+
+
+
+
+
 
 
 void SetAppSettings(WebApplicationBuilder builder,bool isInDocker = false)
