@@ -10,6 +10,7 @@
     <DockerServiceName>medicalcenters.api</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="Configs\prometheus.yml" />
     <None Include="docker-compose.override.yml">
       <DependentUpon>docker-compose.yml</DependentUpon>
     </None>

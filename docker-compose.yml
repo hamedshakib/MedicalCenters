@@ -42,7 +42,7 @@ services:
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
     volumes:
-      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./Configs/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus-data:/prometheus
     restart: unless-stopped
     networks:
