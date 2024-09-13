@@ -6,10 +6,10 @@ namespace MedicalCenters.Identity.Classes
 {
     public class AuthenticationLogin(IAuthenticationRepository authenticationRepository)
     {
-        public async Task<LoginResultDto> LoginValidate(LoginDto loginDto)
+        public async Task<LoginResultDto> LoginValidateAsync(LoginDto loginDto)
         {
             LoginResultDto loginResultDto = null;
-            User? user = await authenticationRepository.FindUser(loginDto.Username);
+            User? user = await authenticationRepository.FindUserAsync(loginDto.Username);
             if (user == null)
             {
                 loginResultDto = new LoginResultDto { IsFindUser = false, LoginUser = null };

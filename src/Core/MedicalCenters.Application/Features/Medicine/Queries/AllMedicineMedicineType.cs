@@ -18,7 +18,7 @@ namespace MedicalCenters.Application.Features.Medicine.Queries
         {
             var response = new BaseQueryResponse();
             cancellationToken.ThrowIfCancellationRequested();
-            var result = await medicineRepository.GetAllMedicineTypeMedicines(request.MedicineTypeId, cancellationToken);
+            var result = await medicineRepository.GetAllMedicineTypeMedicinesAsync(request.MedicineTypeId, cancellationToken);
 
             List<MedicineDto> dtos = new List<MedicineDto>();
             result.ToList().ForEach(x => dtos.Add(mapper.Map<MedicineDto>(x)));

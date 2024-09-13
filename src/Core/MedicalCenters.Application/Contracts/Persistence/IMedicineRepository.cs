@@ -4,7 +4,7 @@ namespace MedicalCenters.Application.Contracts.Persistence
 {
     public interface IMedicineRepository : IGenericRepository<Medicine>
     {
-        Task<MedicineType> GetMedicineType(int id, CancellationToken cancellationToken = default);
-        Task<IList<Medicine>> GetAllMedicineTypeMedicines(int medicineType, CancellationToken cancellationToken = default);
+        ValueTask<MedicineType?> GetMedicineTypeAsync(int id, CancellationToken cancellationToken = default);
+        Task<IList<Medicine>> GetAllMedicineTypeMedicinesAsync(int medicineType, CancellationToken cancellationToken = default);
     }
 }

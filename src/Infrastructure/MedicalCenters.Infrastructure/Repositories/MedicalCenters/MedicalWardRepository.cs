@@ -15,7 +15,7 @@ namespace MedicalCenters.Persistence.Repositories.MedicalCenters
             _dBContext = dBContext;
         }
 
-        public async Task<IList<MedicalWard>> GetAllMedicalCenterWards(long id, CancellationToken cancellationToken = default)
+        public async Task<IList<MedicalWard>> GetAllMedicalCenterWardsAsync(long id, CancellationToken cancellationToken = default)
         {
 
             var Wards = await (from ward in _dBContext.MedicalWard
@@ -25,10 +25,9 @@ namespace MedicalCenters.Persistence.Repositories.MedicalCenters
             return Wards;
         }
 
-        public async Task<MedicalWardType> GetMedicalWardType(long id, CancellationToken cancellationToken = default)
+        public ValueTask<MedicalWardType?> GetMedicalWardTypeAsync(long id, CancellationToken cancellationToken = default)
         {
-            var value = await _dBContext.MedicalWardType.FindAsync(id, cancellationToken);
-            return value;
+            return _dBContext.MedicalWardType.FindAsync(id, cancellationToken);
         }
     }
 }

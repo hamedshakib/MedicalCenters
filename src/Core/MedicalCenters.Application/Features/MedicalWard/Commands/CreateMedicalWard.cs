@@ -22,7 +22,7 @@ namespace MedicalCenters.Application.Features.MedicalWard.Commands
             var response = new BaseValuedCommandResponse<int>();
 
             var data = mapper.Map<MedicalCenters.Domain.Entities.MedicalWard>(command.MedicalWardDto);
-            data = await medicalWardRepository.Add(data);
+            data = await medicalWardRepository.AddAsync(data);
 
             await unitOfWork.SaveChangesAsync(cancellationToken);
 

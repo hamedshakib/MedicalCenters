@@ -21,12 +21,12 @@ namespace MedicalCenters.Application.Features.MedicalWard.Commands
         {
             var response = new BaseResponse();
 
-            if (!await medicalWardRepository.Exist(command.Id))
+            if (!await medicalWardRepository.ExistAsync(command.Id))
             {
                 throw new NotFoundException(Domain.Entities.MedicalWard.EntityTitle, command.Id.ToString());
             }
 
-            await medicalWardRepository.Delete(command.Id);
+            await medicalWardRepository.DeleteAsync(command.Id);
             await unitOfWork.SaveChangesAsync(cancellationToken);
 
             response.IsSuccess = true;

@@ -23,7 +23,7 @@ namespace MedicalCenters.Application.Features.Persons.Doctor.Commands
         {
             var response = new BaseResponse();
 
-            var doctor = await doctorRepository.Get(command.Id);
+            var doctor = await doctorRepository.GetAsync(command.Id);
             if (doctor is null)
             {
                 throw new NotFoundException(Domain.Entities.Persons.Staffs.Doctor.EntityTitle, command.Id.ToString());
@@ -31,7 +31,7 @@ namespace MedicalCenters.Application.Features.Persons.Doctor.Commands
 
             mapper.Map(command.DoctorDto, doctor);
 
-            await doctorRepository.Update(doctor);
+            await doctorRepository.UpdateAsync(doctor);
             await unitOfWork.SaveChangesAsync(cancellationToken);
 
             response.IsSuccess = true;

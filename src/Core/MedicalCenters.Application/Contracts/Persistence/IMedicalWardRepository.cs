@@ -5,7 +5,7 @@ namespace MedicalCenters.Application.Contracts.Persistence
 {
     public interface IMedicalWardRepository : IGenericRepository<MedicalWard>
     {
-        Task<MedicalWardType> GetMedicalWardType(long id, CancellationToken cancellationToken = default);
-        Task<IList<MedicalWard>> GetAllMedicalCenterWards(long id, CancellationToken cancellationToken = default);
+        ValueTask<MedicalWardType?> GetMedicalWardTypeAsync(long id, CancellationToken cancellationToken = default);
+        Task<IList<MedicalWard>> GetAllMedicalCenterWardsAsync(long id, CancellationToken cancellationToken = default);
     }
 }

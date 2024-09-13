@@ -4,10 +4,10 @@ namespace MedicalCenters.Identity.Contracts
 {
     public interface IAuthenticationRepository
     {
-        Task<User?> FindUser(string Username);
+        Task<User?> FindUserAsync(string Username);
 
-        Task<bool> SaveRefreshToken(long UserId, string RefreshToken);
+        Task<bool> SaveRefreshTokenAsync(long UserId, string RefreshToken);
 
-        Task<string> GetRefreshToken(long UserId);
+        Task<string> GetRefreshTokenAsync(long UserId);
     }
 }

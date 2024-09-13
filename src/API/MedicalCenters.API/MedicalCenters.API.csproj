@@ -11,6 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="C\**" />
+    <Content Remove="C\**" />
+    <EmbeddedResource Remove="C\**" />
+    <None Remove="C\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Program.cs~RF117b23b.TMP" />
   </ItemGroup>
 

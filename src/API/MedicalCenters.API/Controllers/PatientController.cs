@@ -20,9 +20,9 @@ namespace MedicalCenters.API.Controllers
         [HttpGet("{id}")]
         [RequiresPermission(PermissionEnum.SeeDotorInfo)]
         [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.Patient], VaryByQueryKeys = ["Id"])]
-        public async Task<ActionResult<BaseQueryResponse>> GetPatient(long Id, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<BaseQueryResponse>> GetPatient([FromRoute] long id, CancellationToken cancellationToken = default)
         {
-            var query = new PatientQuery() { Id = Id };
+            var query = new PatientQuery() { Id = id };
             BaseQueryResponse result = null;
 
             result = await mediator.Send(query);
@@ -58,7 +58,7 @@ namespace MedicalCenters.API.Controllers
 
         [HttpDelete("{id}")]
         [RequiresPermission(PermissionEnum.DeletePatient)]
-        public async Task<ActionResult<BaseResponse>> DeletePatient(long id)
+        public async Task<ActionResult<BaseResponse>> DeletePatient([FromRoute] long id)
         {
             var command = new DeletePatientCommand() { Id = id };
             BaseResponse result = null;

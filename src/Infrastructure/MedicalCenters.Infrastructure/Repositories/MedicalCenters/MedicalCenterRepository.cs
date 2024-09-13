@@ -14,10 +14,9 @@ namespace MedicalCenters.Persistence.Repositories.MedicalCenters
             _dBContext = dBContext;
         }
 
-        public async Task<MedicalCenterType?> GetMedicalCenterType(long id, CancellationToken cancellationToken = default)
+        public ValueTask<MedicalCenterType?> GetMedicalCenterTypeAsync(long id, CancellationToken cancellationToken = default)
         {
-            var value = await _dBContext.MedicalCenterType.FindAsync(id, cancellationToken);
-            return value;
+            return _dBContext.MedicalCenterType.FindAsync(id, cancellationToken);
         }
     }
 }

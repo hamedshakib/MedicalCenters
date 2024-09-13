@@ -23,7 +23,7 @@ namespace MedicalCenters.Application.Features.Persons.Doctor.Commands
             var response = new BaseValuedCommandResponse<int>();
 
             var data = mapper.Map<Domain.Entities.Persons.Staffs.Doctor>(command.DoctorDto);
-            data = await doctorRepository.Add(data);
+            data = await doctorRepository.AddAsync(data);
 
             await unitOfWork.SaveChangesAsync(cancellationToken);
 

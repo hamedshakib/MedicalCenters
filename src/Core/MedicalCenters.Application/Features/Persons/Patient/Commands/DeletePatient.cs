@@ -20,12 +20,12 @@ namespace MedicalCenters.Application.Features.Persons.Patient.Commands
         {
             var response = new BaseResponse();
 
-            if (!await _patientRepository.Exist(command.Id))
+            if (!await _patientRepository.ExistAsync(command.Id))
             {
                 throw new NotFoundException(Domain.Entities.Persons.Patient.EntityTitle, command.Id.ToString());
             }
 
-            await _patientRepository.Delete((int)command.Id);
+            await _patientRepository.DeleteAsync((int)command.Id);
             await unitOfWork.SaveChangesAsync(cancellationToken);
             response.IsSuccess = true;
 

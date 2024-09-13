@@ -11,71 +11,75 @@ namespace MedicalCenters.Infrastructure.Repositories
         {
             _dBContext = dBContext;
         }
-        public async Task<T> Add(T entity)
+        public async Task<T> AddAsync(T entity)
         {
             await _dBContext.AddAsync(entity);
             return entity;
         }
 
-        public async Task Delete(long id)
+        public async Task DeleteAsync(long id)
         {
-            var entity = await Get(id);
-            Delete(entity);
+            var entity = await GetAsync(id);
+            await DeleteAsync(entity);
         }
 
-        public async Task Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            var entity = await Get(id);
-            Delete(entity);
+            var entity = await GetAsync(id);
+            await DeleteAsync(entity);
         }
 
-        public async Task Delete(T entity)
+        public async Task DeleteAsync(T entity)
         {
             _dBContext.Set<T>().Remove(entity);
+            await Task.CompletedTask;
         }
 
-        public async Task<bool> Exist(long id, CancellationToken cancellationToken = default)
+        public async ValueTask<bool> ExistAsync(long id, CancellationToken cancellationToken = default)
         {
-            var entity = await Get(id, cancellationToken);
+            var entity = await GetAsync(id, cancellationToken);
             return entity != null;
         }
 
-        public async Task<bool> Exist(int id, CancellationToken cancellationToken = default)
+        public async ValueTask<bool> ExistAsync(int id, CancellationToken cancellationToken = default)
         {
-            var entity = await Get(id, cancellationToken);
+            var entity = await GetAsync(id, cancellationToken);
             return entity != null;
         }
 
-        public async Task<T> Get(long id, CancellationToken cancellationToken = default)
+        public async ValueTask<T?> GetAsync(long id, CancellationToken cancellationToken = default)
         {
             return await _dBContext.Set<T>().FindAsync(id, cancellationToken);
         }
 
-        public async Task<T> Get(int id, CancellationToken cancellationToken = default)
+        public ValueTask<T?> GetAsync(int id, CancellationToken cancellationToken = default)
         {
-            return await _dBContext.Set<T>().FindAsync(id, cancellationToken);
+            return _dBContext.Set<T>().FindAsync(id, cancellationToken);
         }
 
-        public async Task<IEnumerable<T>> GetAll(CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default)
         {
             return await _dBContext.Set<T>().ToListAsync(cancellationToken);
         }
 
-        public async Task Update(T entity)
+        public async Task UpdateAsync(T entity)
         {
             _dBContext.Entry(entity).State = EntityState.Modified;
+            await Task.CompletedTask;
         }
 
-        public async Task Update(long id)
+        public async Task UpdateAsync(long id)
         {
-            var entity = await Get(id);
+            var entity = await GetAsync(id);
             _dBContext.Entry(entity).State = EntityState.Modified;
+            await Task.CompletedTask;
         }
 
-        public async Task Update(int id)
+        public async Task UpdateAsync(int id)
         {
-            var entity = await Get(id);
+            var entity = await GetAsync(id);
             _dBContext.Entry(entity).State = EntityState.Modified;
+            await Task.CompletedTask;
         }
     }
 }

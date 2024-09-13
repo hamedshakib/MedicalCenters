@@ -18,7 +18,7 @@ namespace MedicalCenters.Application.Features.Persons.Patient.Queries
         {
             var response = new BaseQueryResponse();
             cancellationToken.ThrowIfCancellationRequested();
-            var result = await PatientRepository.Get(request.Id, cancellationToken);
+            var result = await PatientRepository.GetAsync(request.Id, cancellationToken);
             if (result == null)
             {
                 throw new NotFoundException(Domain.Entities.Persons.Patient.EntityTitle, request.Id.ToString());

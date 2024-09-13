@@ -19,7 +19,7 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Queries
         {
             var response = new BaseQueryResponse();
             cancellationToken.ThrowIfCancellationRequested();
-            var result = await medicalCenterRepository.GetAll(cancellationToken);
+            var result = await medicalCenterRepository.GetAllAsync(cancellationToken);
 
             List<MedicalCenterDto> dtos = new List<MedicalCenterDto>();
             result.ToList().ForEach(x => dtos.Add(mapper.Map<MedicalCenterDto>(x)));

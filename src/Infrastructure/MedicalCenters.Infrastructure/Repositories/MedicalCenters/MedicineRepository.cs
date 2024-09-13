@@ -14,7 +14,7 @@ namespace MedicalCenters.Persistence.Repositories.MedicalCenters
             _dBContext = dBContext;
         }
 
-        public async Task<IList<Medicine>> GetAllMedicineTypeMedicines(int medicineType, CancellationToken cancellationToken = default)
+        public async Task<IList<Medicine>> GetAllMedicineTypeMedicinesAsync(int medicineType, CancellationToken cancellationToken = default)
         {
             var Medicines = await (from medicine in _dBContext.Medicine
                                    where medicine.TypeId == medicineType
@@ -23,10 +23,9 @@ namespace MedicalCenters.Persistence.Repositories.MedicalCenters
             return Medicines;
         }
 
-        public async Task<MedicineType> GetMedicineType(int medicineType, CancellationToken cancellationToken = default)
+        public ValueTask<MedicineType?> GetMedicineTypeAsync(int medicineType, CancellationToken cancellationToken = default)
         {
-            var value = await _dBContext.MedicineType.FindAsync(medicineType, cancellationToken);
-            return value;
+            return _dBContext.MedicineType.FindAsync(medicineType, cancellationToken);
         }
     }
 }

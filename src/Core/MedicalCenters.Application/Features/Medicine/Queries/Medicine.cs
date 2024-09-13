@@ -19,7 +19,7 @@ namespace MedicalCenters.Application.Features.Medicine.Queries
         {
             var response = new BaseQueryResponse();
             cancellationToken.ThrowIfCancellationRequested();
-            var result = await medicineRepository.Get(request.Id, cancellationToken);
+            var result = await medicineRepository.GetAsync(request.Id, cancellationToken);
             if (result == null)
             {
                 throw new NotFoundException(Domain.Entities.Medicines.Medicine.EntityTitle, request.Id.ToString());

@@ -19,7 +19,7 @@ namespace MedicalCenters.API.Controllers
         {
             long UserId;
             var userValidator = new AuthenticationLogin(_authenticationRepository);
-            var ValidateUserresult = await userValidator.LoginValidate(model);
+            var ValidateUserresult = await userValidator.LoginValidateAsync(model);
 
             if (!ValidateUserresult.IsFindUser)
                 throw new LoginFailedException(false);
@@ -31,7 +31,7 @@ namespace MedicalCenters.API.Controllers
 
             var tokenCreator = new JWTTokenCreator(_authenticationRepository);
 
-            var resultTokenDto = tokenCreator.GenerateTokenDto(UserId, model.Username);
+            var resultTokenDto = await tokenCreator.GenerateTokenDtoAsync(UserId, model.Username);
 
             var result = new BaseQueryResponse()
             {
@@ -47,7 +47,7 @@ namespace MedicalCenters.API.Controllers
         public async Task<IActionResult> RefreshToken([FromBody] TokenDto tokenDto)
         {
             var tokenCreator = new JWTTokenCreator(_authenticationRepository);
-            var resultTokenDto = tokenCreator.GenerateTokenDto(tokenDto.AccessToken, tokenDto.RefreshToken);
+            var resultTokenDto = await tokenCreator.GenerateTokenDtoAsync(tokenDto.AccessToken, tokenDto.RefreshToken);
 
             var result = new BaseQueryResponse()
             {

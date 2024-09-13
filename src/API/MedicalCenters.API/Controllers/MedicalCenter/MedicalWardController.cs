@@ -21,7 +21,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
         [HttpGet("{id}")]
         [RequiresPermission(PermissionEnum.SeeMedicalWardInfo)]
         [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.MedicalWard])]
-        public async Task<ActionResult<BaseQueryResponse>> GetMedicalWard(int Id, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<BaseQueryResponse>> GetMedicalWard([FromRoute] int Id, CancellationToken cancellationToken = default)
         {
             var query = new MedicalWardQuery() { Id = Id };
             BaseQueryResponse result = null;
@@ -60,7 +60,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
 
         [HttpDelete("{id}")]
         [RequiresPermission(PermissionEnum.DeleteMedicalWard)]
-        public async Task<ActionResult<BaseResponse>> DeleteMedicalWard(int id)
+        public async Task<ActionResult<BaseResponse>> DeleteMedicalWard([FromRoute] int id)
         {
             var command = new DeleteMedicalWardCommand() { Id = id };
             BaseResponse result = null;

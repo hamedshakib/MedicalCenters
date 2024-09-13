@@ -40,7 +40,7 @@ namespace MedicalCenters.Identity.Classes
             return null;
         }
 
-        public TokenDto GenerateTokenDto(long UserId, string Username)
+        public async Task<TokenDto> GenerateTokenDtoAsync(long UserId, string Username)
         {
             var claims = new List<Claim>()
             {
@@ -52,11 +52,11 @@ namespace MedicalCenters.Identity.Classes
             var AccessToken = GetJWTToken(claims);
             var RefreshToken = GetJWTRefreshToken();
 
-            _authenticationRepository.SaveRefreshToken(UserId, RefreshToken);
+            await _authenticationRepository.SaveRefreshTokenAsync(UserId, RefreshToken);
 
             return new TokenDto() { AccessToken = AccessToken, RefreshToken = RefreshToken };
         }
-        public TokenDto GenerateTokenDto(string AccessToken, string RefreshToken)
+        public async Task<TokenDto> GenerateTokenDtoAsync(string AccessToken, string RefreshToken)
         {
             var principal = GetPrincipalFromExpiredToken(AccessToken);
 
@@ -64,7 +64,7 @@ namespace MedicalCenters.Identity.Classes
             var vvvvv = principal.FindFirst(JwtRegisteredClaimNames.UniqueName);
             string Username = principal.Identity.Name;
 
-            var savedRefreshToken = _authenticationRepository.GetRefreshToken(userId).Result;
+            var savedRefreshToken = await _authenticationRepository.GetRefreshTokenAsync(userId);
 
 
             if (string.IsNullOrEmpty(RefreshToken) || savedRefreshToken != RefreshToken)
@@ -72,9 +72,9 @@ namespace MedicalCenters.Identity.Classes
                 throw new RefreshTokenFailedException();
             }
 
-            var tokenDto = GenerateTokenDto(userId, Username);
+            var tokenDto = await GenerateTokenDtoAsync(userId, Username);
 
-            _authenticationRepository.SaveRefreshToken(userId, tokenDto.RefreshToken);
+            await _authenticationRepository.SaveRefreshTokenAsync(userId, tokenDto.RefreshToken);
 
             return tokenDto;
         }

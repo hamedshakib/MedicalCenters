@@ -21,12 +21,12 @@ namespace MedicalCenters.Application.Features.Medicine.Commands
         {
             var response = new BaseResponse();
 
-            if(!await medicineRepository.Exist(command.Id))
+            if(!await medicineRepository.ExistAsync(command.Id))
             {
                 throw new NotFoundException(Domain.Entities.Medicines.Medicine.EntityTitle, command.Id.ToString());
             }
 
-            await medicineRepository.Delete(command.Id);
+            await medicineRepository.DeleteAsync(command.Id);
             await unitOfWork.SaveChangesAsync(cancellationToken);
 
             response.IsSuccess = true;

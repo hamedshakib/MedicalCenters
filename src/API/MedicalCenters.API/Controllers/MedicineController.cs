@@ -18,12 +18,12 @@ namespace MedicalCenters.API.Controllers
     public class MedicineController(IMediator mediator, IOutputCacheStore cacheStore) : ControllerBase
     {
 
-        [HttpGet("MedicineType/{MedicineTypeId}")]
+        [HttpGet("MedicineType/{medicineTypeId}")]
         [RequiresPermission(PermissionEnum.SeeAllMedicineTypeMedicinesInfos)]
         [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.Medicine], VaryByQueryKeys = ["Id"])]
-        public async Task<ActionResult<BaseQueryResponse>> GetAllMedicineTypeMedicines(int MedicineTypeId, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<BaseQueryResponse>> GetAllMedicineTypeMedicines([FromRoute] int medicineTypeId, CancellationToken cancellationToken = default)
         {
-            var query = new AllMedicineTypeMedicinesQuery() { MedicineTypeId = MedicineTypeId };
+            var query = new AllMedicineTypeMedicinesQuery() { MedicineTypeId = medicineTypeId };
             BaseQueryResponse result = null;
 
             result = await mediator.Send(query, cancellationToken);
@@ -34,9 +34,9 @@ namespace MedicalCenters.API.Controllers
         [HttpGet("{id}")]
         [RequiresPermission(PermissionEnum.SeeMedicines)]
         [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.Medicine], VaryByQueryKeys = ["Id"])]
-        public async Task<ActionResult<BaseQueryResponse>> GetMedicine(int Id, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<BaseQueryResponse>> GetMedicine([FromRoute] int id, CancellationToken cancellationToken = default)
         {
-            var query = new MedicineQuery() { Id = Id };
+            var query = new MedicineQuery() { Id = id };
             BaseQueryResponse result = null;
 
             result = await mediator.Send(query);
@@ -73,7 +73,7 @@ namespace MedicalCenters.API.Controllers
 
         [HttpDelete("{id}")]
         [RequiresPermission(PermissionEnum.DeleteMedicine)]
-        public async Task<ActionResult<BaseResponse>> DeleteMedicine(int id)
+        public async Task<ActionResult<BaseResponse>> DeleteMedicine([FromRoute] int id)
         {
             var command = new DeleteMedicineCommand() { Id = id };
             BaseResponse result = null;

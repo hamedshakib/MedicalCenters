@@ -2,18 +2,18 @@
 {
     public interface IGenericRepository<T> where T : class
     {
-        Task<T> Add(T entity);
-        Task<T> Get(long id, CancellationToken cancellationToken = default);
-        Task<T> Get(int id, CancellationToken cancellationToken = default);
-        Task<IEnumerable<T>> GetAll(CancellationToken cancellationToken = default);
-        Task<bool> Exist(long id, CancellationToken cancellationToken = default);
-        Task<bool> Exist(int id, CancellationToken cancellationToken = default);
-        Task Update(T entity);
-        Task Update(long id);
-        Task Update(int id);
-        Task Delete(long id);
-        Task Delete(int id);
-        Task Delete(T entity);
+        Task<T> AddAsync(T entity);
+        ValueTask<T?> GetAsync(long id, CancellationToken cancellationToken = default);
+        ValueTask<T?> GetAsync(int id, CancellationToken cancellationToken = default);
+        Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default);
+        ValueTask<bool> ExistAsync(long id, CancellationToken cancellationToken = default);
+        ValueTask<bool> ExistAsync(int id, CancellationToken cancellationToken = default);
+        Task UpdateAsync(T entity);
+        Task UpdateAsync(long id);
+        Task UpdateAsync(int id);
+        Task DeleteAsync(long id);
+        Task DeleteAsync(int id);
+        Task DeleteAsync(T entity);
 
     }
 }

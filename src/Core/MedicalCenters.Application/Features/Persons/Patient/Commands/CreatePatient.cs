@@ -22,7 +22,7 @@ namespace MedicalCenters.Application.Features.Persons.Patient.Commands
             var response = new BaseValuedCommandResponse<long>();
 
             var data = mapper.Map < Domain.Entities.Persons.Patient>(command.PatientDto);
-            data = await _patientRepository.Add(data);
+            data = await _patientRepository.AddAsync(data);
 
             await unitOfWork.SaveChangesAsync(cancellationToken);
 

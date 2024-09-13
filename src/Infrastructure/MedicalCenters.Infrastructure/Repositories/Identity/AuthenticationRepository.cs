@@ -17,7 +17,7 @@ namespace MedicalCenters.Persistence.Repositories.Identity
             _redisDatabase = redisDatabase;
         }
 
-        public async Task<User?> FindUser(string Username)
+        public async Task<User?> FindUserAsync(string Username)
         {
             var findUser = await (from user in _dBContext.User
                                     where user.UserName == Username
@@ -26,14 +26,14 @@ namespace MedicalCenters.Persistence.Repositories.Identity
             return findUser;
         }
 
-        Task<string> IAuthenticationRepository.GetRefreshToken(long UserId)
+        async Task<string> IAuthenticationRepository.GetRefreshTokenAsync(long UserId)
         {
-            var data = _redisDatabase.StringGet($"Users:{UserId}:RefreshToken");
+            var data = await _redisDatabase.StringGetAsync($"Users:{UserId}:RefreshToken");
 
-            return Task.FromResult(data.HasValue ? data.ToString() : string.Empty);
+            return data.HasValue ? data.ToString() : string.Empty;
         }
 
-        Task<bool> IAuthenticationRepository.SaveRefreshToken(long UserId, string RefreshToken)
+        Task<bool> IAuthenticationRepository.SaveRefreshTokenAsync(long UserId, string RefreshToken)
         {
             return _redisDatabase.StringSetAsync($"Users:{UserId}:RefreshToken", RefreshToken);
         }

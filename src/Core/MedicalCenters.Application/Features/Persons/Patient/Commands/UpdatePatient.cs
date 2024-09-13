@@ -22,7 +22,7 @@ namespace MedicalCenters.Application.Features.Persons.Patient.Commands
         {
             var response = new BaseResponse();
 
-            var patient = await _patientRepository.Get(command.Id);
+            var patient = await _patientRepository.GetAsync(command.Id);
             if (patient is null)
             {
                 throw new NotFoundException(Domain.Entities.Persons.Patient.EntityTitle, command.Id.ToString());
@@ -30,7 +30,7 @@ namespace MedicalCenters.Application.Features.Persons.Patient.Commands
 
             mapper.Map(command.PatientDto, patient);
 
-            await _patientRepository.Update(patient);
+            await _patientRepository.UpdateAsync(patient);
             await unitOfWork.SaveChangesAsync(cancellationToken);
 
             response.IsSuccess = true;
