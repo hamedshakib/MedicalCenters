@@ -33,7 +33,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
 
         [HttpGet("{id}")]
         [RequiresPermission(PermissionEnum.SeeMedicalCenterInfo)]
-        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.MedicalCenter], VaryByQueryKeys = ["Id"])]
+        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.MedicalCenter], VaryByQueryKeys = ["id"])]
         public async Task<ActionResult<BaseQueryResponse>> GetMedicalCenters([FromRoute] int id, CancellationToken cancellationToken = default)
         {
 
@@ -87,7 +87,7 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
 
         [HttpGet("Wards/{medicalCenterId}")]
         [RequiresPermission(PermissionEnum.SeeAllMedicalCenterWardsInfos)]
-        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.MedicalWard], VaryByQueryKeys = ["mecicalCenterId"])]
+        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.MedicalWard], VaryByQueryKeys = ["medicalCenterId"])]
         public async Task<ActionResult<BaseQueryResponse>> GetAllMedicalCenterWards(int medicalCenterId)
         {
             var query = new AllMedicalCenterWardsQuery() { MedicalCenterId = medicalCenterId };

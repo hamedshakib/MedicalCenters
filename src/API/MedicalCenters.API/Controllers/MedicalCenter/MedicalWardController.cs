@@ -21,9 +21,9 @@ namespace MedicalCenters.API.Controllers.MedicalCenter
         [HttpGet("{id}")]
         [RequiresPermission(PermissionEnum.SeeMedicalWardInfo)]
         [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.MedicalWard])]
-        public async Task<ActionResult<BaseQueryResponse>> GetMedicalWard([FromRoute] int Id, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<BaseQueryResponse>> GetMedicalWard([FromRoute] int id, CancellationToken cancellationToken = default)
         {
-            var query = new MedicalWardQuery() { Id = Id };
+            var query = new MedicalWardQuery() { Id = id };
             BaseQueryResponse? result = null;
 
             result = await mediator.Send(query, cancellationToken);

@@ -22,7 +22,7 @@ namespace MedicalCenters.API.Controllers
     {
         [HttpGet("{id}")]
         [RequiresPermission(PermissionEnum.SeeDotorInfo)]
-        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.Doctor], VaryByQueryKeys = ["Id"])]
+        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.Doctor], VaryByQueryKeys = ["id"])]
         public async Task<ActionResult<BaseQueryResponse>> GetDoctor([FromRoute] int id, CancellationToken cancellationToken = default)
         {
             var query = new DoctorQuery() { Id = id };

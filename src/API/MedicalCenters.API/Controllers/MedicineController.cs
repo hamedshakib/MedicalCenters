@@ -20,7 +20,7 @@ namespace MedicalCenters.API.Controllers
 
         [HttpGet("MedicineType/{medicineTypeId}")]
         [RequiresPermission(PermissionEnum.SeeAllMedicineTypeMedicinesInfos)]
-        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.Medicine], VaryByQueryKeys = ["Id"])]
+        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.Medicine], VaryByQueryKeys = ["medicineTypeId"])]
         public async Task<ActionResult<BaseQueryResponse>> GetAllMedicineTypeMedicines([FromRoute] int medicineTypeId, CancellationToken cancellationToken = default)
         {
             var query = new AllMedicineTypeMedicinesQuery() { MedicineTypeId = medicineTypeId };
@@ -33,7 +33,7 @@ namespace MedicalCenters.API.Controllers
 
         [HttpGet("{id}")]
         [RequiresPermission(PermissionEnum.SeeMedicines)]
-        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.Medicine], VaryByQueryKeys = ["Id"])]
+        [OutputCache(PolicyName = "OutputCacheWithAuthPolicy", Tags = [CacheTags.Medicine], VaryByQueryKeys = ["id"])]
         public async Task<ActionResult<BaseQueryResponse>> GetMedicine([FromRoute] int id, CancellationToken cancellationToken = default)
         {
             var query = new MedicineQuery() { Id = id };
