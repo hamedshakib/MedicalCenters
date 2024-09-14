@@ -8,7 +8,7 @@ namespace MedicalCenters.Identity.Classes
     {
         public async Task<LoginResultDto> LoginValidateAsync(LoginDto loginDto)
         {
-            LoginResultDto loginResultDto = null;
+            LoginResultDto? loginResultDto = null;
             User? user = await authenticationRepository.FindUserAsync(loginDto.Username);
             if (user == null)
             {

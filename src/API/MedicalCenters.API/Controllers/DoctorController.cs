@@ -26,9 +26,9 @@ namespace MedicalCenters.API.Controllers
         public async Task<ActionResult<BaseQueryResponse>> GetDoctor([FromRoute] int id, CancellationToken cancellationToken = default)
         {
             var query = new DoctorQuery() { Id = id };
-            BaseQueryResponse result = null;
+            BaseQueryResponse? result = null;
 
-            result = await mediator.Send(query);
+            result = await mediator.Send(query,cancellationToken);
             return Ok(result);
         }
 
@@ -37,9 +37,9 @@ namespace MedicalCenters.API.Controllers
         public async Task<ActionResult<BaseValuedCommandResponse<int>>> AddDoctor([FromBody] DoctorDto newDoctor)
         {
             var command = new CreateDoctorCommand() { DoctorDto = newDoctor };
-            BaseValuedCommandResponse<int> result = null;
+            BaseValuedCommandResponse<int>? result = null;
 
-            result = await mediator.Send(command);
+            result = await mediator.Send(command,CancellationToken.None);
             await cacheStore.EvictByTagAsync(CacheTags.Doctor, CancellationToken.None);
 
             return Ok(result);
@@ -50,9 +50,9 @@ namespace MedicalCenters.API.Controllers
         public async Task<ActionResult<BaseResponse>> UpdateDoctor([FromRoute] int id, [FromBody] DoctorDto doctor)
         {
             var command = new UpdateDoctorCommand() { Id = id, DoctorDto = doctor };
-            BaseResponse result = null;
+            BaseResponse? result = null;
 
-            result = await mediator.Send(command);
+            result = await mediator.Send(command,CancellationToken.None);
             await cacheStore.EvictByTagAsync(CacheTags.Doctor, CancellationToken.None);
 
             return Ok(result);
@@ -64,9 +64,9 @@ namespace MedicalCenters.API.Controllers
         public async Task<ActionResult<BaseResponse>> DeleteDoctor([FromRoute] int id)
         {
             var command = new DeleteDoctorCommand() { Id = id };
-            BaseResponse result = null;
+            BaseResponse? result = null;
 
-            result = await mediator.Send(command);
+            result = await mediator.Send(command,CancellationToken.None);
             await cacheStore.EvictByTagAsync(CacheTags.Doctor, CancellationToken.None);
 
             return Ok(result);
