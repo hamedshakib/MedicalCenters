@@ -7,7 +7,7 @@ namespace MedicalCenters.Domain.Entities.Oprerations
     [Table(nameof(OperationType))]
     public class OperationType : BaseCreateableDomainEntity
     {
-        public const string EntityTitle = "نوع عمل";
+        public new const string EntityTitle = "نوع عمل";
 
         [Key]
         public int Id { get; set; }

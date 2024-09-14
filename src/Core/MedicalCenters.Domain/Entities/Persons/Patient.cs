@@ -6,7 +6,7 @@ namespace MedicalCenters.Domain.Entities.Persons
     [Table(nameof(Patient))]
     public class Patient : Person
     {
-        public const string EntityTitle = "بیمار";
+        public new const string EntityTitle = "بیمار";
 
 
         [Key]

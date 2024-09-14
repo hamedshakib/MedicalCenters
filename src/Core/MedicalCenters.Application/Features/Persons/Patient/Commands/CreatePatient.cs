@@ -42,9 +42,9 @@ namespace MedicalCenters.Application.Features.Persons.Patient.Commands
     {
         public CreatePatientCommandValidator()
         {
-            RuleFor(e => e.PatientDto.FirstName).NotNull().NotEmpty().MinimumLength(2).MaximumLength(Domain.Entities.Persons.Patient.MaxFistNameLenght);
-            RuleFor(e => e.PatientDto.LastName).NotNull().NotEmpty().MinimumLength(2).MaximumLength(Domain.Entities.Persons.Patient.MaxLastNameLenght);
-            RuleFor(e => e.PatientDto.NationalCode).NotNull().NotEmpty().MaximumLength(Domain.Entities.Persons.Patient.MaxNationalCodeLenght);
+            RuleFor(e => e.PatientDto.FirstName).NotNull().NotEmpty().MinimumLength(2).MaximumLength(Domain.Entities.Persons.Patient.MaxFistNameLength);
+            RuleFor(e => e.PatientDto.LastName).NotNull().NotEmpty().MinimumLength(2).MaximumLength(Domain.Entities.Persons.Patient.MaxLastNameLength);
+            RuleFor(e => e.PatientDto.NationalCode).NotNull().NotEmpty().MaximumLength(Domain.Entities.Persons.Patient.MaxNationalCodeLength);
         }
     }
 }

@@ -7,7 +7,7 @@ namespace MedicalCenters.Domain.Entities.Oprerations
     [Table(nameof(Operation))]
     public class Operation : BaseModifiableDomainEntity
     {
-        public const string EntityTitle = "عمل";
+        public new const string EntityTitle = "عمل";
 
         [Key]
         public long Id { get; set; }

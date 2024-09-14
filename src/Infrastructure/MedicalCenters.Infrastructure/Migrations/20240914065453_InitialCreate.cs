@@ -359,7 +359,7 @@ namespace MedicalCenters.Persistence.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PersonelId = table.Column<int>(type: "int", nullable: false),
+                    PersonnelId = table.Column<int>(type: "int", nullable: false),
                     MedicalUnitId = table.Column<int>(type: "int", nullable: false),
                     DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false),
@@ -376,8 +376,8 @@ namespace MedicalCenters.Persistence.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ShiftPlan_Personnel_PersonelId",
-                        column: x => x.PersonelId,
+                        name: "FK_ShiftPlan_Personnel_PersonnelId",
+                        column: x => x.PersonnelId,
                         principalTable: "Personnel",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -557,7 +557,7 @@ namespace MedicalCenters.Persistence.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ShiftPlanId = table.Column<long>(type: "bigint", nullable: true),
-                    PersonelId = table.Column<int>(type: "int", nullable: false),
+                    PersonnelId = table.Column<int>(type: "int", nullable: false),
                     UnitId = table.Column<int>(type: "int", nullable: false),
                     DateTimeCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<long>(type: "bigint", nullable: false),
@@ -574,8 +574,8 @@ namespace MedicalCenters.Persistence.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Shift_Personnel_PersonelId",
-                        column: x => x.PersonelId,
+                        name: "FK_Shift_Personnel_PersonnelId",
+                        column: x => x.PersonnelId,
                         principalTable: "Personnel",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -669,14 +669,14 @@ namespace MedicalCenters.Persistence.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateTimeCreated", "Name" },
                 values: new object[,]
                 {
-                    { 1, 1L, new DateTime(2024, 9, 13, 18, 59, 50, 32, DateTimeKind.Local).AddTicks(5347), "بیمارستان" },
-                    { 2, 1L, new DateTime(2024, 9, 13, 18, 59, 50, 32, DateTimeKind.Local).AddTicks(5366), "کلینیک پزشکی" },
-                    { 3, 1L, new DateTime(2024, 9, 13, 18, 59, 50, 32, DateTimeKind.Local).AddTicks(5368), "مرکز جراحی سر پایی" },
-                    { 4, 1L, new DateTime(2024, 9, 13, 18, 59, 50, 32, DateTimeKind.Local).AddTicks(5369), "مرکز زایمان " },
-                    { 5, 1L, new DateTime(2024, 9, 13, 18, 59, 50, 32, DateTimeKind.Local).AddTicks(5370), "مرکز تصویر برداری" },
-                    { 6, 1L, new DateTime(2024, 9, 13, 18, 59, 50, 32, DateTimeKind.Local).AddTicks(5371), "مرکز دیابت" },
-                    { 7, 1L, new DateTime(2024, 9, 13, 18, 59, 50, 32, DateTimeKind.Local).AddTicks(5372), "مرکز دیالیز" },
-                    { 8, 1L, new DateTime(2024, 9, 13, 18, 59, 50, 32, DateTimeKind.Local).AddTicks(5373), "مرکز توان بخشی" }
+                    { 1, 1L, new DateTime(2024, 9, 14, 10, 24, 51, 636, DateTimeKind.Local).AddTicks(9249), "بیمارستان" },
+                    { 2, 1L, new DateTime(2024, 9, 14, 10, 24, 51, 636, DateTimeKind.Local).AddTicks(9270), "کلینیک پزشکی" },
+                    { 3, 1L, new DateTime(2024, 9, 14, 10, 24, 51, 636, DateTimeKind.Local).AddTicks(9272), "مرکز جراحی سر پایی" },
+                    { 4, 1L, new DateTime(2024, 9, 14, 10, 24, 51, 636, DateTimeKind.Local).AddTicks(9273), "مرکز زایمان " },
+                    { 5, 1L, new DateTime(2024, 9, 14, 10, 24, 51, 636, DateTimeKind.Local).AddTicks(9274), "مرکز تصویر برداری" },
+                    { 6, 1L, new DateTime(2024, 9, 14, 10, 24, 51, 636, DateTimeKind.Local).AddTicks(9280), "مرکز دیابت" },
+                    { 7, 1L, new DateTime(2024, 9, 14, 10, 24, 51, 636, DateTimeKind.Local).AddTicks(9281), "مرکز دیالیز" },
+                    { 8, 1L, new DateTime(2024, 9, 14, 10, 24, 51, 636, DateTimeKind.Local).AddTicks(9282), "مرکز توان بخشی" }
                 });
 
             migrationBuilder.InsertData(
@@ -684,11 +684,11 @@ namespace MedicalCenters.Persistence.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateTimeCreated", "Description", "Name" },
                 values: new object[,]
                 {
-                    { 1, 1L, new DateTime(2024, 9, 13, 18, 59, 50, 32, DateTimeKind.Local).AddTicks(6659), null, "بخش قلب" },
-                    { 2, 1L, new DateTime(2024, 9, 13, 18, 59, 50, 32, DateTimeKind.Local).AddTicks(6663), null, "بخش ریه" },
-                    { 3, 1L, new DateTime(2024, 9, 13, 18, 59, 50, 32, DateTimeKind.Local).AddTicks(6665), null, "بخش کلیه" },
-                    { 4, 1L, new DateTime(2024, 9, 13, 18, 59, 50, 32, DateTimeKind.Local).AddTicks(6666), null, "بخش کبد" },
-                    { 5, 1L, new DateTime(2024, 9, 13, 18, 59, 50, 32, DateTimeKind.Local).AddTicks(6667), null, "بخش پیوند" }
+                    { 1, 1L, new DateTime(2024, 9, 14, 10, 24, 51, 637, DateTimeKind.Local).AddTicks(904), null, "بخش قلب" },
+                    { 2, 1L, new DateTime(2024, 9, 14, 10, 24, 51, 637, DateTimeKind.Local).AddTicks(913), null, "بخش ریه" },
+                    { 3, 1L, new DateTime(2024, 9, 14, 10, 24, 51, 637, DateTimeKind.Local).AddTicks(915), null, "بخش کلیه" },
+                    { 4, 1L, new DateTime(2024, 9, 14, 10, 24, 51, 637, DateTimeKind.Local).AddTicks(916), null, "بخش کبد" },
+                    { 5, 1L, new DateTime(2024, 9, 14, 10, 24, 51, 637, DateTimeKind.Local).AddTicks(917), null, "بخش پیوند" }
                 });
 
             migrationBuilder.InsertData(
@@ -696,10 +696,10 @@ namespace MedicalCenters.Persistence.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateTimeCreated", "Description", "Name" },
                 values: new object[,]
                 {
-                    { 1, 1L, new DateTime(2024, 9, 13, 18, 59, 50, 32, DateTimeKind.Local).AddTicks(7699), "", "استامینوفن" },
-                    { 2, 1L, new DateTime(2024, 9, 13, 18, 59, 50, 32, DateTimeKind.Local).AddTicks(7703), "", "پنی سیلین" },
-                    { 3, 1L, new DateTime(2024, 9, 13, 18, 59, 50, 32, DateTimeKind.Local).AddTicks(7705), "", "دیفن هیدرامین" },
-                    { 4, 1L, new DateTime(2024, 9, 13, 18, 59, 50, 32, DateTimeKind.Local).AddTicks(7706), "", "فاموتیدین" }
+                    { 1, 1L, new DateTime(2024, 9, 14, 10, 24, 51, 637, DateTimeKind.Local).AddTicks(2395), "", "استامینوفن" },
+                    { 2, 1L, new DateTime(2024, 9, 14, 10, 24, 51, 637, DateTimeKind.Local).AddTicks(2401), "", "پنی سیلین" },
+                    { 3, 1L, new DateTime(2024, 9, 14, 10, 24, 51, 637, DateTimeKind.Local).AddTicks(2402), "", "دیفن هیدرامین" },
+                    { 4, 1L, new DateTime(2024, 9, 14, 10, 24, 51, 637, DateTimeKind.Local).AddTicks(2403), "", "فاموتیدین" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -778,9 +778,9 @@ namespace MedicalCenters.Persistence.Migrations
                 column: "PatientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Shift_PersonelId",
+                name: "IX_Shift_PersonnelId",
                 table: "Shift",
-                column: "PersonelId");
+                column: "PersonnelId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Shift_ShiftPlanId",
@@ -798,9 +798,9 @@ namespace MedicalCenters.Persistence.Migrations
                 column: "MedicalUnitId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ShiftPlan_PersonelId",
+                name: "IX_ShiftPlan_PersonnelId",
                 table: "ShiftPlan",
-                column: "PersonelId");
+                column: "PersonnelId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Specialty_SpecialtyGroupId",

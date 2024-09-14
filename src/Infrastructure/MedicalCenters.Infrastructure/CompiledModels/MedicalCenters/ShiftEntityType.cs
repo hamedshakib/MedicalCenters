@@ -132,13 +132,13 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
                     (long v) => v));
             modifiedBy.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
-            var personelId = runtimeEntityType.AddProperty(
-                "PersonelId",
+            var PersonnelId = runtimeEntityType.AddProperty(
+                "PersonnelId",
                 typeof(int),
-                propertyInfo: typeof(Shift).GetProperty("PersonelId", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-                fieldInfo: typeof(Shift).GetField("<PersonelId>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                propertyInfo: typeof(Shift).GetProperty("PersonnelId", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(Shift).GetField("<PersonnelId>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 sentinel: 0);
-            personelId.TypeMapping = IntTypeMapping.Default.Clone(
+            PersonnelId.TypeMapping = IntTypeMapping.Default.Clone(
                 comparer: new ValueComparer<int>(
                     (int v1, int v2) => v1 == v2,
                     (int v) => v,
@@ -151,7 +151,7 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
                     (int v1, int v2) => v1 == v2,
                     (int v) => v,
                     (int v) => v));
-            personelId.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
+            PersonnelId.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
             var shiftPlanId = runtimeEntityType.AddProperty(
                 "ShiftPlanId",
@@ -200,7 +200,7 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             runtimeEntityType.SetPrimaryKey(key);
 
             var index = runtimeEntityType.AddIndex(
-                new[] { personelId });
+                new[] { PersonnelId });
 
             var index0 = runtimeEntityType.AddIndex(
                 new[] { shiftPlanId });
@@ -213,18 +213,18 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
 
         public static RuntimeForeignKey CreateForeignKey1(RuntimeEntityType declaringEntityType, RuntimeEntityType principalEntityType)
         {
-            var runtimeForeignKey = declaringEntityType.AddForeignKey(new[] { declaringEntityType.FindProperty("PersonelId") },
+            var runtimeForeignKey = declaringEntityType.AddForeignKey(new[] { declaringEntityType.FindProperty("PersonnelId") },
                 principalEntityType.FindKey(new[] { principalEntityType.FindProperty("Id") }),
                 principalEntityType,
                 deleteBehavior: DeleteBehavior.Cascade,
                 required: true);
 
-            var personel = declaringEntityType.AddNavigation("Personel",
+            var Personnel = declaringEntityType.AddNavigation("Personnel",
                 runtimeForeignKey,
                 onDependent: true,
                 typeof(Personnel),
-                propertyInfo: typeof(Shift).GetProperty("Personel", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-                fieldInfo: typeof(Shift).GetField("<Personel>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
+                propertyInfo: typeof(Shift).GetProperty("Personnel", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(Shift).GetField("<Personnel>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
 
             return runtimeForeignKey;
         }

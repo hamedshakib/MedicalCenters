@@ -12,8 +12,10 @@ namespace MedicalCenters.API.ErrorHelper.ExceptionHelper
             response.Errors = new List<ErrorResponse>();
             response.Errors.Add(new ErrorResponse((int)ErrorEnums.UserOverLimitRequested, "شما بیش از حد مجاز به سرور درخواست ارسال کرده اید "));
 
-            objectResult = new ObjectResult(response);
-            objectResult.StatusCode = StatusCodes.Status429TooManyRequests;
+            objectResult = new ObjectResult(response)
+            {
+                StatusCode = StatusCodes.Status429TooManyRequests
+            };
             return objectResult;
         }
     }

@@ -9,7 +9,7 @@ namespace MedicalCenters.Domain.Entities
     [Table(nameof(PatientHistory))]
     public class PatientHistory : BaseModifiableDomainEntity
     {
-        public const string EntityTitle = "سابقه بیمار";
+        public new const string EntityTitle = "سابقه بیمار";
 
         [Key]
         public long Id { get; set; }

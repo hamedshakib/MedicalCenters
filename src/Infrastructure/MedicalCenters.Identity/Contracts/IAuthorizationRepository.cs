@@ -2,7 +2,7 @@
 {
     public interface IAuthorizationRepository
     {
-        Task<bool> HasUserPermission(long userId, int permitionId);
-        Task<bool> HasUserGroupPermission(long userId, int permitionId);
+        Task<bool> HasUserPermission(long userId, int permissionId);
+        Task<bool> HasUserGroupPermission(long userId, int permissionId);
     }
 }

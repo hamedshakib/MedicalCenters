@@ -8,14 +8,14 @@ namespace MedicalCenters.Domain.Entities.Shifts
     [Table(nameof(Shift))]
     public class Shift : BaseModifiableDomainEntity
     {
-        public const string EntityTitle = "شیفت";
+        public new const string EntityTitle = "شیفت";
         [Key]
         public long Id { get; set; }
         public long? ShiftPlanId { get; set; }
         public ShiftPlan? ShiftPlan { get; set; }
         [Required]
-        public int PersonelId { get; set; }
-        public Personnel Personel { get; set; }
+        public int PersonnelId { get; set; }
+        public Personnel Personnel { get; set; }
 
         [Required]
         public int UnitId { get; set; }

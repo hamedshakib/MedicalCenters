@@ -7,7 +7,7 @@ namespace MedicalCenters.Domain.Entities.Specialties
     [Table(nameof(Specialty))]
     public class Specialty : BaseCreateableDomainEntity
     {
-        public const string EntityTitle = "تخصص";
+        public new const string EntityTitle = "تخصص";
 
         [Key]
         public int Id { get; set; }

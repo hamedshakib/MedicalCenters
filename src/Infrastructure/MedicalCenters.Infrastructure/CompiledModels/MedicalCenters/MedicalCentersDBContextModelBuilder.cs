@@ -1879,8 +1879,8 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalCentersDomainEntitiesShiftsShiftTableBase.Columns.Add("Id", idColumnBase15);
             var modifiedByColumnBase9 = new ColumnBase<ColumnMappingBase>("ModifiedBy", "bigint", medicalCentersDomainEntitiesShiftsShiftTableBase);
             medicalCentersDomainEntitiesShiftsShiftTableBase.Columns.Add("ModifiedBy", modifiedByColumnBase9);
-            var personelIdColumnBase = new ColumnBase<ColumnMappingBase>("PersonelId", "int", medicalCentersDomainEntitiesShiftsShiftTableBase);
-            medicalCentersDomainEntitiesShiftsShiftTableBase.Columns.Add("PersonelId", personelIdColumnBase);
+            var PersonnelIdColumnBase = new ColumnBase<ColumnMappingBase>("PersonnelId", "int", medicalCentersDomainEntitiesShiftsShiftTableBase);
+            medicalCentersDomainEntitiesShiftsShiftTableBase.Columns.Add("PersonnelId", PersonnelIdColumnBase);
             var shiftPlanIdColumnBase = new ColumnBase<ColumnMappingBase>("ShiftPlanId", "bigint", medicalCentersDomainEntitiesShiftsShiftTableBase)
             {
                 IsNullable = true
@@ -1897,7 +1897,7 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase20, shift.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesShiftsShiftMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeModifiedColumnBase9, shift.FindProperty("DateTimeModified")!, medicalCentersDomainEntitiesShiftsShiftMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedByColumnBase9, shift.FindProperty("ModifiedBy")!, medicalCentersDomainEntitiesShiftsShiftMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)personelIdColumnBase, shift.FindProperty("PersonelId")!, medicalCentersDomainEntitiesShiftsShiftMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)PersonnelIdColumnBase, shift.FindProperty("PersonnelId")!, medicalCentersDomainEntitiesShiftsShiftMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)shiftPlanIdColumnBase, shift.FindProperty("ShiftPlanId")!, medicalCentersDomainEntitiesShiftsShiftMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)unitIdColumnBase, shift.FindProperty("UnitId")!, medicalCentersDomainEntitiesShiftsShiftMappingBase);
 
@@ -1920,8 +1920,8 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             shiftTable.Columns.Add("DateTimeModified", dateTimeModifiedColumn9);
             var modifiedByColumn9 = new Column("ModifiedBy", "bigint", shiftTable);
             shiftTable.Columns.Add("ModifiedBy", modifiedByColumn9);
-            var personelIdColumn = new Column("PersonelId", "int", shiftTable);
-            shiftTable.Columns.Add("PersonelId", personelIdColumn);
+            var PersonnelIdColumn = new Column("PersonnelId", "int", shiftTable);
+            shiftTable.Columns.Add("PersonnelId", PersonnelIdColumn);
             var shiftPlanIdColumn = new Column("ShiftPlanId", "bigint", shiftTable)
             {
                 IsNullable = true
@@ -1937,14 +1937,14 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             pK_Shift.MappedKeys.Add(pK_ShiftUc);
             RelationalModel.GetOrCreateUniqueConstraints(pK_ShiftUc).Add(pK_Shift);
             shiftTable.UniqueConstraints.Add("PK_Shift", pK_Shift);
-            var iX_Shift_PersonelId = new TableIndex(
-            "IX_Shift_PersonelId", shiftTable, new[] { personelIdColumn }, false);
-            var iX_Shift_PersonelIdIx = RelationalModel.GetIndex(this,
+            var iX_Shift_PersonnelId = new TableIndex(
+            "IX_Shift_PersonnelId", shiftTable, new[] { PersonnelIdColumn }, false);
+            var iX_Shift_PersonnelIdIx = RelationalModel.GetIndex(this,
                 "MedicalCenters.Domain.Entities.Shifts.Shift",
-                new[] { "PersonelId" });
-            iX_Shift_PersonelId.MappedIndexes.Add(iX_Shift_PersonelIdIx);
-            RelationalModel.GetOrCreateTableIndexes(iX_Shift_PersonelIdIx).Add(iX_Shift_PersonelId);
-            shiftTable.Indexes.Add("IX_Shift_PersonelId", iX_Shift_PersonelId);
+                new[] { "PersonnelId" });
+            iX_Shift_PersonnelId.MappedIndexes.Add(iX_Shift_PersonnelIdIx);
+            RelationalModel.GetOrCreateTableIndexes(iX_Shift_PersonnelIdIx).Add(iX_Shift_PersonnelId);
+            shiftTable.Indexes.Add("IX_Shift_PersonnelId", iX_Shift_PersonnelId);
             var iX_Shift_ShiftPlanId = new TableIndex(
             "IX_Shift_ShiftPlanId", shiftTable, new[] { shiftPlanIdColumn }, false);
             var iX_Shift_ShiftPlanIdIx = RelationalModel.GetIndex(this,
@@ -1970,7 +1970,7 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             RelationalModel.CreateColumnMapping(dateTimeCreatedColumn20, shift.FindProperty("DateTimeCreated")!, shiftTableMapping);
             RelationalModel.CreateColumnMapping(dateTimeModifiedColumn9, shift.FindProperty("DateTimeModified")!, shiftTableMapping);
             RelationalModel.CreateColumnMapping(modifiedByColumn9, shift.FindProperty("ModifiedBy")!, shiftTableMapping);
-            RelationalModel.CreateColumnMapping(personelIdColumn, shift.FindProperty("PersonelId")!, shiftTableMapping);
+            RelationalModel.CreateColumnMapping(PersonnelIdColumn, shift.FindProperty("PersonnelId")!, shiftTableMapping);
             RelationalModel.CreateColumnMapping(shiftPlanIdColumn, shift.FindProperty("ShiftPlanId")!, shiftTableMapping);
             RelationalModel.CreateColumnMapping(unitIdColumn, shift.FindProperty("UnitId")!, shiftTableMapping);
 
@@ -1997,8 +1997,8 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalCentersDomainEntitiesShiftsShiftPlanTableBase.Columns.Add("MedicalUnitId", medicalUnitIdColumnBase);
             var modifiedByColumnBase10 = new ColumnBase<ColumnMappingBase>("ModifiedBy", "bigint", medicalCentersDomainEntitiesShiftsShiftPlanTableBase);
             medicalCentersDomainEntitiesShiftsShiftPlanTableBase.Columns.Add("ModifiedBy", modifiedByColumnBase10);
-            var personelIdColumnBase0 = new ColumnBase<ColumnMappingBase>("PersonelId", "int", medicalCentersDomainEntitiesShiftsShiftPlanTableBase);
-            medicalCentersDomainEntitiesShiftsShiftPlanTableBase.Columns.Add("PersonelId", personelIdColumnBase0);
+            var PersonnelIdColumnBase0 = new ColumnBase<ColumnMappingBase>("PersonnelId", "int", medicalCentersDomainEntitiesShiftsShiftPlanTableBase);
+            medicalCentersDomainEntitiesShiftsShiftPlanTableBase.Columns.Add("PersonnelId", PersonnelIdColumnBase0);
             relationalModel.DefaultTables.Add("MedicalCenters.Domain.Entities.Shifts.ShiftPlan", medicalCentersDomainEntitiesShiftsShiftPlanTableBase);
             var medicalCentersDomainEntitiesShiftsShiftPlanMappingBase = new TableMappingBase<ColumnMappingBase>(shiftPlan, medicalCentersDomainEntitiesShiftsShiftPlanTableBase, true);
             medicalCentersDomainEntitiesShiftsShiftPlanTableBase.AddTypeMapping(medicalCentersDomainEntitiesShiftsShiftPlanMappingBase, false);
@@ -2009,7 +2009,7 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeModifiedColumnBase10, shiftPlan.FindProperty("DateTimeModified")!, medicalCentersDomainEntitiesShiftsShiftPlanMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)medicalUnitIdColumnBase, shiftPlan.FindProperty("MedicalUnitId")!, medicalCentersDomainEntitiesShiftsShiftPlanMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedByColumnBase10, shiftPlan.FindProperty("ModifiedBy")!, medicalCentersDomainEntitiesShiftsShiftPlanMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)personelIdColumnBase0, shiftPlan.FindProperty("PersonelId")!, medicalCentersDomainEntitiesShiftsShiftPlanMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)PersonnelIdColumnBase0, shiftPlan.FindProperty("PersonnelId")!, medicalCentersDomainEntitiesShiftsShiftPlanMappingBase);
 
             var tableMappings23 = new List<TableMapping>();
             shiftPlan.SetRuntimeAnnotation("Relational:TableMappings", tableMappings23);
@@ -2032,8 +2032,8 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             shiftPlanTable.Columns.Add("MedicalUnitId", medicalUnitIdColumn);
             var modifiedByColumn10 = new Column("ModifiedBy", "bigint", shiftPlanTable);
             shiftPlanTable.Columns.Add("ModifiedBy", modifiedByColumn10);
-            var personelIdColumn0 = new Column("PersonelId", "int", shiftPlanTable);
-            shiftPlanTable.Columns.Add("PersonelId", personelIdColumn0);
+            var PersonnelIdColumn0 = new Column("PersonnelId", "int", shiftPlanTable);
+            shiftPlanTable.Columns.Add("PersonnelId", PersonnelIdColumn0);
             var pK_ShiftPlan = new UniqueConstraint("PK_ShiftPlan", shiftPlanTable, new[] { idColumn16 });
             shiftPlanTable.PrimaryKey = pK_ShiftPlan;
             var pK_ShiftPlanUc = RelationalModel.GetKey(this,
@@ -2050,14 +2050,14 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             iX_ShiftPlan_MedicalUnitId.MappedIndexes.Add(iX_ShiftPlan_MedicalUnitIdIx);
             RelationalModel.GetOrCreateTableIndexes(iX_ShiftPlan_MedicalUnitIdIx).Add(iX_ShiftPlan_MedicalUnitId);
             shiftPlanTable.Indexes.Add("IX_ShiftPlan_MedicalUnitId", iX_ShiftPlan_MedicalUnitId);
-            var iX_ShiftPlan_PersonelId = new TableIndex(
-            "IX_ShiftPlan_PersonelId", shiftPlanTable, new[] { personelIdColumn0 }, false);
-            var iX_ShiftPlan_PersonelIdIx = RelationalModel.GetIndex(this,
+            var iX_ShiftPlan_PersonnelId = new TableIndex(
+            "IX_ShiftPlan_PersonnelId", shiftPlanTable, new[] { PersonnelIdColumn0 }, false);
+            var iX_ShiftPlan_PersonnelIdIx = RelationalModel.GetIndex(this,
                 "MedicalCenters.Domain.Entities.Shifts.ShiftPlan",
-                new[] { "PersonelId" });
-            iX_ShiftPlan_PersonelId.MappedIndexes.Add(iX_ShiftPlan_PersonelIdIx);
-            RelationalModel.GetOrCreateTableIndexes(iX_ShiftPlan_PersonelIdIx).Add(iX_ShiftPlan_PersonelId);
-            shiftPlanTable.Indexes.Add("IX_ShiftPlan_PersonelId", iX_ShiftPlan_PersonelId);
+                new[] { "PersonnelId" });
+            iX_ShiftPlan_PersonnelId.MappedIndexes.Add(iX_ShiftPlan_PersonnelIdIx);
+            RelationalModel.GetOrCreateTableIndexes(iX_ShiftPlan_PersonnelIdIx).Add(iX_ShiftPlan_PersonnelId);
+            shiftPlanTable.Indexes.Add("IX_ShiftPlan_PersonnelId", iX_ShiftPlan_PersonnelId);
             relationalModel.Tables.Add(("ShiftPlan", null), shiftPlanTable);
             var shiftPlanTableMapping = new TableMapping(shiftPlan, shiftPlanTable, true);
             shiftPlanTable.AddTypeMapping(shiftPlanTableMapping, false);
@@ -2068,7 +2068,7 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             RelationalModel.CreateColumnMapping(dateTimeModifiedColumn10, shiftPlan.FindProperty("DateTimeModified")!, shiftPlanTableMapping);
             RelationalModel.CreateColumnMapping(medicalUnitIdColumn, shiftPlan.FindProperty("MedicalUnitId")!, shiftPlanTableMapping);
             RelationalModel.CreateColumnMapping(modifiedByColumn10, shiftPlan.FindProperty("ModifiedBy")!, shiftPlanTableMapping);
-            RelationalModel.CreateColumnMapping(personelIdColumn0, shiftPlan.FindProperty("PersonelId")!, shiftPlanTableMapping);
+            RelationalModel.CreateColumnMapping(PersonnelIdColumn0, shiftPlan.FindProperty("PersonnelId")!, shiftPlanTableMapping);
 
             var specialty = FindEntityType("MedicalCenters.Domain.Entities.Specialties.Specialty")!;
 
@@ -2640,19 +2640,19 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             RelationalModel.GetOrCreateForeignKeyConstraints(fK_Shift_MedicalUnit_UnitIdFk).Add(fK_Shift_MedicalUnit_UnitId);
             shiftTable.ForeignKeyConstraints.Add(fK_Shift_MedicalUnit_UnitId);
             medicalUnitTable.ReferencingForeignKeyConstraints.Add(fK_Shift_MedicalUnit_UnitId);
-            var fK_Shift_Personnel_PersonelId = new ForeignKeyConstraint(
-                "FK_Shift_Personnel_PersonelId", shiftTable, personnelTable,
-                new[] { personelIdColumn },
+            var fK_Shift_Personnel_PersonnelId = new ForeignKeyConstraint(
+                "FK_Shift_Personnel_PersonnelId", shiftTable, personnelTable,
+                new[] { PersonnelIdColumn },
                 personnelTable.FindUniqueConstraint("PK_Personnel")!, ReferentialAction.Cascade);
-            var fK_Shift_Personnel_PersonelIdFk = RelationalModel.GetForeignKey(this,
+            var fK_Shift_Personnel_PersonnelIdFk = RelationalModel.GetForeignKey(this,
                 "MedicalCenters.Domain.Entities.Shifts.Shift",
-                new[] { "PersonelId" },
+                new[] { "PersonnelId" },
                 "MedicalCenters.Domain.Entities.Persons.Personnel",
                 new[] { "Id" });
-            fK_Shift_Personnel_PersonelId.MappedForeignKeys.Add(fK_Shift_Personnel_PersonelIdFk);
-            RelationalModel.GetOrCreateForeignKeyConstraints(fK_Shift_Personnel_PersonelIdFk).Add(fK_Shift_Personnel_PersonelId);
-            shiftTable.ForeignKeyConstraints.Add(fK_Shift_Personnel_PersonelId);
-            personnelTable.ReferencingForeignKeyConstraints.Add(fK_Shift_Personnel_PersonelId);
+            fK_Shift_Personnel_PersonnelId.MappedForeignKeys.Add(fK_Shift_Personnel_PersonnelIdFk);
+            RelationalModel.GetOrCreateForeignKeyConstraints(fK_Shift_Personnel_PersonnelIdFk).Add(fK_Shift_Personnel_PersonnelId);
+            shiftTable.ForeignKeyConstraints.Add(fK_Shift_Personnel_PersonnelId);
+            personnelTable.ReferencingForeignKeyConstraints.Add(fK_Shift_Personnel_PersonnelId);
             var fK_Shift_ShiftPlan_ShiftPlanId = new ForeignKeyConstraint(
                 "FK_Shift_ShiftPlan_ShiftPlanId", shiftTable, shiftPlanTable,
                 new[] { shiftPlanIdColumn },
@@ -2679,19 +2679,19 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             RelationalModel.GetOrCreateForeignKeyConstraints(fK_ShiftPlan_MedicalUnit_MedicalUnitIdFk).Add(fK_ShiftPlan_MedicalUnit_MedicalUnitId);
             shiftPlanTable.ForeignKeyConstraints.Add(fK_ShiftPlan_MedicalUnit_MedicalUnitId);
             medicalUnitTable.ReferencingForeignKeyConstraints.Add(fK_ShiftPlan_MedicalUnit_MedicalUnitId);
-            var fK_ShiftPlan_Personnel_PersonelId = new ForeignKeyConstraint(
-                "FK_ShiftPlan_Personnel_PersonelId", shiftPlanTable, personnelTable,
-                new[] { personelIdColumn0 },
+            var fK_ShiftPlan_Personnel_PersonnelId = new ForeignKeyConstraint(
+                "FK_ShiftPlan_Personnel_PersonnelId", shiftPlanTable, personnelTable,
+                new[] { PersonnelIdColumn0 },
                 personnelTable.FindUniqueConstraint("PK_Personnel")!, ReferentialAction.Cascade);
-            var fK_ShiftPlan_Personnel_PersonelIdFk = RelationalModel.GetForeignKey(this,
+            var fK_ShiftPlan_Personnel_PersonnelIdFk = RelationalModel.GetForeignKey(this,
                 "MedicalCenters.Domain.Entities.Shifts.ShiftPlan",
-                new[] { "PersonelId" },
+                new[] { "PersonnelId" },
                 "MedicalCenters.Domain.Entities.Persons.Personnel",
                 new[] { "Id" });
-            fK_ShiftPlan_Personnel_PersonelId.MappedForeignKeys.Add(fK_ShiftPlan_Personnel_PersonelIdFk);
-            RelationalModel.GetOrCreateForeignKeyConstraints(fK_ShiftPlan_Personnel_PersonelIdFk).Add(fK_ShiftPlan_Personnel_PersonelId);
-            shiftPlanTable.ForeignKeyConstraints.Add(fK_ShiftPlan_Personnel_PersonelId);
-            personnelTable.ReferencingForeignKeyConstraints.Add(fK_ShiftPlan_Personnel_PersonelId);
+            fK_ShiftPlan_Personnel_PersonnelId.MappedForeignKeys.Add(fK_ShiftPlan_Personnel_PersonnelIdFk);
+            RelationalModel.GetOrCreateForeignKeyConstraints(fK_ShiftPlan_Personnel_PersonnelIdFk).Add(fK_ShiftPlan_Personnel_PersonnelId);
+            shiftPlanTable.ForeignKeyConstraints.Add(fK_ShiftPlan_Personnel_PersonnelId);
+            personnelTable.ReferencingForeignKeyConstraints.Add(fK_ShiftPlan_Personnel_PersonnelId);
             var fK_Specialty_SpecialtyGroup_SpecialtyGroupId = new ForeignKeyConstraint(
                 "FK_Specialty_SpecialtyGroup_SpecialtyGroupId", specialtyTable, specialtyGroupTable,
                 new[] { specialtyGroupIdColumn },

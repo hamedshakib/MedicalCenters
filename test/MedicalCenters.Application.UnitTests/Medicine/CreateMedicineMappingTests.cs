@@ -37,32 +37,35 @@ namespace MedicalCenters.Application.UnitTests.Medicine
             _handler = new CreateMedicineCommandHandler(_medicineRepository, _unitOfWork, _mapper);
         }
         [Fact]
-        public async Task CreateMedicineMapping_MedicineDto_NotNull()
+        public Task CreateMedicineMapping_MedicineDto_NotNull()
         {
-            var data = InitMappedMedicineData();
+            var data = _InitMappedMedicineData();
 
             Assert.NotNull(data);
+            return Task.CompletedTask;
         }
 
         [Fact]
-        public async Task CreateMedicineMapping_MedicineDto_NameIsNotNull()
+        public Task CreateMedicineMapping_MedicineDto_NameIsNotNull()
         {
-            var data = InitMappedMedicineData();
+            var data = _InitMappedMedicineData();
 
             Assert.NotNull(data.Name);
+            return Task.CompletedTask;
         }
 
         [Fact]
-        public async Task CreateMedicineMapping_MedicineDto_TypeIdIsNotNull()
+        public Task CreateMedicineMapping_MedicineDto_TypeIdIsNotNull()
         {
-            var data = InitMappedMedicineData();
+            var data = _InitMappedMedicineData();
 
             Assert.NotNull(data.TypeId);
+            return Task.CompletedTask;
         }
-        private MedicalCenters.Domain.Entities.Medicines.Medicine? InitMappedMedicineData()
+        private Domain.Entities.Medicines.Medicine? _InitMappedMedicineData()
         {
             var command = new CreateMedicineCommand() { MedicineDto = _MedicineDto };
-            return _mapper.Map<MedicalCenters.Domain.Entities.Medicines.Medicine>(command.MedicineDto);
+            return _mapper.Map<Domain.Entities.Medicines.Medicine>(command.MedicineDto);
         }
 
     }

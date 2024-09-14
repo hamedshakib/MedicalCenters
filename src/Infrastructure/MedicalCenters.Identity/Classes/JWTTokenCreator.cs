@@ -11,7 +11,7 @@ namespace MedicalCenters.Identity.Classes
 {
     public class JWTTokenCreator(IAuthenticationRepository _authenticationRepository)
     {
-        private string? GetJWTToken(List<Claim> claims)
+        private static string? _GetJWTToken(List<Claim> claims)
         {
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
 
@@ -29,7 +29,7 @@ namespace MedicalCenters.Identity.Classes
             return jwt;
         }
 
-        private string? GetJWTRefreshToken()
+        private static string? _GetJWTRefreshToken()
         {
             var randomNumber = new byte[32];
             using (var rng = RandomNumberGenerator.Create())
@@ -40,29 +40,29 @@ namespace MedicalCenters.Identity.Classes
             return null;
         }
 
-        public async Task<TokenDto> GenerateTokenDtoAsync(long UserId, string Username)
+        public async Task<TokenDto> GenerateTokenDtoAsync(long userId, string username)
         {
             var claims = new List<Claim>()
             {
                 new Claim(JwtRegisteredClaimNames.Jti , Guid.NewGuid().ToString()),
-                new Claim(JwtRegisteredClaimNames.UniqueName ,Username),
-                new Claim(JwtRegisteredClaimNames.Sid , UserId.ToString()),
+                new Claim(JwtRegisteredClaimNames.UniqueName ,username),
+                new Claim(JwtRegisteredClaimNames.Sid , userId.ToString()),
             };
 
-            var AccessToken = GetJWTToken(claims);
-            var RefreshToken = GetJWTRefreshToken();
+            var accessToken = _GetJWTToken(claims);
+            var refreshToken = _GetJWTRefreshToken();
 
-            await _authenticationRepository.SaveRefreshTokenAsync(UserId, RefreshToken);
+            await _authenticationRepository.SaveRefreshTokenAsync(userId, refreshToken);
 
-            return new TokenDto() { AccessToken = AccessToken, RefreshToken = RefreshToken };
+            return new TokenDto() { AccessToken = accessToken, RefreshToken = refreshToken };
         }
         public async Task<TokenDto> GenerateTokenDtoAsync(string AccessToken, string RefreshToken)
         {
-            var principal = GetPrincipalFromExpiredToken(AccessToken);
+            var principal = _GetPrincipalFromExpiredToken(AccessToken);
 
             long userId = Convert.ToInt64(principal.FindFirstValue(JwtRegisteredClaimNames.Sid));
-            var vvvvv = principal.FindFirst(JwtRegisteredClaimNames.UniqueName);
-            string Username = principal.Identity.Name;
+            //var vvvvv = principal.FindFirst(JwtRegisteredClaimNames.UniqueName);
+            string username = principal.Identity.Name;
 
             var savedRefreshToken = await _authenticationRepository.GetRefreshTokenAsync(userId);
 
@@ -72,14 +72,14 @@ namespace MedicalCenters.Identity.Classes
                 throw new RefreshTokenFailedException();
             }
 
-            var tokenDto = await GenerateTokenDtoAsync(userId, Username);
+            var tokenDto = await GenerateTokenDtoAsync(userId, username);
 
             await _authenticationRepository.SaveRefreshTokenAsync(userId, tokenDto.RefreshToken);
 
             return tokenDto;
         }
 
-        private ClaimsPrincipal GetPrincipalFromExpiredToken(string token)
+        private static ClaimsPrincipal _GetPrincipalFromExpiredToken(string token)
         {
             var tokenValidationParameters = PreparerTokenValidationParameters.GetTokenValidationParameters();
             tokenValidationParameters.ValidateLifetime = false;
@@ -88,9 +88,7 @@ namespace MedicalCenters.Identity.Classes
             var tokenHandler = new JwtSecurityTokenHandler();
             var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken securityToken);
 
-            JwtSecurityToken jwtSecurityToken = securityToken as JwtSecurityToken;
-
-            if (jwtSecurityToken == null || jwtSecurityToken.Header.Alg != SecurityAlgorithms.HmacSha256)
+            if (securityToken is not JwtSecurityToken jwtSecurityToken || jwtSecurityToken.Header.Alg != SecurityAlgorithms.HmacSha256)
             {
                 throw new SecurityTokenException("Invalid token");
             }

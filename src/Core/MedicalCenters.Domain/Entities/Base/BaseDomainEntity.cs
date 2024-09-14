@@ -2,6 +2,6 @@
 {
     public class BaseDomainEntity
     {
-        public const string EntityTitle = "";
+        public new const string EntityTitle = "";
     }
 }

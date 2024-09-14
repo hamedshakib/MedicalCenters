@@ -48,8 +48,8 @@ namespace MedicalCenters.Application.UnitTests.Medicine
         [Fact]
         public async Task UpdateMedicine_MedicineRepository_IsCalled()
         {
-            int medicineId = 1;
-            var result = (BaseResponse)await InitResult(medicineId);
+            const int medicineId = 1;
+            var result = (BaseResponse)await _InitResult(medicineId);
             _medicineRepository.Received();
 
         }
@@ -57,20 +57,20 @@ namespace MedicalCenters.Application.UnitTests.Medicine
         [Fact]
         public async Task UpdateMedicine_HandlerResult_IsValidTyped()
         {
-            int medicineId = 1;
-            var result = (BaseResponse)await InitResult(medicineId);
+            const int medicineId = 1;
+            var result = (BaseResponse)await _InitResult(medicineId);
             Assert.IsType<BaseResponse>(result);
         }
 
         [Fact]
         public async Task UpdateMedicine_HandlerResultIsSuccess_IsTrue()
         {
-            int medicineId = 1;
-            var result = (BaseResponse)await InitResult(medicineId);
+            const int medicineId = 1;
+            var result = (BaseResponse)await _InitResult(medicineId);
             Assert.True(result.IsSuccess);
         }
 
-        private async Task<object> InitResult(int medicineId)
+        private async Task<object> _InitResult(int medicineId)
         {
             var command = new UpdateMedicineCommand() {  Id = medicineId, MedicineDto = _MedicineDto };
 
@@ -81,11 +81,11 @@ namespace MedicalCenters.Application.UnitTests.Medicine
             _mapper.Map(command.MedicineDto, data);
 
 
-            _medicineRepository.Get(medicineId)
+            _medicineRepository.GetAsync(medicineId)
                 .Returns(data);
 
 
-            _medicineRepository.Update(data).Returns(Task.CompletedTask);
+            _medicineRepository.UpdateAsync(data).Returns(Task.CompletedTask);
             _unitOfWork.SaveChangesAsync(CancellationToken.None).Returns(true);
 
             return await _handler.Handle(command, CancellationToken.None);

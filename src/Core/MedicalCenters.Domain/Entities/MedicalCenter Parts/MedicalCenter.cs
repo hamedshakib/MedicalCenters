@@ -9,7 +9,7 @@ namespace MedicalCenters.Domain.Entities
     [Table(nameof(MedicalCenter))]
     public class MedicalCenter : BaseModifiableDomainEntity
     {
-        public const string EntityTitle = "مرکز درمانی";
+        public new const string EntityTitle = "مرکز درمانی";
 
 
         [Key]

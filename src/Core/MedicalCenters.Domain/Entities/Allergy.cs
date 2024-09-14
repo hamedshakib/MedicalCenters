@@ -7,7 +7,7 @@ namespace MedicalCenters.Domain.Entities
     [Table(nameof(Allergy))]
     public class Allergy : BaseModifiableDomainEntity
     {
-        public const string EntityTitle = "آلرژی";
+        public new const string EntityTitle = "آلرژی";
 
         [Key]
         public int Id { get; set; }

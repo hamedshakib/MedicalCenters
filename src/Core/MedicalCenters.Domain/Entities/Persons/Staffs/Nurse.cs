@@ -7,6 +7,6 @@ namespace MedicalCenters.Domain.Entities.Persons.Staffs
     [Table(nameof(Nurse))]
     public class Nurse : Personnel
     {
-        public const string EntityTitle = "پرستار";
+        public new const string EntityTitle = "پرستار";
     }
 }

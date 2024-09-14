@@ -6,18 +6,18 @@ namespace MedicalCenters.Domain.Entities.Persons
 {
     public abstract class Person : BaseModifiableDomainEntity
     {
-        public const int MaxFistNameLenght = 50;
-        public const int MaxLastNameLenght = 50;
-        public const int MaxNationalCodeLenght = 20;
+        public const int MaxFistNameLength = 50;
+        public const int MaxLastNameLength = 50;
+        public const int MaxNationalCodeLength = 20;
 
 
 
 
-        [Required, MaxLength(MaxFistNameLenght)]
+        [Required, MaxLength(MaxFistNameLength)]
         public string FirstName { get; set; }
-        [Required, MaxLength(MaxLastNameLenght)]
+        [Required, MaxLength(MaxLastNameLength)]
         public string LastName { get; set; }
-        [Required, MaxLength(MaxNationalCodeLenght)]
+        [Required, MaxLength(MaxNationalCodeLength)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string NationalCode { get; set; }
     }

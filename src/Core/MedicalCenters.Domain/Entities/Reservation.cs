@@ -8,7 +8,7 @@ namespace MedicalCenters.Domain.Entities
     [Table(nameof(Reservation))]
     public class Reservation : BaseModifiableDomainEntity
     {
-        public const string EntityTitle = "نوبت";
+        public new const string EntityTitle = "نوبت";
 
         [Key]
         public long Id { get; set; }

@@ -40,18 +40,18 @@ namespace MedicalCenters.Application.UnitTests.Medicine
         [InlineData(1)]
         public async Task CreateMedicine_MedicineRepository_IsCalled(int medicine)
         {
-            var result = (BaseResponse)await InitResult(medicine);
+            var result = (BaseResponse)await _InitResult(medicine);
             _medicineRepository.Received();
         }
 
         
-        private async Task<object> InitResult(int medicineId)
+        private async Task<object> _InitResult(int medicineId)
         {
             var command = new DeleteMedicineCommand() { Id = medicineId };
 
-            _medicineRepository.Exist(medicineId).Returns(true);
+            _medicineRepository.ExistAsync(medicineId).Returns(true);
 
-            _medicineRepository.Delete(command.Id)
+            _medicineRepository.DeleteAsync(command.Id)
                 .Returns(Task.CompletedTask);
 
             return await _handler.Handle(command, CancellationToken.None);

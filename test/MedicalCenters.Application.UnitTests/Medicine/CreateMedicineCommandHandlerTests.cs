@@ -64,9 +64,9 @@ namespace MedicalCenters.Application.UnitTests.Medicine
         private async Task<object> InitResult()
         {
             var command = new CreateMedicineCommand() { MedicineDto = _MedicineDto };
-            var data = _mapper.Map<MedicalCenters.Domain.Entities.Medicines.Medicine>(command.MedicineDto);
+            var data = _mapper.Map<Domain.Entities.Medicines.Medicine>(command.MedicineDto);
             data.Id = 1;
-            _medicineRepository.Add(Arg.Any<MedicalCenters.Domain.Entities.Medicines.Medicine>())
+            _medicineRepository.AddAsync(Arg.Any<Domain.Entities.Medicines.Medicine>())
                 .Returns(data);
 
             return await _handler.Handle(command, CancellationToken.None);

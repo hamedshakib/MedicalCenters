@@ -7,7 +7,7 @@ namespace MedicalCenters.Domain.Entities.Medicines
     [Table(nameof(MedicineType))]
     public class MedicineType : BaseCreateableDomainEntity
     {
-        public const string EntityTitle = "نوع دارو";
+        public new const string EntityTitle = "نوع دارو";
 
         [Key]
         public int Id { get; set; }

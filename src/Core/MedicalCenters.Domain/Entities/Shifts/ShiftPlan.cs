@@ -8,13 +8,13 @@ namespace MedicalCenters.Domain.Entities.Shifts
     [Table(nameof(ShiftPlan))]
     public class ShiftPlan : BaseModifiableDomainEntity
     {
-        public const string EntityTitle = "برنامه ریزی شیفت";
+        public new const string EntityTitle = "برنامه ریزی شیفت";
 
         [Key]
         public long Id { get; set; }
         [Required]
-        public int PersonelId { get; set; }
-        public Personnel Personel { get; set; }
+        public int PersonnelId { get; set; }
+        public Personnel Personnel { get; set; }
         [Required]
         public int MedicalUnitId { get; set; }
         public MedicalUnit MedicalUnit { get; set; }
