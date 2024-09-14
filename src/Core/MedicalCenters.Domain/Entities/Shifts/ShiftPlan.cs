@@ -2,6 +2,7 @@
 using MedicalCenters.Domain.Entities.Persons;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MedicalCenters.Domain.Entities.MedicalCenter_Parts;
 
 namespace MedicalCenters.Domain.Entities.Shifts
 {

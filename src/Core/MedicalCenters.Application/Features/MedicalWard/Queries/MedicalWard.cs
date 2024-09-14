@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Application.DTOs;
 using MedicalCenters.Application.Exceptions;
 using MedicalCenters.Application.Features.MedicalWard.Queries;
@@ -10,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MedicalCenters.Domain.Abstractions;
 
 namespace MedicalCenters.Application.Features.MedicalWard.Queries
 {
@@ -22,7 +22,7 @@ namespace MedicalCenters.Application.Features.MedicalWard.Queries
             var result = await medicalWardRepository.GetAsync(request.Id, cancellationToken);
             if (result == null)
             {
-                throw new NotFoundException(Domain.Entities.MedicalWard.EntityTitle, request.Id.ToString());
+                throw new NotFoundException(Domain.Entities.MedicalCenter_Parts.MedicalWard.EntityTitle, request.Id.ToString());
             }
 
             var dto = mapper.Map<MedicalWardDto>(result);

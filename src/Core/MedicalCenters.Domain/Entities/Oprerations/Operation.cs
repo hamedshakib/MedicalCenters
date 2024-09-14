@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MedicalCenters.Domain.Entities.Oprerations
+namespace MedicalCenters.Domain.Entities.Operations
 {
     [Table(nameof(Operation))]
     public class Operation : BaseModifiableDomainEntity

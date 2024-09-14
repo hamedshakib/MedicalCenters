@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
-using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Application.DTOs;
 using MedicalCenters.Application.Features.Medicine.Commands;
 using MedicalCenters.Application.Mapping.MappingProfiles;
-using MedicalCenters.Domain.Contracts;
+using MedicalCenters.Domain.Abstractions;
 using NSubstitute;
 
 namespace MedicalCenters.Application.UnitTests.Medicine

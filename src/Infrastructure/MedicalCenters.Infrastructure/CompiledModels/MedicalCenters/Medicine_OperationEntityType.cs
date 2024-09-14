@@ -4,7 +4,7 @@ using System.Reflection;
 using MedicalCenters.Domain.Entities.Base;
 using MedicalCenters.Domain.Entities.IntermediateEntities;
 using MedicalCenters.Domain.Entities.Medicines;
-using MedicalCenters.Domain.Entities.Oprerations;
+using MedicalCenters.Domain.Entities.Operations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata;

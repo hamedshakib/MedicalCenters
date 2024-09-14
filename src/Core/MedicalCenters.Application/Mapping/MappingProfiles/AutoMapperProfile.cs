@@ -2,6 +2,7 @@
 using MedicalCenters.Application.DTOs;
 using MedicalCenters.Application.Mapping.MappingResolvers.MappingTypeConverter;
 using MedicalCenters.Domain.Entities;
+using MedicalCenters.Domain.Entities.MedicalCenter_Parts;
 using MedicalCenters.Domain.Entities.Medicines;
 using MedicalCenters.Domain.Entities.Persons.Staffs;
 

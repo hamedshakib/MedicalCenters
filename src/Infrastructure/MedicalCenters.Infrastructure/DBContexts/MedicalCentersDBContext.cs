@@ -2,7 +2,7 @@
 using MedicalCenters.Domain.Entities.IntermediateEntities;
 using MedicalCenters.Domain.Entities.MedicalCenter_Parts;
 using MedicalCenters.Domain.Entities.Medicines;
-using MedicalCenters.Domain.Entities.Oprerations;
+using MedicalCenters.Domain.Entities.Operations;
 using MedicalCenters.Domain.Entities.Persons;
 using MedicalCenters.Domain.Entities.Persons.Staffs;
 using MedicalCenters.Domain.Entities.Shifts;

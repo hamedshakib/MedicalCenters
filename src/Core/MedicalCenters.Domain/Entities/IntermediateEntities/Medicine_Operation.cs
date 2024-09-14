@@ -1,6 +1,6 @@
 ﻿using MedicalCenters.Domain.Entities.Base;
 using MedicalCenters.Domain.Entities.Medicines;
-using MedicalCenters.Domain.Entities.Oprerations;
+using MedicalCenters.Domain.Entities.Operations;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 

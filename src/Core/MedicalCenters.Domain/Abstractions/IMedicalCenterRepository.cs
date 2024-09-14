@@ -1,7 +1,6 @@
-﻿using MedicalCenters.Domain.Entities;
-using MedicalCenters.Domain.Entities.MedicalCenter_Parts;
+﻿using MedicalCenters.Domain.Entities.MedicalCenter_Parts;
 
-namespace MedicalCenters.Application.Contracts.Persistence
+namespace MedicalCenters.Domain.Abstractions
 {
     public interface IMedicalCenterRepository : IGenericRepository<MedicalCenter>
     {

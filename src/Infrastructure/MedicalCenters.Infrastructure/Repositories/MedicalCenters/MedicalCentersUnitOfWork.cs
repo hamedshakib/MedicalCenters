@@ -1,8 +1,8 @@
-﻿using MedicalCenters.Domain.Contracts;
-using MedicalCenters.Persistence.DBContexts;
+﻿using MedicalCenters.Persistence.DBContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Data;
+using MedicalCenters.Domain.Abstractions;
 
 namespace MedicalCenters.Persistence.Repositories.MedicalCenters
 {

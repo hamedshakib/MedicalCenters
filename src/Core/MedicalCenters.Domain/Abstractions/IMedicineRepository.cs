@@ -1,6 +1,6 @@
 ﻿using MedicalCenters.Domain.Entities.Medicines;
 
-namespace MedicalCenters.Application.Contracts.Persistence
+namespace MedicalCenters.Domain.Abstractions
 {
     public interface IMedicineRepository : IGenericRepository<Medicine>
     {

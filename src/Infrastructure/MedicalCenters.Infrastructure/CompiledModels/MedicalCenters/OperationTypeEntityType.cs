@@ -2,7 +2,7 @@
 using System;
 using System.Reflection;
 using MedicalCenters.Domain.Entities.Base;
-using MedicalCenters.Domain.Entities.Oprerations;
+using MedicalCenters.Domain.Entities.Operations;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal;
@@ -18,7 +18,7 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
         public static RuntimeEntityType Create(RuntimeModel model, RuntimeEntityType baseEntityType = null)
         {
             var runtimeEntityType = model.AddEntityType(
-                "MedicalCenters.Domain.Entities.Oprerations.OperationType",
+                "MedicalCenters.Domain.Entities.Operations.OperationType",
                 typeof(OperationType),
                 baseEntityType);
 

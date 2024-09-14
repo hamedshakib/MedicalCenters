@@ -1,4 +1,4 @@
-﻿using MedicalCenters.Application.Contracts.Persistence;
+﻿using MedicalCenters.Domain.Abstractions;
 using MedicalCenters.Persistence.DBContexts;
 using Microsoft.EntityFrameworkCore;
 

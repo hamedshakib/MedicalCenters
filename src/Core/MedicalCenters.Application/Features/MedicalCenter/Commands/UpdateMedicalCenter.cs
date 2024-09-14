@@ -1,18 +1,17 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using MediatR;
-using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Application.DTOs;
 using MedicalCenters.Application.Exceptions;
 using MedicalCenters.Application.Features.MedicalCenter.Commands;
 using MedicalCenters.Application.Responses;
-using MedicalCenters.Domain.Contracts;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MedicalCenters.Domain.Abstractions;
 
 namespace MedicalCenters.Application.Features.MedicalCenter.Commands
 {
@@ -25,7 +24,7 @@ namespace MedicalCenters.Application.Features.MedicalCenter.Commands
             var medicalCenter = await medicalCenterRepository.GetAsync(command.Id);
             if (medicalCenter is null)
             {
-                throw new NotFoundException(Domain.Entities.MedicalCenter.EntityTitle, command.Id.ToString());
+                throw new NotFoundException(Domain.Entities.MedicalCenter_Parts.MedicalCenter.EntityTitle, command.Id.ToString());
             }
 
             mapper.Map(command.MedicalCenterDto, medicalCenter);

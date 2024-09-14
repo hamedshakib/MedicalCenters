@@ -1,8 +1,8 @@
-﻿using MedicalCenters.Domain.Entities.Base;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MedicalCenters.Domain.Entities.Base;
 
-namespace MedicalCenters.Domain.Entities
+namespace MedicalCenters.Domain.Entities.MedicalCenter_Parts
 {
     [Table(nameof(MedicalUnit))]
     public class MedicalUnit : BaseModifiableDomainEntity

@@ -1,7 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Data;
+﻿using System.Data;
 
-namespace MedicalCenters.Domain.Contracts
+namespace MedicalCenters.Domain.Abstractions
 {
     public interface IUnitOfWork : IDisposable
     {

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Application.DTOs;
 using MedicalCenters.Application.Exceptions;
 using MedicalCenters.Application.Responses;
@@ -9,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MedicalCenters.Domain.Abstractions;
 
 namespace MedicalCenters.Application.Features.Persons.Patient.Queries
 {

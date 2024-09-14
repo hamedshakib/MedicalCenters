@@ -1,16 +1,15 @@
 ﻿using AutoMapper;
-using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Application.DTOs;
 using MedicalCenters.Application.Features.Medicine.Commands;
 using MedicalCenters.Application.Mapping.MappingProfiles;
 using MedicalCenters.Application.Responses;
-using MedicalCenters.Domain.Contracts;
 using NSubstitute;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MedicalCenters.Domain.Abstractions;
 
 namespace MedicalCenters.Application.UnitTests.Medicine
 {

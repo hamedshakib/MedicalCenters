@@ -1,17 +1,16 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using MediatR;
-using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Application.DTOs;
 using MedicalCenters.Application.Features.MedicalWard.Commands;
 using MedicalCenters.Application.Responses;
-using MedicalCenters.Domain.Contracts;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MedicalCenters.Domain.Abstractions;
 
 namespace MedicalCenters.Application.Features.MedicalWard.Commands
 {
@@ -21,7 +20,7 @@ namespace MedicalCenters.Application.Features.MedicalWard.Commands
         {
             var response = new BaseValuedCommandResponse<int>();
 
-            var data = mapper.Map<MedicalCenters.Domain.Entities.MedicalWard>(command.MedicalWardDto);
+            var data = mapper.Map<Domain.Entities.MedicalCenter_Parts.MedicalWard>(command.MedicalWardDto);
             data = await medicalWardRepository.AddAsync(data);
 
             await unitOfWork.SaveChangesAsync(cancellationToken);

@@ -1,5 +1,4 @@
-﻿using MedicalCenters.Application.Contracts.Persistence;
-using MedicalCenters.Domain.Contracts;
+﻿using MedicalCenters.Domain.Abstractions;
 using MedicalCenters.Identity.Contracts;
 using MedicalCenters.Persistence.DBContexts;
 using MedicalCenters.Infrastructure.Repositories;

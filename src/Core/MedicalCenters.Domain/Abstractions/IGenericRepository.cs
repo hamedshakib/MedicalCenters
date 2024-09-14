@@ -1,4 +1,4 @@
-﻿namespace MedicalCenters.Application.Contracts.Persistence
+﻿namespace MedicalCenters.Domain.Abstractions
 {
     public interface IGenericRepository<T> where T : class
     {

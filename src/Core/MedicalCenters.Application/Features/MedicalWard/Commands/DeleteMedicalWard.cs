@@ -1,17 +1,16 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using MediatR;
-using MedicalCenters.Application.Contracts.Persistence;
 using MedicalCenters.Application.Exceptions;
 using MedicalCenters.Application.Features.MedicalWard.Commands;
 using MedicalCenters.Application.Responses;
-using MedicalCenters.Domain.Contracts;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MedicalCenters.Domain.Abstractions;
 
 namespace MedicalCenters.Application.Features.MedicalWard.Commands
 {
@@ -23,7 +22,7 @@ namespace MedicalCenters.Application.Features.MedicalWard.Commands
 
             if (!await medicalWardRepository.ExistAsync(command.Id))
             {
-                throw new NotFoundException(Domain.Entities.MedicalWard.EntityTitle, command.Id.ToString());
+                throw new NotFoundException(Domain.Entities.MedicalCenter_Parts.MedicalWard.EntityTitle, command.Id.ToString());
             }
 
             await medicalWardRepository.DeleteAsync(command.Id);

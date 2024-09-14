@@ -1,10 +1,9 @@
-﻿using MedicalCenters.Domain.Entities.Base;
-using MedicalCenters.Domain.Entities.MedicalCenter_Parts;
-using NetTopologySuite.Geometries;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MedicalCenters.Domain.Entities.Base;
+using NetTopologySuite.Geometries;
 
-namespace MedicalCenters.Domain.Entities
+namespace MedicalCenters.Domain.Entities.MedicalCenter_Parts
 {
     [Table(nameof(MedicalCenter))]
     public class MedicalCenter : BaseModifiableDomainEntity
