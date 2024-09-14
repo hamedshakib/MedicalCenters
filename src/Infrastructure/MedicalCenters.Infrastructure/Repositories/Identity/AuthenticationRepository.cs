@@ -7,35 +7,28 @@ using StackExchange.Redis;
 
 namespace MedicalCenters.Persistence.Repositories.Identity
 {
-    internal class AuthenticationRepository : IAuthenticationRepository
+    internal class AuthenticationRepository(IdentityDBContext _dBContext, IDatabase _redisDatabase)
+        : IAuthenticationRepository
     {
-        private readonly IdentityDBContext _dBContext;
-        private readonly IDatabase _redisDatabase;
-        public AuthenticationRepository(IdentityDBContext dBContext,IDatabase redisDatabase)
-        {
-            _dBContext = dBContext;
-            _redisDatabase = redisDatabase;
-        }
-
-        public async Task<User?> FindUserAsync(string Username)
+        public async Task<User?> FindUserAsync(string username)
         {
             var findUser = await (from user in _dBContext.User
-                                    where user.UserName == Username
+                                    where user.UserName == username
                                     select user).FirstOrDefaultAsync();
 
             return findUser;
         }
 
-        async Task<string> IAuthenticationRepository.GetRefreshTokenAsync(long UserId)
+        async Task<string> IAuthenticationRepository.GetRefreshTokenAsync(long userId)
         {
-            var data = await _redisDatabase.StringGetAsync($"Users:{UserId}:RefreshToken");
+            var data = await _redisDatabase.StringGetAsync($"Users:{userId}:RefreshToken");
 
             return data.HasValue ? data.ToString() : string.Empty;
         }
 
-        Task<bool> IAuthenticationRepository.SaveRefreshTokenAsync(long UserId, string RefreshToken)
+        Task<bool> IAuthenticationRepository.SaveRefreshTokenAsync(long userId, string refreshToken)
         {
-            return _redisDatabase.StringSetAsync($"Users:{UserId}:RefreshToken", RefreshToken);
+            return _redisDatabase.StringSetAsync($"Users:{userId}:RefreshToken", refreshToken);
         }
     }
 }

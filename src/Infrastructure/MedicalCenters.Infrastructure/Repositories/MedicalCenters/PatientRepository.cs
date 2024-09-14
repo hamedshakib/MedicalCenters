@@ -11,10 +11,9 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Persistence.Repositories.MedicalCenters
 {
-    public class PatientRepository : GenericRepository<Patient>, IPatientRepository
+    public class PatientRepository(MedicalCentersDBContext dBContext)
+        : GenericRepository<Patient>(dBContext), IPatientRepository
     {
-        public PatientRepository(MedicalCentersDBContext dBContext) : base(dBContext)
-        {
-        }
+
     }
 }

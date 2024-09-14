@@ -7,22 +7,19 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MedicalCenters.Persistence.Repositories.MedicalCenters
 {
-    public class MedicalWardRepository : GenericRepository<MedicalWard>, IMedicalWardRepository
+    public class MedicalWardRepository(MedicalCentersDBContext _dBContext)
+        : GenericRepository<MedicalWard>(_dBContext), IMedicalWardRepository
     {
-        private readonly MedicalCentersDBContext _dBContext;
-        public MedicalWardRepository(MedicalCentersDBContext dBContext) : base(dBContext)
-        {
-            _dBContext = dBContext;
-        }
+        private readonly MedicalCentersDBContext _dBContext = _dBContext;
 
         public async Task<IList<MedicalWard>> GetAllMedicalCenterWardsAsync(long id, CancellationToken cancellationToken = default)
         {
 
-            var Wards = await (from ward in _dBContext.MedicalWard
+            var wards = await (from ward in _dBContext.MedicalWard
                                where ward.MedicalCenterId == id
                                select ward).ToListAsync(cancellationToken);
 
-            return Wards;
+            return wards;
         }
 
         public ValueTask<MedicalWardType?> GetMedicalWardTypeAsync(long id, CancellationToken cancellationToken = default)

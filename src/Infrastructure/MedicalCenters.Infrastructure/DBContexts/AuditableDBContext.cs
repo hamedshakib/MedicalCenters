@@ -8,7 +8,7 @@ namespace MedicalCenters.Persistence.DBContexts
         public AuditableDBContext(DbContextOptions options) : base(options)
         {
         }
-        public async Task<int> SaveChangesAsync(long UserId = 1)
+        public async Task<int> SaveChangesAsync(long userId = 1)
         {
             foreach (var entry in base.ChangeTracker.Entries<BaseDomainEntity>()
                         .Where(q => q.State == EntityState.Added || q.State == EntityState.Modified))
@@ -17,13 +17,13 @@ namespace MedicalCenters.Persistence.DBContexts
                 {
                     if (entry.State == EntityState.Added)
                     {
-                        creatableEntity.CreatedBy = UserId;
+                        creatableEntity.CreatedBy = userId;
                         creatableEntity.DateTimeCreated = DateTime.Now;
                     }
 
                     if (creatableEntity is BaseModifiableDomainEntity modifiableEntity)
                     {
-                        modifiableEntity.ModifiedBy = UserId;
+                        modifiableEntity.ModifiedBy = userId;
                         modifiableEntity.DateTimeModified = DateTime.Now;
                     }
                 }

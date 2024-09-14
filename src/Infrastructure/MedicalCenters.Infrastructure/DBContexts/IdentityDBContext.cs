@@ -3,12 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MedicalCenters.Persistence.DBContexts
 {
-    public class IdentityDBContext : AuditableDBContext
+    public class IdentityDBContext(DbContextOptions<IdentityDBContext> options) : AuditableDBContext(options)
     {
-        public IdentityDBContext(DbContextOptions<IdentityDBContext> options) : base(options)
-        {
-
-        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(IdentityDBContext).Assembly, IdentityConfigurationFilter);

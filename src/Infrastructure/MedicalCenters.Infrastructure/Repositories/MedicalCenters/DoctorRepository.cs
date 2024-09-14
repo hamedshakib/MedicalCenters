@@ -11,13 +11,8 @@ using System.Threading.Tasks;
 
 namespace MedicalCenters.Persistence.Repositories.MedicalCenters
 {
-    public class DoctorRepository : GenericRepository<Doctor>, IDoctorRepository
+    public class DoctorRepository(MedicalCentersDBContext _dBContext)
+        : GenericRepository<Doctor>(_dBContext), IDoctorRepository
     {
-        private readonly MedicalCentersDBContext _dBContext;
-        public DoctorRepository(MedicalCentersDBContext dBContext) : base(dBContext)
-        {
-            _dBContext = dBContext;
-        }
-
     }
 }

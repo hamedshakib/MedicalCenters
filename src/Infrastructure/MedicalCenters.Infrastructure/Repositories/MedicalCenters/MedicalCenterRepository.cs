@@ -6,13 +6,10 @@ using MedicalCenters.Infrastructure.Repositories;
 
 namespace MedicalCenters.Persistence.Repositories.MedicalCenters
 {
-    public class MedicalCenterRepository : GenericRepository<MedicalCenter>, IMedicalCenterRepository
+    public class MedicalCenterRepository(MedicalCentersDBContext _dBContext)
+        : GenericRepository<MedicalCenter>(_dBContext), IMedicalCenterRepository
     {
-        private readonly MedicalCentersDBContext _dBContext;
-        public MedicalCenterRepository(MedicalCentersDBContext dBContext) : base(dBContext)
-        {
-            _dBContext = dBContext;
-        }
+        private readonly MedicalCentersDBContext _dBContext = _dBContext;
 
         public ValueTask<MedicalCenterType?> GetMedicalCenterTypeAsync(long id, CancellationToken cancellationToken = default)
         {

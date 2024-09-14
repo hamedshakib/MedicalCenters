@@ -10,13 +10,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MedicalCenters.Persistence.DBContexts
 {
-    public class MedicalCentersDBContext : AuditableDBContext
+    public class MedicalCentersDBContext(DbContextOptions<MedicalCentersDBContext> options)
+        : AuditableDBContext(options)
     {
-        public MedicalCentersDBContext(DbContextOptions<MedicalCentersDBContext> options) : base(options)
-        {
-
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(MedicalCentersDBContext).Assembly, MedicalCentersConfigurationFilter);
