@@ -13,7 +13,7 @@ namespace MedicalCenters.Domain.Entities
         [Key]
         public long Id { get; set; }
         [Required]
-        public DateTime ReservationDT { get; set; }
+        public DateTime ReservationAt { get; set; }
         [Required]
         public long PatientId { get; set; }
         public Patient Patient { get; set; }

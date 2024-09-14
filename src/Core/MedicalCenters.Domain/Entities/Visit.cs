@@ -15,7 +15,7 @@ namespace MedicalCenters.Domain.Entities
         [Required]
         public long PatientId { get; set; }
         public Patient Patient { get; set; }
-        public DateTime DateTime { get; set; }
+        public DateTime VisitAt { get; set; }
         public long? ReservationId { get; set; }
         public Reservation? Reservation { get; set; }
     }

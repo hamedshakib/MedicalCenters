@@ -130,13 +130,13 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
                     (long v) => v));
             modifiedBy.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
-            var operationDT = runtimeEntityType.AddProperty(
-                "OperationDT",
+            var operationAt = runtimeEntityType.AddProperty(
+                "OperationAt",
                 typeof(DateTime),
-                propertyInfo: typeof(Operation).GetProperty("OperationDT", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-                fieldInfo: typeof(Operation).GetField("<OperationDT>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                propertyInfo: typeof(Operation).GetProperty("OperationAt", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(Operation).GetField("<OperationAt>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 sentinel: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
-            operationDT.TypeMapping = SqlServerDateTimeTypeMapping.Default.Clone(
+            operationAt.TypeMapping = SqlServerDateTimeTypeMapping.Default.Clone(
                 comparer: new ValueComparer<DateTime>(
                     (DateTime v1, DateTime v2) => v1.Equals(v2),
                     (DateTime v) => v.GetHashCode(),
@@ -149,7 +149,7 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
                     (DateTime v1, DateTime v2) => v1.Equals(v2),
                     (DateTime v) => v.GetHashCode(),
                     (DateTime v) => v));
-            operationDT.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
+            operationAt.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
             var operationTypeId = runtimeEntityType.AddProperty(
                 "OperationTypeId",

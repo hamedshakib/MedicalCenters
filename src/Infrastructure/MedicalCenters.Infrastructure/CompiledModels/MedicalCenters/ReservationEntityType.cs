@@ -151,13 +151,13 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
                     (long v) => v));
             patientId.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
-            var reservationDT = runtimeEntityType.AddProperty(
-                "ReservationDT",
+            var reservationAt = runtimeEntityType.AddProperty(
+                "ReservationAt",
                 typeof(DateTime),
-                propertyInfo: typeof(Reservation).GetProperty("ReservationDT", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-                fieldInfo: typeof(Reservation).GetField("<ReservationDT>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                propertyInfo: typeof(Reservation).GetProperty("ReservationAt", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(Reservation).GetField("<ReservationAt>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 sentinel: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
-            reservationDT.TypeMapping = SqlServerDateTimeTypeMapping.Default.Clone(
+            reservationAt.TypeMapping = SqlServerDateTimeTypeMapping.Default.Clone(
                 comparer: new ValueComparer<DateTime>(
                     (DateTime v1, DateTime v2) => v1.Equals(v2),
                     (DateTime v) => v.GetHashCode(),
@@ -170,7 +170,7 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
                     (DateTime v1, DateTime v2) => v1.Equals(v2),
                     (DateTime v) => v.GetHashCode(),
                     (DateTime v) => v));
-            reservationDT.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
+            reservationAt.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
             var key = runtimeEntityType.AddKey(
                 new[] { id });

@@ -88,27 +88,6 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
                     (long v) => v));
             createdBy.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
-            var dateTime = runtimeEntityType.AddProperty(
-                "DateTime",
-                typeof(DateTime),
-                propertyInfo: typeof(Visit).GetProperty("DateTime", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-                fieldInfo: typeof(Visit).GetField("<DateTime>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-                sentinel: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
-            dateTime.TypeMapping = SqlServerDateTimeTypeMapping.Default.Clone(
-                comparer: new ValueComparer<DateTime>(
-                    (DateTime v1, DateTime v2) => v1.Equals(v2),
-                    (DateTime v) => v.GetHashCode(),
-                    (DateTime v) => v),
-                keyComparer: new ValueComparer<DateTime>(
-                    (DateTime v1, DateTime v2) => v1.Equals(v2),
-                    (DateTime v) => v.GetHashCode(),
-                    (DateTime v) => v),
-                providerValueComparer: new ValueComparer<DateTime>(
-                    (DateTime v1, DateTime v2) => v1.Equals(v2),
-                    (DateTime v) => v.GetHashCode(),
-                    (DateTime v) => v));
-            dateTime.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
-
             var modifiedAt = runtimeEntityType.AddProperty(
                 "ModifiedAt",
                 typeof(DateTime?),
@@ -192,6 +171,27 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
                     (Nullable<long> v) => v.HasValue ? ((long)v).GetHashCode() : 0,
                     (Nullable<long> v) => v.HasValue ? (Nullable<long>)(long)v : default(Nullable<long>)));
             reservationId.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
+
+            var visitAt = runtimeEntityType.AddProperty(
+                "VisitAt",
+                typeof(DateTime),
+                propertyInfo: typeof(Visit).GetProperty("VisitAt", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(Visit).GetField("<VisitAt>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                sentinel: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+            visitAt.TypeMapping = SqlServerDateTimeTypeMapping.Default.Clone(
+                comparer: new ValueComparer<DateTime>(
+                    (DateTime v1, DateTime v2) => v1.Equals(v2),
+                    (DateTime v) => v.GetHashCode(),
+                    (DateTime v) => v),
+                keyComparer: new ValueComparer<DateTime>(
+                    (DateTime v1, DateTime v2) => v1.Equals(v2),
+                    (DateTime v) => v.GetHashCode(),
+                    (DateTime v) => v),
+                providerValueComparer: new ValueComparer<DateTime>(
+                    (DateTime v1, DateTime v2) => v1.Equals(v2),
+                    (DateTime v) => v.GetHashCode(),
+                    (DateTime v) => v));
+            visitAt.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
             var key = runtimeEntityType.AddKey(
                 new[] { id });

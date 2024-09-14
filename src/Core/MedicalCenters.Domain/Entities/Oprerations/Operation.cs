@@ -11,7 +11,7 @@ namespace MedicalCenters.Domain.Entities.Oprerations
 
         [Key]
         public long Id { get; set; }
-        public DateTime OperationDT { get; set; }
+        public DateTime OperationAt { get; set; }
         [Required]
         public int OperationTypeId { get; set; }
         public OperationType OperationType { get; set; }
