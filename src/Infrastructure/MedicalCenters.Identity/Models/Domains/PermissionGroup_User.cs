@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace MedicalCenters.Identity.Models.Domains
 {
     [PrimaryKey(nameof(PermissionGroupId), nameof(UserId))]
-    public class PermissionGroup_User : BaseCreateableDomainEntity
+    public class PermissionGroup_User : BaseCreatableDomainEntity
     {
         [Required]
         public int PermissionGroupId { get; set; }

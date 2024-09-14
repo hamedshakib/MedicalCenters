@@ -122,22 +122,22 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var defaultTableMappings = new List<TableMappingBase<ColumnMappingBase>>();
             allergy.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings);
             var medicalCentersDomainEntitiesAllergyTableBase = new TableBase("MedicalCenters.Domain.Entities.Allergy", null, relationalModel);
+            var createdAtColumnBase = new ColumnBase<ColumnMappingBase>("CreatedAt", "datetime2", medicalCentersDomainEntitiesAllergyTableBase)
+            {
+                IsNullable = true
+            };
+            medicalCentersDomainEntitiesAllergyTableBase.Columns.Add("CreatedAt", createdAtColumnBase);
             var createdByColumnBase = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesAllergyTableBase);
             medicalCentersDomainEntitiesAllergyTableBase.Columns.Add("CreatedBy", createdByColumnBase);
-            var dateTimeCreatedColumnBase = new ColumnBase<ColumnMappingBase>("DateTimeCreated", "datetime2", medicalCentersDomainEntitiesAllergyTableBase)
-            {
-                IsNullable = true
-            };
-            medicalCentersDomainEntitiesAllergyTableBase.Columns.Add("DateTimeCreated", dateTimeCreatedColumnBase);
-            var dateTimeModifiedColumnBase = new ColumnBase<ColumnMappingBase>("DateTimeModified", "datetime2", medicalCentersDomainEntitiesAllergyTableBase)
-            {
-                IsNullable = true
-            };
-            medicalCentersDomainEntitiesAllergyTableBase.Columns.Add("DateTimeModified", dateTimeModifiedColumnBase);
             var descriptionColumnBase = new ColumnBase<ColumnMappingBase>("Description", "nvarchar(1000)", medicalCentersDomainEntitiesAllergyTableBase);
             medicalCentersDomainEntitiesAllergyTableBase.Columns.Add("Description", descriptionColumnBase);
             var idColumnBase = new ColumnBase<ColumnMappingBase>("Id", "int", medicalCentersDomainEntitiesAllergyTableBase);
             medicalCentersDomainEntitiesAllergyTableBase.Columns.Add("Id", idColumnBase);
+            var modifiedAtColumnBase = new ColumnBase<ColumnMappingBase>("ModifiedAt", "datetime2", medicalCentersDomainEntitiesAllergyTableBase)
+            {
+                IsNullable = true
+            };
+            medicalCentersDomainEntitiesAllergyTableBase.Columns.Add("ModifiedAt", modifiedAtColumnBase);
             var modifiedByColumnBase = new ColumnBase<ColumnMappingBase>("ModifiedBy", "bigint", medicalCentersDomainEntitiesAllergyTableBase);
             medicalCentersDomainEntitiesAllergyTableBase.Columns.Add("ModifiedBy", modifiedByColumnBase);
             var nameColumnBase = new ColumnBase<ColumnMappingBase>("Name", "nvarchar(100)", medicalCentersDomainEntitiesAllergyTableBase);
@@ -147,10 +147,10 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalCentersDomainEntitiesAllergyTableBase.AddTypeMapping(medicalCentersDomainEntitiesAllergyMappingBase, false);
             defaultTableMappings.Add(medicalCentersDomainEntitiesAllergyMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase, allergy.FindProperty("Id")!, medicalCentersDomainEntitiesAllergyMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase, allergy.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesAllergyMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase, allergy.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesAllergyMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase, allergy.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesAllergyMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeModifiedColumnBase, allergy.FindProperty("DateTimeModified")!, medicalCentersDomainEntitiesAllergyMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)descriptionColumnBase, allergy.FindProperty("Description")!, medicalCentersDomainEntitiesAllergyMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedAtColumnBase, allergy.FindProperty("ModifiedAt")!, medicalCentersDomainEntitiesAllergyMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedByColumnBase, allergy.FindProperty("ModifiedBy")!, medicalCentersDomainEntitiesAllergyMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)nameColumnBase, allergy.FindProperty("Name")!, medicalCentersDomainEntitiesAllergyMappingBase);
 
@@ -159,20 +159,20 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var allergyTable = new Table("Allergy", null, relationalModel);
             var idColumn = new Column("Id", "int", allergyTable);
             allergyTable.Columns.Add("Id", idColumn);
+            var createdAtColumn = new Column("CreatedAt", "datetime2", allergyTable)
+            {
+                IsNullable = true
+            };
+            allergyTable.Columns.Add("CreatedAt", createdAtColumn);
             var createdByColumn = new Column("CreatedBy", "bigint", allergyTable);
             allergyTable.Columns.Add("CreatedBy", createdByColumn);
-            var dateTimeCreatedColumn = new Column("DateTimeCreated", "datetime2", allergyTable)
-            {
-                IsNullable = true
-            };
-            allergyTable.Columns.Add("DateTimeCreated", dateTimeCreatedColumn);
-            var dateTimeModifiedColumn = new Column("DateTimeModified", "datetime2", allergyTable)
-            {
-                IsNullable = true
-            };
-            allergyTable.Columns.Add("DateTimeModified", dateTimeModifiedColumn);
             var descriptionColumn = new Column("Description", "nvarchar(1000)", allergyTable);
             allergyTable.Columns.Add("Description", descriptionColumn);
+            var modifiedAtColumn = new Column("ModifiedAt", "datetime2", allergyTable)
+            {
+                IsNullable = true
+            };
+            allergyTable.Columns.Add("ModifiedAt", modifiedAtColumn);
             var modifiedByColumn = new Column("ModifiedBy", "bigint", allergyTable);
             allergyTable.Columns.Add("ModifiedBy", modifiedByColumn);
             var nameColumn = new Column("Name", "nvarchar(100)", allergyTable);
@@ -190,10 +190,10 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             allergyTable.AddTypeMapping(allergyTableMapping, false);
             tableMappings.Add(allergyTableMapping);
             RelationalModel.CreateColumnMapping(idColumn, allergy.FindProperty("Id")!, allergyTableMapping);
+            RelationalModel.CreateColumnMapping(createdAtColumn, allergy.FindProperty("CreatedAt")!, allergyTableMapping);
             RelationalModel.CreateColumnMapping(createdByColumn, allergy.FindProperty("CreatedBy")!, allergyTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn, allergy.FindProperty("DateTimeCreated")!, allergyTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeModifiedColumn, allergy.FindProperty("DateTimeModified")!, allergyTableMapping);
             RelationalModel.CreateColumnMapping(descriptionColumn, allergy.FindProperty("Description")!, allergyTableMapping);
+            RelationalModel.CreateColumnMapping(modifiedAtColumn, allergy.FindProperty("ModifiedAt")!, allergyTableMapping);
             RelationalModel.CreateColumnMapping(modifiedByColumn, allergy.FindProperty("ModifiedBy")!, allergyTableMapping);
             RelationalModel.CreateColumnMapping(nameColumn, allergy.FindProperty("Name")!, allergyTableMapping);
 
@@ -204,13 +204,13 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var medicalCentersDomainEntitiesIntermediateEntitiesAllergy_MedicineTypeTableBase = new TableBase("MedicalCenters.Domain.Entities.IntermediateEntities.Allergy_MedicineType", null, relationalModel);
             var allergyIdColumnBase = new ColumnBase<ColumnMappingBase>("AllergyId", "int", medicalCentersDomainEntitiesIntermediateEntitiesAllergy_MedicineTypeTableBase);
             medicalCentersDomainEntitiesIntermediateEntitiesAllergy_MedicineTypeTableBase.Columns.Add("AllergyId", allergyIdColumnBase);
-            var createdByColumnBase0 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesIntermediateEntitiesAllergy_MedicineTypeTableBase);
-            medicalCentersDomainEntitiesIntermediateEntitiesAllergy_MedicineTypeTableBase.Columns.Add("CreatedBy", createdByColumnBase0);
-            var dateTimeCreatedColumnBase0 = new ColumnBase<ColumnMappingBase>("DateTimeCreated", "datetime2", medicalCentersDomainEntitiesIntermediateEntitiesAllergy_MedicineTypeTableBase)
+            var createdAtColumnBase0 = new ColumnBase<ColumnMappingBase>("CreatedAt", "datetime2", medicalCentersDomainEntitiesIntermediateEntitiesAllergy_MedicineTypeTableBase)
             {
                 IsNullable = true
             };
-            medicalCentersDomainEntitiesIntermediateEntitiesAllergy_MedicineTypeTableBase.Columns.Add("DateTimeCreated", dateTimeCreatedColumnBase0);
+            medicalCentersDomainEntitiesIntermediateEntitiesAllergy_MedicineTypeTableBase.Columns.Add("CreatedAt", createdAtColumnBase0);
+            var createdByColumnBase0 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesIntermediateEntitiesAllergy_MedicineTypeTableBase);
+            medicalCentersDomainEntitiesIntermediateEntitiesAllergy_MedicineTypeTableBase.Columns.Add("CreatedBy", createdByColumnBase0);
             var medicineTypeIdColumnBase = new ColumnBase<ColumnMappingBase>("MedicineTypeId", "int", medicalCentersDomainEntitiesIntermediateEntitiesAllergy_MedicineTypeTableBase);
             medicalCentersDomainEntitiesIntermediateEntitiesAllergy_MedicineTypeTableBase.Columns.Add("MedicineTypeId", medicineTypeIdColumnBase);
             relationalModel.DefaultTables.Add("MedicalCenters.Domain.Entities.IntermediateEntities.Allergy_MedicineType", medicalCentersDomainEntitiesIntermediateEntitiesAllergy_MedicineTypeTableBase);
@@ -219,8 +219,8 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             defaultTableMappings0.Add(medicalCentersDomainEntitiesIntermediateEntitiesAllergy_MedicineTypeMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)allergyIdColumnBase, allergy_MedicineType.FindProperty("AllergyId")!, medicalCentersDomainEntitiesIntermediateEntitiesAllergy_MedicineTypeMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)medicineTypeIdColumnBase, allergy_MedicineType.FindProperty("MedicineTypeId")!, medicalCentersDomainEntitiesIntermediateEntitiesAllergy_MedicineTypeMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase0, allergy_MedicineType.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesIntermediateEntitiesAllergy_MedicineTypeMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase0, allergy_MedicineType.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesIntermediateEntitiesAllergy_MedicineTypeMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase0, allergy_MedicineType.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesIntermediateEntitiesAllergy_MedicineTypeMappingBase);
 
             var tableMappings0 = new List<TableMapping>();
             allergy_MedicineType.SetRuntimeAnnotation("Relational:TableMappings", tableMappings0);
@@ -229,13 +229,13 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             allergy_MedicineTypeTable.Columns.Add("AllergyId", allergyIdColumn);
             var medicineTypeIdColumn = new Column("MedicineTypeId", "int", allergy_MedicineTypeTable);
             allergy_MedicineTypeTable.Columns.Add("MedicineTypeId", medicineTypeIdColumn);
-            var createdByColumn0 = new Column("CreatedBy", "bigint", allergy_MedicineTypeTable);
-            allergy_MedicineTypeTable.Columns.Add("CreatedBy", createdByColumn0);
-            var dateTimeCreatedColumn0 = new Column("DateTimeCreated", "datetime2", allergy_MedicineTypeTable)
+            var createdAtColumn0 = new Column("CreatedAt", "datetime2", allergy_MedicineTypeTable)
             {
                 IsNullable = true
             };
-            allergy_MedicineTypeTable.Columns.Add("DateTimeCreated", dateTimeCreatedColumn0);
+            allergy_MedicineTypeTable.Columns.Add("CreatedAt", createdAtColumn0);
+            var createdByColumn0 = new Column("CreatedBy", "bigint", allergy_MedicineTypeTable);
+            allergy_MedicineTypeTable.Columns.Add("CreatedBy", createdByColumn0);
             var pK_Allergy_MedicineType = new UniqueConstraint("PK_Allergy_MedicineType", allergy_MedicineTypeTable, new[] { allergyIdColumn, medicineTypeIdColumn });
             allergy_MedicineTypeTable.PrimaryKey = pK_Allergy_MedicineType;
             var pK_Allergy_MedicineTypeUc = RelationalModel.GetKey(this,
@@ -258,8 +258,8 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             tableMappings0.Add(allergy_MedicineTypeTableMapping);
             RelationalModel.CreateColumnMapping(allergyIdColumn, allergy_MedicineType.FindProperty("AllergyId")!, allergy_MedicineTypeTableMapping);
             RelationalModel.CreateColumnMapping(medicineTypeIdColumn, allergy_MedicineType.FindProperty("MedicineTypeId")!, allergy_MedicineTypeTableMapping);
+            RelationalModel.CreateColumnMapping(createdAtColumn0, allergy_MedicineType.FindProperty("CreatedAt")!, allergy_MedicineTypeTableMapping);
             RelationalModel.CreateColumnMapping(createdByColumn0, allergy_MedicineType.FindProperty("CreatedBy")!, allergy_MedicineTypeTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn0, allergy_MedicineType.FindProperty("DateTimeCreated")!, allergy_MedicineTypeTableMapping);
 
             var allergy_Patient = FindEntityType("MedicalCenters.Domain.Entities.IntermediateEntities.Allergy_Patient")!;
 
@@ -268,13 +268,13 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var medicalCentersDomainEntitiesIntermediateEntitiesAllergy_PatientTableBase = new TableBase("MedicalCenters.Domain.Entities.IntermediateEntities.Allergy_Patient", null, relationalModel);
             var allergyIdColumnBase0 = new ColumnBase<ColumnMappingBase>("AllergyId", "int", medicalCentersDomainEntitiesIntermediateEntitiesAllergy_PatientTableBase);
             medicalCentersDomainEntitiesIntermediateEntitiesAllergy_PatientTableBase.Columns.Add("AllergyId", allergyIdColumnBase0);
-            var createdByColumnBase1 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesIntermediateEntitiesAllergy_PatientTableBase);
-            medicalCentersDomainEntitiesIntermediateEntitiesAllergy_PatientTableBase.Columns.Add("CreatedBy", createdByColumnBase1);
-            var dateTimeCreatedColumnBase1 = new ColumnBase<ColumnMappingBase>("DateTimeCreated", "datetime2", medicalCentersDomainEntitiesIntermediateEntitiesAllergy_PatientTableBase)
+            var createdAtColumnBase1 = new ColumnBase<ColumnMappingBase>("CreatedAt", "datetime2", medicalCentersDomainEntitiesIntermediateEntitiesAllergy_PatientTableBase)
             {
                 IsNullable = true
             };
-            medicalCentersDomainEntitiesIntermediateEntitiesAllergy_PatientTableBase.Columns.Add("DateTimeCreated", dateTimeCreatedColumnBase1);
+            medicalCentersDomainEntitiesIntermediateEntitiesAllergy_PatientTableBase.Columns.Add("CreatedAt", createdAtColumnBase1);
+            var createdByColumnBase1 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesIntermediateEntitiesAllergy_PatientTableBase);
+            medicalCentersDomainEntitiesIntermediateEntitiesAllergy_PatientTableBase.Columns.Add("CreatedBy", createdByColumnBase1);
             var patientIdColumnBase = new ColumnBase<ColumnMappingBase>("PatientId", "bigint", medicalCentersDomainEntitiesIntermediateEntitiesAllergy_PatientTableBase);
             medicalCentersDomainEntitiesIntermediateEntitiesAllergy_PatientTableBase.Columns.Add("PatientId", patientIdColumnBase);
             relationalModel.DefaultTables.Add("MedicalCenters.Domain.Entities.IntermediateEntities.Allergy_Patient", medicalCentersDomainEntitiesIntermediateEntitiesAllergy_PatientTableBase);
@@ -283,8 +283,8 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             defaultTableMappings1.Add(medicalCentersDomainEntitiesIntermediateEntitiesAllergy_PatientMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)allergyIdColumnBase0, allergy_Patient.FindProperty("AllergyId")!, medicalCentersDomainEntitiesIntermediateEntitiesAllergy_PatientMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)patientIdColumnBase, allergy_Patient.FindProperty("PatientId")!, medicalCentersDomainEntitiesIntermediateEntitiesAllergy_PatientMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase1, allergy_Patient.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesIntermediateEntitiesAllergy_PatientMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase1, allergy_Patient.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesIntermediateEntitiesAllergy_PatientMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase1, allergy_Patient.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesIntermediateEntitiesAllergy_PatientMappingBase);
 
             var tableMappings1 = new List<TableMapping>();
             allergy_Patient.SetRuntimeAnnotation("Relational:TableMappings", tableMappings1);
@@ -293,13 +293,13 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             allergy_PatientTable.Columns.Add("AllergyId", allergyIdColumn0);
             var patientIdColumn = new Column("PatientId", "bigint", allergy_PatientTable);
             allergy_PatientTable.Columns.Add("PatientId", patientIdColumn);
-            var createdByColumn1 = new Column("CreatedBy", "bigint", allergy_PatientTable);
-            allergy_PatientTable.Columns.Add("CreatedBy", createdByColumn1);
-            var dateTimeCreatedColumn1 = new Column("DateTimeCreated", "datetime2", allergy_PatientTable)
+            var createdAtColumn1 = new Column("CreatedAt", "datetime2", allergy_PatientTable)
             {
                 IsNullable = true
             };
-            allergy_PatientTable.Columns.Add("DateTimeCreated", dateTimeCreatedColumn1);
+            allergy_PatientTable.Columns.Add("CreatedAt", createdAtColumn1);
+            var createdByColumn1 = new Column("CreatedBy", "bigint", allergy_PatientTable);
+            allergy_PatientTable.Columns.Add("CreatedBy", createdByColumn1);
             var pK_Allergy_Patient = new UniqueConstraint("PK_Allergy_Patient", allergy_PatientTable, new[] { allergyIdColumn0, patientIdColumn });
             allergy_PatientTable.PrimaryKey = pK_Allergy_Patient;
             var pK_Allergy_PatientUc = RelationalModel.GetKey(this,
@@ -322,21 +322,21 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             tableMappings1.Add(allergy_PatientTableMapping);
             RelationalModel.CreateColumnMapping(allergyIdColumn0, allergy_Patient.FindProperty("AllergyId")!, allergy_PatientTableMapping);
             RelationalModel.CreateColumnMapping(patientIdColumn, allergy_Patient.FindProperty("PatientId")!, allergy_PatientTableMapping);
+            RelationalModel.CreateColumnMapping(createdAtColumn1, allergy_Patient.FindProperty("CreatedAt")!, allergy_PatientTableMapping);
             RelationalModel.CreateColumnMapping(createdByColumn1, allergy_Patient.FindProperty("CreatedBy")!, allergy_PatientTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn1, allergy_Patient.FindProperty("DateTimeCreated")!, allergy_PatientTableMapping);
 
             var doctor_Operation = FindEntityType("MedicalCenters.Domain.Entities.IntermediateEntities.Doctor_Operation")!;
 
             var defaultTableMappings2 = new List<TableMappingBase<ColumnMappingBase>>();
             doctor_Operation.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings2);
             var medicalCentersDomainEntitiesIntermediateEntitiesDoctor_OperationTableBase = new TableBase("MedicalCenters.Domain.Entities.IntermediateEntities.Doctor_Operation", null, relationalModel);
-            var createdByColumnBase2 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesIntermediateEntitiesDoctor_OperationTableBase);
-            medicalCentersDomainEntitiesIntermediateEntitiesDoctor_OperationTableBase.Columns.Add("CreatedBy", createdByColumnBase2);
-            var dateTimeCreatedColumnBase2 = new ColumnBase<ColumnMappingBase>("DateTimeCreated", "datetime2", medicalCentersDomainEntitiesIntermediateEntitiesDoctor_OperationTableBase)
+            var createdAtColumnBase2 = new ColumnBase<ColumnMappingBase>("CreatedAt", "datetime2", medicalCentersDomainEntitiesIntermediateEntitiesDoctor_OperationTableBase)
             {
                 IsNullable = true
             };
-            medicalCentersDomainEntitiesIntermediateEntitiesDoctor_OperationTableBase.Columns.Add("DateTimeCreated", dateTimeCreatedColumnBase2);
+            medicalCentersDomainEntitiesIntermediateEntitiesDoctor_OperationTableBase.Columns.Add("CreatedAt", createdAtColumnBase2);
+            var createdByColumnBase2 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesIntermediateEntitiesDoctor_OperationTableBase);
+            medicalCentersDomainEntitiesIntermediateEntitiesDoctor_OperationTableBase.Columns.Add("CreatedBy", createdByColumnBase2);
             var doctorIdColumnBase = new ColumnBase<ColumnMappingBase>("DoctorId", "int", medicalCentersDomainEntitiesIntermediateEntitiesDoctor_OperationTableBase);
             medicalCentersDomainEntitiesIntermediateEntitiesDoctor_OperationTableBase.Columns.Add("DoctorId", doctorIdColumnBase);
             var operationIdColumnBase = new ColumnBase<ColumnMappingBase>("OperationId", "bigint", medicalCentersDomainEntitiesIntermediateEntitiesDoctor_OperationTableBase);
@@ -347,8 +347,8 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             defaultTableMappings2.Add(medicalCentersDomainEntitiesIntermediateEntitiesDoctor_OperationMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)doctorIdColumnBase, doctor_Operation.FindProperty("DoctorId")!, medicalCentersDomainEntitiesIntermediateEntitiesDoctor_OperationMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)operationIdColumnBase, doctor_Operation.FindProperty("OperationId")!, medicalCentersDomainEntitiesIntermediateEntitiesDoctor_OperationMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase2, doctor_Operation.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesIntermediateEntitiesDoctor_OperationMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase2, doctor_Operation.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesIntermediateEntitiesDoctor_OperationMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase2, doctor_Operation.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesIntermediateEntitiesDoctor_OperationMappingBase);
 
             var tableMappings2 = new List<TableMapping>();
             doctor_Operation.SetRuntimeAnnotation("Relational:TableMappings", tableMappings2);
@@ -357,13 +357,13 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             doctor_OperationTable.Columns.Add("DoctorId", doctorIdColumn);
             var operationIdColumn = new Column("OperationId", "bigint", doctor_OperationTable);
             doctor_OperationTable.Columns.Add("OperationId", operationIdColumn);
-            var createdByColumn2 = new Column("CreatedBy", "bigint", doctor_OperationTable);
-            doctor_OperationTable.Columns.Add("CreatedBy", createdByColumn2);
-            var dateTimeCreatedColumn2 = new Column("DateTimeCreated", "datetime2", doctor_OperationTable)
+            var createdAtColumn2 = new Column("CreatedAt", "datetime2", doctor_OperationTable)
             {
                 IsNullable = true
             };
-            doctor_OperationTable.Columns.Add("DateTimeCreated", dateTimeCreatedColumn2);
+            doctor_OperationTable.Columns.Add("CreatedAt", createdAtColumn2);
+            var createdByColumn2 = new Column("CreatedBy", "bigint", doctor_OperationTable);
+            doctor_OperationTable.Columns.Add("CreatedBy", createdByColumn2);
             var pK_Doctor_Operation = new UniqueConstraint("PK_Doctor_Operation", doctor_OperationTable, new[] { doctorIdColumn, operationIdColumn });
             doctor_OperationTable.PrimaryKey = pK_Doctor_Operation;
             var pK_Doctor_OperationUc = RelationalModel.GetKey(this,
@@ -386,21 +386,21 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             tableMappings2.Add(doctor_OperationTableMapping);
             RelationalModel.CreateColumnMapping(doctorIdColumn, doctor_Operation.FindProperty("DoctorId")!, doctor_OperationTableMapping);
             RelationalModel.CreateColumnMapping(operationIdColumn, doctor_Operation.FindProperty("OperationId")!, doctor_OperationTableMapping);
+            RelationalModel.CreateColumnMapping(createdAtColumn2, doctor_Operation.FindProperty("CreatedAt")!, doctor_OperationTableMapping);
             RelationalModel.CreateColumnMapping(createdByColumn2, doctor_Operation.FindProperty("CreatedBy")!, doctor_OperationTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn2, doctor_Operation.FindProperty("DateTimeCreated")!, doctor_OperationTableMapping);
 
             var doctor_Specialty = FindEntityType("MedicalCenters.Domain.Entities.IntermediateEntities.Doctor_Specialty")!;
 
             var defaultTableMappings3 = new List<TableMappingBase<ColumnMappingBase>>();
             doctor_Specialty.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings3);
             var medicalCentersDomainEntitiesIntermediateEntitiesDoctor_SpecialtyTableBase = new TableBase("MedicalCenters.Domain.Entities.IntermediateEntities.Doctor_Specialty", null, relationalModel);
-            var createdByColumnBase3 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesIntermediateEntitiesDoctor_SpecialtyTableBase);
-            medicalCentersDomainEntitiesIntermediateEntitiesDoctor_SpecialtyTableBase.Columns.Add("CreatedBy", createdByColumnBase3);
-            var dateTimeCreatedColumnBase3 = new ColumnBase<ColumnMappingBase>("DateTimeCreated", "datetime2", medicalCentersDomainEntitiesIntermediateEntitiesDoctor_SpecialtyTableBase)
+            var createdAtColumnBase3 = new ColumnBase<ColumnMappingBase>("CreatedAt", "datetime2", medicalCentersDomainEntitiesIntermediateEntitiesDoctor_SpecialtyTableBase)
             {
                 IsNullable = true
             };
-            medicalCentersDomainEntitiesIntermediateEntitiesDoctor_SpecialtyTableBase.Columns.Add("DateTimeCreated", dateTimeCreatedColumnBase3);
+            medicalCentersDomainEntitiesIntermediateEntitiesDoctor_SpecialtyTableBase.Columns.Add("CreatedAt", createdAtColumnBase3);
+            var createdByColumnBase3 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesIntermediateEntitiesDoctor_SpecialtyTableBase);
+            medicalCentersDomainEntitiesIntermediateEntitiesDoctor_SpecialtyTableBase.Columns.Add("CreatedBy", createdByColumnBase3);
             var doctorIdColumnBase0 = new ColumnBase<ColumnMappingBase>("DoctorId", "int", medicalCentersDomainEntitiesIntermediateEntitiesDoctor_SpecialtyTableBase);
             medicalCentersDomainEntitiesIntermediateEntitiesDoctor_SpecialtyTableBase.Columns.Add("DoctorId", doctorIdColumnBase0);
             var specialtyIdColumnBase = new ColumnBase<ColumnMappingBase>("SpecialtyId", "int", medicalCentersDomainEntitiesIntermediateEntitiesDoctor_SpecialtyTableBase);
@@ -411,8 +411,8 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             defaultTableMappings3.Add(medicalCentersDomainEntitiesIntermediateEntitiesDoctor_SpecialtyMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)doctorIdColumnBase0, doctor_Specialty.FindProperty("DoctorId")!, medicalCentersDomainEntitiesIntermediateEntitiesDoctor_SpecialtyMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)specialtyIdColumnBase, doctor_Specialty.FindProperty("SpecialtyId")!, medicalCentersDomainEntitiesIntermediateEntitiesDoctor_SpecialtyMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase3, doctor_Specialty.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesIntermediateEntitiesDoctor_SpecialtyMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase3, doctor_Specialty.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesIntermediateEntitiesDoctor_SpecialtyMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase3, doctor_Specialty.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesIntermediateEntitiesDoctor_SpecialtyMappingBase);
 
             var tableMappings3 = new List<TableMapping>();
             doctor_Specialty.SetRuntimeAnnotation("Relational:TableMappings", tableMappings3);
@@ -421,13 +421,13 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             doctor_SpecialtyTable.Columns.Add("DoctorId", doctorIdColumn0);
             var specialtyIdColumn = new Column("SpecialtyId", "int", doctor_SpecialtyTable);
             doctor_SpecialtyTable.Columns.Add("SpecialtyId", specialtyIdColumn);
-            var createdByColumn3 = new Column("CreatedBy", "bigint", doctor_SpecialtyTable);
-            doctor_SpecialtyTable.Columns.Add("CreatedBy", createdByColumn3);
-            var dateTimeCreatedColumn3 = new Column("DateTimeCreated", "datetime2", doctor_SpecialtyTable)
+            var createdAtColumn3 = new Column("CreatedAt", "datetime2", doctor_SpecialtyTable)
             {
                 IsNullable = true
             };
-            doctor_SpecialtyTable.Columns.Add("DateTimeCreated", dateTimeCreatedColumn3);
+            doctor_SpecialtyTable.Columns.Add("CreatedAt", createdAtColumn3);
+            var createdByColumn3 = new Column("CreatedBy", "bigint", doctor_SpecialtyTable);
+            doctor_SpecialtyTable.Columns.Add("CreatedBy", createdByColumn3);
             var pK_Doctor_Specialty = new UniqueConstraint("PK_Doctor_Specialty", doctor_SpecialtyTable, new[] { doctorIdColumn0, specialtyIdColumn });
             doctor_SpecialtyTable.PrimaryKey = pK_Doctor_Specialty;
             var pK_Doctor_SpecialtyUc = RelationalModel.GetKey(this,
@@ -450,21 +450,21 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             tableMappings3.Add(doctor_SpecialtyTableMapping);
             RelationalModel.CreateColumnMapping(doctorIdColumn0, doctor_Specialty.FindProperty("DoctorId")!, doctor_SpecialtyTableMapping);
             RelationalModel.CreateColumnMapping(specialtyIdColumn, doctor_Specialty.FindProperty("SpecialtyId")!, doctor_SpecialtyTableMapping);
+            RelationalModel.CreateColumnMapping(createdAtColumn3, doctor_Specialty.FindProperty("CreatedAt")!, doctor_SpecialtyTableMapping);
             RelationalModel.CreateColumnMapping(createdByColumn3, doctor_Specialty.FindProperty("CreatedBy")!, doctor_SpecialtyTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn3, doctor_Specialty.FindProperty("DateTimeCreated")!, doctor_SpecialtyTableMapping);
 
             var doctor_Visit = FindEntityType("MedicalCenters.Domain.Entities.IntermediateEntities.Doctor_Visit")!;
 
             var defaultTableMappings4 = new List<TableMappingBase<ColumnMappingBase>>();
             doctor_Visit.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings4);
             var medicalCentersDomainEntitiesIntermediateEntitiesDoctor_VisitTableBase = new TableBase("MedicalCenters.Domain.Entities.IntermediateEntities.Doctor_Visit", null, relationalModel);
-            var createdByColumnBase4 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesIntermediateEntitiesDoctor_VisitTableBase);
-            medicalCentersDomainEntitiesIntermediateEntitiesDoctor_VisitTableBase.Columns.Add("CreatedBy", createdByColumnBase4);
-            var dateTimeCreatedColumnBase4 = new ColumnBase<ColumnMappingBase>("DateTimeCreated", "datetime2", medicalCentersDomainEntitiesIntermediateEntitiesDoctor_VisitTableBase)
+            var createdAtColumnBase4 = new ColumnBase<ColumnMappingBase>("CreatedAt", "datetime2", medicalCentersDomainEntitiesIntermediateEntitiesDoctor_VisitTableBase)
             {
                 IsNullable = true
             };
-            medicalCentersDomainEntitiesIntermediateEntitiesDoctor_VisitTableBase.Columns.Add("DateTimeCreated", dateTimeCreatedColumnBase4);
+            medicalCentersDomainEntitiesIntermediateEntitiesDoctor_VisitTableBase.Columns.Add("CreatedAt", createdAtColumnBase4);
+            var createdByColumnBase4 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesIntermediateEntitiesDoctor_VisitTableBase);
+            medicalCentersDomainEntitiesIntermediateEntitiesDoctor_VisitTableBase.Columns.Add("CreatedBy", createdByColumnBase4);
             var doctorIdColumnBase1 = new ColumnBase<ColumnMappingBase>("DoctorId", "int", medicalCentersDomainEntitiesIntermediateEntitiesDoctor_VisitTableBase);
             medicalCentersDomainEntitiesIntermediateEntitiesDoctor_VisitTableBase.Columns.Add("DoctorId", doctorIdColumnBase1);
             var visitIdColumnBase = new ColumnBase<ColumnMappingBase>("VisitId", "bigint", medicalCentersDomainEntitiesIntermediateEntitiesDoctor_VisitTableBase);
@@ -475,8 +475,8 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             defaultTableMappings4.Add(medicalCentersDomainEntitiesIntermediateEntitiesDoctor_VisitMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)doctorIdColumnBase1, doctor_Visit.FindProperty("DoctorId")!, medicalCentersDomainEntitiesIntermediateEntitiesDoctor_VisitMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)visitIdColumnBase, doctor_Visit.FindProperty("VisitId")!, medicalCentersDomainEntitiesIntermediateEntitiesDoctor_VisitMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase4, doctor_Visit.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesIntermediateEntitiesDoctor_VisitMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase4, doctor_Visit.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesIntermediateEntitiesDoctor_VisitMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase4, doctor_Visit.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesIntermediateEntitiesDoctor_VisitMappingBase);
 
             var tableMappings4 = new List<TableMapping>();
             doctor_Visit.SetRuntimeAnnotation("Relational:TableMappings", tableMappings4);
@@ -485,13 +485,13 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             doctor_VisitTable.Columns.Add("DoctorId", doctorIdColumn1);
             var visitIdColumn = new Column("VisitId", "bigint", doctor_VisitTable);
             doctor_VisitTable.Columns.Add("VisitId", visitIdColumn);
-            var createdByColumn4 = new Column("CreatedBy", "bigint", doctor_VisitTable);
-            doctor_VisitTable.Columns.Add("CreatedBy", createdByColumn4);
-            var dateTimeCreatedColumn4 = new Column("DateTimeCreated", "datetime2", doctor_VisitTable)
+            var createdAtColumn4 = new Column("CreatedAt", "datetime2", doctor_VisitTable)
             {
                 IsNullable = true
             };
-            doctor_VisitTable.Columns.Add("DateTimeCreated", dateTimeCreatedColumn4);
+            doctor_VisitTable.Columns.Add("CreatedAt", createdAtColumn4);
+            var createdByColumn4 = new Column("CreatedBy", "bigint", doctor_VisitTable);
+            doctor_VisitTable.Columns.Add("CreatedBy", createdByColumn4);
             var pK_Doctor_Visit = new UniqueConstraint("PK_Doctor_Visit", doctor_VisitTable, new[] { doctorIdColumn1, visitIdColumn });
             doctor_VisitTable.PrimaryKey = pK_Doctor_Visit;
             var pK_Doctor_VisitUc = RelationalModel.GetKey(this,
@@ -514,21 +514,21 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             tableMappings4.Add(doctor_VisitTableMapping);
             RelationalModel.CreateColumnMapping(doctorIdColumn1, doctor_Visit.FindProperty("DoctorId")!, doctor_VisitTableMapping);
             RelationalModel.CreateColumnMapping(visitIdColumn, doctor_Visit.FindProperty("VisitId")!, doctor_VisitTableMapping);
+            RelationalModel.CreateColumnMapping(createdAtColumn4, doctor_Visit.FindProperty("CreatedAt")!, doctor_VisitTableMapping);
             RelationalModel.CreateColumnMapping(createdByColumn4, doctor_Visit.FindProperty("CreatedBy")!, doctor_VisitTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn4, doctor_Visit.FindProperty("DateTimeCreated")!, doctor_VisitTableMapping);
 
             var medicine_Operation = FindEntityType("MedicalCenters.Domain.Entities.IntermediateEntities.Medicine_Operation")!;
 
             var defaultTableMappings5 = new List<TableMappingBase<ColumnMappingBase>>();
             medicine_Operation.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings5);
             var medicalCentersDomainEntitiesIntermediateEntitiesMedicine_OperationTableBase = new TableBase("MedicalCenters.Domain.Entities.IntermediateEntities.Medicine_Operation", null, relationalModel);
-            var createdByColumnBase5 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesIntermediateEntitiesMedicine_OperationTableBase);
-            medicalCentersDomainEntitiesIntermediateEntitiesMedicine_OperationTableBase.Columns.Add("CreatedBy", createdByColumnBase5);
-            var dateTimeCreatedColumnBase5 = new ColumnBase<ColumnMappingBase>("DateTimeCreated", "datetime2", medicalCentersDomainEntitiesIntermediateEntitiesMedicine_OperationTableBase)
+            var createdAtColumnBase5 = new ColumnBase<ColumnMappingBase>("CreatedAt", "datetime2", medicalCentersDomainEntitiesIntermediateEntitiesMedicine_OperationTableBase)
             {
                 IsNullable = true
             };
-            medicalCentersDomainEntitiesIntermediateEntitiesMedicine_OperationTableBase.Columns.Add("DateTimeCreated", dateTimeCreatedColumnBase5);
+            medicalCentersDomainEntitiesIntermediateEntitiesMedicine_OperationTableBase.Columns.Add("CreatedAt", createdAtColumnBase5);
+            var createdByColumnBase5 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesIntermediateEntitiesMedicine_OperationTableBase);
+            medicalCentersDomainEntitiesIntermediateEntitiesMedicine_OperationTableBase.Columns.Add("CreatedBy", createdByColumnBase5);
             var medicineIdColumnBase = new ColumnBase<ColumnMappingBase>("MedicineId", "int", medicalCentersDomainEntitiesIntermediateEntitiesMedicine_OperationTableBase);
             medicalCentersDomainEntitiesIntermediateEntitiesMedicine_OperationTableBase.Columns.Add("MedicineId", medicineIdColumnBase);
             var operationIdColumnBase0 = new ColumnBase<ColumnMappingBase>("OperationId", "bigint", medicalCentersDomainEntitiesIntermediateEntitiesMedicine_OperationTableBase);
@@ -539,8 +539,8 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             defaultTableMappings5.Add(medicalCentersDomainEntitiesIntermediateEntitiesMedicine_OperationMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)medicineIdColumnBase, medicine_Operation.FindProperty("MedicineId")!, medicalCentersDomainEntitiesIntermediateEntitiesMedicine_OperationMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)operationIdColumnBase0, medicine_Operation.FindProperty("OperationId")!, medicalCentersDomainEntitiesIntermediateEntitiesMedicine_OperationMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase5, medicine_Operation.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesIntermediateEntitiesMedicine_OperationMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase5, medicine_Operation.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesIntermediateEntitiesMedicine_OperationMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase5, medicine_Operation.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesIntermediateEntitiesMedicine_OperationMappingBase);
 
             var tableMappings5 = new List<TableMapping>();
             medicine_Operation.SetRuntimeAnnotation("Relational:TableMappings", tableMappings5);
@@ -549,13 +549,13 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicine_OperationTable.Columns.Add("MedicineId", medicineIdColumn);
             var operationIdColumn0 = new Column("OperationId", "bigint", medicine_OperationTable);
             medicine_OperationTable.Columns.Add("OperationId", operationIdColumn0);
-            var createdByColumn5 = new Column("CreatedBy", "bigint", medicine_OperationTable);
-            medicine_OperationTable.Columns.Add("CreatedBy", createdByColumn5);
-            var dateTimeCreatedColumn5 = new Column("DateTimeCreated", "datetime2", medicine_OperationTable)
+            var createdAtColumn5 = new Column("CreatedAt", "datetime2", medicine_OperationTable)
             {
                 IsNullable = true
             };
-            medicine_OperationTable.Columns.Add("DateTimeCreated", dateTimeCreatedColumn5);
+            medicine_OperationTable.Columns.Add("CreatedAt", createdAtColumn5);
+            var createdByColumn5 = new Column("CreatedBy", "bigint", medicine_OperationTable);
+            medicine_OperationTable.Columns.Add("CreatedBy", createdByColumn5);
             var pK_Medicine_Operation = new UniqueConstraint("PK_Medicine_Operation", medicine_OperationTable, new[] { medicineIdColumn, operationIdColumn0 });
             medicine_OperationTable.PrimaryKey = pK_Medicine_Operation;
             var pK_Medicine_OperationUc = RelationalModel.GetKey(this,
@@ -578,21 +578,21 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             tableMappings5.Add(medicine_OperationTableMapping);
             RelationalModel.CreateColumnMapping(medicineIdColumn, medicine_Operation.FindProperty("MedicineId")!, medicine_OperationTableMapping);
             RelationalModel.CreateColumnMapping(operationIdColumn0, medicine_Operation.FindProperty("OperationId")!, medicine_OperationTableMapping);
+            RelationalModel.CreateColumnMapping(createdAtColumn5, medicine_Operation.FindProperty("CreatedAt")!, medicine_OperationTableMapping);
             RelationalModel.CreateColumnMapping(createdByColumn5, medicine_Operation.FindProperty("CreatedBy")!, medicine_OperationTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn5, medicine_Operation.FindProperty("DateTimeCreated")!, medicine_OperationTableMapping);
 
             var medicine_PatientHistory = FindEntityType("MedicalCenters.Domain.Entities.IntermediateEntities.Medicine_PatientHistory")!;
 
             var defaultTableMappings6 = new List<TableMappingBase<ColumnMappingBase>>();
             medicine_PatientHistory.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings6);
             var medicalCentersDomainEntitiesIntermediateEntitiesMedicine_PatientHistoryTableBase = new TableBase("MedicalCenters.Domain.Entities.IntermediateEntities.Medicine_PatientHistory", null, relationalModel);
-            var createdByColumnBase6 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesIntermediateEntitiesMedicine_PatientHistoryTableBase);
-            medicalCentersDomainEntitiesIntermediateEntitiesMedicine_PatientHistoryTableBase.Columns.Add("CreatedBy", createdByColumnBase6);
-            var dateTimeCreatedColumnBase6 = new ColumnBase<ColumnMappingBase>("DateTimeCreated", "datetime2", medicalCentersDomainEntitiesIntermediateEntitiesMedicine_PatientHistoryTableBase)
+            var createdAtColumnBase6 = new ColumnBase<ColumnMappingBase>("CreatedAt", "datetime2", medicalCentersDomainEntitiesIntermediateEntitiesMedicine_PatientHistoryTableBase)
             {
                 IsNullable = true
             };
-            medicalCentersDomainEntitiesIntermediateEntitiesMedicine_PatientHistoryTableBase.Columns.Add("DateTimeCreated", dateTimeCreatedColumnBase6);
+            medicalCentersDomainEntitiesIntermediateEntitiesMedicine_PatientHistoryTableBase.Columns.Add("CreatedAt", createdAtColumnBase6);
+            var createdByColumnBase6 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesIntermediateEntitiesMedicine_PatientHistoryTableBase);
+            medicalCentersDomainEntitiesIntermediateEntitiesMedicine_PatientHistoryTableBase.Columns.Add("CreatedBy", createdByColumnBase6);
             var medicineIdColumnBase0 = new ColumnBase<ColumnMappingBase>("MedicineId", "int", medicalCentersDomainEntitiesIntermediateEntitiesMedicine_PatientHistoryTableBase);
             medicalCentersDomainEntitiesIntermediateEntitiesMedicine_PatientHistoryTableBase.Columns.Add("MedicineId", medicineIdColumnBase0);
             var patientHistoryIdColumnBase = new ColumnBase<ColumnMappingBase>("PatientHistoryId", "bigint", medicalCentersDomainEntitiesIntermediateEntitiesMedicine_PatientHistoryTableBase);
@@ -603,8 +603,8 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             defaultTableMappings6.Add(medicalCentersDomainEntitiesIntermediateEntitiesMedicine_PatientHistoryMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)medicineIdColumnBase0, medicine_PatientHistory.FindProperty("MedicineId")!, medicalCentersDomainEntitiesIntermediateEntitiesMedicine_PatientHistoryMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)patientHistoryIdColumnBase, medicine_PatientHistory.FindProperty("PatientHistoryId")!, medicalCentersDomainEntitiesIntermediateEntitiesMedicine_PatientHistoryMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase6, medicine_PatientHistory.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesIntermediateEntitiesMedicine_PatientHistoryMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase6, medicine_PatientHistory.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesIntermediateEntitiesMedicine_PatientHistoryMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase6, medicine_PatientHistory.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesIntermediateEntitiesMedicine_PatientHistoryMappingBase);
 
             var tableMappings6 = new List<TableMapping>();
             medicine_PatientHistory.SetRuntimeAnnotation("Relational:TableMappings", tableMappings6);
@@ -613,13 +613,13 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicine_PatientHistoryTable.Columns.Add("MedicineId", medicineIdColumn0);
             var patientHistoryIdColumn = new Column("PatientHistoryId", "bigint", medicine_PatientHistoryTable);
             medicine_PatientHistoryTable.Columns.Add("PatientHistoryId", patientHistoryIdColumn);
-            var createdByColumn6 = new Column("CreatedBy", "bigint", medicine_PatientHistoryTable);
-            medicine_PatientHistoryTable.Columns.Add("CreatedBy", createdByColumn6);
-            var dateTimeCreatedColumn6 = new Column("DateTimeCreated", "datetime2", medicine_PatientHistoryTable)
+            var createdAtColumn6 = new Column("CreatedAt", "datetime2", medicine_PatientHistoryTable)
             {
                 IsNullable = true
             };
-            medicine_PatientHistoryTable.Columns.Add("DateTimeCreated", dateTimeCreatedColumn6);
+            medicine_PatientHistoryTable.Columns.Add("CreatedAt", createdAtColumn6);
+            var createdByColumn6 = new Column("CreatedBy", "bigint", medicine_PatientHistoryTable);
+            medicine_PatientHistoryTable.Columns.Add("CreatedBy", createdByColumn6);
             var pK_Medicine_PatientHistory = new UniqueConstraint("PK_Medicine_PatientHistory", medicine_PatientHistoryTable, new[] { medicineIdColumn0, patientHistoryIdColumn });
             medicine_PatientHistoryTable.PrimaryKey = pK_Medicine_PatientHistory;
             var pK_Medicine_PatientHistoryUc = RelationalModel.GetKey(this,
@@ -642,8 +642,8 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             tableMappings6.Add(medicine_PatientHistoryTableMapping);
             RelationalModel.CreateColumnMapping(medicineIdColumn0, medicine_PatientHistory.FindProperty("MedicineId")!, medicine_PatientHistoryTableMapping);
             RelationalModel.CreateColumnMapping(patientHistoryIdColumn, medicine_PatientHistory.FindProperty("PatientHistoryId")!, medicine_PatientHistoryTableMapping);
+            RelationalModel.CreateColumnMapping(createdAtColumn6, medicine_PatientHistory.FindProperty("CreatedAt")!, medicine_PatientHistoryTableMapping);
             RelationalModel.CreateColumnMapping(createdByColumn6, medicine_PatientHistory.FindProperty("CreatedBy")!, medicine_PatientHistoryTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn6, medicine_PatientHistory.FindProperty("DateTimeCreated")!, medicine_PatientHistoryTableMapping);
 
             var medicalCenter = FindEntityType("MedicalCenters.Domain.Entities.MedicalCenter")!;
 
@@ -652,18 +652,13 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var medicalCentersDomainEntitiesMedicalCenterTableBase = new TableBase("MedicalCenters.Domain.Entities.MedicalCenter", null, relationalModel);
             var addressColumnBase = new ColumnBase<ColumnMappingBase>("Address", "nvarchar(200)", medicalCentersDomainEntitiesMedicalCenterTableBase);
             medicalCentersDomainEntitiesMedicalCenterTableBase.Columns.Add("Address", addressColumnBase);
+            var createdAtColumnBase7 = new ColumnBase<ColumnMappingBase>("CreatedAt", "datetime2", medicalCentersDomainEntitiesMedicalCenterTableBase)
+            {
+                IsNullable = true
+            };
+            medicalCentersDomainEntitiesMedicalCenterTableBase.Columns.Add("CreatedAt", createdAtColumnBase7);
             var createdByColumnBase7 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesMedicalCenterTableBase);
             medicalCentersDomainEntitiesMedicalCenterTableBase.Columns.Add("CreatedBy", createdByColumnBase7);
-            var dateTimeCreatedColumnBase7 = new ColumnBase<ColumnMappingBase>("DateTimeCreated", "datetime2", medicalCentersDomainEntitiesMedicalCenterTableBase)
-            {
-                IsNullable = true
-            };
-            medicalCentersDomainEntitiesMedicalCenterTableBase.Columns.Add("DateTimeCreated", dateTimeCreatedColumnBase7);
-            var dateTimeModifiedColumnBase0 = new ColumnBase<ColumnMappingBase>("DateTimeModified", "datetime2", medicalCentersDomainEntitiesMedicalCenterTableBase)
-            {
-                IsNullable = true
-            };
-            medicalCentersDomainEntitiesMedicalCenterTableBase.Columns.Add("DateTimeModified", dateTimeModifiedColumnBase0);
             var descriptionColumnBase0 = new ColumnBase<ColumnMappingBase>("Description", "nvarchar(1000)", medicalCentersDomainEntitiesMedicalCenterTableBase);
             medicalCentersDomainEntitiesMedicalCenterTableBase.Columns.Add("Description", descriptionColumnBase0);
             var idColumnBase0 = new ColumnBase<ColumnMappingBase>("Id", "int", medicalCentersDomainEntitiesMedicalCenterTableBase);
@@ -673,6 +668,11 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
                 IsNullable = true
             };
             medicalCentersDomainEntitiesMedicalCenterTableBase.Columns.Add("Location", locationColumnBase);
+            var modifiedAtColumnBase0 = new ColumnBase<ColumnMappingBase>("ModifiedAt", "datetime2", medicalCentersDomainEntitiesMedicalCenterTableBase)
+            {
+                IsNullable = true
+            };
+            medicalCentersDomainEntitiesMedicalCenterTableBase.Columns.Add("ModifiedAt", modifiedAtColumnBase0);
             var modifiedByColumnBase0 = new ColumnBase<ColumnMappingBase>("ModifiedBy", "bigint", medicalCentersDomainEntitiesMedicalCenterTableBase);
             medicalCentersDomainEntitiesMedicalCenterTableBase.Columns.Add("ModifiedBy", modifiedByColumnBase0);
             var nameColumnBase0 = new ColumnBase<ColumnMappingBase>("Name", "nvarchar(70)", medicalCentersDomainEntitiesMedicalCenterTableBase);
@@ -685,11 +685,11 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             defaultTableMappings7.Add(medicalCentersDomainEntitiesMedicalCenterMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase0, medicalCenter.FindProperty("Id")!, medicalCentersDomainEntitiesMedicalCenterMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)addressColumnBase, medicalCenter.FindProperty("Address")!, medicalCentersDomainEntitiesMedicalCenterMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase7, medicalCenter.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesMedicalCenterMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase7, medicalCenter.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesMedicalCenterMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase7, medicalCenter.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesMedicalCenterMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeModifiedColumnBase0, medicalCenter.FindProperty("DateTimeModified")!, medicalCentersDomainEntitiesMedicalCenterMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)descriptionColumnBase0, medicalCenter.FindProperty("Description")!, medicalCentersDomainEntitiesMedicalCenterMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)locationColumnBase, medicalCenter.FindProperty("Location")!, medicalCentersDomainEntitiesMedicalCenterMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedAtColumnBase0, medicalCenter.FindProperty("ModifiedAt")!, medicalCentersDomainEntitiesMedicalCenterMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedByColumnBase0, medicalCenter.FindProperty("ModifiedBy")!, medicalCentersDomainEntitiesMedicalCenterMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)nameColumnBase0, medicalCenter.FindProperty("Name")!, medicalCentersDomainEntitiesMedicalCenterMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)typeIdColumnBase, medicalCenter.FindProperty("TypeId")!, medicalCentersDomainEntitiesMedicalCenterMappingBase);
@@ -701,18 +701,13 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalCenterTable.Columns.Add("Id", idColumn0);
             var addressColumn = new Column("Address", "nvarchar(200)", medicalCenterTable);
             medicalCenterTable.Columns.Add("Address", addressColumn);
+            var createdAtColumn7 = new Column("CreatedAt", "datetime2", medicalCenterTable)
+            {
+                IsNullable = true
+            };
+            medicalCenterTable.Columns.Add("CreatedAt", createdAtColumn7);
             var createdByColumn7 = new Column("CreatedBy", "bigint", medicalCenterTable);
             medicalCenterTable.Columns.Add("CreatedBy", createdByColumn7);
-            var dateTimeCreatedColumn7 = new Column("DateTimeCreated", "datetime2", medicalCenterTable)
-            {
-                IsNullable = true
-            };
-            medicalCenterTable.Columns.Add("DateTimeCreated", dateTimeCreatedColumn7);
-            var dateTimeModifiedColumn0 = new Column("DateTimeModified", "datetime2", medicalCenterTable)
-            {
-                IsNullable = true
-            };
-            medicalCenterTable.Columns.Add("DateTimeModified", dateTimeModifiedColumn0);
             var descriptionColumn0 = new Column("Description", "nvarchar(1000)", medicalCenterTable);
             medicalCenterTable.Columns.Add("Description", descriptionColumn0);
             var locationColumn = new Column("Location", "geography", medicalCenterTable)
@@ -720,6 +715,11 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
                 IsNullable = true
             };
             medicalCenterTable.Columns.Add("Location", locationColumn);
+            var modifiedAtColumn0 = new Column("ModifiedAt", "datetime2", medicalCenterTable)
+            {
+                IsNullable = true
+            };
+            medicalCenterTable.Columns.Add("ModifiedAt", modifiedAtColumn0);
             var modifiedByColumn0 = new Column("ModifiedBy", "bigint", medicalCenterTable);
             medicalCenterTable.Columns.Add("ModifiedBy", modifiedByColumn0);
             var nameColumn0 = new Column("Name", "nvarchar(70)", medicalCenterTable);
@@ -748,11 +748,11 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             tableMappings7.Add(medicalCenterTableMapping);
             RelationalModel.CreateColumnMapping(idColumn0, medicalCenter.FindProperty("Id")!, medicalCenterTableMapping);
             RelationalModel.CreateColumnMapping(addressColumn, medicalCenter.FindProperty("Address")!, medicalCenterTableMapping);
+            RelationalModel.CreateColumnMapping(createdAtColumn7, medicalCenter.FindProperty("CreatedAt")!, medicalCenterTableMapping);
             RelationalModel.CreateColumnMapping(createdByColumn7, medicalCenter.FindProperty("CreatedBy")!, medicalCenterTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn7, medicalCenter.FindProperty("DateTimeCreated")!, medicalCenterTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeModifiedColumn0, medicalCenter.FindProperty("DateTimeModified")!, medicalCenterTableMapping);
             RelationalModel.CreateColumnMapping(descriptionColumn0, medicalCenter.FindProperty("Description")!, medicalCenterTableMapping);
             RelationalModel.CreateColumnMapping(locationColumn, medicalCenter.FindProperty("Location")!, medicalCenterTableMapping);
+            RelationalModel.CreateColumnMapping(modifiedAtColumn0, medicalCenter.FindProperty("ModifiedAt")!, medicalCenterTableMapping);
             RelationalModel.CreateColumnMapping(modifiedByColumn0, medicalCenter.FindProperty("ModifiedBy")!, medicalCenterTableMapping);
             RelationalModel.CreateColumnMapping(nameColumn0, medicalCenter.FindProperty("Name")!, medicalCenterTableMapping);
             RelationalModel.CreateColumnMapping(typeIdColumn, medicalCenter.FindProperty("TypeId")!, medicalCenterTableMapping);
@@ -762,13 +762,13 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var defaultTableMappings8 = new List<TableMappingBase<ColumnMappingBase>>();
             medicalCenterType.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings8);
             var medicalCentersDomainEntitiesMedicalCenter_PartsMedicalCenterTypeTableBase = new TableBase("MedicalCenters.Domain.Entities.MedicalCenter_Parts.MedicalCenterType", null, relationalModel);
-            var createdByColumnBase8 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesMedicalCenter_PartsMedicalCenterTypeTableBase);
-            medicalCentersDomainEntitiesMedicalCenter_PartsMedicalCenterTypeTableBase.Columns.Add("CreatedBy", createdByColumnBase8);
-            var dateTimeCreatedColumnBase8 = new ColumnBase<ColumnMappingBase>("DateTimeCreated", "datetime2", medicalCentersDomainEntitiesMedicalCenter_PartsMedicalCenterTypeTableBase)
+            var createdAtColumnBase8 = new ColumnBase<ColumnMappingBase>("CreatedAt", "datetime2", medicalCentersDomainEntitiesMedicalCenter_PartsMedicalCenterTypeTableBase)
             {
                 IsNullable = true
             };
-            medicalCentersDomainEntitiesMedicalCenter_PartsMedicalCenterTypeTableBase.Columns.Add("DateTimeCreated", dateTimeCreatedColumnBase8);
+            medicalCentersDomainEntitiesMedicalCenter_PartsMedicalCenterTypeTableBase.Columns.Add("CreatedAt", createdAtColumnBase8);
+            var createdByColumnBase8 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesMedicalCenter_PartsMedicalCenterTypeTableBase);
+            medicalCentersDomainEntitiesMedicalCenter_PartsMedicalCenterTypeTableBase.Columns.Add("CreatedBy", createdByColumnBase8);
             var idColumnBase1 = new ColumnBase<ColumnMappingBase>("Id", "int", medicalCentersDomainEntitiesMedicalCenter_PartsMedicalCenterTypeTableBase);
             medicalCentersDomainEntitiesMedicalCenter_PartsMedicalCenterTypeTableBase.Columns.Add("Id", idColumnBase1);
             var nameColumnBase1 = new ColumnBase<ColumnMappingBase>("Name", "nvarchar(70)", medicalCentersDomainEntitiesMedicalCenter_PartsMedicalCenterTypeTableBase);
@@ -778,8 +778,8 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalCentersDomainEntitiesMedicalCenter_PartsMedicalCenterTypeTableBase.AddTypeMapping(medicalCentersDomainEntitiesMedicalCenter_PartsMedicalCenterTypeMappingBase, false);
             defaultTableMappings8.Add(medicalCentersDomainEntitiesMedicalCenter_PartsMedicalCenterTypeMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase1, medicalCenterType.FindProperty("Id")!, medicalCentersDomainEntitiesMedicalCenter_PartsMedicalCenterTypeMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase8, medicalCenterType.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesMedicalCenter_PartsMedicalCenterTypeMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase8, medicalCenterType.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesMedicalCenter_PartsMedicalCenterTypeMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase8, medicalCenterType.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesMedicalCenter_PartsMedicalCenterTypeMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)nameColumnBase1, medicalCenterType.FindProperty("Name")!, medicalCentersDomainEntitiesMedicalCenter_PartsMedicalCenterTypeMappingBase);
 
             var tableMappings8 = new List<TableMapping>();
@@ -787,13 +787,13 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var medicalCenterTypeTable = new Table("MedicalCenterType", null, relationalModel);
             var idColumn1 = new Column("Id", "int", medicalCenterTypeTable);
             medicalCenterTypeTable.Columns.Add("Id", idColumn1);
-            var createdByColumn8 = new Column("CreatedBy", "bigint", medicalCenterTypeTable);
-            medicalCenterTypeTable.Columns.Add("CreatedBy", createdByColumn8);
-            var dateTimeCreatedColumn8 = new Column("DateTimeCreated", "datetime2", medicalCenterTypeTable)
+            var createdAtColumn8 = new Column("CreatedAt", "datetime2", medicalCenterTypeTable)
             {
                 IsNullable = true
             };
-            medicalCenterTypeTable.Columns.Add("DateTimeCreated", dateTimeCreatedColumn8);
+            medicalCenterTypeTable.Columns.Add("CreatedAt", createdAtColumn8);
+            var createdByColumn8 = new Column("CreatedBy", "bigint", medicalCenterTypeTable);
+            medicalCenterTypeTable.Columns.Add("CreatedBy", createdByColumn8);
             var nameColumn1 = new Column("Name", "nvarchar(70)", medicalCenterTypeTable);
             medicalCenterTypeTable.Columns.Add("Name", nameColumn1);
             var pK_MedicalCenterType = new UniqueConstraint("PK_MedicalCenterType", medicalCenterTypeTable, new[] { idColumn1 });
@@ -809,8 +809,8 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalCenterTypeTable.AddTypeMapping(medicalCenterTypeTableMapping, false);
             tableMappings8.Add(medicalCenterTypeTableMapping);
             RelationalModel.CreateColumnMapping(idColumn1, medicalCenterType.FindProperty("Id")!, medicalCenterTypeTableMapping);
+            RelationalModel.CreateColumnMapping(createdAtColumn8, medicalCenterType.FindProperty("CreatedAt")!, medicalCenterTypeTableMapping);
             RelationalModel.CreateColumnMapping(createdByColumn8, medicalCenterType.FindProperty("CreatedBy")!, medicalCenterTypeTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn8, medicalCenterType.FindProperty("DateTimeCreated")!, medicalCenterTypeTableMapping);
             RelationalModel.CreateColumnMapping(nameColumn1, medicalCenterType.FindProperty("Name")!, medicalCenterTypeTableMapping);
 
             var medicalWardType = FindEntityType("MedicalCenters.Domain.Entities.MedicalCenter_Parts.MedicalWardType")!;
@@ -818,13 +818,13 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var defaultTableMappings9 = new List<TableMappingBase<ColumnMappingBase>>();
             medicalWardType.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings9);
             var medicalCentersDomainEntitiesMedicalCenter_PartsMedicalWardTypeTableBase = new TableBase("MedicalCenters.Domain.Entities.MedicalCenter_Parts.MedicalWardType", null, relationalModel);
-            var createdByColumnBase9 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesMedicalCenter_PartsMedicalWardTypeTableBase);
-            medicalCentersDomainEntitiesMedicalCenter_PartsMedicalWardTypeTableBase.Columns.Add("CreatedBy", createdByColumnBase9);
-            var dateTimeCreatedColumnBase9 = new ColumnBase<ColumnMappingBase>("DateTimeCreated", "datetime2", medicalCentersDomainEntitiesMedicalCenter_PartsMedicalWardTypeTableBase)
+            var createdAtColumnBase9 = new ColumnBase<ColumnMappingBase>("CreatedAt", "datetime2", medicalCentersDomainEntitiesMedicalCenter_PartsMedicalWardTypeTableBase)
             {
                 IsNullable = true
             };
-            medicalCentersDomainEntitiesMedicalCenter_PartsMedicalWardTypeTableBase.Columns.Add("DateTimeCreated", dateTimeCreatedColumnBase9);
+            medicalCentersDomainEntitiesMedicalCenter_PartsMedicalWardTypeTableBase.Columns.Add("CreatedAt", createdAtColumnBase9);
+            var createdByColumnBase9 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesMedicalCenter_PartsMedicalWardTypeTableBase);
+            medicalCentersDomainEntitiesMedicalCenter_PartsMedicalWardTypeTableBase.Columns.Add("CreatedBy", createdByColumnBase9);
             var descriptionColumnBase1 = new ColumnBase<ColumnMappingBase>("Description", "nvarchar(1000)", medicalCentersDomainEntitiesMedicalCenter_PartsMedicalWardTypeTableBase)
             {
                 IsNullable = true
@@ -839,8 +839,8 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalCentersDomainEntitiesMedicalCenter_PartsMedicalWardTypeTableBase.AddTypeMapping(medicalCentersDomainEntitiesMedicalCenter_PartsMedicalWardTypeMappingBase, false);
             defaultTableMappings9.Add(medicalCentersDomainEntitiesMedicalCenter_PartsMedicalWardTypeMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase2, medicalWardType.FindProperty("Id")!, medicalCentersDomainEntitiesMedicalCenter_PartsMedicalWardTypeMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase9, medicalWardType.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesMedicalCenter_PartsMedicalWardTypeMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase9, medicalWardType.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesMedicalCenter_PartsMedicalWardTypeMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase9, medicalWardType.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesMedicalCenter_PartsMedicalWardTypeMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)descriptionColumnBase1, medicalWardType.FindProperty("Description")!, medicalCentersDomainEntitiesMedicalCenter_PartsMedicalWardTypeMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)nameColumnBase2, medicalWardType.FindProperty("Name")!, medicalCentersDomainEntitiesMedicalCenter_PartsMedicalWardTypeMappingBase);
 
@@ -849,13 +849,13 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var medicalWardTypeTable = new Table("MedicalWardType", null, relationalModel);
             var idColumn2 = new Column("Id", "int", medicalWardTypeTable);
             medicalWardTypeTable.Columns.Add("Id", idColumn2);
-            var createdByColumn9 = new Column("CreatedBy", "bigint", medicalWardTypeTable);
-            medicalWardTypeTable.Columns.Add("CreatedBy", createdByColumn9);
-            var dateTimeCreatedColumn9 = new Column("DateTimeCreated", "datetime2", medicalWardTypeTable)
+            var createdAtColumn9 = new Column("CreatedAt", "datetime2", medicalWardTypeTable)
             {
                 IsNullable = true
             };
-            medicalWardTypeTable.Columns.Add("DateTimeCreated", dateTimeCreatedColumn9);
+            medicalWardTypeTable.Columns.Add("CreatedAt", createdAtColumn9);
+            var createdByColumn9 = new Column("CreatedBy", "bigint", medicalWardTypeTable);
+            medicalWardTypeTable.Columns.Add("CreatedBy", createdByColumn9);
             var descriptionColumn1 = new Column("Description", "nvarchar(1000)", medicalWardTypeTable)
             {
                 IsNullable = true
@@ -876,8 +876,8 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalWardTypeTable.AddTypeMapping(medicalWardTypeTableMapping, false);
             tableMappings9.Add(medicalWardTypeTableMapping);
             RelationalModel.CreateColumnMapping(idColumn2, medicalWardType.FindProperty("Id")!, medicalWardTypeTableMapping);
+            RelationalModel.CreateColumnMapping(createdAtColumn9, medicalWardType.FindProperty("CreatedAt")!, medicalWardTypeTableMapping);
             RelationalModel.CreateColumnMapping(createdByColumn9, medicalWardType.FindProperty("CreatedBy")!, medicalWardTypeTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn9, medicalWardType.FindProperty("DateTimeCreated")!, medicalWardTypeTableMapping);
             RelationalModel.CreateColumnMapping(descriptionColumn1, medicalWardType.FindProperty("Description")!, medicalWardTypeTableMapping);
             RelationalModel.CreateColumnMapping(nameColumn2, medicalWardType.FindProperty("Name")!, medicalWardTypeTableMapping);
 
@@ -886,22 +886,22 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var defaultTableMappings10 = new List<TableMappingBase<ColumnMappingBase>>();
             medicalUnit.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings10);
             var medicalCentersDomainEntitiesMedicalUnitTableBase = new TableBase("MedicalCenters.Domain.Entities.MedicalUnit", null, relationalModel);
+            var createdAtColumnBase10 = new ColumnBase<ColumnMappingBase>("CreatedAt", "datetime2", medicalCentersDomainEntitiesMedicalUnitTableBase)
+            {
+                IsNullable = true
+            };
+            medicalCentersDomainEntitiesMedicalUnitTableBase.Columns.Add("CreatedAt", createdAtColumnBase10);
             var createdByColumnBase10 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesMedicalUnitTableBase);
             medicalCentersDomainEntitiesMedicalUnitTableBase.Columns.Add("CreatedBy", createdByColumnBase10);
-            var dateTimeCreatedColumnBase10 = new ColumnBase<ColumnMappingBase>("DateTimeCreated", "datetime2", medicalCentersDomainEntitiesMedicalUnitTableBase)
-            {
-                IsNullable = true
-            };
-            medicalCentersDomainEntitiesMedicalUnitTableBase.Columns.Add("DateTimeCreated", dateTimeCreatedColumnBase10);
-            var dateTimeModifiedColumnBase1 = new ColumnBase<ColumnMappingBase>("DateTimeModified", "datetime2", medicalCentersDomainEntitiesMedicalUnitTableBase)
-            {
-                IsNullable = true
-            };
-            medicalCentersDomainEntitiesMedicalUnitTableBase.Columns.Add("DateTimeModified", dateTimeModifiedColumnBase1);
             var descriptionColumnBase2 = new ColumnBase<ColumnMappingBase>("Description", "nvarchar(1000)", medicalCentersDomainEntitiesMedicalUnitTableBase);
             medicalCentersDomainEntitiesMedicalUnitTableBase.Columns.Add("Description", descriptionColumnBase2);
             var idColumnBase3 = new ColumnBase<ColumnMappingBase>("Id", "int", medicalCentersDomainEntitiesMedicalUnitTableBase);
             medicalCentersDomainEntitiesMedicalUnitTableBase.Columns.Add("Id", idColumnBase3);
+            var modifiedAtColumnBase1 = new ColumnBase<ColumnMappingBase>("ModifiedAt", "datetime2", medicalCentersDomainEntitiesMedicalUnitTableBase)
+            {
+                IsNullable = true
+            };
+            medicalCentersDomainEntitiesMedicalUnitTableBase.Columns.Add("ModifiedAt", modifiedAtColumnBase1);
             var modifiedByColumnBase1 = new ColumnBase<ColumnMappingBase>("ModifiedBy", "bigint", medicalCentersDomainEntitiesMedicalUnitTableBase);
             medicalCentersDomainEntitiesMedicalUnitTableBase.Columns.Add("ModifiedBy", modifiedByColumnBase1);
             var nameColumnBase3 = new ColumnBase<ColumnMappingBase>("Name", "nvarchar(70)", medicalCentersDomainEntitiesMedicalUnitTableBase);
@@ -911,10 +911,10 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalCentersDomainEntitiesMedicalUnitTableBase.AddTypeMapping(medicalCentersDomainEntitiesMedicalUnitMappingBase, false);
             defaultTableMappings10.Add(medicalCentersDomainEntitiesMedicalUnitMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase3, medicalUnit.FindProperty("Id")!, medicalCentersDomainEntitiesMedicalUnitMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase10, medicalUnit.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesMedicalUnitMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase10, medicalUnit.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesMedicalUnitMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase10, medicalUnit.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesMedicalUnitMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeModifiedColumnBase1, medicalUnit.FindProperty("DateTimeModified")!, medicalCentersDomainEntitiesMedicalUnitMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)descriptionColumnBase2, medicalUnit.FindProperty("Description")!, medicalCentersDomainEntitiesMedicalUnitMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedAtColumnBase1, medicalUnit.FindProperty("ModifiedAt")!, medicalCentersDomainEntitiesMedicalUnitMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedByColumnBase1, medicalUnit.FindProperty("ModifiedBy")!, medicalCentersDomainEntitiesMedicalUnitMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)nameColumnBase3, medicalUnit.FindProperty("Name")!, medicalCentersDomainEntitiesMedicalUnitMappingBase);
 
@@ -923,20 +923,20 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var medicalUnitTable = new Table("MedicalUnit", null, relationalModel);
             var idColumn3 = new Column("Id", "int", medicalUnitTable);
             medicalUnitTable.Columns.Add("Id", idColumn3);
+            var createdAtColumn10 = new Column("CreatedAt", "datetime2", medicalUnitTable)
+            {
+                IsNullable = true
+            };
+            medicalUnitTable.Columns.Add("CreatedAt", createdAtColumn10);
             var createdByColumn10 = new Column("CreatedBy", "bigint", medicalUnitTable);
             medicalUnitTable.Columns.Add("CreatedBy", createdByColumn10);
-            var dateTimeCreatedColumn10 = new Column("DateTimeCreated", "datetime2", medicalUnitTable)
-            {
-                IsNullable = true
-            };
-            medicalUnitTable.Columns.Add("DateTimeCreated", dateTimeCreatedColumn10);
-            var dateTimeModifiedColumn1 = new Column("DateTimeModified", "datetime2", medicalUnitTable)
-            {
-                IsNullable = true
-            };
-            medicalUnitTable.Columns.Add("DateTimeModified", dateTimeModifiedColumn1);
             var descriptionColumn2 = new Column("Description", "nvarchar(1000)", medicalUnitTable);
             medicalUnitTable.Columns.Add("Description", descriptionColumn2);
+            var modifiedAtColumn1 = new Column("ModifiedAt", "datetime2", medicalUnitTable)
+            {
+                IsNullable = true
+            };
+            medicalUnitTable.Columns.Add("ModifiedAt", modifiedAtColumn1);
             var modifiedByColumn1 = new Column("ModifiedBy", "bigint", medicalUnitTable);
             medicalUnitTable.Columns.Add("ModifiedBy", modifiedByColumn1);
             var nameColumn3 = new Column("Name", "nvarchar(70)", medicalUnitTable);
@@ -954,10 +954,10 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalUnitTable.AddTypeMapping(medicalUnitTableMapping, false);
             tableMappings10.Add(medicalUnitTableMapping);
             RelationalModel.CreateColumnMapping(idColumn3, medicalUnit.FindProperty("Id")!, medicalUnitTableMapping);
+            RelationalModel.CreateColumnMapping(createdAtColumn10, medicalUnit.FindProperty("CreatedAt")!, medicalUnitTableMapping);
             RelationalModel.CreateColumnMapping(createdByColumn10, medicalUnit.FindProperty("CreatedBy")!, medicalUnitTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn10, medicalUnit.FindProperty("DateTimeCreated")!, medicalUnitTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeModifiedColumn1, medicalUnit.FindProperty("DateTimeModified")!, medicalUnitTableMapping);
             RelationalModel.CreateColumnMapping(descriptionColumn2, medicalUnit.FindProperty("Description")!, medicalUnitTableMapping);
+            RelationalModel.CreateColumnMapping(modifiedAtColumn1, medicalUnit.FindProperty("ModifiedAt")!, medicalUnitTableMapping);
             RelationalModel.CreateColumnMapping(modifiedByColumn1, medicalUnit.FindProperty("ModifiedBy")!, medicalUnitTableMapping);
             RelationalModel.CreateColumnMapping(nameColumn3, medicalUnit.FindProperty("Name")!, medicalUnitTableMapping);
 
@@ -966,24 +966,24 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var defaultTableMappings11 = new List<TableMappingBase<ColumnMappingBase>>();
             medicalWard.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings11);
             var medicalCentersDomainEntitiesMedicalWardTableBase = new TableBase("MedicalCenters.Domain.Entities.MedicalWard", null, relationalModel);
+            var createdAtColumnBase11 = new ColumnBase<ColumnMappingBase>("CreatedAt", "datetime2", medicalCentersDomainEntitiesMedicalWardTableBase)
+            {
+                IsNullable = true
+            };
+            medicalCentersDomainEntitiesMedicalWardTableBase.Columns.Add("CreatedAt", createdAtColumnBase11);
             var createdByColumnBase11 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesMedicalWardTableBase);
             medicalCentersDomainEntitiesMedicalWardTableBase.Columns.Add("CreatedBy", createdByColumnBase11);
-            var dateTimeCreatedColumnBase11 = new ColumnBase<ColumnMappingBase>("DateTimeCreated", "datetime2", medicalCentersDomainEntitiesMedicalWardTableBase)
-            {
-                IsNullable = true
-            };
-            medicalCentersDomainEntitiesMedicalWardTableBase.Columns.Add("DateTimeCreated", dateTimeCreatedColumnBase11);
-            var dateTimeModifiedColumnBase2 = new ColumnBase<ColumnMappingBase>("DateTimeModified", "datetime2", medicalCentersDomainEntitiesMedicalWardTableBase)
-            {
-                IsNullable = true
-            };
-            medicalCentersDomainEntitiesMedicalWardTableBase.Columns.Add("DateTimeModified", dateTimeModifiedColumnBase2);
             var descriptionColumnBase3 = new ColumnBase<ColumnMappingBase>("Description", "nvarchar(1000)", medicalCentersDomainEntitiesMedicalWardTableBase);
             medicalCentersDomainEntitiesMedicalWardTableBase.Columns.Add("Description", descriptionColumnBase3);
             var idColumnBase4 = new ColumnBase<ColumnMappingBase>("Id", "int", medicalCentersDomainEntitiesMedicalWardTableBase);
             medicalCentersDomainEntitiesMedicalWardTableBase.Columns.Add("Id", idColumnBase4);
             var medicalCenterIdColumnBase = new ColumnBase<ColumnMappingBase>("MedicalCenterId", "int", medicalCentersDomainEntitiesMedicalWardTableBase);
             medicalCentersDomainEntitiesMedicalWardTableBase.Columns.Add("MedicalCenterId", medicalCenterIdColumnBase);
+            var modifiedAtColumnBase2 = new ColumnBase<ColumnMappingBase>("ModifiedAt", "datetime2", medicalCentersDomainEntitiesMedicalWardTableBase)
+            {
+                IsNullable = true
+            };
+            medicalCentersDomainEntitiesMedicalWardTableBase.Columns.Add("ModifiedAt", modifiedAtColumnBase2);
             var modifiedByColumnBase2 = new ColumnBase<ColumnMappingBase>("ModifiedBy", "bigint", medicalCentersDomainEntitiesMedicalWardTableBase);
             medicalCentersDomainEntitiesMedicalWardTableBase.Columns.Add("ModifiedBy", modifiedByColumnBase2);
             var nameColumnBase4 = new ColumnBase<ColumnMappingBase>("Name", "nvarchar(70)", medicalCentersDomainEntitiesMedicalWardTableBase);
@@ -995,11 +995,11 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalCentersDomainEntitiesMedicalWardTableBase.AddTypeMapping(medicalCentersDomainEntitiesMedicalWardMappingBase, false);
             defaultTableMappings11.Add(medicalCentersDomainEntitiesMedicalWardMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase4, medicalWard.FindProperty("Id")!, medicalCentersDomainEntitiesMedicalWardMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase11, medicalWard.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesMedicalWardMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase11, medicalWard.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesMedicalWardMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase11, medicalWard.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesMedicalWardMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeModifiedColumnBase2, medicalWard.FindProperty("DateTimeModified")!, medicalCentersDomainEntitiesMedicalWardMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)descriptionColumnBase3, medicalWard.FindProperty("Description")!, medicalCentersDomainEntitiesMedicalWardMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)medicalCenterIdColumnBase, medicalWard.FindProperty("MedicalCenterId")!, medicalCentersDomainEntitiesMedicalWardMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedAtColumnBase2, medicalWard.FindProperty("ModifiedAt")!, medicalCentersDomainEntitiesMedicalWardMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedByColumnBase2, medicalWard.FindProperty("ModifiedBy")!, medicalCentersDomainEntitiesMedicalWardMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)nameColumnBase4, medicalWard.FindProperty("Name")!, medicalCentersDomainEntitiesMedicalWardMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)typeIdColumnBase0, medicalWard.FindProperty("TypeId")!, medicalCentersDomainEntitiesMedicalWardMappingBase);
@@ -1009,22 +1009,22 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var medicalWardTable = new Table("MedicalWard", null, relationalModel);
             var idColumn4 = new Column("Id", "int", medicalWardTable);
             medicalWardTable.Columns.Add("Id", idColumn4);
+            var createdAtColumn11 = new Column("CreatedAt", "datetime2", medicalWardTable)
+            {
+                IsNullable = true
+            };
+            medicalWardTable.Columns.Add("CreatedAt", createdAtColumn11);
             var createdByColumn11 = new Column("CreatedBy", "bigint", medicalWardTable);
             medicalWardTable.Columns.Add("CreatedBy", createdByColumn11);
-            var dateTimeCreatedColumn11 = new Column("DateTimeCreated", "datetime2", medicalWardTable)
-            {
-                IsNullable = true
-            };
-            medicalWardTable.Columns.Add("DateTimeCreated", dateTimeCreatedColumn11);
-            var dateTimeModifiedColumn2 = new Column("DateTimeModified", "datetime2", medicalWardTable)
-            {
-                IsNullable = true
-            };
-            medicalWardTable.Columns.Add("DateTimeModified", dateTimeModifiedColumn2);
             var descriptionColumn3 = new Column("Description", "nvarchar(1000)", medicalWardTable);
             medicalWardTable.Columns.Add("Description", descriptionColumn3);
             var medicalCenterIdColumn = new Column("MedicalCenterId", "int", medicalWardTable);
             medicalWardTable.Columns.Add("MedicalCenterId", medicalCenterIdColumn);
+            var modifiedAtColumn2 = new Column("ModifiedAt", "datetime2", medicalWardTable)
+            {
+                IsNullable = true
+            };
+            medicalWardTable.Columns.Add("ModifiedAt", modifiedAtColumn2);
             var modifiedByColumn2 = new Column("ModifiedBy", "bigint", medicalWardTable);
             medicalWardTable.Columns.Add("ModifiedBy", modifiedByColumn2);
             var nameColumn4 = new Column("Name", "nvarchar(70)", medicalWardTable);
@@ -1060,11 +1060,11 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalWardTable.AddTypeMapping(medicalWardTableMapping, false);
             tableMappings11.Add(medicalWardTableMapping);
             RelationalModel.CreateColumnMapping(idColumn4, medicalWard.FindProperty("Id")!, medicalWardTableMapping);
+            RelationalModel.CreateColumnMapping(createdAtColumn11, medicalWard.FindProperty("CreatedAt")!, medicalWardTableMapping);
             RelationalModel.CreateColumnMapping(createdByColumn11, medicalWard.FindProperty("CreatedBy")!, medicalWardTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn11, medicalWard.FindProperty("DateTimeCreated")!, medicalWardTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeModifiedColumn2, medicalWard.FindProperty("DateTimeModified")!, medicalWardTableMapping);
             RelationalModel.CreateColumnMapping(descriptionColumn3, medicalWard.FindProperty("Description")!, medicalWardTableMapping);
             RelationalModel.CreateColumnMapping(medicalCenterIdColumn, medicalWard.FindProperty("MedicalCenterId")!, medicalWardTableMapping);
+            RelationalModel.CreateColumnMapping(modifiedAtColumn2, medicalWard.FindProperty("ModifiedAt")!, medicalWardTableMapping);
             RelationalModel.CreateColumnMapping(modifiedByColumn2, medicalWard.FindProperty("ModifiedBy")!, medicalWardTableMapping);
             RelationalModel.CreateColumnMapping(nameColumn4, medicalWard.FindProperty("Name")!, medicalWardTableMapping);
             RelationalModel.CreateColumnMapping(typeIdColumn0, medicalWard.FindProperty("TypeId")!, medicalWardTableMapping);
@@ -1074,20 +1074,20 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var defaultTableMappings12 = new List<TableMappingBase<ColumnMappingBase>>();
             medicine.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings12);
             var medicalCentersDomainEntitiesMedicinesMedicineTableBase = new TableBase("MedicalCenters.Domain.Entities.Medicines.Medicine", null, relationalModel);
+            var createdAtColumnBase12 = new ColumnBase<ColumnMappingBase>("CreatedAt", "datetime2", medicalCentersDomainEntitiesMedicinesMedicineTableBase)
+            {
+                IsNullable = true
+            };
+            medicalCentersDomainEntitiesMedicinesMedicineTableBase.Columns.Add("CreatedAt", createdAtColumnBase12);
             var createdByColumnBase12 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesMedicinesMedicineTableBase);
             medicalCentersDomainEntitiesMedicinesMedicineTableBase.Columns.Add("CreatedBy", createdByColumnBase12);
-            var dateTimeCreatedColumnBase12 = new ColumnBase<ColumnMappingBase>("DateTimeCreated", "datetime2", medicalCentersDomainEntitiesMedicinesMedicineTableBase)
-            {
-                IsNullable = true
-            };
-            medicalCentersDomainEntitiesMedicinesMedicineTableBase.Columns.Add("DateTimeCreated", dateTimeCreatedColumnBase12);
-            var dateTimeModifiedColumnBase3 = new ColumnBase<ColumnMappingBase>("DateTimeModified", "datetime2", medicalCentersDomainEntitiesMedicinesMedicineTableBase)
-            {
-                IsNullable = true
-            };
-            medicalCentersDomainEntitiesMedicinesMedicineTableBase.Columns.Add("DateTimeModified", dateTimeModifiedColumnBase3);
             var idColumnBase5 = new ColumnBase<ColumnMappingBase>("Id", "int", medicalCentersDomainEntitiesMedicinesMedicineTableBase);
             medicalCentersDomainEntitiesMedicinesMedicineTableBase.Columns.Add("Id", idColumnBase5);
+            var modifiedAtColumnBase3 = new ColumnBase<ColumnMappingBase>("ModifiedAt", "datetime2", medicalCentersDomainEntitiesMedicinesMedicineTableBase)
+            {
+                IsNullable = true
+            };
+            medicalCentersDomainEntitiesMedicinesMedicineTableBase.Columns.Add("ModifiedAt", modifiedAtColumnBase3);
             var modifiedByColumnBase3 = new ColumnBase<ColumnMappingBase>("ModifiedBy", "bigint", medicalCentersDomainEntitiesMedicinesMedicineTableBase);
             medicalCentersDomainEntitiesMedicinesMedicineTableBase.Columns.Add("ModifiedBy", modifiedByColumnBase3);
             var nameColumnBase5 = new ColumnBase<ColumnMappingBase>("Name", "nvarchar(100)", medicalCentersDomainEntitiesMedicinesMedicineTableBase);
@@ -1099,9 +1099,9 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalCentersDomainEntitiesMedicinesMedicineTableBase.AddTypeMapping(medicalCentersDomainEntitiesMedicinesMedicineMappingBase, false);
             defaultTableMappings12.Add(medicalCentersDomainEntitiesMedicinesMedicineMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase5, medicine.FindProperty("Id")!, medicalCentersDomainEntitiesMedicinesMedicineMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase12, medicine.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesMedicinesMedicineMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase12, medicine.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesMedicinesMedicineMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase12, medicine.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesMedicinesMedicineMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeModifiedColumnBase3, medicine.FindProperty("DateTimeModified")!, medicalCentersDomainEntitiesMedicinesMedicineMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedAtColumnBase3, medicine.FindProperty("ModifiedAt")!, medicalCentersDomainEntitiesMedicinesMedicineMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedByColumnBase3, medicine.FindProperty("ModifiedBy")!, medicalCentersDomainEntitiesMedicinesMedicineMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)nameColumnBase5, medicine.FindProperty("Name")!, medicalCentersDomainEntitiesMedicinesMedicineMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)typeIdColumnBase1, medicine.FindProperty("TypeId")!, medicalCentersDomainEntitiesMedicinesMedicineMappingBase);
@@ -1111,18 +1111,18 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var medicineTable = new Table("Medicine", null, relationalModel);
             var idColumn5 = new Column("Id", "int", medicineTable);
             medicineTable.Columns.Add("Id", idColumn5);
+            var createdAtColumn12 = new Column("CreatedAt", "datetime2", medicineTable)
+            {
+                IsNullable = true
+            };
+            medicineTable.Columns.Add("CreatedAt", createdAtColumn12);
             var createdByColumn12 = new Column("CreatedBy", "bigint", medicineTable);
             medicineTable.Columns.Add("CreatedBy", createdByColumn12);
-            var dateTimeCreatedColumn12 = new Column("DateTimeCreated", "datetime2", medicineTable)
+            var modifiedAtColumn3 = new Column("ModifiedAt", "datetime2", medicineTable)
             {
                 IsNullable = true
             };
-            medicineTable.Columns.Add("DateTimeCreated", dateTimeCreatedColumn12);
-            var dateTimeModifiedColumn3 = new Column("DateTimeModified", "datetime2", medicineTable)
-            {
-                IsNullable = true
-            };
-            medicineTable.Columns.Add("DateTimeModified", dateTimeModifiedColumn3);
+            medicineTable.Columns.Add("ModifiedAt", modifiedAtColumn3);
             var modifiedByColumn3 = new Column("ModifiedBy", "bigint", medicineTable);
             medicineTable.Columns.Add("ModifiedBy", modifiedByColumn3);
             var nameColumn5 = new Column("Name", "nvarchar(100)", medicineTable);
@@ -1150,9 +1150,9 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicineTable.AddTypeMapping(medicineTableMapping, false);
             tableMappings12.Add(medicineTableMapping);
             RelationalModel.CreateColumnMapping(idColumn5, medicine.FindProperty("Id")!, medicineTableMapping);
+            RelationalModel.CreateColumnMapping(createdAtColumn12, medicine.FindProperty("CreatedAt")!, medicineTableMapping);
             RelationalModel.CreateColumnMapping(createdByColumn12, medicine.FindProperty("CreatedBy")!, medicineTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn12, medicine.FindProperty("DateTimeCreated")!, medicineTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeModifiedColumn3, medicine.FindProperty("DateTimeModified")!, medicineTableMapping);
+            RelationalModel.CreateColumnMapping(modifiedAtColumn3, medicine.FindProperty("ModifiedAt")!, medicineTableMapping);
             RelationalModel.CreateColumnMapping(modifiedByColumn3, medicine.FindProperty("ModifiedBy")!, medicineTableMapping);
             RelationalModel.CreateColumnMapping(nameColumn5, medicine.FindProperty("Name")!, medicineTableMapping);
             RelationalModel.CreateColumnMapping(typeIdColumn1, medicine.FindProperty("TypeId")!, medicineTableMapping);
@@ -1162,13 +1162,13 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var defaultTableMappings13 = new List<TableMappingBase<ColumnMappingBase>>();
             medicineType.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings13);
             var medicalCentersDomainEntitiesMedicinesMedicineTypeTableBase = new TableBase("MedicalCenters.Domain.Entities.Medicines.MedicineType", null, relationalModel);
-            var createdByColumnBase13 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesMedicinesMedicineTypeTableBase);
-            medicalCentersDomainEntitiesMedicinesMedicineTypeTableBase.Columns.Add("CreatedBy", createdByColumnBase13);
-            var dateTimeCreatedColumnBase13 = new ColumnBase<ColumnMappingBase>("DateTimeCreated", "datetime2", medicalCentersDomainEntitiesMedicinesMedicineTypeTableBase)
+            var createdAtColumnBase13 = new ColumnBase<ColumnMappingBase>("CreatedAt", "datetime2", medicalCentersDomainEntitiesMedicinesMedicineTypeTableBase)
             {
                 IsNullable = true
             };
-            medicalCentersDomainEntitiesMedicinesMedicineTypeTableBase.Columns.Add("DateTimeCreated", dateTimeCreatedColumnBase13);
+            medicalCentersDomainEntitiesMedicinesMedicineTypeTableBase.Columns.Add("CreatedAt", createdAtColumnBase13);
+            var createdByColumnBase13 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesMedicinesMedicineTypeTableBase);
+            medicalCentersDomainEntitiesMedicinesMedicineTypeTableBase.Columns.Add("CreatedBy", createdByColumnBase13);
             var descriptionColumnBase4 = new ColumnBase<ColumnMappingBase>("Description", "nvarchar(1000)", medicalCentersDomainEntitiesMedicinesMedicineTypeTableBase);
             medicalCentersDomainEntitiesMedicinesMedicineTypeTableBase.Columns.Add("Description", descriptionColumnBase4);
             var idColumnBase6 = new ColumnBase<ColumnMappingBase>("Id", "int", medicalCentersDomainEntitiesMedicinesMedicineTypeTableBase);
@@ -1180,8 +1180,8 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalCentersDomainEntitiesMedicinesMedicineTypeTableBase.AddTypeMapping(medicalCentersDomainEntitiesMedicinesMedicineTypeMappingBase, false);
             defaultTableMappings13.Add(medicalCentersDomainEntitiesMedicinesMedicineTypeMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase6, medicineType.FindProperty("Id")!, medicalCentersDomainEntitiesMedicinesMedicineTypeMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase13, medicineType.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesMedicinesMedicineTypeMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase13, medicineType.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesMedicinesMedicineTypeMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase13, medicineType.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesMedicinesMedicineTypeMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)descriptionColumnBase4, medicineType.FindProperty("Description")!, medicalCentersDomainEntitiesMedicinesMedicineTypeMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)nameColumnBase6, medicineType.FindProperty("Name")!, medicalCentersDomainEntitiesMedicinesMedicineTypeMappingBase);
 
@@ -1190,13 +1190,13 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var medicineTypeTable = new Table("MedicineType", null, relationalModel);
             var idColumn6 = new Column("Id", "int", medicineTypeTable);
             medicineTypeTable.Columns.Add("Id", idColumn6);
-            var createdByColumn13 = new Column("CreatedBy", "bigint", medicineTypeTable);
-            medicineTypeTable.Columns.Add("CreatedBy", createdByColumn13);
-            var dateTimeCreatedColumn13 = new Column("DateTimeCreated", "datetime2", medicineTypeTable)
+            var createdAtColumn13 = new Column("CreatedAt", "datetime2", medicineTypeTable)
             {
                 IsNullable = true
             };
-            medicineTypeTable.Columns.Add("DateTimeCreated", dateTimeCreatedColumn13);
+            medicineTypeTable.Columns.Add("CreatedAt", createdAtColumn13);
+            var createdByColumn13 = new Column("CreatedBy", "bigint", medicineTypeTable);
+            medicineTypeTable.Columns.Add("CreatedBy", createdByColumn13);
             var descriptionColumn4 = new Column("Description", "nvarchar(1000)", medicineTypeTable);
             medicineTypeTable.Columns.Add("Description", descriptionColumn4);
             var nameColumn6 = new Column("Name", "nvarchar(100)", medicineTypeTable);
@@ -1214,8 +1214,8 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicineTypeTable.AddTypeMapping(medicineTypeTableMapping, false);
             tableMappings13.Add(medicineTypeTableMapping);
             RelationalModel.CreateColumnMapping(idColumn6, medicineType.FindProperty("Id")!, medicineTypeTableMapping);
+            RelationalModel.CreateColumnMapping(createdAtColumn13, medicineType.FindProperty("CreatedAt")!, medicineTypeTableMapping);
             RelationalModel.CreateColumnMapping(createdByColumn13, medicineType.FindProperty("CreatedBy")!, medicineTypeTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn13, medicineType.FindProperty("DateTimeCreated")!, medicineTypeTableMapping);
             RelationalModel.CreateColumnMapping(descriptionColumn4, medicineType.FindProperty("Description")!, medicineTypeTableMapping);
             RelationalModel.CreateColumnMapping(nameColumn6, medicineType.FindProperty("Name")!, medicineTypeTableMapping);
 
@@ -1224,20 +1224,20 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var defaultTableMappings14 = new List<TableMappingBase<ColumnMappingBase>>();
             operation.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings14);
             var medicalCentersDomainEntitiesOprerationsOperationTableBase = new TableBase("MedicalCenters.Domain.Entities.Oprerations.Operation", null, relationalModel);
+            var createdAtColumnBase14 = new ColumnBase<ColumnMappingBase>("CreatedAt", "datetime2", medicalCentersDomainEntitiesOprerationsOperationTableBase)
+            {
+                IsNullable = true
+            };
+            medicalCentersDomainEntitiesOprerationsOperationTableBase.Columns.Add("CreatedAt", createdAtColumnBase14);
             var createdByColumnBase14 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesOprerationsOperationTableBase);
             medicalCentersDomainEntitiesOprerationsOperationTableBase.Columns.Add("CreatedBy", createdByColumnBase14);
-            var dateTimeCreatedColumnBase14 = new ColumnBase<ColumnMappingBase>("DateTimeCreated", "datetime2", medicalCentersDomainEntitiesOprerationsOperationTableBase)
-            {
-                IsNullable = true
-            };
-            medicalCentersDomainEntitiesOprerationsOperationTableBase.Columns.Add("DateTimeCreated", dateTimeCreatedColumnBase14);
-            var dateTimeModifiedColumnBase4 = new ColumnBase<ColumnMappingBase>("DateTimeModified", "datetime2", medicalCentersDomainEntitiesOprerationsOperationTableBase)
-            {
-                IsNullable = true
-            };
-            medicalCentersDomainEntitiesOprerationsOperationTableBase.Columns.Add("DateTimeModified", dateTimeModifiedColumnBase4);
             var idColumnBase7 = new ColumnBase<ColumnMappingBase>("Id", "bigint", medicalCentersDomainEntitiesOprerationsOperationTableBase);
             medicalCentersDomainEntitiesOprerationsOperationTableBase.Columns.Add("Id", idColumnBase7);
+            var modifiedAtColumnBase4 = new ColumnBase<ColumnMappingBase>("ModifiedAt", "datetime2", medicalCentersDomainEntitiesOprerationsOperationTableBase)
+            {
+                IsNullable = true
+            };
+            medicalCentersDomainEntitiesOprerationsOperationTableBase.Columns.Add("ModifiedAt", modifiedAtColumnBase4);
             var modifiedByColumnBase4 = new ColumnBase<ColumnMappingBase>("ModifiedBy", "bigint", medicalCentersDomainEntitiesOprerationsOperationTableBase);
             medicalCentersDomainEntitiesOprerationsOperationTableBase.Columns.Add("ModifiedBy", modifiedByColumnBase4);
             var operationDTColumnBase = new ColumnBase<ColumnMappingBase>("OperationDT", "datetime2", medicalCentersDomainEntitiesOprerationsOperationTableBase);
@@ -1249,9 +1249,9 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalCentersDomainEntitiesOprerationsOperationTableBase.AddTypeMapping(medicalCentersDomainEntitiesOprerationsOperationMappingBase, false);
             defaultTableMappings14.Add(medicalCentersDomainEntitiesOprerationsOperationMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase7, operation.FindProperty("Id")!, medicalCentersDomainEntitiesOprerationsOperationMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase14, operation.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesOprerationsOperationMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase14, operation.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesOprerationsOperationMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase14, operation.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesOprerationsOperationMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeModifiedColumnBase4, operation.FindProperty("DateTimeModified")!, medicalCentersDomainEntitiesOprerationsOperationMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedAtColumnBase4, operation.FindProperty("ModifiedAt")!, medicalCentersDomainEntitiesOprerationsOperationMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedByColumnBase4, operation.FindProperty("ModifiedBy")!, medicalCentersDomainEntitiesOprerationsOperationMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)operationDTColumnBase, operation.FindProperty("OperationDT")!, medicalCentersDomainEntitiesOprerationsOperationMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)operationTypeIdColumnBase, operation.FindProperty("OperationTypeId")!, medicalCentersDomainEntitiesOprerationsOperationMappingBase);
@@ -1261,18 +1261,18 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var operationTable = new Table("Operation", null, relationalModel);
             var idColumn7 = new Column("Id", "bigint", operationTable);
             operationTable.Columns.Add("Id", idColumn7);
+            var createdAtColumn14 = new Column("CreatedAt", "datetime2", operationTable)
+            {
+                IsNullable = true
+            };
+            operationTable.Columns.Add("CreatedAt", createdAtColumn14);
             var createdByColumn14 = new Column("CreatedBy", "bigint", operationTable);
             operationTable.Columns.Add("CreatedBy", createdByColumn14);
-            var dateTimeCreatedColumn14 = new Column("DateTimeCreated", "datetime2", operationTable)
+            var modifiedAtColumn4 = new Column("ModifiedAt", "datetime2", operationTable)
             {
                 IsNullable = true
             };
-            operationTable.Columns.Add("DateTimeCreated", dateTimeCreatedColumn14);
-            var dateTimeModifiedColumn4 = new Column("DateTimeModified", "datetime2", operationTable)
-            {
-                IsNullable = true
-            };
-            operationTable.Columns.Add("DateTimeModified", dateTimeModifiedColumn4);
+            operationTable.Columns.Add("ModifiedAt", modifiedAtColumn4);
             var modifiedByColumn4 = new Column("ModifiedBy", "bigint", operationTable);
             operationTable.Columns.Add("ModifiedBy", modifiedByColumn4);
             var operationDTColumn = new Column("OperationDT", "datetime2", operationTable);
@@ -1300,9 +1300,9 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             operationTable.AddTypeMapping(operationTableMapping, false);
             tableMappings14.Add(operationTableMapping);
             RelationalModel.CreateColumnMapping(idColumn7, operation.FindProperty("Id")!, operationTableMapping);
+            RelationalModel.CreateColumnMapping(createdAtColumn14, operation.FindProperty("CreatedAt")!, operationTableMapping);
             RelationalModel.CreateColumnMapping(createdByColumn14, operation.FindProperty("CreatedBy")!, operationTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn14, operation.FindProperty("DateTimeCreated")!, operationTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeModifiedColumn4, operation.FindProperty("DateTimeModified")!, operationTableMapping);
+            RelationalModel.CreateColumnMapping(modifiedAtColumn4, operation.FindProperty("ModifiedAt")!, operationTableMapping);
             RelationalModel.CreateColumnMapping(modifiedByColumn4, operation.FindProperty("ModifiedBy")!, operationTableMapping);
             RelationalModel.CreateColumnMapping(operationDTColumn, operation.FindProperty("OperationDT")!, operationTableMapping);
             RelationalModel.CreateColumnMapping(operationTypeIdColumn, operation.FindProperty("OperationTypeId")!, operationTableMapping);
@@ -1312,13 +1312,13 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var defaultTableMappings15 = new List<TableMappingBase<ColumnMappingBase>>();
             operationType.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings15);
             var medicalCentersDomainEntitiesOprerationsOperationTypeTableBase = new TableBase("MedicalCenters.Domain.Entities.Oprerations.OperationType", null, relationalModel);
-            var createdByColumnBase15 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesOprerationsOperationTypeTableBase);
-            medicalCentersDomainEntitiesOprerationsOperationTypeTableBase.Columns.Add("CreatedBy", createdByColumnBase15);
-            var dateTimeCreatedColumnBase15 = new ColumnBase<ColumnMappingBase>("DateTimeCreated", "datetime2", medicalCentersDomainEntitiesOprerationsOperationTypeTableBase)
+            var createdAtColumnBase15 = new ColumnBase<ColumnMappingBase>("CreatedAt", "datetime2", medicalCentersDomainEntitiesOprerationsOperationTypeTableBase)
             {
                 IsNullable = true
             };
-            medicalCentersDomainEntitiesOprerationsOperationTypeTableBase.Columns.Add("DateTimeCreated", dateTimeCreatedColumnBase15);
+            medicalCentersDomainEntitiesOprerationsOperationTypeTableBase.Columns.Add("CreatedAt", createdAtColumnBase15);
+            var createdByColumnBase15 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesOprerationsOperationTypeTableBase);
+            medicalCentersDomainEntitiesOprerationsOperationTypeTableBase.Columns.Add("CreatedBy", createdByColumnBase15);
             var descriptionColumnBase5 = new ColumnBase<ColumnMappingBase>("Description", "nvarchar(1000)", medicalCentersDomainEntitiesOprerationsOperationTypeTableBase);
             medicalCentersDomainEntitiesOprerationsOperationTypeTableBase.Columns.Add("Description", descriptionColumnBase5);
             var idColumnBase8 = new ColumnBase<ColumnMappingBase>("Id", "int", medicalCentersDomainEntitiesOprerationsOperationTypeTableBase);
@@ -1330,8 +1330,8 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalCentersDomainEntitiesOprerationsOperationTypeTableBase.AddTypeMapping(medicalCentersDomainEntitiesOprerationsOperationTypeMappingBase, false);
             defaultTableMappings15.Add(medicalCentersDomainEntitiesOprerationsOperationTypeMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase8, operationType.FindProperty("Id")!, medicalCentersDomainEntitiesOprerationsOperationTypeMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase15, operationType.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesOprerationsOperationTypeMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase15, operationType.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesOprerationsOperationTypeMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase15, operationType.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesOprerationsOperationTypeMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)descriptionColumnBase5, operationType.FindProperty("Description")!, medicalCentersDomainEntitiesOprerationsOperationTypeMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)nameColumnBase7, operationType.FindProperty("Name")!, medicalCentersDomainEntitiesOprerationsOperationTypeMappingBase);
 
@@ -1340,13 +1340,13 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var operationTypeTable = new Table("OperationType", null, relationalModel);
             var idColumn8 = new Column("Id", "int", operationTypeTable);
             operationTypeTable.Columns.Add("Id", idColumn8);
-            var createdByColumn15 = new Column("CreatedBy", "bigint", operationTypeTable);
-            operationTypeTable.Columns.Add("CreatedBy", createdByColumn15);
-            var dateTimeCreatedColumn15 = new Column("DateTimeCreated", "datetime2", operationTypeTable)
+            var createdAtColumn15 = new Column("CreatedAt", "datetime2", operationTypeTable)
             {
                 IsNullable = true
             };
-            operationTypeTable.Columns.Add("DateTimeCreated", dateTimeCreatedColumn15);
+            operationTypeTable.Columns.Add("CreatedAt", createdAtColumn15);
+            var createdByColumn15 = new Column("CreatedBy", "bigint", operationTypeTable);
+            operationTypeTable.Columns.Add("CreatedBy", createdByColumn15);
             var descriptionColumn5 = new Column("Description", "nvarchar(1000)", operationTypeTable);
             operationTypeTable.Columns.Add("Description", descriptionColumn5);
             var nameColumn7 = new Column("Name", "nvarchar(70)", operationTypeTable);
@@ -1364,8 +1364,8 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             operationTypeTable.AddTypeMapping(operationTypeTableMapping, false);
             tableMappings15.Add(operationTypeTableMapping);
             RelationalModel.CreateColumnMapping(idColumn8, operationType.FindProperty("Id")!, operationTypeTableMapping);
+            RelationalModel.CreateColumnMapping(createdAtColumn15, operationType.FindProperty("CreatedAt")!, operationTypeTableMapping);
             RelationalModel.CreateColumnMapping(createdByColumn15, operationType.FindProperty("CreatedBy")!, operationTypeTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn15, operationType.FindProperty("DateTimeCreated")!, operationTypeTableMapping);
             RelationalModel.CreateColumnMapping(descriptionColumn5, operationType.FindProperty("Description")!, operationTypeTableMapping);
             RelationalModel.CreateColumnMapping(nameColumn7, operationType.FindProperty("Name")!, operationTypeTableMapping);
 
@@ -1374,22 +1374,22 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var defaultTableMappings16 = new List<TableMappingBase<ColumnMappingBase>>();
             patientHistory.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings16);
             var medicalCentersDomainEntitiesPatientHistoryTableBase = new TableBase("MedicalCenters.Domain.Entities.PatientHistory", null, relationalModel);
+            var createdAtColumnBase16 = new ColumnBase<ColumnMappingBase>("CreatedAt", "datetime2", medicalCentersDomainEntitiesPatientHistoryTableBase)
+            {
+                IsNullable = true
+            };
+            medicalCentersDomainEntitiesPatientHistoryTableBase.Columns.Add("CreatedAt", createdAtColumnBase16);
             var createdByColumnBase16 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesPatientHistoryTableBase);
             medicalCentersDomainEntitiesPatientHistoryTableBase.Columns.Add("CreatedBy", createdByColumnBase16);
-            var dateTimeCreatedColumnBase16 = new ColumnBase<ColumnMappingBase>("DateTimeCreated", "datetime2", medicalCentersDomainEntitiesPatientHistoryTableBase)
-            {
-                IsNullable = true
-            };
-            medicalCentersDomainEntitiesPatientHistoryTableBase.Columns.Add("DateTimeCreated", dateTimeCreatedColumnBase16);
-            var dateTimeModifiedColumnBase5 = new ColumnBase<ColumnMappingBase>("DateTimeModified", "datetime2", medicalCentersDomainEntitiesPatientHistoryTableBase)
-            {
-                IsNullable = true
-            };
-            medicalCentersDomainEntitiesPatientHistoryTableBase.Columns.Add("DateTimeModified", dateTimeModifiedColumnBase5);
             var doctorIdColumnBase2 = new ColumnBase<ColumnMappingBase>("DoctorId", "int", medicalCentersDomainEntitiesPatientHistoryTableBase);
             medicalCentersDomainEntitiesPatientHistoryTableBase.Columns.Add("DoctorId", doctorIdColumnBase2);
             var idColumnBase9 = new ColumnBase<ColumnMappingBase>("Id", "bigint", medicalCentersDomainEntitiesPatientHistoryTableBase);
             medicalCentersDomainEntitiesPatientHistoryTableBase.Columns.Add("Id", idColumnBase9);
+            var modifiedAtColumnBase5 = new ColumnBase<ColumnMappingBase>("ModifiedAt", "datetime2", medicalCentersDomainEntitiesPatientHistoryTableBase)
+            {
+                IsNullable = true
+            };
+            medicalCentersDomainEntitiesPatientHistoryTableBase.Columns.Add("ModifiedAt", modifiedAtColumnBase5);
             var modifiedByColumnBase5 = new ColumnBase<ColumnMappingBase>("ModifiedBy", "bigint", medicalCentersDomainEntitiesPatientHistoryTableBase);
             medicalCentersDomainEntitiesPatientHistoryTableBase.Columns.Add("ModifiedBy", modifiedByColumnBase5);
             var patientIdColumnBase0 = new ColumnBase<ColumnMappingBase>("PatientId", "bigint", medicalCentersDomainEntitiesPatientHistoryTableBase);
@@ -1399,10 +1399,10 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalCentersDomainEntitiesPatientHistoryTableBase.AddTypeMapping(medicalCentersDomainEntitiesPatientHistoryMappingBase, false);
             defaultTableMappings16.Add(medicalCentersDomainEntitiesPatientHistoryMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase9, patientHistory.FindProperty("Id")!, medicalCentersDomainEntitiesPatientHistoryMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase16, patientHistory.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesPatientHistoryMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase16, patientHistory.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesPatientHistoryMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase16, patientHistory.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesPatientHistoryMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeModifiedColumnBase5, patientHistory.FindProperty("DateTimeModified")!, medicalCentersDomainEntitiesPatientHistoryMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)doctorIdColumnBase2, patientHistory.FindProperty("DoctorId")!, medicalCentersDomainEntitiesPatientHistoryMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedAtColumnBase5, patientHistory.FindProperty("ModifiedAt")!, medicalCentersDomainEntitiesPatientHistoryMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedByColumnBase5, patientHistory.FindProperty("ModifiedBy")!, medicalCentersDomainEntitiesPatientHistoryMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)patientIdColumnBase0, patientHistory.FindProperty("PatientId")!, medicalCentersDomainEntitiesPatientHistoryMappingBase);
 
@@ -1411,20 +1411,20 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var patientHistoryTable = new Table("PatientHistory", null, relationalModel);
             var idColumn9 = new Column("Id", "bigint", patientHistoryTable);
             patientHistoryTable.Columns.Add("Id", idColumn9);
+            var createdAtColumn16 = new Column("CreatedAt", "datetime2", patientHistoryTable)
+            {
+                IsNullable = true
+            };
+            patientHistoryTable.Columns.Add("CreatedAt", createdAtColumn16);
             var createdByColumn16 = new Column("CreatedBy", "bigint", patientHistoryTable);
             patientHistoryTable.Columns.Add("CreatedBy", createdByColumn16);
-            var dateTimeCreatedColumn16 = new Column("DateTimeCreated", "datetime2", patientHistoryTable)
-            {
-                IsNullable = true
-            };
-            patientHistoryTable.Columns.Add("DateTimeCreated", dateTimeCreatedColumn16);
-            var dateTimeModifiedColumn5 = new Column("DateTimeModified", "datetime2", patientHistoryTable)
-            {
-                IsNullable = true
-            };
-            patientHistoryTable.Columns.Add("DateTimeModified", dateTimeModifiedColumn5);
             var doctorIdColumn2 = new Column("DoctorId", "int", patientHistoryTable);
             patientHistoryTable.Columns.Add("DoctorId", doctorIdColumn2);
+            var modifiedAtColumn5 = new Column("ModifiedAt", "datetime2", patientHistoryTable)
+            {
+                IsNullable = true
+            };
+            patientHistoryTable.Columns.Add("ModifiedAt", modifiedAtColumn5);
             var modifiedByColumn5 = new Column("ModifiedBy", "bigint", patientHistoryTable);
             patientHistoryTable.Columns.Add("ModifiedBy", modifiedByColumn5);
             var patientIdColumn0 = new Column("PatientId", "bigint", patientHistoryTable);
@@ -1458,10 +1458,10 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             patientHistoryTable.AddTypeMapping(patientHistoryTableMapping, false);
             tableMappings16.Add(patientHistoryTableMapping);
             RelationalModel.CreateColumnMapping(idColumn9, patientHistory.FindProperty("Id")!, patientHistoryTableMapping);
+            RelationalModel.CreateColumnMapping(createdAtColumn16, patientHistory.FindProperty("CreatedAt")!, patientHistoryTableMapping);
             RelationalModel.CreateColumnMapping(createdByColumn16, patientHistory.FindProperty("CreatedBy")!, patientHistoryTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn16, patientHistory.FindProperty("DateTimeCreated")!, patientHistoryTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeModifiedColumn5, patientHistory.FindProperty("DateTimeModified")!, patientHistoryTableMapping);
             RelationalModel.CreateColumnMapping(doctorIdColumn2, patientHistory.FindProperty("DoctorId")!, patientHistoryTableMapping);
+            RelationalModel.CreateColumnMapping(modifiedAtColumn5, patientHistory.FindProperty("ModifiedAt")!, patientHistoryTableMapping);
             RelationalModel.CreateColumnMapping(modifiedByColumn5, patientHistory.FindProperty("ModifiedBy")!, patientHistoryTableMapping);
             RelationalModel.CreateColumnMapping(patientIdColumn0, patientHistory.FindProperty("PatientId")!, patientHistoryTableMapping);
 
@@ -1470,24 +1470,24 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var defaultTableMappings17 = new List<TableMappingBase<ColumnMappingBase>>();
             patient.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings17);
             var medicalCentersDomainEntitiesPersonsPatientTableBase = new TableBase("MedicalCenters.Domain.Entities.Persons.Patient", null, relationalModel);
+            var createdAtColumnBase17 = new ColumnBase<ColumnMappingBase>("CreatedAt", "datetime2", medicalCentersDomainEntitiesPersonsPatientTableBase)
+            {
+                IsNullable = true
+            };
+            medicalCentersDomainEntitiesPersonsPatientTableBase.Columns.Add("CreatedAt", createdAtColumnBase17);
             var createdByColumnBase17 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesPersonsPatientTableBase);
             medicalCentersDomainEntitiesPersonsPatientTableBase.Columns.Add("CreatedBy", createdByColumnBase17);
-            var dateTimeCreatedColumnBase17 = new ColumnBase<ColumnMappingBase>("DateTimeCreated", "datetime2", medicalCentersDomainEntitiesPersonsPatientTableBase)
-            {
-                IsNullable = true
-            };
-            medicalCentersDomainEntitiesPersonsPatientTableBase.Columns.Add("DateTimeCreated", dateTimeCreatedColumnBase17);
-            var dateTimeModifiedColumnBase6 = new ColumnBase<ColumnMappingBase>("DateTimeModified", "datetime2", medicalCentersDomainEntitiesPersonsPatientTableBase)
-            {
-                IsNullable = true
-            };
-            medicalCentersDomainEntitiesPersonsPatientTableBase.Columns.Add("DateTimeModified", dateTimeModifiedColumnBase6);
             var firstNameColumnBase = new ColumnBase<ColumnMappingBase>("FirstName", "nvarchar(50)", medicalCentersDomainEntitiesPersonsPatientTableBase);
             medicalCentersDomainEntitiesPersonsPatientTableBase.Columns.Add("FirstName", firstNameColumnBase);
             var idColumnBase10 = new ColumnBase<ColumnMappingBase>("Id", "bigint", medicalCentersDomainEntitiesPersonsPatientTableBase);
             medicalCentersDomainEntitiesPersonsPatientTableBase.Columns.Add("Id", idColumnBase10);
             var lastNameColumnBase = new ColumnBase<ColumnMappingBase>("LastName", "nvarchar(50)", medicalCentersDomainEntitiesPersonsPatientTableBase);
             medicalCentersDomainEntitiesPersonsPatientTableBase.Columns.Add("LastName", lastNameColumnBase);
+            var modifiedAtColumnBase6 = new ColumnBase<ColumnMappingBase>("ModifiedAt", "datetime2", medicalCentersDomainEntitiesPersonsPatientTableBase)
+            {
+                IsNullable = true
+            };
+            medicalCentersDomainEntitiesPersonsPatientTableBase.Columns.Add("ModifiedAt", modifiedAtColumnBase6);
             var modifiedByColumnBase6 = new ColumnBase<ColumnMappingBase>("ModifiedBy", "bigint", medicalCentersDomainEntitiesPersonsPatientTableBase);
             medicalCentersDomainEntitiesPersonsPatientTableBase.Columns.Add("ModifiedBy", modifiedByColumnBase6);
             var nationalCodeColumnBase = new ColumnBase<ColumnMappingBase>("NationalCode", "nvarchar(20)", medicalCentersDomainEntitiesPersonsPatientTableBase);
@@ -1497,11 +1497,11 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalCentersDomainEntitiesPersonsPatientTableBase.AddTypeMapping(medicalCentersDomainEntitiesPersonsPatientMappingBase, false);
             defaultTableMappings17.Add(medicalCentersDomainEntitiesPersonsPatientMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase10, patient.FindProperty("Id")!, medicalCentersDomainEntitiesPersonsPatientMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase17, patient.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesPersonsPatientMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase17, patient.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesPersonsPatientMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase17, patient.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesPersonsPatientMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeModifiedColumnBase6, patient.FindProperty("DateTimeModified")!, medicalCentersDomainEntitiesPersonsPatientMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)firstNameColumnBase, patient.FindProperty("FirstName")!, medicalCentersDomainEntitiesPersonsPatientMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)lastNameColumnBase, patient.FindProperty("LastName")!, medicalCentersDomainEntitiesPersonsPatientMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedAtColumnBase6, patient.FindProperty("ModifiedAt")!, medicalCentersDomainEntitiesPersonsPatientMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedByColumnBase6, patient.FindProperty("ModifiedBy")!, medicalCentersDomainEntitiesPersonsPatientMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)nationalCodeColumnBase, patient.FindProperty("NationalCode")!, medicalCentersDomainEntitiesPersonsPatientMappingBase);
 
@@ -1510,22 +1510,22 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var patientTable = new Table("Patient", null, relationalModel);
             var idColumn10 = new Column("Id", "bigint", patientTable);
             patientTable.Columns.Add("Id", idColumn10);
+            var createdAtColumn17 = new Column("CreatedAt", "datetime2", patientTable)
+            {
+                IsNullable = true
+            };
+            patientTable.Columns.Add("CreatedAt", createdAtColumn17);
             var createdByColumn17 = new Column("CreatedBy", "bigint", patientTable);
             patientTable.Columns.Add("CreatedBy", createdByColumn17);
-            var dateTimeCreatedColumn17 = new Column("DateTimeCreated", "datetime2", patientTable)
-            {
-                IsNullable = true
-            };
-            patientTable.Columns.Add("DateTimeCreated", dateTimeCreatedColumn17);
-            var dateTimeModifiedColumn6 = new Column("DateTimeModified", "datetime2", patientTable)
-            {
-                IsNullable = true
-            };
-            patientTable.Columns.Add("DateTimeModified", dateTimeModifiedColumn6);
             var firstNameColumn = new Column("FirstName", "nvarchar(50)", patientTable);
             patientTable.Columns.Add("FirstName", firstNameColumn);
             var lastNameColumn = new Column("LastName", "nvarchar(50)", patientTable);
             patientTable.Columns.Add("LastName", lastNameColumn);
+            var modifiedAtColumn6 = new Column("ModifiedAt", "datetime2", patientTable)
+            {
+                IsNullable = true
+            };
+            patientTable.Columns.Add("ModifiedAt", modifiedAtColumn6);
             var modifiedByColumn6 = new Column("ModifiedBy", "bigint", patientTable);
             patientTable.Columns.Add("ModifiedBy", modifiedByColumn6);
             var nationalCodeColumn = new Column("NationalCode", "nvarchar(20)", patientTable);
@@ -1543,11 +1543,11 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             patientTable.AddTypeMapping(patientTableMapping, false);
             tableMappings17.Add(patientTableMapping);
             RelationalModel.CreateColumnMapping(idColumn10, patient.FindProperty("Id")!, patientTableMapping);
+            RelationalModel.CreateColumnMapping(createdAtColumn17, patient.FindProperty("CreatedAt")!, patientTableMapping);
             RelationalModel.CreateColumnMapping(createdByColumn17, patient.FindProperty("CreatedBy")!, patientTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn17, patient.FindProperty("DateTimeCreated")!, patientTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeModifiedColumn6, patient.FindProperty("DateTimeModified")!, patientTableMapping);
             RelationalModel.CreateColumnMapping(firstNameColumn, patient.FindProperty("FirstName")!, patientTableMapping);
             RelationalModel.CreateColumnMapping(lastNameColumn, patient.FindProperty("LastName")!, patientTableMapping);
+            RelationalModel.CreateColumnMapping(modifiedAtColumn6, patient.FindProperty("ModifiedAt")!, patientTableMapping);
             RelationalModel.CreateColumnMapping(modifiedByColumn6, patient.FindProperty("ModifiedBy")!, patientTableMapping);
             RelationalModel.CreateColumnMapping(nationalCodeColumn, patient.FindProperty("NationalCode")!, patientTableMapping);
 
@@ -1556,24 +1556,24 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var defaultTableMappings18 = new List<TableMappingBase<ColumnMappingBase>>();
             personnel.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings18);
             var medicalCentersDomainEntitiesPersonsPersonnelTableBase = new TableBase("MedicalCenters.Domain.Entities.Persons.Personnel", null, relationalModel);
+            var createdAtColumnBase18 = new ColumnBase<ColumnMappingBase>("CreatedAt", "datetime2", medicalCentersDomainEntitiesPersonsPersonnelTableBase)
+            {
+                IsNullable = true
+            };
+            medicalCentersDomainEntitiesPersonsPersonnelTableBase.Columns.Add("CreatedAt", createdAtColumnBase18);
             var createdByColumnBase18 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesPersonsPersonnelTableBase);
             medicalCentersDomainEntitiesPersonsPersonnelTableBase.Columns.Add("CreatedBy", createdByColumnBase18);
-            var dateTimeCreatedColumnBase18 = new ColumnBase<ColumnMappingBase>("DateTimeCreated", "datetime2", medicalCentersDomainEntitiesPersonsPersonnelTableBase)
-            {
-                IsNullable = true
-            };
-            medicalCentersDomainEntitiesPersonsPersonnelTableBase.Columns.Add("DateTimeCreated", dateTimeCreatedColumnBase18);
-            var dateTimeModifiedColumnBase7 = new ColumnBase<ColumnMappingBase>("DateTimeModified", "datetime2", medicalCentersDomainEntitiesPersonsPersonnelTableBase)
-            {
-                IsNullable = true
-            };
-            medicalCentersDomainEntitiesPersonsPersonnelTableBase.Columns.Add("DateTimeModified", dateTimeModifiedColumnBase7);
             var firstNameColumnBase0 = new ColumnBase<ColumnMappingBase>("FirstName", "nvarchar(50)", medicalCentersDomainEntitiesPersonsPersonnelTableBase);
             medicalCentersDomainEntitiesPersonsPersonnelTableBase.Columns.Add("FirstName", firstNameColumnBase0);
             var idColumnBase11 = new ColumnBase<ColumnMappingBase>("Id", "int", medicalCentersDomainEntitiesPersonsPersonnelTableBase);
             medicalCentersDomainEntitiesPersonsPersonnelTableBase.Columns.Add("Id", idColumnBase11);
             var lastNameColumnBase0 = new ColumnBase<ColumnMappingBase>("LastName", "nvarchar(50)", medicalCentersDomainEntitiesPersonsPersonnelTableBase);
             medicalCentersDomainEntitiesPersonsPersonnelTableBase.Columns.Add("LastName", lastNameColumnBase0);
+            var modifiedAtColumnBase7 = new ColumnBase<ColumnMappingBase>("ModifiedAt", "datetime2", medicalCentersDomainEntitiesPersonsPersonnelTableBase)
+            {
+                IsNullable = true
+            };
+            medicalCentersDomainEntitiesPersonsPersonnelTableBase.Columns.Add("ModifiedAt", modifiedAtColumnBase7);
             var modifiedByColumnBase7 = new ColumnBase<ColumnMappingBase>("ModifiedBy", "bigint", medicalCentersDomainEntitiesPersonsPersonnelTableBase);
             medicalCentersDomainEntitiesPersonsPersonnelTableBase.Columns.Add("ModifiedBy", modifiedByColumnBase7);
             var nationalCodeColumnBase0 = new ColumnBase<ColumnMappingBase>("NationalCode", "nvarchar(20)", medicalCentersDomainEntitiesPersonsPersonnelTableBase);
@@ -1585,11 +1585,11 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalCentersDomainEntitiesPersonsPersonnelTableBase.AddTypeMapping(medicalCentersDomainEntitiesPersonsPersonnelMappingBase, false);
             defaultTableMappings18.Add(medicalCentersDomainEntitiesPersonsPersonnelMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase11, personnel.FindProperty("Id")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase18, personnel.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase18, personnel.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase18, personnel.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeModifiedColumnBase7, personnel.FindProperty("DateTimeModified")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)firstNameColumnBase0, personnel.FindProperty("FirstName")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)lastNameColumnBase0, personnel.FindProperty("LastName")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedAtColumnBase7, personnel.FindProperty("ModifiedAt")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedByColumnBase7, personnel.FindProperty("ModifiedBy")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)nationalCodeColumnBase0, personnel.FindProperty("NationalCode")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)personnelCodeColumnBase, personnel.FindProperty("PersonnelCode")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase);
@@ -1599,22 +1599,22 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var personnelTable = new Table("Personnel", null, relationalModel);
             var idColumn11 = new Column("Id", "int", personnelTable);
             personnelTable.Columns.Add("Id", idColumn11);
+            var createdAtColumn18 = new Column("CreatedAt", "datetime2", personnelTable)
+            {
+                IsNullable = true
+            };
+            personnelTable.Columns.Add("CreatedAt", createdAtColumn18);
             var createdByColumn18 = new Column("CreatedBy", "bigint", personnelTable);
             personnelTable.Columns.Add("CreatedBy", createdByColumn18);
-            var dateTimeCreatedColumn18 = new Column("DateTimeCreated", "datetime2", personnelTable)
-            {
-                IsNullable = true
-            };
-            personnelTable.Columns.Add("DateTimeCreated", dateTimeCreatedColumn18);
-            var dateTimeModifiedColumn7 = new Column("DateTimeModified", "datetime2", personnelTable)
-            {
-                IsNullable = true
-            };
-            personnelTable.Columns.Add("DateTimeModified", dateTimeModifiedColumn7);
             var firstNameColumn0 = new Column("FirstName", "nvarchar(50)", personnelTable);
             personnelTable.Columns.Add("FirstName", firstNameColumn0);
             var lastNameColumn0 = new Column("LastName", "nvarchar(50)", personnelTable);
             personnelTable.Columns.Add("LastName", lastNameColumn0);
+            var modifiedAtColumn7 = new Column("ModifiedAt", "datetime2", personnelTable)
+            {
+                IsNullable = true
+            };
+            personnelTable.Columns.Add("ModifiedAt", modifiedAtColumn7);
             var modifiedByColumn7 = new Column("ModifiedBy", "bigint", personnelTable);
             personnelTable.Columns.Add("ModifiedBy", modifiedByColumn7);
             var nationalCodeColumn0 = new Column("NationalCode", "nvarchar(20)", personnelTable);
@@ -1637,11 +1637,11 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             personnelTable.AddTypeMapping(personnelTableMapping, false);
             tableMappings18.Add(personnelTableMapping);
             RelationalModel.CreateColumnMapping(idColumn11, personnel.FindProperty("Id")!, personnelTableMapping);
+            RelationalModel.CreateColumnMapping(createdAtColumn18, personnel.FindProperty("CreatedAt")!, personnelTableMapping);
             RelationalModel.CreateColumnMapping(createdByColumn18, personnel.FindProperty("CreatedBy")!, personnelTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn18, personnel.FindProperty("DateTimeCreated")!, personnelTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeModifiedColumn7, personnel.FindProperty("DateTimeModified")!, personnelTableMapping);
             RelationalModel.CreateColumnMapping(firstNameColumn0, personnel.FindProperty("FirstName")!, personnelTableMapping);
             RelationalModel.CreateColumnMapping(lastNameColumn0, personnel.FindProperty("LastName")!, personnelTableMapping);
+            RelationalModel.CreateColumnMapping(modifiedAtColumn7, personnel.FindProperty("ModifiedAt")!, personnelTableMapping);
             RelationalModel.CreateColumnMapping(modifiedByColumn7, personnel.FindProperty("ModifiedBy")!, personnelTableMapping);
             RelationalModel.CreateColumnMapping(nationalCodeColumn0, personnel.FindProperty("NationalCode")!, personnelTableMapping);
             RelationalModel.CreateColumnMapping(personnelCodeColumn, personnel.FindProperty("PersonnelCode")!, personnelTableMapping);
@@ -1654,11 +1654,11 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalCentersDomainEntitiesPersonsPersonnelTableBase.AddTypeMapping(medicalCentersDomainEntitiesPersonsPersonnelMappingBase0, false);
             defaultTableMappings19.Add(medicalCentersDomainEntitiesPersonsPersonnelMappingBase0);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase11, doctor.FindProperty("Id")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase0);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase18, doctor.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase0);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase18, doctor.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase0);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase18, doctor.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase0);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeModifiedColumnBase7, doctor.FindProperty("DateTimeModified")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase0);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)firstNameColumnBase0, doctor.FindProperty("FirstName")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase0);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)lastNameColumnBase0, doctor.FindProperty("LastName")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase0);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedAtColumnBase7, doctor.FindProperty("ModifiedAt")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase0);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedByColumnBase7, doctor.FindProperty("ModifiedBy")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase0);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)nationalCodeColumnBase0, doctor.FindProperty("NationalCode")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase0);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)personnelCodeColumnBase, doctor.FindProperty("PersonnelCode")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase0);
@@ -1683,11 +1683,11 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             personnelTable.AddTypeMapping(personnelTableMapping0, false);
             tableMappings19.Add(personnelTableMapping0);
             RelationalModel.CreateColumnMapping(idColumn11, doctor.FindProperty("Id")!, personnelTableMapping0);
+            RelationalModel.CreateColumnMapping(createdAtColumn18, doctor.FindProperty("CreatedAt")!, personnelTableMapping0);
             RelationalModel.CreateColumnMapping(createdByColumn18, doctor.FindProperty("CreatedBy")!, personnelTableMapping0);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn18, doctor.FindProperty("DateTimeCreated")!, personnelTableMapping0);
-            RelationalModel.CreateColumnMapping(dateTimeModifiedColumn7, doctor.FindProperty("DateTimeModified")!, personnelTableMapping0);
             RelationalModel.CreateColumnMapping(firstNameColumn0, doctor.FindProperty("FirstName")!, personnelTableMapping0);
             RelationalModel.CreateColumnMapping(lastNameColumn0, doctor.FindProperty("LastName")!, personnelTableMapping0);
+            RelationalModel.CreateColumnMapping(modifiedAtColumn7, doctor.FindProperty("ModifiedAt")!, personnelTableMapping0);
             RelationalModel.CreateColumnMapping(modifiedByColumn7, doctor.FindProperty("ModifiedBy")!, personnelTableMapping0);
             RelationalModel.CreateColumnMapping(nationalCodeColumn0, doctor.FindProperty("NationalCode")!, personnelTableMapping0);
             RelationalModel.CreateColumnMapping(personnelCodeColumn, doctor.FindProperty("PersonnelCode")!, personnelTableMapping0);
@@ -1716,11 +1716,11 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalCentersDomainEntitiesPersonsPersonnelTableBase.AddTypeMapping(medicalCentersDomainEntitiesPersonsPersonnelMappingBase1, false);
             defaultTableMappings21.Add(medicalCentersDomainEntitiesPersonsPersonnelMappingBase1);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase11, nurse.FindProperty("Id")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase1);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase18, nurse.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase1);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase18, nurse.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase1);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase18, nurse.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase1);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeModifiedColumnBase7, nurse.FindProperty("DateTimeModified")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase1);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)firstNameColumnBase0, nurse.FindProperty("FirstName")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase1);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)lastNameColumnBase0, nurse.FindProperty("LastName")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase1);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedAtColumnBase7, nurse.FindProperty("ModifiedAt")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase1);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedByColumnBase7, nurse.FindProperty("ModifiedBy")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase1);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)nationalCodeColumnBase0, nurse.FindProperty("NationalCode")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase1);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)personnelCodeColumnBase, nurse.FindProperty("PersonnelCode")!, medicalCentersDomainEntitiesPersonsPersonnelMappingBase1);
@@ -1745,11 +1745,11 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             personnelTable.AddTypeMapping(personnelTableMapping1, false);
             tableMappings20.Add(personnelTableMapping1);
             RelationalModel.CreateColumnMapping(idColumn11, nurse.FindProperty("Id")!, personnelTableMapping1);
+            RelationalModel.CreateColumnMapping(createdAtColumn18, nurse.FindProperty("CreatedAt")!, personnelTableMapping1);
             RelationalModel.CreateColumnMapping(createdByColumn18, nurse.FindProperty("CreatedBy")!, personnelTableMapping1);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn18, nurse.FindProperty("DateTimeCreated")!, personnelTableMapping1);
-            RelationalModel.CreateColumnMapping(dateTimeModifiedColumn7, nurse.FindProperty("DateTimeModified")!, personnelTableMapping1);
             RelationalModel.CreateColumnMapping(firstNameColumn0, nurse.FindProperty("FirstName")!, personnelTableMapping1);
             RelationalModel.CreateColumnMapping(lastNameColumn0, nurse.FindProperty("LastName")!, personnelTableMapping1);
+            RelationalModel.CreateColumnMapping(modifiedAtColumn7, nurse.FindProperty("ModifiedAt")!, personnelTableMapping1);
             RelationalModel.CreateColumnMapping(modifiedByColumn7, nurse.FindProperty("ModifiedBy")!, personnelTableMapping1);
             RelationalModel.CreateColumnMapping(nationalCodeColumn0, nurse.FindProperty("NationalCode")!, personnelTableMapping1);
             RelationalModel.CreateColumnMapping(personnelCodeColumn, nurse.FindProperty("PersonnelCode")!, personnelTableMapping1);
@@ -1775,20 +1775,20 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var defaultTableMappings23 = new List<TableMappingBase<ColumnMappingBase>>();
             reservation.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings23);
             var medicalCentersDomainEntitiesReservationTableBase = new TableBase("MedicalCenters.Domain.Entities.Reservation", null, relationalModel);
+            var createdAtColumnBase19 = new ColumnBase<ColumnMappingBase>("CreatedAt", "datetime2", medicalCentersDomainEntitiesReservationTableBase)
+            {
+                IsNullable = true
+            };
+            medicalCentersDomainEntitiesReservationTableBase.Columns.Add("CreatedAt", createdAtColumnBase19);
             var createdByColumnBase19 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesReservationTableBase);
             medicalCentersDomainEntitiesReservationTableBase.Columns.Add("CreatedBy", createdByColumnBase19);
-            var dateTimeCreatedColumnBase19 = new ColumnBase<ColumnMappingBase>("DateTimeCreated", "datetime2", medicalCentersDomainEntitiesReservationTableBase)
-            {
-                IsNullable = true
-            };
-            medicalCentersDomainEntitiesReservationTableBase.Columns.Add("DateTimeCreated", dateTimeCreatedColumnBase19);
-            var dateTimeModifiedColumnBase8 = new ColumnBase<ColumnMappingBase>("DateTimeModified", "datetime2", medicalCentersDomainEntitiesReservationTableBase)
-            {
-                IsNullable = true
-            };
-            medicalCentersDomainEntitiesReservationTableBase.Columns.Add("DateTimeModified", dateTimeModifiedColumnBase8);
             var idColumnBase14 = new ColumnBase<ColumnMappingBase>("Id", "bigint", medicalCentersDomainEntitiesReservationTableBase);
             medicalCentersDomainEntitiesReservationTableBase.Columns.Add("Id", idColumnBase14);
+            var modifiedAtColumnBase8 = new ColumnBase<ColumnMappingBase>("ModifiedAt", "datetime2", medicalCentersDomainEntitiesReservationTableBase)
+            {
+                IsNullable = true
+            };
+            medicalCentersDomainEntitiesReservationTableBase.Columns.Add("ModifiedAt", modifiedAtColumnBase8);
             var modifiedByColumnBase8 = new ColumnBase<ColumnMappingBase>("ModifiedBy", "bigint", medicalCentersDomainEntitiesReservationTableBase);
             medicalCentersDomainEntitiesReservationTableBase.Columns.Add("ModifiedBy", modifiedByColumnBase8);
             var patientIdColumnBase1 = new ColumnBase<ColumnMappingBase>("PatientId", "bigint", medicalCentersDomainEntitiesReservationTableBase);
@@ -1800,9 +1800,9 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalCentersDomainEntitiesReservationTableBase.AddTypeMapping(medicalCentersDomainEntitiesReservationMappingBase, false);
             defaultTableMappings23.Add(medicalCentersDomainEntitiesReservationMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase14, reservation.FindProperty("Id")!, medicalCentersDomainEntitiesReservationMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase19, reservation.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesReservationMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase19, reservation.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesReservationMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase19, reservation.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesReservationMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeModifiedColumnBase8, reservation.FindProperty("DateTimeModified")!, medicalCentersDomainEntitiesReservationMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedAtColumnBase8, reservation.FindProperty("ModifiedAt")!, medicalCentersDomainEntitiesReservationMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedByColumnBase8, reservation.FindProperty("ModifiedBy")!, medicalCentersDomainEntitiesReservationMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)patientIdColumnBase1, reservation.FindProperty("PatientId")!, medicalCentersDomainEntitiesReservationMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)reservationDTColumnBase, reservation.FindProperty("ReservationDT")!, medicalCentersDomainEntitiesReservationMappingBase);
@@ -1812,18 +1812,18 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var reservationTable = new Table("Reservation", null, relationalModel);
             var idColumn14 = new Column("Id", "bigint", reservationTable);
             reservationTable.Columns.Add("Id", idColumn14);
+            var createdAtColumn19 = new Column("CreatedAt", "datetime2", reservationTable)
+            {
+                IsNullable = true
+            };
+            reservationTable.Columns.Add("CreatedAt", createdAtColumn19);
             var createdByColumn19 = new Column("CreatedBy", "bigint", reservationTable);
             reservationTable.Columns.Add("CreatedBy", createdByColumn19);
-            var dateTimeCreatedColumn19 = new Column("DateTimeCreated", "datetime2", reservationTable)
+            var modifiedAtColumn8 = new Column("ModifiedAt", "datetime2", reservationTable)
             {
                 IsNullable = true
             };
-            reservationTable.Columns.Add("DateTimeCreated", dateTimeCreatedColumn19);
-            var dateTimeModifiedColumn8 = new Column("DateTimeModified", "datetime2", reservationTable)
-            {
-                IsNullable = true
-            };
-            reservationTable.Columns.Add("DateTimeModified", dateTimeModifiedColumn8);
+            reservationTable.Columns.Add("ModifiedAt", modifiedAtColumn8);
             var modifiedByColumn8 = new Column("ModifiedBy", "bigint", reservationTable);
             reservationTable.Columns.Add("ModifiedBy", modifiedByColumn8);
             var patientIdColumn1 = new Column("PatientId", "bigint", reservationTable);
@@ -1851,9 +1851,9 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             reservationTable.AddTypeMapping(reservationTableMapping, false);
             tableMappings21.Add(reservationTableMapping);
             RelationalModel.CreateColumnMapping(idColumn14, reservation.FindProperty("Id")!, reservationTableMapping);
+            RelationalModel.CreateColumnMapping(createdAtColumn19, reservation.FindProperty("CreatedAt")!, reservationTableMapping);
             RelationalModel.CreateColumnMapping(createdByColumn19, reservation.FindProperty("CreatedBy")!, reservationTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn19, reservation.FindProperty("DateTimeCreated")!, reservationTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeModifiedColumn8, reservation.FindProperty("DateTimeModified")!, reservationTableMapping);
+            RelationalModel.CreateColumnMapping(modifiedAtColumn8, reservation.FindProperty("ModifiedAt")!, reservationTableMapping);
             RelationalModel.CreateColumnMapping(modifiedByColumn8, reservation.FindProperty("ModifiedBy")!, reservationTableMapping);
             RelationalModel.CreateColumnMapping(patientIdColumn1, reservation.FindProperty("PatientId")!, reservationTableMapping);
             RelationalModel.CreateColumnMapping(reservationDTColumn, reservation.FindProperty("ReservationDT")!, reservationTableMapping);
@@ -1863,24 +1863,24 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var defaultTableMappings24 = new List<TableMappingBase<ColumnMappingBase>>();
             shift.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings24);
             var medicalCentersDomainEntitiesShiftsShiftTableBase = new TableBase("MedicalCenters.Domain.Entities.Shifts.Shift", null, relationalModel);
+            var createdAtColumnBase20 = new ColumnBase<ColumnMappingBase>("CreatedAt", "datetime2", medicalCentersDomainEntitiesShiftsShiftTableBase)
+            {
+                IsNullable = true
+            };
+            medicalCentersDomainEntitiesShiftsShiftTableBase.Columns.Add("CreatedAt", createdAtColumnBase20);
             var createdByColumnBase20 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesShiftsShiftTableBase);
             medicalCentersDomainEntitiesShiftsShiftTableBase.Columns.Add("CreatedBy", createdByColumnBase20);
-            var dateTimeCreatedColumnBase20 = new ColumnBase<ColumnMappingBase>("DateTimeCreated", "datetime2", medicalCentersDomainEntitiesShiftsShiftTableBase)
-            {
-                IsNullable = true
-            };
-            medicalCentersDomainEntitiesShiftsShiftTableBase.Columns.Add("DateTimeCreated", dateTimeCreatedColumnBase20);
-            var dateTimeModifiedColumnBase9 = new ColumnBase<ColumnMappingBase>("DateTimeModified", "datetime2", medicalCentersDomainEntitiesShiftsShiftTableBase)
-            {
-                IsNullable = true
-            };
-            medicalCentersDomainEntitiesShiftsShiftTableBase.Columns.Add("DateTimeModified", dateTimeModifiedColumnBase9);
             var idColumnBase15 = new ColumnBase<ColumnMappingBase>("Id", "bigint", medicalCentersDomainEntitiesShiftsShiftTableBase);
             medicalCentersDomainEntitiesShiftsShiftTableBase.Columns.Add("Id", idColumnBase15);
+            var modifiedAtColumnBase9 = new ColumnBase<ColumnMappingBase>("ModifiedAt", "datetime2", medicalCentersDomainEntitiesShiftsShiftTableBase)
+            {
+                IsNullable = true
+            };
+            medicalCentersDomainEntitiesShiftsShiftTableBase.Columns.Add("ModifiedAt", modifiedAtColumnBase9);
             var modifiedByColumnBase9 = new ColumnBase<ColumnMappingBase>("ModifiedBy", "bigint", medicalCentersDomainEntitiesShiftsShiftTableBase);
             medicalCentersDomainEntitiesShiftsShiftTableBase.Columns.Add("ModifiedBy", modifiedByColumnBase9);
-            var PersonnelIdColumnBase = new ColumnBase<ColumnMappingBase>("PersonnelId", "int", medicalCentersDomainEntitiesShiftsShiftTableBase);
-            medicalCentersDomainEntitiesShiftsShiftTableBase.Columns.Add("PersonnelId", PersonnelIdColumnBase);
+            var personnelIdColumnBase = new ColumnBase<ColumnMappingBase>("PersonnelId", "int", medicalCentersDomainEntitiesShiftsShiftTableBase);
+            medicalCentersDomainEntitiesShiftsShiftTableBase.Columns.Add("PersonnelId", personnelIdColumnBase);
             var shiftPlanIdColumnBase = new ColumnBase<ColumnMappingBase>("ShiftPlanId", "bigint", medicalCentersDomainEntitiesShiftsShiftTableBase)
             {
                 IsNullable = true
@@ -1893,11 +1893,11 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalCentersDomainEntitiesShiftsShiftTableBase.AddTypeMapping(medicalCentersDomainEntitiesShiftsShiftMappingBase, false);
             defaultTableMappings24.Add(medicalCentersDomainEntitiesShiftsShiftMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase15, shift.FindProperty("Id")!, medicalCentersDomainEntitiesShiftsShiftMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase20, shift.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesShiftsShiftMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase20, shift.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesShiftsShiftMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase20, shift.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesShiftsShiftMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeModifiedColumnBase9, shift.FindProperty("DateTimeModified")!, medicalCentersDomainEntitiesShiftsShiftMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedAtColumnBase9, shift.FindProperty("ModifiedAt")!, medicalCentersDomainEntitiesShiftsShiftMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedByColumnBase9, shift.FindProperty("ModifiedBy")!, medicalCentersDomainEntitiesShiftsShiftMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)PersonnelIdColumnBase, shift.FindProperty("PersonnelId")!, medicalCentersDomainEntitiesShiftsShiftMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)personnelIdColumnBase, shift.FindProperty("PersonnelId")!, medicalCentersDomainEntitiesShiftsShiftMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)shiftPlanIdColumnBase, shift.FindProperty("ShiftPlanId")!, medicalCentersDomainEntitiesShiftsShiftMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)unitIdColumnBase, shift.FindProperty("UnitId")!, medicalCentersDomainEntitiesShiftsShiftMappingBase);
 
@@ -1906,22 +1906,22 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var shiftTable = new Table("Shift", null, relationalModel);
             var idColumn15 = new Column("Id", "bigint", shiftTable);
             shiftTable.Columns.Add("Id", idColumn15);
+            var createdAtColumn20 = new Column("CreatedAt", "datetime2", shiftTable)
+            {
+                IsNullable = true
+            };
+            shiftTable.Columns.Add("CreatedAt", createdAtColumn20);
             var createdByColumn20 = new Column("CreatedBy", "bigint", shiftTable);
             shiftTable.Columns.Add("CreatedBy", createdByColumn20);
-            var dateTimeCreatedColumn20 = new Column("DateTimeCreated", "datetime2", shiftTable)
+            var modifiedAtColumn9 = new Column("ModifiedAt", "datetime2", shiftTable)
             {
                 IsNullable = true
             };
-            shiftTable.Columns.Add("DateTimeCreated", dateTimeCreatedColumn20);
-            var dateTimeModifiedColumn9 = new Column("DateTimeModified", "datetime2", shiftTable)
-            {
-                IsNullable = true
-            };
-            shiftTable.Columns.Add("DateTimeModified", dateTimeModifiedColumn9);
+            shiftTable.Columns.Add("ModifiedAt", modifiedAtColumn9);
             var modifiedByColumn9 = new Column("ModifiedBy", "bigint", shiftTable);
             shiftTable.Columns.Add("ModifiedBy", modifiedByColumn9);
-            var PersonnelIdColumn = new Column("PersonnelId", "int", shiftTable);
-            shiftTable.Columns.Add("PersonnelId", PersonnelIdColumn);
+            var personnelIdColumn = new Column("PersonnelId", "int", shiftTable);
+            shiftTable.Columns.Add("PersonnelId", personnelIdColumn);
             var shiftPlanIdColumn = new Column("ShiftPlanId", "bigint", shiftTable)
             {
                 IsNullable = true
@@ -1938,7 +1938,7 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             RelationalModel.GetOrCreateUniqueConstraints(pK_ShiftUc).Add(pK_Shift);
             shiftTable.UniqueConstraints.Add("PK_Shift", pK_Shift);
             var iX_Shift_PersonnelId = new TableIndex(
-            "IX_Shift_PersonnelId", shiftTable, new[] { PersonnelIdColumn }, false);
+            "IX_Shift_PersonnelId", shiftTable, new[] { personnelIdColumn }, false);
             var iX_Shift_PersonnelIdIx = RelationalModel.GetIndex(this,
                 "MedicalCenters.Domain.Entities.Shifts.Shift",
                 new[] { "PersonnelId" });
@@ -1966,11 +1966,11 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             shiftTable.AddTypeMapping(shiftTableMapping, false);
             tableMappings22.Add(shiftTableMapping);
             RelationalModel.CreateColumnMapping(idColumn15, shift.FindProperty("Id")!, shiftTableMapping);
+            RelationalModel.CreateColumnMapping(createdAtColumn20, shift.FindProperty("CreatedAt")!, shiftTableMapping);
             RelationalModel.CreateColumnMapping(createdByColumn20, shift.FindProperty("CreatedBy")!, shiftTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn20, shift.FindProperty("DateTimeCreated")!, shiftTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeModifiedColumn9, shift.FindProperty("DateTimeModified")!, shiftTableMapping);
+            RelationalModel.CreateColumnMapping(modifiedAtColumn9, shift.FindProperty("ModifiedAt")!, shiftTableMapping);
             RelationalModel.CreateColumnMapping(modifiedByColumn9, shift.FindProperty("ModifiedBy")!, shiftTableMapping);
-            RelationalModel.CreateColumnMapping(PersonnelIdColumn, shift.FindProperty("PersonnelId")!, shiftTableMapping);
+            RelationalModel.CreateColumnMapping(personnelIdColumn, shift.FindProperty("PersonnelId")!, shiftTableMapping);
             RelationalModel.CreateColumnMapping(shiftPlanIdColumn, shift.FindProperty("ShiftPlanId")!, shiftTableMapping);
             RelationalModel.CreateColumnMapping(unitIdColumn, shift.FindProperty("UnitId")!, shiftTableMapping);
 
@@ -1979,61 +1979,61 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var defaultTableMappings25 = new List<TableMappingBase<ColumnMappingBase>>();
             shiftPlan.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings25);
             var medicalCentersDomainEntitiesShiftsShiftPlanTableBase = new TableBase("MedicalCenters.Domain.Entities.Shifts.ShiftPlan", null, relationalModel);
+            var createdAtColumnBase21 = new ColumnBase<ColumnMappingBase>("CreatedAt", "datetime2", medicalCentersDomainEntitiesShiftsShiftPlanTableBase)
+            {
+                IsNullable = true
+            };
+            medicalCentersDomainEntitiesShiftsShiftPlanTableBase.Columns.Add("CreatedAt", createdAtColumnBase21);
             var createdByColumnBase21 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesShiftsShiftPlanTableBase);
             medicalCentersDomainEntitiesShiftsShiftPlanTableBase.Columns.Add("CreatedBy", createdByColumnBase21);
-            var dateTimeCreatedColumnBase21 = new ColumnBase<ColumnMappingBase>("DateTimeCreated", "datetime2", medicalCentersDomainEntitiesShiftsShiftPlanTableBase)
-            {
-                IsNullable = true
-            };
-            medicalCentersDomainEntitiesShiftsShiftPlanTableBase.Columns.Add("DateTimeCreated", dateTimeCreatedColumnBase21);
-            var dateTimeModifiedColumnBase10 = new ColumnBase<ColumnMappingBase>("DateTimeModified", "datetime2", medicalCentersDomainEntitiesShiftsShiftPlanTableBase)
-            {
-                IsNullable = true
-            };
-            medicalCentersDomainEntitiesShiftsShiftPlanTableBase.Columns.Add("DateTimeModified", dateTimeModifiedColumnBase10);
             var idColumnBase16 = new ColumnBase<ColumnMappingBase>("Id", "bigint", medicalCentersDomainEntitiesShiftsShiftPlanTableBase);
             medicalCentersDomainEntitiesShiftsShiftPlanTableBase.Columns.Add("Id", idColumnBase16);
             var medicalUnitIdColumnBase = new ColumnBase<ColumnMappingBase>("MedicalUnitId", "int", medicalCentersDomainEntitiesShiftsShiftPlanTableBase);
             medicalCentersDomainEntitiesShiftsShiftPlanTableBase.Columns.Add("MedicalUnitId", medicalUnitIdColumnBase);
+            var modifiedAtColumnBase10 = new ColumnBase<ColumnMappingBase>("ModifiedAt", "datetime2", medicalCentersDomainEntitiesShiftsShiftPlanTableBase)
+            {
+                IsNullable = true
+            };
+            medicalCentersDomainEntitiesShiftsShiftPlanTableBase.Columns.Add("ModifiedAt", modifiedAtColumnBase10);
             var modifiedByColumnBase10 = new ColumnBase<ColumnMappingBase>("ModifiedBy", "bigint", medicalCentersDomainEntitiesShiftsShiftPlanTableBase);
             medicalCentersDomainEntitiesShiftsShiftPlanTableBase.Columns.Add("ModifiedBy", modifiedByColumnBase10);
-            var PersonnelIdColumnBase0 = new ColumnBase<ColumnMappingBase>("PersonnelId", "int", medicalCentersDomainEntitiesShiftsShiftPlanTableBase);
-            medicalCentersDomainEntitiesShiftsShiftPlanTableBase.Columns.Add("PersonnelId", PersonnelIdColumnBase0);
+            var personnelIdColumnBase0 = new ColumnBase<ColumnMappingBase>("PersonnelId", "int", medicalCentersDomainEntitiesShiftsShiftPlanTableBase);
+            medicalCentersDomainEntitiesShiftsShiftPlanTableBase.Columns.Add("PersonnelId", personnelIdColumnBase0);
             relationalModel.DefaultTables.Add("MedicalCenters.Domain.Entities.Shifts.ShiftPlan", medicalCentersDomainEntitiesShiftsShiftPlanTableBase);
             var medicalCentersDomainEntitiesShiftsShiftPlanMappingBase = new TableMappingBase<ColumnMappingBase>(shiftPlan, medicalCentersDomainEntitiesShiftsShiftPlanTableBase, true);
             medicalCentersDomainEntitiesShiftsShiftPlanTableBase.AddTypeMapping(medicalCentersDomainEntitiesShiftsShiftPlanMappingBase, false);
             defaultTableMappings25.Add(medicalCentersDomainEntitiesShiftsShiftPlanMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase16, shiftPlan.FindProperty("Id")!, medicalCentersDomainEntitiesShiftsShiftPlanMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase21, shiftPlan.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesShiftsShiftPlanMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase21, shiftPlan.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesShiftsShiftPlanMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase21, shiftPlan.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesShiftsShiftPlanMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeModifiedColumnBase10, shiftPlan.FindProperty("DateTimeModified")!, medicalCentersDomainEntitiesShiftsShiftPlanMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)medicalUnitIdColumnBase, shiftPlan.FindProperty("MedicalUnitId")!, medicalCentersDomainEntitiesShiftsShiftPlanMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedAtColumnBase10, shiftPlan.FindProperty("ModifiedAt")!, medicalCentersDomainEntitiesShiftsShiftPlanMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedByColumnBase10, shiftPlan.FindProperty("ModifiedBy")!, medicalCentersDomainEntitiesShiftsShiftPlanMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)PersonnelIdColumnBase0, shiftPlan.FindProperty("PersonnelId")!, medicalCentersDomainEntitiesShiftsShiftPlanMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)personnelIdColumnBase0, shiftPlan.FindProperty("PersonnelId")!, medicalCentersDomainEntitiesShiftsShiftPlanMappingBase);
 
             var tableMappings23 = new List<TableMapping>();
             shiftPlan.SetRuntimeAnnotation("Relational:TableMappings", tableMappings23);
             var shiftPlanTable = new Table("ShiftPlan", null, relationalModel);
             var idColumn16 = new Column("Id", "bigint", shiftPlanTable);
             shiftPlanTable.Columns.Add("Id", idColumn16);
+            var createdAtColumn21 = new Column("CreatedAt", "datetime2", shiftPlanTable)
+            {
+                IsNullable = true
+            };
+            shiftPlanTable.Columns.Add("CreatedAt", createdAtColumn21);
             var createdByColumn21 = new Column("CreatedBy", "bigint", shiftPlanTable);
             shiftPlanTable.Columns.Add("CreatedBy", createdByColumn21);
-            var dateTimeCreatedColumn21 = new Column("DateTimeCreated", "datetime2", shiftPlanTable)
-            {
-                IsNullable = true
-            };
-            shiftPlanTable.Columns.Add("DateTimeCreated", dateTimeCreatedColumn21);
-            var dateTimeModifiedColumn10 = new Column("DateTimeModified", "datetime2", shiftPlanTable)
-            {
-                IsNullable = true
-            };
-            shiftPlanTable.Columns.Add("DateTimeModified", dateTimeModifiedColumn10);
             var medicalUnitIdColumn = new Column("MedicalUnitId", "int", shiftPlanTable);
             shiftPlanTable.Columns.Add("MedicalUnitId", medicalUnitIdColumn);
+            var modifiedAtColumn10 = new Column("ModifiedAt", "datetime2", shiftPlanTable)
+            {
+                IsNullable = true
+            };
+            shiftPlanTable.Columns.Add("ModifiedAt", modifiedAtColumn10);
             var modifiedByColumn10 = new Column("ModifiedBy", "bigint", shiftPlanTable);
             shiftPlanTable.Columns.Add("ModifiedBy", modifiedByColumn10);
-            var PersonnelIdColumn0 = new Column("PersonnelId", "int", shiftPlanTable);
-            shiftPlanTable.Columns.Add("PersonnelId", PersonnelIdColumn0);
+            var personnelIdColumn0 = new Column("PersonnelId", "int", shiftPlanTable);
+            shiftPlanTable.Columns.Add("PersonnelId", personnelIdColumn0);
             var pK_ShiftPlan = new UniqueConstraint("PK_ShiftPlan", shiftPlanTable, new[] { idColumn16 });
             shiftPlanTable.PrimaryKey = pK_ShiftPlan;
             var pK_ShiftPlanUc = RelationalModel.GetKey(this,
@@ -2051,7 +2051,7 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             RelationalModel.GetOrCreateTableIndexes(iX_ShiftPlan_MedicalUnitIdIx).Add(iX_ShiftPlan_MedicalUnitId);
             shiftPlanTable.Indexes.Add("IX_ShiftPlan_MedicalUnitId", iX_ShiftPlan_MedicalUnitId);
             var iX_ShiftPlan_PersonnelId = new TableIndex(
-            "IX_ShiftPlan_PersonnelId", shiftPlanTable, new[] { PersonnelIdColumn0 }, false);
+            "IX_ShiftPlan_PersonnelId", shiftPlanTable, new[] { personnelIdColumn0 }, false);
             var iX_ShiftPlan_PersonnelIdIx = RelationalModel.GetIndex(this,
                 "MedicalCenters.Domain.Entities.Shifts.ShiftPlan",
                 new[] { "PersonnelId" });
@@ -2063,25 +2063,25 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             shiftPlanTable.AddTypeMapping(shiftPlanTableMapping, false);
             tableMappings23.Add(shiftPlanTableMapping);
             RelationalModel.CreateColumnMapping(idColumn16, shiftPlan.FindProperty("Id")!, shiftPlanTableMapping);
+            RelationalModel.CreateColumnMapping(createdAtColumn21, shiftPlan.FindProperty("CreatedAt")!, shiftPlanTableMapping);
             RelationalModel.CreateColumnMapping(createdByColumn21, shiftPlan.FindProperty("CreatedBy")!, shiftPlanTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn21, shiftPlan.FindProperty("DateTimeCreated")!, shiftPlanTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeModifiedColumn10, shiftPlan.FindProperty("DateTimeModified")!, shiftPlanTableMapping);
             RelationalModel.CreateColumnMapping(medicalUnitIdColumn, shiftPlan.FindProperty("MedicalUnitId")!, shiftPlanTableMapping);
+            RelationalModel.CreateColumnMapping(modifiedAtColumn10, shiftPlan.FindProperty("ModifiedAt")!, shiftPlanTableMapping);
             RelationalModel.CreateColumnMapping(modifiedByColumn10, shiftPlan.FindProperty("ModifiedBy")!, shiftPlanTableMapping);
-            RelationalModel.CreateColumnMapping(PersonnelIdColumn0, shiftPlan.FindProperty("PersonnelId")!, shiftPlanTableMapping);
+            RelationalModel.CreateColumnMapping(personnelIdColumn0, shiftPlan.FindProperty("PersonnelId")!, shiftPlanTableMapping);
 
             var specialty = FindEntityType("MedicalCenters.Domain.Entities.Specialties.Specialty")!;
 
             var defaultTableMappings26 = new List<TableMappingBase<ColumnMappingBase>>();
             specialty.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings26);
             var medicalCentersDomainEntitiesSpecialtiesSpecialtyTableBase = new TableBase("MedicalCenters.Domain.Entities.Specialties.Specialty", null, relationalModel);
-            var createdByColumnBase22 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesSpecialtiesSpecialtyTableBase);
-            medicalCentersDomainEntitiesSpecialtiesSpecialtyTableBase.Columns.Add("CreatedBy", createdByColumnBase22);
-            var dateTimeCreatedColumnBase22 = new ColumnBase<ColumnMappingBase>("DateTimeCreated", "datetime2", medicalCentersDomainEntitiesSpecialtiesSpecialtyTableBase)
+            var createdAtColumnBase22 = new ColumnBase<ColumnMappingBase>("CreatedAt", "datetime2", medicalCentersDomainEntitiesSpecialtiesSpecialtyTableBase)
             {
                 IsNullable = true
             };
-            medicalCentersDomainEntitiesSpecialtiesSpecialtyTableBase.Columns.Add("DateTimeCreated", dateTimeCreatedColumnBase22);
+            medicalCentersDomainEntitiesSpecialtiesSpecialtyTableBase.Columns.Add("CreatedAt", createdAtColumnBase22);
+            var createdByColumnBase22 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesSpecialtiesSpecialtyTableBase);
+            medicalCentersDomainEntitiesSpecialtiesSpecialtyTableBase.Columns.Add("CreatedBy", createdByColumnBase22);
             var descriptionColumnBase6 = new ColumnBase<ColumnMappingBase>("Description", "nvarchar(1000)", medicalCentersDomainEntitiesSpecialtiesSpecialtyTableBase);
             medicalCentersDomainEntitiesSpecialtiesSpecialtyTableBase.Columns.Add("Description", descriptionColumnBase6);
             var idColumnBase17 = new ColumnBase<ColumnMappingBase>("Id", "int", medicalCentersDomainEntitiesSpecialtiesSpecialtyTableBase);
@@ -2095,8 +2095,8 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalCentersDomainEntitiesSpecialtiesSpecialtyTableBase.AddTypeMapping(medicalCentersDomainEntitiesSpecialtiesSpecialtyMappingBase, false);
             defaultTableMappings26.Add(medicalCentersDomainEntitiesSpecialtiesSpecialtyMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase17, specialty.FindProperty("Id")!, medicalCentersDomainEntitiesSpecialtiesSpecialtyMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase22, specialty.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesSpecialtiesSpecialtyMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase22, specialty.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesSpecialtiesSpecialtyMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase22, specialty.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesSpecialtiesSpecialtyMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)descriptionColumnBase6, specialty.FindProperty("Description")!, medicalCentersDomainEntitiesSpecialtiesSpecialtyMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)nameColumnBase8, specialty.FindProperty("Name")!, medicalCentersDomainEntitiesSpecialtiesSpecialtyMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)specialtyGroupIdColumnBase, specialty.FindProperty("SpecialtyGroupId")!, medicalCentersDomainEntitiesSpecialtiesSpecialtyMappingBase);
@@ -2106,13 +2106,13 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var specialtyTable = new Table("Specialty", null, relationalModel);
             var idColumn17 = new Column("Id", "int", specialtyTable);
             specialtyTable.Columns.Add("Id", idColumn17);
-            var createdByColumn22 = new Column("CreatedBy", "bigint", specialtyTable);
-            specialtyTable.Columns.Add("CreatedBy", createdByColumn22);
-            var dateTimeCreatedColumn22 = new Column("DateTimeCreated", "datetime2", specialtyTable)
+            var createdAtColumn22 = new Column("CreatedAt", "datetime2", specialtyTable)
             {
                 IsNullable = true
             };
-            specialtyTable.Columns.Add("DateTimeCreated", dateTimeCreatedColumn22);
+            specialtyTable.Columns.Add("CreatedAt", createdAtColumn22);
+            var createdByColumn22 = new Column("CreatedBy", "bigint", specialtyTable);
+            specialtyTable.Columns.Add("CreatedBy", createdByColumn22);
             var descriptionColumn6 = new Column("Description", "nvarchar(1000)", specialtyTable);
             specialtyTable.Columns.Add("Description", descriptionColumn6);
             var nameColumn8 = new Column("Name", "nvarchar(100)", specialtyTable);
@@ -2140,8 +2140,8 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             specialtyTable.AddTypeMapping(specialtyTableMapping, false);
             tableMappings24.Add(specialtyTableMapping);
             RelationalModel.CreateColumnMapping(idColumn17, specialty.FindProperty("Id")!, specialtyTableMapping);
+            RelationalModel.CreateColumnMapping(createdAtColumn22, specialty.FindProperty("CreatedAt")!, specialtyTableMapping);
             RelationalModel.CreateColumnMapping(createdByColumn22, specialty.FindProperty("CreatedBy")!, specialtyTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn22, specialty.FindProperty("DateTimeCreated")!, specialtyTableMapping);
             RelationalModel.CreateColumnMapping(descriptionColumn6, specialty.FindProperty("Description")!, specialtyTableMapping);
             RelationalModel.CreateColumnMapping(nameColumn8, specialty.FindProperty("Name")!, specialtyTableMapping);
             RelationalModel.CreateColumnMapping(specialtyGroupIdColumn, specialty.FindProperty("SpecialtyGroupId")!, specialtyTableMapping);
@@ -2151,13 +2151,13 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var defaultTableMappings27 = new List<TableMappingBase<ColumnMappingBase>>();
             specialtyGroup.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings27);
             var medicalCentersDomainEntitiesSpecialtiesSpecialtyGroupTableBase = new TableBase("MedicalCenters.Domain.Entities.Specialties.SpecialtyGroup", null, relationalModel);
-            var createdByColumnBase23 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesSpecialtiesSpecialtyGroupTableBase);
-            medicalCentersDomainEntitiesSpecialtiesSpecialtyGroupTableBase.Columns.Add("CreatedBy", createdByColumnBase23);
-            var dateTimeCreatedColumnBase23 = new ColumnBase<ColumnMappingBase>("DateTimeCreated", "datetime2", medicalCentersDomainEntitiesSpecialtiesSpecialtyGroupTableBase)
+            var createdAtColumnBase23 = new ColumnBase<ColumnMappingBase>("CreatedAt", "datetime2", medicalCentersDomainEntitiesSpecialtiesSpecialtyGroupTableBase)
             {
                 IsNullable = true
             };
-            medicalCentersDomainEntitiesSpecialtiesSpecialtyGroupTableBase.Columns.Add("DateTimeCreated", dateTimeCreatedColumnBase23);
+            medicalCentersDomainEntitiesSpecialtiesSpecialtyGroupTableBase.Columns.Add("CreatedAt", createdAtColumnBase23);
+            var createdByColumnBase23 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesSpecialtiesSpecialtyGroupTableBase);
+            medicalCentersDomainEntitiesSpecialtiesSpecialtyGroupTableBase.Columns.Add("CreatedBy", createdByColumnBase23);
             var descriptionColumnBase7 = new ColumnBase<ColumnMappingBase>("Description", "nvarchar(1000)", medicalCentersDomainEntitiesSpecialtiesSpecialtyGroupTableBase);
             medicalCentersDomainEntitiesSpecialtiesSpecialtyGroupTableBase.Columns.Add("Description", descriptionColumnBase7);
             var idColumnBase18 = new ColumnBase<ColumnMappingBase>("Id", "int", medicalCentersDomainEntitiesSpecialtiesSpecialtyGroupTableBase);
@@ -2169,8 +2169,8 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalCentersDomainEntitiesSpecialtiesSpecialtyGroupTableBase.AddTypeMapping(medicalCentersDomainEntitiesSpecialtiesSpecialtyGroupMappingBase, false);
             defaultTableMappings27.Add(medicalCentersDomainEntitiesSpecialtiesSpecialtyGroupMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase18, specialtyGroup.FindProperty("Id")!, medicalCentersDomainEntitiesSpecialtiesSpecialtyGroupMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase23, specialtyGroup.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesSpecialtiesSpecialtyGroupMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase23, specialtyGroup.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesSpecialtiesSpecialtyGroupMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase23, specialtyGroup.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesSpecialtiesSpecialtyGroupMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)descriptionColumnBase7, specialtyGroup.FindProperty("Description")!, medicalCentersDomainEntitiesSpecialtiesSpecialtyGroupMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)nameColumnBase9, specialtyGroup.FindProperty("Name")!, medicalCentersDomainEntitiesSpecialtiesSpecialtyGroupMappingBase);
 
@@ -2179,13 +2179,13 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var specialtyGroupTable = new Table("SpecialtyGroup", null, relationalModel);
             var idColumn18 = new Column("Id", "int", specialtyGroupTable);
             specialtyGroupTable.Columns.Add("Id", idColumn18);
-            var createdByColumn23 = new Column("CreatedBy", "bigint", specialtyGroupTable);
-            specialtyGroupTable.Columns.Add("CreatedBy", createdByColumn23);
-            var dateTimeCreatedColumn23 = new Column("DateTimeCreated", "datetime2", specialtyGroupTable)
+            var createdAtColumn23 = new Column("CreatedAt", "datetime2", specialtyGroupTable)
             {
                 IsNullable = true
             };
-            specialtyGroupTable.Columns.Add("DateTimeCreated", dateTimeCreatedColumn23);
+            specialtyGroupTable.Columns.Add("CreatedAt", createdAtColumn23);
+            var createdByColumn23 = new Column("CreatedBy", "bigint", specialtyGroupTable);
+            specialtyGroupTable.Columns.Add("CreatedBy", createdByColumn23);
             var descriptionColumn7 = new Column("Description", "nvarchar(1000)", specialtyGroupTable);
             specialtyGroupTable.Columns.Add("Description", descriptionColumn7);
             var nameColumn9 = new Column("Name", "nvarchar(100)", specialtyGroupTable);
@@ -2203,8 +2203,8 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             specialtyGroupTable.AddTypeMapping(specialtyGroupTableMapping, false);
             tableMappings25.Add(specialtyGroupTableMapping);
             RelationalModel.CreateColumnMapping(idColumn18, specialtyGroup.FindProperty("Id")!, specialtyGroupTableMapping);
+            RelationalModel.CreateColumnMapping(createdAtColumn23, specialtyGroup.FindProperty("CreatedAt")!, specialtyGroupTableMapping);
             RelationalModel.CreateColumnMapping(createdByColumn23, specialtyGroup.FindProperty("CreatedBy")!, specialtyGroupTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn23, specialtyGroup.FindProperty("DateTimeCreated")!, specialtyGroupTableMapping);
             RelationalModel.CreateColumnMapping(descriptionColumn7, specialtyGroup.FindProperty("Description")!, specialtyGroupTableMapping);
             RelationalModel.CreateColumnMapping(nameColumn9, specialtyGroup.FindProperty("Name")!, specialtyGroupTableMapping);
 
@@ -2213,22 +2213,22 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var defaultTableMappings28 = new List<TableMappingBase<ColumnMappingBase>>();
             visit.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings28);
             var medicalCentersDomainEntitiesVisitTableBase = new TableBase("MedicalCenters.Domain.Entities.Visit", null, relationalModel);
+            var createdAtColumnBase24 = new ColumnBase<ColumnMappingBase>("CreatedAt", "datetime2", medicalCentersDomainEntitiesVisitTableBase)
+            {
+                IsNullable = true
+            };
+            medicalCentersDomainEntitiesVisitTableBase.Columns.Add("CreatedAt", createdAtColumnBase24);
             var createdByColumnBase24 = new ColumnBase<ColumnMappingBase>("CreatedBy", "bigint", medicalCentersDomainEntitiesVisitTableBase);
             medicalCentersDomainEntitiesVisitTableBase.Columns.Add("CreatedBy", createdByColumnBase24);
             var dateTimeColumnBase = new ColumnBase<ColumnMappingBase>("DateTime", "datetime2", medicalCentersDomainEntitiesVisitTableBase);
             medicalCentersDomainEntitiesVisitTableBase.Columns.Add("DateTime", dateTimeColumnBase);
-            var dateTimeCreatedColumnBase24 = new ColumnBase<ColumnMappingBase>("DateTimeCreated", "datetime2", medicalCentersDomainEntitiesVisitTableBase)
-            {
-                IsNullable = true
-            };
-            medicalCentersDomainEntitiesVisitTableBase.Columns.Add("DateTimeCreated", dateTimeCreatedColumnBase24);
-            var dateTimeModifiedColumnBase11 = new ColumnBase<ColumnMappingBase>("DateTimeModified", "datetime2", medicalCentersDomainEntitiesVisitTableBase)
-            {
-                IsNullable = true
-            };
-            medicalCentersDomainEntitiesVisitTableBase.Columns.Add("DateTimeModified", dateTimeModifiedColumnBase11);
             var idColumnBase19 = new ColumnBase<ColumnMappingBase>("Id", "bigint", medicalCentersDomainEntitiesVisitTableBase);
             medicalCentersDomainEntitiesVisitTableBase.Columns.Add("Id", idColumnBase19);
+            var modifiedAtColumnBase11 = new ColumnBase<ColumnMappingBase>("ModifiedAt", "datetime2", medicalCentersDomainEntitiesVisitTableBase)
+            {
+                IsNullable = true
+            };
+            medicalCentersDomainEntitiesVisitTableBase.Columns.Add("ModifiedAt", modifiedAtColumnBase11);
             var modifiedByColumnBase11 = new ColumnBase<ColumnMappingBase>("ModifiedBy", "bigint", medicalCentersDomainEntitiesVisitTableBase);
             medicalCentersDomainEntitiesVisitTableBase.Columns.Add("ModifiedBy", modifiedByColumnBase11);
             var patientIdColumnBase2 = new ColumnBase<ColumnMappingBase>("PatientId", "bigint", medicalCentersDomainEntitiesVisitTableBase);
@@ -2243,10 +2243,10 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalCentersDomainEntitiesVisitTableBase.AddTypeMapping(medicalCentersDomainEntitiesVisitMappingBase, false);
             defaultTableMappings28.Add(medicalCentersDomainEntitiesVisitMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase19, visit.FindProperty("Id")!, medicalCentersDomainEntitiesVisitMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdAtColumnBase24, visit.FindProperty("CreatedAt")!, medicalCentersDomainEntitiesVisitMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)createdByColumnBase24, visit.FindProperty("CreatedBy")!, medicalCentersDomainEntitiesVisitMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeColumnBase, visit.FindProperty("DateTime")!, medicalCentersDomainEntitiesVisitMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeCreatedColumnBase24, visit.FindProperty("DateTimeCreated")!, medicalCentersDomainEntitiesVisitMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)dateTimeModifiedColumnBase11, visit.FindProperty("DateTimeModified")!, medicalCentersDomainEntitiesVisitMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedAtColumnBase11, visit.FindProperty("ModifiedAt")!, medicalCentersDomainEntitiesVisitMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)modifiedByColumnBase11, visit.FindProperty("ModifiedBy")!, medicalCentersDomainEntitiesVisitMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)patientIdColumnBase2, visit.FindProperty("PatientId")!, medicalCentersDomainEntitiesVisitMappingBase);
             RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)reservationIdColumnBase, visit.FindProperty("ReservationId")!, medicalCentersDomainEntitiesVisitMappingBase);
@@ -2256,20 +2256,20 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             var visitTable = new Table("Visit", null, relationalModel);
             var idColumn19 = new Column("Id", "bigint", visitTable);
             visitTable.Columns.Add("Id", idColumn19);
+            var createdAtColumn24 = new Column("CreatedAt", "datetime2", visitTable)
+            {
+                IsNullable = true
+            };
+            visitTable.Columns.Add("CreatedAt", createdAtColumn24);
             var createdByColumn24 = new Column("CreatedBy", "bigint", visitTable);
             visitTable.Columns.Add("CreatedBy", createdByColumn24);
             var dateTimeColumn = new Column("DateTime", "datetime2", visitTable);
             visitTable.Columns.Add("DateTime", dateTimeColumn);
-            var dateTimeCreatedColumn24 = new Column("DateTimeCreated", "datetime2", visitTable)
+            var modifiedAtColumn11 = new Column("ModifiedAt", "datetime2", visitTable)
             {
                 IsNullable = true
             };
-            visitTable.Columns.Add("DateTimeCreated", dateTimeCreatedColumn24);
-            var dateTimeModifiedColumn11 = new Column("DateTimeModified", "datetime2", visitTable)
-            {
-                IsNullable = true
-            };
-            visitTable.Columns.Add("DateTimeModified", dateTimeModifiedColumn11);
+            visitTable.Columns.Add("ModifiedAt", modifiedAtColumn11);
             var modifiedByColumn11 = new Column("ModifiedBy", "bigint", visitTable);
             visitTable.Columns.Add("ModifiedBy", modifiedByColumn11);
             var patientIdColumn2 = new Column("PatientId", "bigint", visitTable);
@@ -2308,10 +2308,10 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             visitTable.AddTypeMapping(visitTableMapping, false);
             tableMappings26.Add(visitTableMapping);
             RelationalModel.CreateColumnMapping(idColumn19, visit.FindProperty("Id")!, visitTableMapping);
+            RelationalModel.CreateColumnMapping(createdAtColumn24, visit.FindProperty("CreatedAt")!, visitTableMapping);
             RelationalModel.CreateColumnMapping(createdByColumn24, visit.FindProperty("CreatedBy")!, visitTableMapping);
             RelationalModel.CreateColumnMapping(dateTimeColumn, visit.FindProperty("DateTime")!, visitTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeCreatedColumn24, visit.FindProperty("DateTimeCreated")!, visitTableMapping);
-            RelationalModel.CreateColumnMapping(dateTimeModifiedColumn11, visit.FindProperty("DateTimeModified")!, visitTableMapping);
+            RelationalModel.CreateColumnMapping(modifiedAtColumn11, visit.FindProperty("ModifiedAt")!, visitTableMapping);
             RelationalModel.CreateColumnMapping(modifiedByColumn11, visit.FindProperty("ModifiedBy")!, visitTableMapping);
             RelationalModel.CreateColumnMapping(patientIdColumn2, visit.FindProperty("PatientId")!, visitTableMapping);
             RelationalModel.CreateColumnMapping(reservationIdColumn, visit.FindProperty("ReservationId")!, visitTableMapping);
@@ -2642,7 +2642,7 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalUnitTable.ReferencingForeignKeyConstraints.Add(fK_Shift_MedicalUnit_UnitId);
             var fK_Shift_Personnel_PersonnelId = new ForeignKeyConstraint(
                 "FK_Shift_Personnel_PersonnelId", shiftTable, personnelTable,
-                new[] { PersonnelIdColumn },
+                new[] { personnelIdColumn },
                 personnelTable.FindUniqueConstraint("PK_Personnel")!, ReferentialAction.Cascade);
             var fK_Shift_Personnel_PersonnelIdFk = RelationalModel.GetForeignKey(this,
                 "MedicalCenters.Domain.Entities.Shifts.Shift",
@@ -2681,7 +2681,7 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
             medicalUnitTable.ReferencingForeignKeyConstraints.Add(fK_ShiftPlan_MedicalUnit_MedicalUnitId);
             var fK_ShiftPlan_Personnel_PersonnelId = new ForeignKeyConstraint(
                 "FK_ShiftPlan_Personnel_PersonnelId", shiftPlanTable, personnelTable,
-                new[] { PersonnelIdColumn0 },
+                new[] { personnelIdColumn0 },
                 personnelTable.FindUniqueConstraint("PK_Personnel")!, ReferentialAction.Cascade);
             var fK_ShiftPlan_Personnel_PersonnelIdFk = RelationalModel.GetForeignKey(this,
                 "MedicalCenters.Domain.Entities.Shifts.ShiftPlan",

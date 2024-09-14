@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace MedicalCenters.Domain.Entities.Medicines
 {
     [Table(nameof(MedicineType))]
-    public class MedicineType : BaseCreateableDomainEntity
+    public class MedicineType : BaseCreatableDomainEntity
     {
         public new const string EntityTitle = "نوع دارو";
 

@@ -1,8 +1,8 @@
 ﻿namespace MedicalCenters.Domain.Entities.Base
 {
-    public abstract class BaseModifiableDomainEntity : BaseCreateableDomainEntity
+    public abstract class BaseModifiableDomainEntity : BaseCreatableDomainEntity
     {
-        public DateTime? DateTimeModified { get; set; }
+        public DateTime? ModifiedAt { get; set; }
         public long ModifiedBy { get; set; }
     }
 }

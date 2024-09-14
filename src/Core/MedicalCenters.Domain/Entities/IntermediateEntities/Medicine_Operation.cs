@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 namespace MedicalCenters.Domain.Entities.IntermediateEntities
 {
     [PrimaryKey(nameof(MedicineId), nameof(OperationId))]
-    public class Medicine_Operation : BaseCreateableDomainEntity
+    public class Medicine_Operation : BaseCreatableDomainEntity
     {
         [Required]
         public int MedicineId { get; set; }

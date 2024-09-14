@@ -13,18 +13,18 @@ namespace MedicalCenters.Persistence.DBContexts
             foreach (var entry in base.ChangeTracker.Entries<BaseDomainEntity>()
                         .Where(q => q.State == EntityState.Added || q.State == EntityState.Modified))
             {
-                if (entry.Entity is BaseCreateableDomainEntity creatableEntity)
+                if (entry.Entity is BaseCreatableDomainEntity creatableEntity)
                 {
                     if (entry.State == EntityState.Added)
                     {
                         creatableEntity.CreatedBy = userId;
-                        creatableEntity.DateTimeCreated = DateTime.Now;
+                        creatableEntity.CreatedAt = DateTime.Now;
                     }
 
                     if (creatableEntity is BaseModifiableDomainEntity modifiableEntity)
                     {
                         modifiableEntity.ModifiedBy = userId;
-                        modifiableEntity.DateTimeModified = DateTime.Now;
+                        modifiableEntity.ModifiedAt = DateTime.Now;
                     }
                 }
             }

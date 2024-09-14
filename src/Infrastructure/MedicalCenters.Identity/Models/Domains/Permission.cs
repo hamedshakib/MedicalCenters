@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MedicalCenters.Identity.Models.Domains
 {
-    public class Permission : BaseCreateableDomainEntity
+    public class Permission : BaseCreatableDomainEntity
     {
         [Key]
         public int Id { get; set; }

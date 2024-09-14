@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace MedicalCenters.Domain.Entities.Oprerations
 {
     [Table(nameof(OperationType))]
-    public class OperationType : BaseCreateableDomainEntity
+    public class OperationType : BaseCreatableDomainEntity
     {
         public new const string EntityTitle = "نوع عمل";
 

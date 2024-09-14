@@ -1,8 +1,8 @@
 ﻿namespace MedicalCenters.Domain.Entities.Base
 {
-    public abstract class BaseCreateableDomainEntity : BaseDomainEntity
+    public abstract class BaseCreatableDomainEntity : BaseDomainEntity
     {
-        public DateTime? DateTimeCreated { get; set; }
+        public DateTime? CreatedAt { get; set; }
         public long CreatedBy { get; set; }
     }
 }

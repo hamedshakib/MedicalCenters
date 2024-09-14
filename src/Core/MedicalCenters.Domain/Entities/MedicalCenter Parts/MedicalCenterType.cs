@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace MedicalCenters.Domain.Entities.MedicalCenter_Parts
 {
     [Table(nameof(MedicalCenterType))]
-    public class MedicalCenterType : BaseCreateableDomainEntity
+    public class MedicalCenterType : BaseCreatableDomainEntity
     {
         [Key]
         public int Id { get; set; }

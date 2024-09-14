@@ -30,11 +30,11 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -54,184 +54,184 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         new
                         {
                             Id = 1,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 47, 670, DateTimeKind.Local).AddTicks(4485),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 25, 13, 488, DateTimeKind.Local).AddTicks(463),
                             Description = "افزودن مرکز درمانی",
                             Name = "p"
                         },
                         new
                         {
                             Id = 2,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 47, 670, DateTimeKind.Local).AddTicks(4534),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 25, 13, 488, DateTimeKind.Local).AddTicks(616),
                             Description = "ویرایش مرکز درمانی",
                             Name = "p"
                         },
                         new
                         {
                             Id = 3,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 47, 670, DateTimeKind.Local).AddTicks(4554),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 25, 13, 488, DateTimeKind.Local).AddTicks(642),
                             Description = "حذف مرکز درمانی",
                             Name = "p"
                         },
                         new
                         {
                             Id = 4,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 47, 670, DateTimeKind.Local).AddTicks(4572),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 25, 13, 488, DateTimeKind.Local).AddTicks(660),
                             Description = "مشاهده اطلاعات مرکز درمانی",
                             Name = "p"
                         },
                         new
                         {
                             Id = 5,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 47, 670, DateTimeKind.Local).AddTicks(4589),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 25, 13, 488, DateTimeKind.Local).AddTicks(679),
                             Description = "مشاهده اطلاعات تمامی مراکز درمانی",
                             Name = "p"
                         },
                         new
                         {
                             Id = 6,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 47, 670, DateTimeKind.Local).AddTicks(4617),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 25, 13, 488, DateTimeKind.Local).AddTicks(701),
                             Description = "افزودن بخش درمانی",
                             Name = "p"
                         },
                         new
                         {
                             Id = 7,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 47, 670, DateTimeKind.Local).AddTicks(4634),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 25, 13, 488, DateTimeKind.Local).AddTicks(718),
                             Description = "ویرایش بخش درمانی",
                             Name = "p"
                         },
                         new
                         {
                             Id = 8,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 47, 670, DateTimeKind.Local).AddTicks(4651),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 25, 13, 488, DateTimeKind.Local).AddTicks(735),
                             Description = "حذف بخش درمانی",
                             Name = "p"
                         },
                         new
                         {
                             Id = 9,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 47, 670, DateTimeKind.Local).AddTicks(4667),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 25, 13, 488, DateTimeKind.Local).AddTicks(753),
                             Description = "مشاهده اطلاعات بخش درمانی",
                             Name = "p"
                         },
                         new
                         {
                             Id = 10,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 47, 670, DateTimeKind.Local).AddTicks(4686),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 25, 13, 488, DateTimeKind.Local).AddTicks(773),
                             Description = "مشاهده اطلاعات تمامی بخش های مرکز درمانی",
                             Name = "p"
                         },
                         new
                         {
                             Id = 11,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 47, 670, DateTimeKind.Local).AddTicks(4705),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 25, 13, 488, DateTimeKind.Local).AddTicks(791),
                             Description = "افزودن دارو",
                             Name = "p"
                         },
                         new
                         {
                             Id = 12,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 47, 670, DateTimeKind.Local).AddTicks(4722),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 25, 13, 488, DateTimeKind.Local).AddTicks(808),
                             Description = "ویرایش دارو",
                             Name = "p"
                         },
                         new
                         {
                             Id = 13,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 47, 670, DateTimeKind.Local).AddTicks(4740),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 25, 13, 488, DateTimeKind.Local).AddTicks(825),
                             Description = "حذف دارو",
                             Name = "p"
                         },
                         new
                         {
                             Id = 14,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 47, 670, DateTimeKind.Local).AddTicks(4757),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 25, 13, 488, DateTimeKind.Local).AddTicks(844),
                             Description = "مشاهده دارو ها",
                             Name = "p"
                         },
                         new
                         {
                             Id = 15,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 47, 670, DateTimeKind.Local).AddTicks(4774),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 25, 13, 488, DateTimeKind.Local).AddTicks(861),
                             Description = "مشاهده دارو های یک نوع",
                             Name = "p"
                         },
                         new
                         {
                             Id = 16,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 47, 670, DateTimeKind.Local).AddTicks(4791),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 25, 13, 488, DateTimeKind.Local).AddTicks(878),
                             Description = "افزودن پزشک",
                             Name = "p"
                         },
                         new
                         {
                             Id = 17,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 47, 670, DateTimeKind.Local).AddTicks(4808),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 25, 13, 488, DateTimeKind.Local).AddTicks(896),
                             Description = "ویرایش پزشک",
                             Name = "p"
                         },
                         new
                         {
                             Id = 18,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 47, 670, DateTimeKind.Local).AddTicks(4825),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 25, 13, 488, DateTimeKind.Local).AddTicks(913),
                             Description = "حذف پزشک",
                             Name = "p"
                         },
                         new
                         {
                             Id = 19,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 47, 670, DateTimeKind.Local).AddTicks(4841),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 25, 13, 488, DateTimeKind.Local).AddTicks(929),
                             Description = "مشاهده اطلاعات پزشک",
                             Name = "p"
                         },
                         new
                         {
                             Id = 20,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 47, 670, DateTimeKind.Local).AddTicks(4912),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 25, 13, 488, DateTimeKind.Local).AddTicks(946),
                             Description = "افزودن بیمار",
                             Name = "p"
                         },
                         new
                         {
                             Id = 21,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 47, 670, DateTimeKind.Local).AddTicks(4930),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 25, 13, 488, DateTimeKind.Local).AddTicks(963),
                             Description = "ویرایش بیمار",
                             Name = "p"
                         },
                         new
                         {
                             Id = 22,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 47, 670, DateTimeKind.Local).AddTicks(4947),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 25, 13, 488, DateTimeKind.Local).AddTicks(979),
                             Description = "حذف بیمار",
                             Name = "p"
                         },
                         new
                         {
                             Id = 23,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 47, 670, DateTimeKind.Local).AddTicks(4966),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 25, 13, 488, DateTimeKind.Local).AddTicks(998),
                             Description = "مشاهده اطلاعات بیمار",
                             Name = "p"
                         });
@@ -245,19 +245,19 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateTimeModified")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<long>("ModifiedBy")
                         .HasColumnType("bigint");
@@ -280,11 +280,11 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("PermissionGroupId", "UserId");
 
@@ -301,11 +301,11 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                     b.Property<int>("PermissionGroupId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("PermissionId", "PermissionGroupId");
 
@@ -322,11 +322,11 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("PermissionId", "UserId");
 
@@ -343,11 +343,11 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("HashAlgorithmType")
                         .HasColumnType("int");
@@ -381,13 +381,13 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         new
                         {
                             Id = 1L,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 47, 764, DateTimeKind.Local).AddTicks(9517),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 25, 13, 591, DateTimeKind.Local).AddTicks(9718),
                             HashAlgorithmType = 0,
-                            HashedPassword = new byte[] { 93, 36, 233, 39, 143, 247, 25, 183, 23, 210, 101, 142, 189, 112, 142, 112, 64, 13, 60, 164, 235, 40, 194, 82, 226, 145, 117, 38, 86, 149, 102, 116, 181, 13, 174, 179, 105, 24, 162, 247, 78, 24, 234, 154, 220, 193, 56, 14, 64, 92, 101, 217, 37, 120, 34, 113, 192, 21, 186, 116, 0, 104, 64, 146 },
+                            HashedPassword = new byte[] { 191, 234, 236, 186, 242, 172, 231, 201, 63, 161, 179, 187, 200, 2, 207, 255, 51, 11, 143, 70, 240, 65, 40, 38, 11, 81, 85, 28, 52, 40, 43, 196, 174, 46, 131, 152, 159, 166, 62, 190, 49, 44, 255, 160, 57, 18, 151, 250, 48, 253, 225, 143, 160, 167, 226, 142, 203, 34, 213, 62, 76, 24, 125, 86 },
                             Name = "ادمین",
                             PeaperType = 0,
-                            Salt = new byte[] { 115, 127, 84, 72, 221, 75, 141, 31, 179, 200, 98, 78, 58, 250, 64, 116, 29, 126, 45, 249, 78, 57, 62, 119, 57, 21, 13, 191, 75, 1, 229, 133, 234, 157, 240, 168, 175, 52, 208, 14, 152, 73, 82, 199, 91, 192, 21, 81, 25, 215, 230, 136, 142, 80, 84, 207, 228, 27, 88, 138, 64, 29, 101, 215 },
+                            Salt = new byte[] { 136, 165, 137, 37, 51, 123, 7, 53, 91, 242, 153, 209, 203, 138, 132, 16, 144, 235, 229, 98, 251, 211, 130, 75, 54, 119, 184, 251, 210, 126, 21, 39, 30, 149, 201, 194, 102, 87, 199, 185, 151, 44, 5, 168, 45, 221, 40, 22, 135, 176, 251, 254, 70, 207, 106, 35, 129, 133, 193, 119, 116, 82, 47, 8 },
                             UserName = "Administrator"
                         });
                 });

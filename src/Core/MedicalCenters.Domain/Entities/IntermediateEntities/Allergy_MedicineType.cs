@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace MedicalCenters.Domain.Entities.IntermediateEntities
 {
     [PrimaryKey(nameof(AllergyId), nameof(MedicineTypeId))]
-    public class Allergy_MedicineType : BaseCreateableDomainEntity
+    public class Allergy_MedicineType : BaseCreatableDomainEntity
     {
         [Required]
         public int AllergyId { get; set; }

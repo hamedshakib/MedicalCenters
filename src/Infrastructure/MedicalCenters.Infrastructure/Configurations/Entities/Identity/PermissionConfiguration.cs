@@ -14,7 +14,7 @@ namespace MedicalCenters.Persistence.Configurations.Entities.Identity
         {
             var permissions = Enum.GetValues(typeof(PermissionEnum)).Cast<PermissionEnum>();
 
-            builder.HasData(permissions.Select(p => new Permission { Id = (int)p, Name = nameof(p), Description = p.GetDescription(), CreatedBy = 1, DateTimeCreated = DateTime.Now }));
+            builder.HasData(permissions.Select(p => new Permission { Id = (int)p, Name = nameof(p), Description = p.GetDescription(), CreatedBy = 1, CreatedAt = DateTime.Now }));
         }
     }
 }

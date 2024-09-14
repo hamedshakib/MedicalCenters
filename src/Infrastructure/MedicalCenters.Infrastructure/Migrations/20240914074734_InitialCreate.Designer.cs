@@ -13,7 +13,7 @@ using NetTopologySuite.Geometries;
 namespace MedicalCenters.Persistence.Migrations
 {
     [DbContext(typeof(MedicalCentersDBContext))]
-    [Migration("20240914065453_InitialCreate")]
+    [Migration("20240914074734_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -34,19 +34,19 @@ namespace MedicalCenters.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateTimeModified")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<long>("ModifiedBy")
                         .HasColumnType("bigint");
@@ -69,11 +69,11 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Property<int>("MedicineTypeId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("AllergyId", "MedicineTypeId");
 
@@ -90,11 +90,11 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Property<long>("PatientId")
                         .HasColumnType("bigint");
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("AllergyId", "PatientId");
 
@@ -111,11 +111,11 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Property<long>("OperationId")
                         .HasColumnType("bigint");
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("DoctorId", "OperationId");
 
@@ -132,11 +132,11 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Property<int>("SpecialtyId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("DoctorId", "SpecialtyId");
 
@@ -153,11 +153,11 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Property<long>("VisitId")
                         .HasColumnType("bigint");
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("DoctorId", "VisitId");
 
@@ -174,11 +174,11 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Property<long>("OperationId")
                         .HasColumnType("bigint");
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("MedicineId", "OperationId");
 
@@ -195,11 +195,11 @@ namespace MedicalCenters.Persistence.Migrations
                     b.Property<long>("PatientHistoryId")
                         .HasColumnType("bigint");
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("MedicineId", "PatientHistoryId");
 
@@ -221,14 +221,11 @@ namespace MedicalCenters.Persistence.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateTimeModified")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -237,6 +234,9 @@ namespace MedicalCenters.Persistence.Migrations
 
                     b.Property<Point>("Location")
                         .HasColumnType("geography");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<long>("ModifiedBy")
                         .HasColumnType("bigint");
@@ -264,11 +264,11 @@ namespace MedicalCenters.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -283,57 +283,57 @@ namespace MedicalCenters.Persistence.Migrations
                         new
                         {
                             Id = 1,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 33, 555, DateTimeKind.Local).AddTicks(8770),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 24, 51, 636, DateTimeKind.Local).AddTicks(9249),
                             Name = "بیمارستان"
                         },
                         new
                         {
                             Id = 2,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 33, 555, DateTimeKind.Local).AddTicks(8788),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 24, 51, 636, DateTimeKind.Local).AddTicks(9270),
                             Name = "کلینیک پزشکی"
                         },
                         new
                         {
                             Id = 3,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 33, 555, DateTimeKind.Local).AddTicks(8789),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 24, 51, 636, DateTimeKind.Local).AddTicks(9272),
                             Name = "مرکز جراحی سر پایی"
                         },
                         new
                         {
                             Id = 4,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 33, 555, DateTimeKind.Local).AddTicks(8790),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 24, 51, 636, DateTimeKind.Local).AddTicks(9273),
                             Name = "مرکز زایمان "
                         },
                         new
                         {
                             Id = 5,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 33, 555, DateTimeKind.Local).AddTicks(8791),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 24, 51, 636, DateTimeKind.Local).AddTicks(9274),
                             Name = "مرکز تصویر برداری"
                         },
                         new
                         {
                             Id = 6,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 33, 555, DateTimeKind.Local).AddTicks(8792),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 24, 51, 636, DateTimeKind.Local).AddTicks(9280),
                             Name = "مرکز دیابت"
                         },
                         new
                         {
                             Id = 7,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 33, 555, DateTimeKind.Local).AddTicks(8793),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 24, 51, 636, DateTimeKind.Local).AddTicks(9281),
                             Name = "مرکز دیالیز"
                         },
                         new
                         {
                             Id = 8,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 33, 555, DateTimeKind.Local).AddTicks(8795),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 24, 51, 636, DateTimeKind.Local).AddTicks(9282),
                             Name = "مرکز توان بخشی"
                         });
                 });
@@ -346,11 +346,11 @@ namespace MedicalCenters.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .HasMaxLength(1000)
@@ -369,36 +369,36 @@ namespace MedicalCenters.Persistence.Migrations
                         new
                         {
                             Id = 1,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 33, 556, DateTimeKind.Local).AddTicks(325),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 24, 51, 637, DateTimeKind.Local).AddTicks(904),
                             Name = "بخش قلب"
                         },
                         new
                         {
                             Id = 2,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 33, 556, DateTimeKind.Local).AddTicks(330),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 24, 51, 637, DateTimeKind.Local).AddTicks(913),
                             Name = "بخش ریه"
                         },
                         new
                         {
                             Id = 3,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 33, 556, DateTimeKind.Local).AddTicks(331),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 24, 51, 637, DateTimeKind.Local).AddTicks(915),
                             Name = "بخش کلیه"
                         },
                         new
                         {
                             Id = 4,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 33, 556, DateTimeKind.Local).AddTicks(332),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 24, 51, 637, DateTimeKind.Local).AddTicks(916),
                             Name = "بخش کبد"
                         },
                         new
                         {
                             Id = 5,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 33, 556, DateTimeKind.Local).AddTicks(333),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 24, 51, 637, DateTimeKind.Local).AddTicks(917),
                             Name = "بخش پیوند"
                         });
                 });
@@ -411,19 +411,19 @@ namespace MedicalCenters.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateTimeModified")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<long>("ModifiedBy")
                         .HasColumnType("bigint");
@@ -446,14 +446,11 @@ namespace MedicalCenters.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateTimeModified")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -462,6 +459,9 @@ namespace MedicalCenters.Persistence.Migrations
 
                     b.Property<int>("MedicalCenterId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<long>("ModifiedBy")
                         .HasColumnType("bigint");
@@ -491,13 +491,13 @@ namespace MedicalCenters.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateTimeModified")
+                    b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<long>("ModifiedBy")
@@ -526,11 +526,11 @@ namespace MedicalCenters.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -550,32 +550,32 @@ namespace MedicalCenters.Persistence.Migrations
                         new
                         {
                             Id = 1,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 33, 556, DateTimeKind.Local).AddTicks(1594),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 24, 51, 637, DateTimeKind.Local).AddTicks(2395),
                             Description = "",
                             Name = "استامینوفن"
                         },
                         new
                         {
                             Id = 2,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 33, 556, DateTimeKind.Local).AddTicks(1601),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 24, 51, 637, DateTimeKind.Local).AddTicks(2401),
                             Description = "",
                             Name = "پنی سیلین"
                         },
                         new
                         {
                             Id = 3,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 33, 556, DateTimeKind.Local).AddTicks(1603),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 24, 51, 637, DateTimeKind.Local).AddTicks(2402),
                             Description = "",
                             Name = "دیفن هیدرامین"
                         },
                         new
                         {
                             Id = 4,
+                            CreatedAt = new DateTime(2024, 9, 14, 11, 17, 33, 556, DateTimeKind.Local).AddTicks(1604),
                             CreatedBy = 1L,
-                            DateTimeCreated = new DateTime(2024, 9, 14, 10, 24, 51, 637, DateTimeKind.Local).AddTicks(2403),
                             Description = "",
                             Name = "فاموتیدین"
                         });
@@ -589,13 +589,13 @@ namespace MedicalCenters.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateTimeModified")
+                    b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<long>("ModifiedBy")
@@ -622,11 +622,11 @@ namespace MedicalCenters.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -651,17 +651,17 @@ namespace MedicalCenters.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateTimeModified")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("DoctorId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<long>("ModifiedBy")
                         .HasColumnType("bigint");
@@ -686,14 +686,11 @@ namespace MedicalCenters.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateTimeModified")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -704,6 +701,9 @@ namespace MedicalCenters.Persistence.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<long>("ModifiedBy")
                         .HasColumnType("bigint");
@@ -727,14 +727,11 @@ namespace MedicalCenters.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateTimeModified")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -745,6 +742,9 @@ namespace MedicalCenters.Persistence.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<long>("ModifiedBy")
                         .HasColumnType("bigint");
@@ -775,13 +775,13 @@ namespace MedicalCenters.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateTimeModified")
+                    b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<long>("ModifiedBy")
@@ -808,13 +808,13 @@ namespace MedicalCenters.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateTimeModified")
+                    b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<long>("ModifiedBy")
@@ -848,17 +848,17 @@ namespace MedicalCenters.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateTimeModified")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("MedicalUnitId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<long>("ModifiedBy")
                         .HasColumnType("bigint");
@@ -883,11 +883,11 @@ namespace MedicalCenters.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -917,11 +917,11 @@ namespace MedicalCenters.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -946,16 +946,16 @@ namespace MedicalCenters.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<long>("CreatedBy")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateTimeCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateTimeModified")
+                    b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<long>("ModifiedBy")

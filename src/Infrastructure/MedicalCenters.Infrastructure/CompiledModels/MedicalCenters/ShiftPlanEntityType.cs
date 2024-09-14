@@ -48,11 +48,32 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
                     (long v) => v));
             id.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            var createdAt = runtimeEntityType.AddProperty(
+                "CreatedAt",
+                typeof(DateTime?),
+                propertyInfo: typeof(BaseCreatableDomainEntity).GetProperty("CreatedAt", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(BaseCreatableDomainEntity).GetField("<CreatedAt>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                nullable: true);
+            createdAt.TypeMapping = SqlServerDateTimeTypeMapping.Default.Clone(
+                comparer: new ValueComparer<DateTime?>(
+                    (Nullable<DateTime> v1, Nullable<DateTime> v2) => v1.HasValue && v2.HasValue && (DateTime)v1 == (DateTime)v2 || !v1.HasValue && !v2.HasValue,
+                    (Nullable<DateTime> v) => v.HasValue ? ((DateTime)v).GetHashCode() : 0,
+                    (Nullable<DateTime> v) => v.HasValue ? (Nullable<DateTime>)(DateTime)v : default(Nullable<DateTime>)),
+                keyComparer: new ValueComparer<DateTime?>(
+                    (Nullable<DateTime> v1, Nullable<DateTime> v2) => v1.HasValue && v2.HasValue && (DateTime)v1 == (DateTime)v2 || !v1.HasValue && !v2.HasValue,
+                    (Nullable<DateTime> v) => v.HasValue ? ((DateTime)v).GetHashCode() : 0,
+                    (Nullable<DateTime> v) => v.HasValue ? (Nullable<DateTime>)(DateTime)v : default(Nullable<DateTime>)),
+                providerValueComparer: new ValueComparer<DateTime?>(
+                    (Nullable<DateTime> v1, Nullable<DateTime> v2) => v1.HasValue && v2.HasValue && (DateTime)v1 == (DateTime)v2 || !v1.HasValue && !v2.HasValue,
+                    (Nullable<DateTime> v) => v.HasValue ? ((DateTime)v).GetHashCode() : 0,
+                    (Nullable<DateTime> v) => v.HasValue ? (Nullable<DateTime>)(DateTime)v : default(Nullable<DateTime>)));
+            createdAt.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
+
             var createdBy = runtimeEntityType.AddProperty(
                 "CreatedBy",
                 typeof(long),
-                propertyInfo: typeof(BaseCreateableDomainEntity).GetProperty("CreatedBy", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-                fieldInfo: typeof(BaseCreateableDomainEntity).GetField("<CreatedBy>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                propertyInfo: typeof(BaseCreatableDomainEntity).GetProperty("CreatedBy", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(BaseCreatableDomainEntity).GetField("<CreatedBy>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 sentinel: 0L);
             createdBy.TypeMapping = SqlServerLongTypeMapping.Default.Clone(
                 comparer: new ValueComparer<long>(
@@ -68,48 +89,6 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
                     (long v) => v.GetHashCode(),
                     (long v) => v));
             createdBy.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
-
-            var dateTimeCreated = runtimeEntityType.AddProperty(
-                "DateTimeCreated",
-                typeof(DateTime?),
-                propertyInfo: typeof(BaseCreateableDomainEntity).GetProperty("DateTimeCreated", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-                fieldInfo: typeof(BaseCreateableDomainEntity).GetField("<DateTimeCreated>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-                nullable: true);
-            dateTimeCreated.TypeMapping = SqlServerDateTimeTypeMapping.Default.Clone(
-                comparer: new ValueComparer<DateTime?>(
-                    (Nullable<DateTime> v1, Nullable<DateTime> v2) => v1.HasValue && v2.HasValue && (DateTime)v1 == (DateTime)v2 || !v1.HasValue && !v2.HasValue,
-                    (Nullable<DateTime> v) => v.HasValue ? ((DateTime)v).GetHashCode() : 0,
-                    (Nullable<DateTime> v) => v.HasValue ? (Nullable<DateTime>)(DateTime)v : default(Nullable<DateTime>)),
-                keyComparer: new ValueComparer<DateTime?>(
-                    (Nullable<DateTime> v1, Nullable<DateTime> v2) => v1.HasValue && v2.HasValue && (DateTime)v1 == (DateTime)v2 || !v1.HasValue && !v2.HasValue,
-                    (Nullable<DateTime> v) => v.HasValue ? ((DateTime)v).GetHashCode() : 0,
-                    (Nullable<DateTime> v) => v.HasValue ? (Nullable<DateTime>)(DateTime)v : default(Nullable<DateTime>)),
-                providerValueComparer: new ValueComparer<DateTime?>(
-                    (Nullable<DateTime> v1, Nullable<DateTime> v2) => v1.HasValue && v2.HasValue && (DateTime)v1 == (DateTime)v2 || !v1.HasValue && !v2.HasValue,
-                    (Nullable<DateTime> v) => v.HasValue ? ((DateTime)v).GetHashCode() : 0,
-                    (Nullable<DateTime> v) => v.HasValue ? (Nullable<DateTime>)(DateTime)v : default(Nullable<DateTime>)));
-            dateTimeCreated.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
-
-            var dateTimeModified = runtimeEntityType.AddProperty(
-                "DateTimeModified",
-                typeof(DateTime?),
-                propertyInfo: typeof(BaseModifiableDomainEntity).GetProperty("DateTimeModified", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-                fieldInfo: typeof(BaseModifiableDomainEntity).GetField("<DateTimeModified>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-                nullable: true);
-            dateTimeModified.TypeMapping = SqlServerDateTimeTypeMapping.Default.Clone(
-                comparer: new ValueComparer<DateTime?>(
-                    (Nullable<DateTime> v1, Nullable<DateTime> v2) => v1.HasValue && v2.HasValue && (DateTime)v1 == (DateTime)v2 || !v1.HasValue && !v2.HasValue,
-                    (Nullable<DateTime> v) => v.HasValue ? ((DateTime)v).GetHashCode() : 0,
-                    (Nullable<DateTime> v) => v.HasValue ? (Nullable<DateTime>)(DateTime)v : default(Nullable<DateTime>)),
-                keyComparer: new ValueComparer<DateTime?>(
-                    (Nullable<DateTime> v1, Nullable<DateTime> v2) => v1.HasValue && v2.HasValue && (DateTime)v1 == (DateTime)v2 || !v1.HasValue && !v2.HasValue,
-                    (Nullable<DateTime> v) => v.HasValue ? ((DateTime)v).GetHashCode() : 0,
-                    (Nullable<DateTime> v) => v.HasValue ? (Nullable<DateTime>)(DateTime)v : default(Nullable<DateTime>)),
-                providerValueComparer: new ValueComparer<DateTime?>(
-                    (Nullable<DateTime> v1, Nullable<DateTime> v2) => v1.HasValue && v2.HasValue && (DateTime)v1 == (DateTime)v2 || !v1.HasValue && !v2.HasValue,
-                    (Nullable<DateTime> v) => v.HasValue ? ((DateTime)v).GetHashCode() : 0,
-                    (Nullable<DateTime> v) => v.HasValue ? (Nullable<DateTime>)(DateTime)v : default(Nullable<DateTime>)));
-            dateTimeModified.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
             var medicalUnitId = runtimeEntityType.AddProperty(
                 "MedicalUnitId",
@@ -132,6 +111,27 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
                     (int v) => v));
             medicalUnitId.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
+            var modifiedAt = runtimeEntityType.AddProperty(
+                "ModifiedAt",
+                typeof(DateTime?),
+                propertyInfo: typeof(BaseModifiableDomainEntity).GetProperty("ModifiedAt", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(BaseModifiableDomainEntity).GetField("<ModifiedAt>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                nullable: true);
+            modifiedAt.TypeMapping = SqlServerDateTimeTypeMapping.Default.Clone(
+                comparer: new ValueComparer<DateTime?>(
+                    (Nullable<DateTime> v1, Nullable<DateTime> v2) => v1.HasValue && v2.HasValue && (DateTime)v1 == (DateTime)v2 || !v1.HasValue && !v2.HasValue,
+                    (Nullable<DateTime> v) => v.HasValue ? ((DateTime)v).GetHashCode() : 0,
+                    (Nullable<DateTime> v) => v.HasValue ? (Nullable<DateTime>)(DateTime)v : default(Nullable<DateTime>)),
+                keyComparer: new ValueComparer<DateTime?>(
+                    (Nullable<DateTime> v1, Nullable<DateTime> v2) => v1.HasValue && v2.HasValue && (DateTime)v1 == (DateTime)v2 || !v1.HasValue && !v2.HasValue,
+                    (Nullable<DateTime> v) => v.HasValue ? ((DateTime)v).GetHashCode() : 0,
+                    (Nullable<DateTime> v) => v.HasValue ? (Nullable<DateTime>)(DateTime)v : default(Nullable<DateTime>)),
+                providerValueComparer: new ValueComparer<DateTime?>(
+                    (Nullable<DateTime> v1, Nullable<DateTime> v2) => v1.HasValue && v2.HasValue && (DateTime)v1 == (DateTime)v2 || !v1.HasValue && !v2.HasValue,
+                    (Nullable<DateTime> v) => v.HasValue ? ((DateTime)v).GetHashCode() : 0,
+                    (Nullable<DateTime> v) => v.HasValue ? (Nullable<DateTime>)(DateTime)v : default(Nullable<DateTime>)));
+            modifiedAt.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
+
             var modifiedBy = runtimeEntityType.AddProperty(
                 "ModifiedBy",
                 typeof(long),
@@ -153,13 +153,13 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
                     (long v) => v));
             modifiedBy.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
-            var PersonnelId = runtimeEntityType.AddProperty(
+            var personnelId = runtimeEntityType.AddProperty(
                 "PersonnelId",
                 typeof(int),
                 propertyInfo: typeof(ShiftPlan).GetProperty("PersonnelId", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 fieldInfo: typeof(ShiftPlan).GetField("<PersonnelId>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 sentinel: 0);
-            PersonnelId.TypeMapping = IntTypeMapping.Default.Clone(
+            personnelId.TypeMapping = IntTypeMapping.Default.Clone(
                 comparer: new ValueComparer<int>(
                     (int v1, int v2) => v1 == v2,
                     (int v) => v,
@@ -172,7 +172,7 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
                     (int v1, int v2) => v1 == v2,
                     (int v) => v,
                     (int v) => v));
-            PersonnelId.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
+            personnelId.AddAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.None);
 
             var key = runtimeEntityType.AddKey(
                 new[] { id });
@@ -182,7 +182,7 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
                 new[] { medicalUnitId });
 
             var index0 = runtimeEntityType.AddIndex(
-                new[] { PersonnelId });
+                new[] { personnelId });
 
             return runtimeEntityType;
         }
@@ -213,7 +213,7 @@ namespace MedicalCenters.Persistence.CompiledModels.MedicalCenters
                 deleteBehavior: DeleteBehavior.Cascade,
                 required: true);
 
-            var Personnel = declaringEntityType.AddNavigation("Personnel",
+            var personnel = declaringEntityType.AddNavigation("Personnel",
                 runtimeForeignKey,
                 onDependent: true,
                 typeof(Personnel),

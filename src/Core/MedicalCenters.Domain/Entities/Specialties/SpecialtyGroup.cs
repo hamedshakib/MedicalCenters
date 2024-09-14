@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace MedicalCenters.Domain.Entities.Specialties
 {
     [Table(nameof(SpecialtyGroup))]
-    public class SpecialtyGroup : BaseCreateableDomainEntity
+    public class SpecialtyGroup : BaseCreatableDomainEntity
     {
         public new const string EntityTitle = "گروه تخصص";
 

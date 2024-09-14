@@ -14,7 +14,7 @@ namespace MedicalCenters.Persistence.Configurations.Entities.Identity
             var salt = hasher.GenerateNewSalt();
 
             builder.HasData(
-                new User { Id = 1, UserName = "Administrator", Name = "ادمین", HashAlgorithmType = HashAlgorithmType, PeaperType = PeaperType, Salt = salt, HashedPassword = hasher.Hash("(/1f4OjRbRi6no!QDdnN*v:nyA5rnq", salt), CreatedBy = 1, DateTimeCreated = DateTime.Now }
+                new User { Id = 1, UserName = "Administrator", Name = "ادمین", HashAlgorithmType = HashAlgorithmType, PeaperType = PeaperType, Salt = salt, HashedPassword = hasher.Hash("(/1f4OjRbRi6no!QDdnN*v:nyA5rnq", salt), CreatedBy = 1, CreatedAt = DateTime.Now }
                 );
 
         }
