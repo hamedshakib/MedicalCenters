@@ -44,5 +44,8 @@
 		<PackageReference Update="OpenTelemetry.Instrumentation.Process" Version="0.5.0-beta.6" />
 		<PackageReference Update="OpenTelemetry.Instrumentation.Runtime" Version="1.9.0" />
 
+		<PackageReference Update="AspNetCore.HealthChecks.SqlServer" Version="8.0.2"/>
+		<PackageReference Update="AspNetCore.HealthChecks.Redis" Version="8.0.1" />
+
 	</ItemGroup>
 </Project>

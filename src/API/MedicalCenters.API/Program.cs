@@ -10,6 +10,7 @@ using Serilog.Events;
 using System.Reflection;
 using MedicalCenters.Persistence.DBContexts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,31 +20,6 @@ SetAppSettings(builder, isInDocker);
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 
 builder.Services.ConfigureAPIServices(builder.Configuration);
-
-var assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
-builder.Services.AddOpenTelemetry()
-    .WithMetrics(opt =>
-    {
-        opt.ConfigureResource(n => ResourceBuilder.CreateDefault().AddService(assemblyName))
-            .AddAspNetCoreInstrumentation()
-            .AddRuntimeInstrumentation()
-            .AddHttpClientInstrumentation()
-            .AddProcessInstrumentation()
-            .AddPrometheusExporter();
-    })
-    .WithTracing(tracerProviderBuilder =>
-    {
-        tracerProviderBuilder
-            .ConfigureResource(n => ResourceBuilder.CreateDefault().AddService(assemblyName))
-            .AddAspNetCoreInstrumentation()
-            .AddHttpClientInstrumentation()
-            .AddOtlpExporter(otlpOptions =>
-            {
-                otlpOptions.Endpoint = new Uri(builder.Configuration["Otlp:Endpoint"]);
-                otlpOptions.Protocol = OtlpExportProtocol.Grpc;
-            });
-    })
-    .WithLogging();
 
 var logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
@@ -84,6 +60,41 @@ app.UseOutputCache();
 app.MapControllers();
 
 app.UseOpenTelemetryPrometheusScrapingEndpoint();
+
+#region healthCheck
+app.MapHealthChecks(("/health/live"), new HealthCheckOptions()
+{
+    Predicate = check => check.Tags.Contains("live"),
+    ResponseWriter = async (context, report) =>
+    {
+        context.Response.ContentType = "application/json";
+        var data = report.Entries.Select(x => new HealthCheckResultModel()
+        {
+            Name = x.Key,
+            Status = x.Value.Status.ToString()
+        }).ToList();
+
+        await context.Response.WriteAsync(System.Text.Json.JsonSerializer.Serialize(data));
+
+    }
+}).ShortCircuit();
+
+app.MapHealthChecks(("/health/ready"), new HealthCheckOptions()
+{
+    Predicate = check => check.Tags.Contains("ready"),
+    ResponseWriter = async (context, report) =>
+    {
+        context.Response.ContentType = "application/json";
+        var data = report.Entries.Select(x => new HealthCheckResultModel()
+        {
+            Name = x.Key,
+            Status = x.Value.Status.ToString()
+        }).ToList();
+
+        await context.Response.WriteAsync(System.Text.Json.JsonSerializer.Serialize(data));
+    }
+}).ShortCircuit();
+#endregion
 
 using (var scope = app.Services.CreateScope())
 {

@@ -11,6 +11,11 @@ using Microsoft.AspNetCore.Mvc;
 using MedicalCenters.Application.Responses;
 using MedicalCenters.Domain.Enums;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using OpenTelemetry.Exporter;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 
 namespace MedicalCenters.API
 {
@@ -60,6 +65,48 @@ namespace MedicalCenters.API
             services.ConfigureApplicationServices(configuration);
             services.ConfigurePersistenceServices(configuration);
             services.ConfigureIdentityServices(configuration);
+
+            var assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
+            services.AddOpenTelemetry()
+                .WithMetrics(opt =>
+                {
+                    opt.ConfigureResource(n => ResourceBuilder.CreateDefault().AddService(assemblyName))
+                        .AddAspNetCoreInstrumentation()
+                        .AddRuntimeInstrumentation()
+                        .AddHttpClientInstrumentation()
+                        .AddProcessInstrumentation()
+                        .AddPrometheusExporter();
+                })
+                .WithTracing(tracerProviderBuilder =>
+                {
+                    tracerProviderBuilder
+                        .ConfigureResource(n => ResourceBuilder.CreateDefault().AddService(assemblyName))
+                        .AddAspNetCoreInstrumentation(netCoreOption =>
+                        {
+                            netCoreOption.Filter = (httpContext) => !httpContext.Request.Path.StartsWithSegments("/metrics");
+                            netCoreOption.Filter = (httpContext) => !httpContext.Request.Path.StartsWithSegments("/health");
+                        })
+                        .AddHttpClientInstrumentation(httpOption =>
+                        {
+                            httpOption.FilterHttpRequestMessage = httpRequestMessage =>
+                                httpRequestMessage.RequestUri?.PathAndQuery != "/health";
+
+                            httpOption.FilterHttpRequestMessage = httpRequestMessage =>
+                                httpRequestMessage.RequestUri?.PathAndQuery != "/metrics";
+                        })
+                        .AddOtlpExporter(otlpOptions =>
+                        {
+                            otlpOptions.Endpoint = new Uri(configuration["Otlp:Endpoint"]);
+                            otlpOptions.Protocol = OtlpExportProtocol.Grpc;
+                        });
+                })
+                .WithLogging();
+
+            services.AddHealthChecks()
+                .AddCheck(assemblyName, () => HealthCheckResult.Healthy(), tags: ["live"])
+                .AddSqlServer(configuration.GetConnectionString("MedicalCentersConnectionString"), tags: ["ready", "MedicalCentersDb", "sql-server", "db", "database"],name: "medicalCentersDb")
+                .AddSqlServer(configuration.GetConnectionString("IdentityConnectionString"), tags: ["ready", "IdentityDb", "sql-server", "db", "database"], name: "identityDb")
+                .AddRedis(configuration.GetConnectionString("RedisConnectionString"), tags: ["ready", "redis", "cache"]);
 
             return services;
         }
