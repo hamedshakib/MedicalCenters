@@ -5,7 +5,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=23412
-      # - ASPNETCORE_HTTPS_PORTS=23413
+      - ASPNETCORE_HTTPS_PORTS=23413
     ports:
       - "23412"
       - "23413"
