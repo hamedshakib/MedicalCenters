@@ -116,7 +116,6 @@ using (var scope = app.Services.CreateScope())
         {
             medicalCentersDB.Database.Migrate();
         }
-        medicalCentersDB.Database.Migrate();
     }
 }
 

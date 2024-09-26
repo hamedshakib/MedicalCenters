@@ -85,6 +85,8 @@ services:
       - ACCEPT_EULA=Y
     ports:
       - "5341:5341"
+      - "5342:80"
+      - "5343:443"
     volumes:
       - ./seq-data:/data
     restart: unless-stopped
