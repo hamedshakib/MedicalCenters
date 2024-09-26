@@ -1,16 +1,18 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Configuration;
 using StackExchange.Redis;
 
 namespace MedicalCenters.Cache
 {
-    public class RedisDatabaseProvider(IConfiguration configuration)
+    public class RedisConnectionProvider(IConfiguration configuration)
     {
-        public IDatabase GetDatabase()
+        private readonly CancellationTokenSource _resetTokenSource = new CancellationTokenSource();
+        public ConnectionMultiplexer GetConnection()
         {
             string ConnectionString = configuration.GetConnectionString("RedisConnectionString");
-            ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(ConnectionString);
-            IDatabase db = redis.GetDatabase();
-            return db;
+            ConnectionMultiplexer redisConnection = ConnectionMultiplexer.Connect(ConnectionString);
+
+            return redisConnection;
         }
     }
 }

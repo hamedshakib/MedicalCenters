@@ -6,7 +6,7 @@ namespace MedicalCenters.Identity.Contracts
     {
         Task<User?> FindUserAsync(string username);
 
-        Task<bool> SaveRefreshTokenAsync(long userId, string refreshToken);
+        Task SaveRefreshTokenAsync(long userId, string refreshToken);
 
         Task<string> GetRefreshTokenAsync(long userId);
     }

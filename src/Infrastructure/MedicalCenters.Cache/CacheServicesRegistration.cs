@@ -13,9 +13,10 @@ namespace MedicalCenters.Cache
     {
         public static IServiceCollection ConfigureCacheServices(this IServiceCollection services,IConfiguration configuration)
         {
-            IDatabase database = new RedisDatabaseProvider(configuration).GetDatabase();
-            services.AddTransient<IDatabase>(provider => database);
-            services.AddSingleton<IMasterCacheProvider>(new MasterCacheProvider(database));
+            var redisConnection = new RedisConnectionProvider(configuration).GetConnection();
+            var redisDatabase=redisConnection.GetDatabase();
+            services.AddTransient<IDatabase>(provider => redisDatabase);
+            services.AddSingleton<IMasterCacheProvider>(new MasterCacheProvider(redisConnection));
 
             return services;
         }

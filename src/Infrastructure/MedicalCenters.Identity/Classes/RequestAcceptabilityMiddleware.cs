@@ -33,7 +33,7 @@ namespace MedicalCenters.Identity.Classes
         {
             var CreatedTime = securityToken.IssuedAt;
 
-            var LastBlockDatetime = await _cacheProvider.GetAsync<DateTime?>($"Users:{UserId}:BlockedTokenDateTime");
+            var LastBlockDatetime = await _cacheProvider.GetDistributedCacheAsync<DateTime?>($"Users:{UserId}:BlockedTokenDateTime");
 
             if (LastBlockDatetime.HasValue && CreatedTime <= LastBlockDatetime)
                 return true;

@@ -9,10 +9,13 @@ namespace MedicalCenters.Cache
 {
     public interface IMasterCacheProvider
     {
-        Task<T?> GetAsync<T>(string cacheKey);
+        T? GetMemoryCache<T>(string cacheKey);
+        Task<T?> GetDistributedCacheAsync<T>(string cacheKey);
 
-        Task SetAsync<T>(string cacheKey, T value, TimeSpan expirationTime);
+        void SetMemoryCache<T>(string cacheKey, T value, TimeSpan? expirationTime = null);
+        Task SetDistributedCacheAsync<T>(string cacheKey, T value, TimeSpan? expirationTime = null);
 
-        Task RemoveAsync(string key, TimeSpan? removeAt = null);
+        Task RemoveMemoryCacheAsync(string key);
+        Task RemoveDistributedCacheAsync(string key, TimeSpan? removeAt = null);
     }
 }

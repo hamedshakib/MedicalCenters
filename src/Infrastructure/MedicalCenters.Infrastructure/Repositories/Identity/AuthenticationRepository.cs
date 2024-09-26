@@ -7,7 +7,7 @@ using StackExchange.Redis;
 
 namespace MedicalCenters.Persistence.Repositories.Identity
 {
-    internal class AuthenticationRepository(IdentityDBContext _dBContext, IDatabase _redisDatabase)
+    internal class AuthenticationRepository(IdentityDBContext _dBContext, IMasterCacheProvider _masterCacheProvider)
         : IAuthenticationRepository
     {
         public async Task<User?> FindUserAsync(string username)
@@ -21,14 +21,13 @@ namespace MedicalCenters.Persistence.Repositories.Identity
 
         async Task<string> IAuthenticationRepository.GetRefreshTokenAsync(long userId)
         {
-            var data = await _redisDatabase.StringGetAsync($"Users:{userId}:RefreshToken");
-
-            return data.HasValue ? data.ToString() : string.Empty;
+            var data = await _masterCacheProvider.GetDistributedCacheAsync<string>($"Users:{userId}:RefreshToken");
+            return data ?? string.Empty;
         }
 
-        Task<bool> IAuthenticationRepository.SaveRefreshTokenAsync(long userId, string refreshToken)
+        Task IAuthenticationRepository.SaveRefreshTokenAsync(long userId, string refreshToken)
         {
-            return _redisDatabase.StringSetAsync($"Users:{userId}:RefreshToken", refreshToken);
+            return _masterCacheProvider.SetDistributedCacheAsync($"Users:{userId}:RefreshToken", refreshToken);
         }
     }
 }
