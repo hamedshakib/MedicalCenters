@@ -46,6 +46,8 @@
 
 		<PackageReference Update="AspNetCore.HealthChecks.SqlServer" Version="8.0.2"/>
 		<PackageReference Update="AspNetCore.HealthChecks.Redis" Version="8.0.1" />
+		<PackageReference Update="Microsoft.Extensions.Caching.Abstractions" Version="8.0.0" />
+		<PackageReference Update="Microsoft.Extensions.Caching.Memory" Version="8.0.0" />
 
 	</ItemGroup>
 </Project>

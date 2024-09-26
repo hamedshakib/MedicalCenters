@@ -54,7 +54,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2024, 9, 14, 12, 2, 57, 351, DateTimeKind.Local).AddTicks(7323),
+                            CreatedAt = new DateTime(2024, 9, 26, 21, 43, 13, 393, DateTimeKind.Local).AddTicks(1652),
                             CreatedBy = 1L,
                             Description = "افزودن مرکز درمانی",
                             Name = "p"
@@ -62,7 +62,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2024, 9, 14, 12, 2, 57, 351, DateTimeKind.Local).AddTicks(7386),
+                            CreatedAt = new DateTime(2024, 9, 26, 21, 43, 13, 393, DateTimeKind.Local).AddTicks(1701),
                             CreatedBy = 1L,
                             Description = "ویرایش مرکز درمانی",
                             Name = "p"
@@ -70,7 +70,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2024, 9, 14, 12, 2, 57, 351, DateTimeKind.Local).AddTicks(7420),
+                            CreatedAt = new DateTime(2024, 9, 26, 21, 43, 13, 393, DateTimeKind.Local).AddTicks(1720),
                             CreatedBy = 1L,
                             Description = "حذف مرکز درمانی",
                             Name = "p"
@@ -78,7 +78,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2024, 9, 14, 12, 2, 57, 351, DateTimeKind.Local).AddTicks(7455),
+                            CreatedAt = new DateTime(2024, 9, 26, 21, 43, 13, 393, DateTimeKind.Local).AddTicks(1738),
                             CreatedBy = 1L,
                             Description = "مشاهده اطلاعات مرکز درمانی",
                             Name = "p"
@@ -86,7 +86,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2024, 9, 14, 12, 2, 57, 351, DateTimeKind.Local).AddTicks(7492),
+                            CreatedAt = new DateTime(2024, 9, 26, 21, 43, 13, 393, DateTimeKind.Local).AddTicks(1755),
                             CreatedBy = 1L,
                             Description = "مشاهده اطلاعات تمامی مراکز درمانی",
                             Name = "p"
@@ -94,7 +94,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2024, 9, 14, 12, 2, 57, 351, DateTimeKind.Local).AddTicks(7531),
+                            CreatedAt = new DateTime(2024, 9, 26, 21, 43, 13, 393, DateTimeKind.Local).AddTicks(1777),
                             CreatedBy = 1L,
                             Description = "افزودن بخش درمانی",
                             Name = "p"
@@ -102,7 +102,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         new
                         {
                             Id = 7,
-                            CreatedAt = new DateTime(2024, 9, 14, 12, 2, 57, 351, DateTimeKind.Local).AddTicks(7565),
+                            CreatedAt = new DateTime(2024, 9, 26, 21, 43, 13, 393, DateTimeKind.Local).AddTicks(1795),
                             CreatedBy = 1L,
                             Description = "ویرایش بخش درمانی",
                             Name = "p"
@@ -110,7 +110,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         new
                         {
                             Id = 8,
-                            CreatedAt = new DateTime(2024, 9, 14, 12, 2, 57, 351, DateTimeKind.Local).AddTicks(7599),
+                            CreatedAt = new DateTime(2024, 9, 26, 21, 43, 13, 393, DateTimeKind.Local).AddTicks(1812),
                             CreatedBy = 1L,
                             Description = "حذف بخش درمانی",
                             Name = "p"
@@ -118,7 +118,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         new
                         {
                             Id = 9,
-                            CreatedAt = new DateTime(2024, 9, 14, 12, 2, 57, 351, DateTimeKind.Local).AddTicks(7634),
+                            CreatedAt = new DateTime(2024, 9, 26, 21, 43, 13, 393, DateTimeKind.Local).AddTicks(1828),
                             CreatedBy = 1L,
                             Description = "مشاهده اطلاعات بخش درمانی",
                             Name = "p"
@@ -126,7 +126,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         new
                         {
                             Id = 10,
-                            CreatedAt = new DateTime(2024, 9, 14, 12, 2, 57, 351, DateTimeKind.Local).AddTicks(7671),
+                            CreatedAt = new DateTime(2024, 9, 26, 21, 43, 13, 393, DateTimeKind.Local).AddTicks(1848),
                             CreatedBy = 1L,
                             Description = "مشاهده اطلاعات تمامی بخش های مرکز درمانی",
                             Name = "p"
@@ -134,7 +134,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         new
                         {
                             Id = 11,
-                            CreatedAt = new DateTime(2024, 9, 14, 12, 2, 57, 351, DateTimeKind.Local).AddTicks(7706),
+                            CreatedAt = new DateTime(2024, 9, 26, 21, 43, 13, 393, DateTimeKind.Local).AddTicks(1864),
                             CreatedBy = 1L,
                             Description = "افزودن دارو",
                             Name = "p"
@@ -142,7 +142,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         new
                         {
                             Id = 12,
-                            CreatedAt = new DateTime(2024, 9, 14, 12, 2, 57, 351, DateTimeKind.Local).AddTicks(7818),
+                            CreatedAt = new DateTime(2024, 9, 26, 21, 43, 13, 393, DateTimeKind.Local).AddTicks(1880),
                             CreatedBy = 1L,
                             Description = "ویرایش دارو",
                             Name = "p"
@@ -150,7 +150,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         new
                         {
                             Id = 13,
-                            CreatedAt = new DateTime(2024, 9, 14, 12, 2, 57, 351, DateTimeKind.Local).AddTicks(7855),
+                            CreatedAt = new DateTime(2024, 9, 26, 21, 43, 13, 393, DateTimeKind.Local).AddTicks(1897),
                             CreatedBy = 1L,
                             Description = "حذف دارو",
                             Name = "p"
@@ -158,7 +158,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         new
                         {
                             Id = 14,
-                            CreatedAt = new DateTime(2024, 9, 14, 12, 2, 57, 351, DateTimeKind.Local).AddTicks(7890),
+                            CreatedAt = new DateTime(2024, 9, 26, 21, 43, 13, 393, DateTimeKind.Local).AddTicks(1915),
                             CreatedBy = 1L,
                             Description = "مشاهده دارو ها",
                             Name = "p"
@@ -166,7 +166,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         new
                         {
                             Id = 15,
-                            CreatedAt = new DateTime(2024, 9, 14, 12, 2, 57, 351, DateTimeKind.Local).AddTicks(7925),
+                            CreatedAt = new DateTime(2024, 9, 26, 21, 43, 13, 393, DateTimeKind.Local).AddTicks(1970),
                             CreatedBy = 1L,
                             Description = "مشاهده دارو های یک نوع",
                             Name = "p"
@@ -174,7 +174,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         new
                         {
                             Id = 16,
-                            CreatedAt = new DateTime(2024, 9, 14, 12, 2, 57, 351, DateTimeKind.Local).AddTicks(7957),
+                            CreatedAt = new DateTime(2024, 9, 26, 21, 43, 13, 393, DateTimeKind.Local).AddTicks(1987),
                             CreatedBy = 1L,
                             Description = "افزودن پزشک",
                             Name = "p"
@@ -182,7 +182,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         new
                         {
                             Id = 17,
-                            CreatedAt = new DateTime(2024, 9, 14, 12, 2, 57, 351, DateTimeKind.Local).AddTicks(7990),
+                            CreatedAt = new DateTime(2024, 9, 26, 21, 43, 13, 393, DateTimeKind.Local).AddTicks(2003),
                             CreatedBy = 1L,
                             Description = "ویرایش پزشک",
                             Name = "p"
@@ -190,7 +190,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         new
                         {
                             Id = 18,
-                            CreatedAt = new DateTime(2024, 9, 14, 12, 2, 57, 351, DateTimeKind.Local).AddTicks(8026),
+                            CreatedAt = new DateTime(2024, 9, 26, 21, 43, 13, 393, DateTimeKind.Local).AddTicks(2022),
                             CreatedBy = 1L,
                             Description = "حذف پزشک",
                             Name = "p"
@@ -198,7 +198,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         new
                         {
                             Id = 19,
-                            CreatedAt = new DateTime(2024, 9, 14, 12, 2, 57, 351, DateTimeKind.Local).AddTicks(8060),
+                            CreatedAt = new DateTime(2024, 9, 26, 21, 43, 13, 393, DateTimeKind.Local).AddTicks(2038),
                             CreatedBy = 1L,
                             Description = "مشاهده اطلاعات پزشک",
                             Name = "p"
@@ -206,7 +206,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         new
                         {
                             Id = 20,
-                            CreatedAt = new DateTime(2024, 9, 14, 12, 2, 57, 351, DateTimeKind.Local).AddTicks(8093),
+                            CreatedAt = new DateTime(2024, 9, 26, 21, 43, 13, 393, DateTimeKind.Local).AddTicks(2053),
                             CreatedBy = 1L,
                             Description = "افزودن بیمار",
                             Name = "p"
@@ -214,7 +214,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         new
                         {
                             Id = 21,
-                            CreatedAt = new DateTime(2024, 9, 14, 12, 2, 57, 351, DateTimeKind.Local).AddTicks(8124),
+                            CreatedAt = new DateTime(2024, 9, 26, 21, 43, 13, 393, DateTimeKind.Local).AddTicks(2069),
                             CreatedBy = 1L,
                             Description = "ویرایش بیمار",
                             Name = "p"
@@ -222,7 +222,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         new
                         {
                             Id = 22,
-                            CreatedAt = new DateTime(2024, 9, 14, 12, 2, 57, 351, DateTimeKind.Local).AddTicks(8155),
+                            CreatedAt = new DateTime(2024, 9, 26, 21, 43, 13, 393, DateTimeKind.Local).AddTicks(2086),
                             CreatedBy = 1L,
                             Description = "حذف بیمار",
                             Name = "p"
@@ -230,7 +230,7 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         new
                         {
                             Id = 23,
-                            CreatedAt = new DateTime(2024, 9, 14, 12, 2, 57, 351, DateTimeKind.Local).AddTicks(8191),
+                            CreatedAt = new DateTime(2024, 9, 26, 21, 43, 13, 393, DateTimeKind.Local).AddTicks(2104),
                             CreatedBy = 1L,
                             Description = "مشاهده اطلاعات بیمار",
                             Name = "p"
@@ -381,13 +381,13 @@ namespace MedicalCenters.Persistence.Migrations.IdentityDB
                         new
                         {
                             Id = 1L,
-                            CreatedAt = new DateTime(2024, 9, 14, 12, 2, 57, 454, DateTimeKind.Local).AddTicks(9609),
+                            CreatedAt = new DateTime(2024, 9, 26, 21, 43, 13, 463, DateTimeKind.Local).AddTicks(2451),
                             CreatedBy = 1L,
                             HashAlgorithmType = 0,
-                            HashedPassword = new byte[] { 32, 37, 254, 161, 154, 80, 184, 154, 226, 167, 240, 229, 101, 98, 17, 197, 20, 21, 6, 229, 128, 79, 148, 9, 66, 188, 86, 247, 170, 166, 58, 76, 222, 44, 133, 59, 154, 148, 109, 250, 36, 179, 39, 100, 169, 203, 180, 119, 164, 68, 188, 151, 73, 83, 63, 40, 70, 15, 176, 88, 39, 56, 36, 22 },
+                            HashedPassword = new byte[] { 143, 195, 149, 110, 131, 128, 130, 120, 9, 195, 189, 41, 249, 240, 199, 137, 183, 121, 141, 164, 195, 94, 118, 121, 104, 136, 43, 80, 129, 203, 98, 27, 171, 182, 52, 244, 14, 51, 42, 211, 97, 246, 47, 112, 59, 8, 171, 150, 255, 178, 239, 145, 46, 29, 215, 184, 219, 55, 161, 161, 237, 25, 209, 203 },
                             Name = "ادمین",
                             PeaperType = 0,
-                            Salt = new byte[] { 128, 133, 197, 236, 13, 14, 178, 159, 96, 172, 175, 175, 160, 111, 208, 193, 210, 37, 173, 244, 193, 77, 44, 60, 184, 7, 132, 22, 178, 209, 199, 117, 251, 151, 206, 125, 120, 218, 65, 59, 74, 103, 10, 146, 121, 48, 3, 63, 206, 15, 198, 99, 92, 56, 205, 105, 94, 120, 73, 167, 98, 186, 4, 36 },
+                            Salt = new byte[] { 129, 176, 208, 10, 50, 128, 141, 129, 12, 63, 200, 87, 107, 157, 254, 81, 76, 142, 212, 245, 87, 186, 133, 82, 240, 135, 252, 140, 181, 60, 140, 212, 56, 34, 173, 76, 19, 168, 138, 3, 160, 100, 113, 200, 40, 171, 218, 30, 98, 18, 0, 218, 49, 96, 159, 69, 143, 150, 247, 218, 11, 184, 67, 176 },
                             UserName = "Administrator"
                         });
                 });
