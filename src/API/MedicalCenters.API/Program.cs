@@ -1,4 +1,4 @@
-using MedicalCenters.API;
+﻿using MedicalCenters.API;
 using MedicalCenters.Identity.Classes;
 using Microsoft.OpenApi.Models;
 using OpenTelemetry.Exporter;
@@ -42,7 +42,11 @@ Log.Logger = new LoggerConfiguration()
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.DisplayRequestDuration();
+        c.EnableTryItOutByDefault();
+    });
     app.UseDeveloperExceptionPage();
 }
 
