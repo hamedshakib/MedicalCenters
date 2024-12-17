@@ -23,6 +23,7 @@
 		
 		<PackageReference Update="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
 		<PackageReference Update="Swashbuckle.AspNetCore" Version="7.2.0" />
+		<PackageReference Update="MicroElements.Swashbuckle.FluentValidation" Version="6.1.0" />
 
 
 		<PackageReference Update="Microsoft.NET.Test.Sdk" Version="17.12.0" />

@@ -10,6 +10,7 @@ using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
 using MedicalCenters.Application.Responses;
 using MedicalCenters.Domain.Enums;
+using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using OpenTelemetry.Exporter;
@@ -59,6 +60,7 @@ namespace MedicalCenters.API
             services.AddProblemDetails();
 
             services.AddSwagger();
+            services.AddFluentValidationRulesToSwagger();
 
             services.AddEndpointsApiExplorer();
             services.ConfigureCacheServices(configuration);
