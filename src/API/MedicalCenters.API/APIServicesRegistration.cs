@@ -81,6 +81,11 @@ namespace MedicalCenters.API
                 {
                     tracerProviderBuilder
                         .ConfigureResource(n => ResourceBuilder.CreateDefault().AddService(assemblyName))
+                        .AddEntityFrameworkCoreInstrumentation(options =>
+                        {
+                            options.SetDbStatementForText = true; // Include SQL statements
+                        })
+                        .AddRedisInstrumentation()
                         .AddAspNetCoreInstrumentation(netCoreOption =>
                         {
                             netCoreOption.Filter = (httpContext) => !httpContext.Request.Path.StartsWithSegments("/metrics");
