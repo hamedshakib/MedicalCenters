@@ -46,6 +46,8 @@ if (app.Environment.IsDevelopment())
     {
         c.DisplayRequestDuration();
         c.EnableTryItOutByDefault();
+        c.SwaggerEndpoint("/swagger/v1/swagger.json","v1");
+        c.RoutePrefix = "docs";
     });
     app.UseDeveloperExceptionPage();
 }
