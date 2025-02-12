@@ -34,8 +34,12 @@
     <PackageReference Include="OpenTelemetry.Instrumentation.Http" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Process" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.StackExchangeRedis" />
 	  
     <PackageReference Include="Swashbuckle.AspNetCore" />
+    <PackageReference Include="MicroElements.Swashbuckle.FluentValidation" />
+
 	<PackageReference Include="Serilog.Extensions.Logging" />
 	<PackageReference Include="Serilog.Settings.Configuration" />
 	<PackageReference Include="Serilog.Sinks.Seq" />

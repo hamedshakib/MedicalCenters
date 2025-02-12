@@ -10,6 +10,7 @@ using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
 using MedicalCenters.Application.Responses;
 using MedicalCenters.Domain.Enums;
+using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using OpenTelemetry.Exporter;
@@ -59,6 +60,7 @@ namespace MedicalCenters.API
             services.AddProblemDetails();
 
             services.AddSwagger();
+            services.AddFluentValidationRulesToSwagger();
 
             services.AddEndpointsApiExplorer();
             services.ConfigureCacheServices(configuration);
@@ -81,6 +83,11 @@ namespace MedicalCenters.API
                 {
                     tracerProviderBuilder
                         .ConfigureResource(n => ResourceBuilder.CreateDefault().AddService(assemblyName))
+                        .AddEntityFrameworkCoreInstrumentation(options =>
+                        {
+                            options.SetDbStatementForText = true; // Include SQL statements
+                        })
+                        .AddRedisInstrumentation()
                         .AddAspNetCoreInstrumentation(netCoreOption =>
                         {
                             netCoreOption.Filter = (httpContext) => !httpContext.Request.Path.StartsWithSegments("/metrics");
