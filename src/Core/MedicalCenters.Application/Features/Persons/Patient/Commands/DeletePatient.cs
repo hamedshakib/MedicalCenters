@@ -10,10 +10,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MedicalCenters.Domain.Abstractions;
+using MedicalCenters.Application.Abstractions;
 
 namespace MedicalCenters.Application.Features.Persons.Patient.Commands
 {
-    internal class DeletePatientCommandHandler(IPatientRepository _patientRepository, [FromKeyedServices("medicalCenters")] IUnitOfWork unitOfWork, IMapper mapper) : IRequestHandler<DeletePatientCommand, BaseResponse>
+    internal class DeletePatientCommandHandler(IPatientRepository _patientRepository, [FromKeyedServices("medicalCenters")] IUnitOfWork unitOfWork, IMapper mapper) : ICommandHandler<DeletePatientCommand, BaseResponse>
     {
         public async Task<BaseResponse> Handle(DeletePatientCommand command, CancellationToken cancellationToken)
         {
@@ -31,7 +32,7 @@ namespace MedicalCenters.Application.Features.Persons.Patient.Commands
             return response;
         }
     }
-    public record DeletePatientCommand : IRequest<BaseResponse>
+    public record DeletePatientCommand : ICommand<BaseResponse>
     {
         public long Id { get; set; }
     }

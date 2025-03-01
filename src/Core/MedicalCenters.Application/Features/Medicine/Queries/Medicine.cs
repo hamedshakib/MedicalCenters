@@ -10,10 +10,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MedicalCenters.Domain.Abstractions;
+using MedicalCenters.Application.Abstractions;
 
 namespace MedicalCenters.Application.Features.Medicine.Queries
 {
-    internal class MedicineQueryHandler(IMedicineRepository medicineRepository, IMapper mapper) : IRequestHandler<MedicineQuery, BaseQueryResponse>
+    internal class MedicineQueryHandler(IMedicineRepository medicineRepository, IMapper mapper) : IQueryHandler<MedicineQuery, BaseQueryResponse>
     {
         public async Task<BaseQueryResponse> Handle(MedicineQuery request, CancellationToken cancellationToken)
         {
@@ -34,7 +35,7 @@ namespace MedicalCenters.Application.Features.Medicine.Queries
         }
     }
 
-    public record class MedicineQuery : IRequest<BaseQueryResponse>
+    public record class MedicineQuery : IQuery<BaseQueryResponse>
     {
         public int Id { get; set; }
     }

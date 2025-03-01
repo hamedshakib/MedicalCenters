@@ -8,11 +8,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MedicalCenters.Application.Abstractions;
 using MedicalCenters.Domain.Abstractions;
 
 namespace MedicalCenters.Application.Features.Persons.Patient.Queries
 {
-    internal class PatientQueryHandler(IPatientRepository PatientRepository, IMapper mapper) : IRequestHandler<PatientQuery, BaseQueryResponse>
+    internal class PatientQueryHandler(IPatientRepository PatientRepository, IMapper mapper) : IQueryHandler<PatientQuery, BaseQueryResponse>
     {
         public async Task<BaseQueryResponse> Handle(PatientQuery request, CancellationToken cancellationToken)
         {
@@ -33,7 +34,7 @@ namespace MedicalCenters.Application.Features.Persons.Patient.Queries
         }
     }
 
-    public record class PatientQuery : IRequest<BaseQueryResponse>
+    public record class PatientQuery : IQuery<BaseQueryResponse>
     {
         public long Id { get; set; }
     }
