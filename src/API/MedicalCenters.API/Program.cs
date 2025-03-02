@@ -29,6 +29,7 @@ var logger = new LoggerConfiguration()
 
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(logger);
+builder.Host.UseSerilog(logger);
 
 
 var app = builder.Build();
@@ -51,6 +52,8 @@ if (app.Environment.IsDevelopment())
     });
     app.UseDeveloperExceptionPage();
 }
+
+app.UseSerilogRequestLogging();
 
 app.UseHttpsRedirection();
 

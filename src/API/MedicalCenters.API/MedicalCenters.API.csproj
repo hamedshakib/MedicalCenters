@@ -41,6 +41,7 @@
     <PackageReference Include="MicroElements.Swashbuckle.FluentValidation" />
 
 	<PackageReference Include="Serilog.Extensions.Logging" />
+	<PackageReference Include="Serilog.AspNetCore" />
 	<PackageReference Include="Serilog.Settings.Configuration" />
 	<PackageReference Include="Serilog.Sinks.Seq" />
 
