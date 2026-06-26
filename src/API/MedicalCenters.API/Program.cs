@@ -1,16 +1,10 @@
 ﻿using MedicalCenters.API;
 using MedicalCenters.Identity.Classes;
-using Microsoft.OpenApi.Models;
-using OpenTelemetry.Exporter;
-using OpenTelemetry.Metrics;
-using OpenTelemetry.Resources;
-using OpenTelemetry.Trace;
+using MedicalCenters.Persistence.DBContexts;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Serilog.Events;
-using System.Reflection;
-using MedicalCenters.Persistence.DBContexts;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,7 +41,7 @@ if (app.Environment.IsDevelopment())
     {
         c.DisplayRequestDuration();
         c.EnableTryItOutByDefault();
-        c.SwaggerEndpoint("/swagger/v1/swagger.json","v1");
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
         c.RoutePrefix = "docs";
     });
     app.UseDeveloperExceptionPage();
@@ -140,13 +134,13 @@ app.Run();
 
 
 
-void SetAppSettings(WebApplicationBuilder builder,bool isInDocker = false)
+void SetAppSettings(WebApplicationBuilder builder, bool isInDocker = false)
 {
     if (isInDocker)
     {
         builder.Configuration.AddJsonFile("appsettings.Docker.json", false, true);
     }
-    else if(builder.Environment.IsDevelopment())
+    else if (builder.Environment.IsDevelopment())
     {
         builder.Configuration.AddJsonFile("appsettings.Development.json", false, true);
     }

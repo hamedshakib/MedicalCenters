@@ -52,7 +52,7 @@ namespace MedicalCenters.Application.Features.Medicine.Commands
         public UpdateMedicineCommandValidator()
         {
             RuleFor(x => x.Id).NotNull();
-            RuleFor(e => e.MedicineDto.Name).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty();
+            RuleFor(e => e.MedicineDto.Name).Cascade(CascadeMode.Stop).NotNull().NotEmpty();
             RuleFor(e => e.MedicineDto.TypeId).NotNull();
         }
     }

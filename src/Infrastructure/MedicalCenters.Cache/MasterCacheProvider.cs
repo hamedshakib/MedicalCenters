@@ -64,7 +64,7 @@ namespace MedicalCenters.Cache
                     {
                         ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                     });
-                await _redisDatabase.StringSetAsync(cacheKey, valueBytes, expirationTime);
+                await _redisDatabase.StringSetAsync(cacheKey, valueBytes, expirationTime?? Expiration.Default);
             }
             catch (Exception e)
             {

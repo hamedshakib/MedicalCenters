@@ -44,7 +44,7 @@ namespace MedicalCenters.Application.Features.Medicine.Commands
     {
         public CreateMedicineCommandValidator()
         {
-            RuleFor(e => e.MedicineDto.Name).Cascade(CascadeMode.StopOnFirstFailure).NotNull().NotEmpty();
+            RuleFor(e => e.MedicineDto.Name).Cascade(CascadeMode.Stop).NotNull().NotEmpty();
             RuleFor(e => e.MedicineDto.TypeId).NotNull();
         }
     }

@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MedicalCenters.Domain.Abstractions;
+using Microsoft.Extensions.Logging.Abstractions;
 using Xunit.Sdk;
 
 namespace MedicalCenters.Application.UnitTests.Medicine
@@ -34,10 +35,11 @@ namespace MedicalCenters.Application.UnitTests.Medicine
             _medicineRepository = Substitute.For<IMedicineRepository>();
             _unitOfWork = Substitute.For<IUnitOfWork>();
 
-            var mapConfig = new MapperConfiguration(c =>
-            {
-                c.AddProfile<AutoMapperProfile>();
-            });
+            var mapConfig = new MapperConfiguration(cfg =>
+                {
+                    cfg.AddProfile<AutoMapperProfile>();
+                },
+                NullLoggerFactory.Instance);
 
             _mapper = mapConfig.CreateMapper();
             _handler = new UpdateMedicineCommandHandler(_medicineRepository, _unitOfWork, _mapper);

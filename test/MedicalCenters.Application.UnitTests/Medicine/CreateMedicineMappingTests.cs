@@ -3,6 +3,7 @@ using MedicalCenters.Application.DTOs;
 using MedicalCenters.Application.Features.Medicine.Commands;
 using MedicalCenters.Application.Mapping.MappingProfiles;
 using MedicalCenters.Domain.Abstractions;
+using Microsoft.Extensions.Logging.Abstractions;
 using NSubstitute;
 
 namespace MedicalCenters.Application.UnitTests.Medicine
@@ -27,10 +28,11 @@ namespace MedicalCenters.Application.UnitTests.Medicine
             _medicineRepository = Substitute.For<IMedicineRepository>();
             _unitOfWork = Substitute.For<IUnitOfWork>();
 
-            var mapConfig = new MapperConfiguration(c =>
-            {
-                c.AddProfile<AutoMapperProfile>();
-            });
+            var mapConfig = new MapperConfiguration(cfg =>
+                {
+                    cfg.AddProfile<AutoMapperProfile>();
+                },
+                NullLoggerFactory.Instance);
 
             _mapper = mapConfig.CreateMapper();
             _handler = new CreateMedicineCommandHandler(_medicineRepository, _unitOfWork, _mapper);
